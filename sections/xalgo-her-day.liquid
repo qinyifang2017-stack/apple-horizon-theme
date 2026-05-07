@@ -1,0 +1,660 @@
+{% comment %}
+  xalgo "Her Day" — 4-tab lifestyle narrative section
+  Inspired by Oura Ring's tabbed showcase layout
+  Layout: Tab bar → [Scene Photo | Data Cards | Quote]
+{% endcomment %}
+
+<section
+  id="xalgo-her-day-{{ section.id }}"
+  class="xalgo-her-day color-{{ section.settings.color_scheme }}"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  {%- if section.settings.heading != blank -%}
+    <div class="page-width xalgo-her-day__heading-wrapper">
+      <h2 class="xalgo-her-day__heading">{{ section.settings.heading }}</h2>
+      {%- if section.settings.subheading != blank -%}
+        <p class="xalgo-her-day__subheading">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <!-- Tab Navigation -->
+  <div class="page-width">
+    <nav class="xalgo-tabs" role="tablist" aria-label="Her Day Timeline">
+      {%- for i in (1..4) -%}
+        {%- assign label_key = 'tab' | append: i | append: '_label' -%}
+        {%- assign subtitle_key = 'tab' | append: i | append: '_subtitle' -%}
+        {%- assign label = section.settings[label_key] -%}
+        {%- assign subtitle = section.settings[subtitle_key] -%}
+        {%- if label != blank -%}
+          <button
+            class="xalgo-tab{% if forloop.first %} xalgo-tab--active{% endif %}"
+            role="tab"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            aria-controls="panel-{{ section.id }}-{{ i }}"
+            data-tab-index="{{ i }}"
+            id="tab-{{ section.id }}-{{ i }}"
+          >
+            <span class="xalgo-tab__label">{{ label }}</span>
+            {%- if subtitle != blank -%}
+              <span class="xalgo-tab__subtitle">{{ subtitle }}</span>
+            {%- endif -%}
+          </button>
+        {%- endif -%}
+      {%- endfor -%}
+    </nav>
+  </div>
+
+  <!-- Tab Panels -->
+  <div class="page-width xalgo-panels">
+    {%- for i in (1..4) -%}
+      {%- assign scene_key = 'tab' | append: i | append: '_scene_image' -%}
+      {%- assign data1_key = 'tab' | append: i | append: '_data_image_1' -%}
+      {%- assign data2_key = 'tab' | append: i | append: '_data_image_2' -%}
+      {%- assign desc_key = 'tab' | append: i | append: '_description' -%}
+      {%- assign quote_key = 'tab' | append: i | append: '_quote' -%}
+      {%- assign author_key = 'tab' | append: i | append: '_quote_author' -%}
+      {%- assign label_key = 'tab' | append: i | append: '_label' -%}
+      {%- assign label = section.settings[label_key] -%}
+
+      {%- if label != blank -%}
+        <div
+          class="xalgo-panel{% if forloop.first %} xalgo-panel--active{% endif %}"
+          role="tabpanel"
+          id="panel-{{ section.id }}-{{ i }}"
+          aria-labelledby="tab-{{ section.id }}-{{ i }}"
+          {% unless forloop.first %}hidden{% endunless %}
+        >
+          <div class="xalgo-panel__grid">
+            <!-- Left: Scene Photo -->
+            <div class="xalgo-panel__scene">
+              {%- if section.settings[scene_key] != blank -%}
+                {{
+                  section.settings[scene_key]
+                  | image_url: width: 1200
+                  | image_tag:
+                    class: 'xalgo-panel__scene-img',
+                    widths: '400, 600, 800, 1000, 1200',
+                    sizes: '(min-width: 750px) 35vw, 100vw',
+                    alt: label
+                }}
+              {%- else -%}
+                <div class="xalgo-panel__scene-placeholder">
+                  {{ 'lifestyle-1' | placeholder_svg_tag }}
+                </div>
+              {%- endif -%}
+            </div>
+
+            <!-- Middle: Data Cards -->
+            <div class="xalgo-panel__data">
+              {%- if section.settings[data1_key] != blank -%}
+                <div class="xalgo-panel__data-card">
+                  {{
+                    section.settings[data1_key]
+                    | image_url: width: 800
+                    | image_tag:
+                      class: 'xalgo-panel__data-img',
+                      widths: '300, 400, 600, 800',
+                      sizes: '(min-width: 750px) 25vw, 80vw'
+                  }}
+                </div>
+              {%- endif -%}
+              {%- if section.settings[data2_key] != blank -%}
+                <div class="xalgo-panel__data-card">
+                  {{
+                    section.settings[data2_key]
+                    | image_url: width: 800
+                    | image_tag:
+                      class: 'xalgo-panel__data-img',
+                      widths: '300, 400, 600, 800',
+                      sizes: '(min-width: 750px) 25vw, 80vw'
+                  }}
+                </div>
+              {%- endif -%}
+              {%- if section.settings[desc_key] != blank -%}
+                <div class="xalgo-panel__data-text">
+                  {{ section.settings[desc_key] }}
+                </div>
+              {%- endif -%}
+            </div>
+
+            <!-- Right: Quote -->
+            <div class="xalgo-panel__quote">
+              <div class="xalgo-panel__quote-mark">"</div>
+              {%- if section.settings[quote_key] != blank -%}
+                <blockquote class="xalgo-panel__quote-text">
+                  {{ section.settings[quote_key] }}
+                </blockquote>
+              {%- endif -%}
+              {%- if section.settings[author_key] != blank -%}
+                <cite class="xalgo-panel__quote-author">
+                  {{ section.settings[author_key] }}
+                </cite>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .xalgo-her-day {
+    overflow: hidden;
+  }
+
+  .xalgo-her-day__heading-wrapper {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .xalgo-her-day__heading {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-foreground-heading);
+    margin: 0 0 0.5rem;
+  }
+
+  .xalgo-her-day__subheading {
+    font-size: 1rem;
+    color: var(--color-foreground);
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  /* —— Tab Navigation —— */
+  .xalgo-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid rgb(var(--color-border-rgb) / 0.15);
+    margin-bottom: 3rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .xalgo-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .xalgo-tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 1rem 1.5rem 1.25rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    position: relative;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+    color: var(--color-foreground);
+    opacity: 0.5;
+  }
+
+  .xalgo-tab::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--xalgo-rose, #E8A598);
+    transform: scaleX(0);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .xalgo-tab--active {
+    opacity: 1;
+    color: var(--color-foreground-heading);
+  }
+
+  .xalgo-tab--active::after {
+    transform: scaleX(1);
+  }
+
+  .xalgo-tab:hover {
+    opacity: 0.8;
+  }
+
+  .xalgo-tab__label {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .xalgo-tab__subtitle {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    font-weight: 400;
+  }
+
+  /* —— Tab Panels —— */
+  .xalgo-panel {
+    display: none;
+    animation: xalgoFadeIn 0.5s ease;
+  }
+
+  .xalgo-panel--active {
+    display: block;
+  }
+
+  @keyframes xalgoFadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .xalgo-panel__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .xalgo-panel__grid {
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+      min-height: 28rem;
+    }
+  }
+
+  /* Scene photo */
+  .xalgo-panel__scene {
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+  }
+
+  @media screen and (min-width: 750px) {
+    .xalgo-panel__scene {
+      aspect-ratio: auto;
+      height: 100%;
+    }
+  }
+
+  .xalgo-panel__scene-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .xalgo-panel__scene-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--xalgo-warm-gray, #F5F0EB);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .xalgo-panel__scene-placeholder svg {
+    width: 60%;
+    opacity: 0.3;
+  }
+
+  /* Data cards */
+  .xalgo-panel__data {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .xalgo-panel__data-card {
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgb(var(--color-foreground-rgb) / 0.04);
+  }
+
+  .xalgo-panel__data-img {
+    width: 100%;
+    display: block;
+    border-radius: 16px;
+  }
+
+  .xalgo-panel__data-text {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-foreground);
+    padding: 0.5rem 0;
+  }
+
+  /* Quote */
+  .xalgo-panel__quote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .xalgo-panel__quote {
+      padding: 2rem 1rem;
+    }
+  }
+
+  .xalgo-panel__quote-mark {
+    font-size: 4rem;
+    line-height: 1;
+    font-weight: 700;
+    color: var(--color-foreground-heading);
+    opacity: 0.15;
+    margin-bottom: -0.5rem;
+    font-family: Georgia, serif;
+  }
+
+  .xalgo-panel__quote-text {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    color: var(--color-foreground-heading);
+    margin: 0 0 1.5rem;
+    border: none;
+    padding: 0;
+  }
+
+  .xalgo-panel__quote-author {
+    font-size: 0.875rem;
+    color: var(--color-foreground);
+    opacity: 0.6;
+    font-style: normal;
+  }
+{% endstylesheet %}
+
+<script>
+  (function() {
+    const section = document.getElementById('xalgo-her-day-{{ section.id }}');
+    if (!section) return;
+
+    const tabs = section.querySelectorAll('.xalgo-tab');
+    const panels = section.querySelectorAll('.xalgo-panel');
+
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        var index = this.getAttribute('data-tab-index');
+
+        // Update tabs
+        tabs.forEach(function(t) {
+          t.classList.remove('xalgo-tab--active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        this.classList.add('xalgo-tab--active');
+        this.setAttribute('aria-selected', 'true');
+
+        // Update panels
+        panels.forEach(function(p) {
+          p.classList.remove('xalgo-panel--active');
+          p.hidden = true;
+        });
+        var target = section.querySelector('#panel-{{ section.id }}-' + index);
+        if (target) {
+          target.classList.add('xalgo-panel--active');
+          target.hidden = false;
+        }
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Her Day — Tabs",
+  "tag": "div",
+  "class": "section-wrapper xalgo-her-day-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Her Day with xalgo"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Ring cares for her body. Glasses care for her time. Frame cares for her memory."
+    },
+    {
+      "type": "header",
+      "content": "Tab 1: Morning"
+    },
+    {
+      "type": "text",
+      "id": "tab1_label",
+      "label": "Tab label",
+      "default": "Morning"
+    },
+    {
+      "type": "text",
+      "id": "tab1_subtitle",
+      "label": "Tab subtitle",
+      "default": "Ring's Moment"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab1_scene_image",
+      "label": "Scene photo"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab1_data_image_1",
+      "label": "Data card image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab1_data_image_2",
+      "label": "Data card image 2"
+    },
+    {
+      "type": "richtext",
+      "id": "tab1_description",
+      "label": "Data description",
+      "default": "<p>All night, Ring quietly recorded. Deep sleep 1h 42min. HRV 62. No apnea risk. Today is a good day.</p>"
+    },
+    {
+      "type": "text",
+      "id": "tab1_quote",
+      "label": "Quote text",
+      "default": "Ring tracked everything overnight. 1.9 grams of peace of mind, watching over me while I sleep."
+    },
+    {
+      "type": "text",
+      "id": "tab1_quote_author",
+      "label": "Quote author",
+      "default": "Sarah K., Product Designer"
+    },
+    {
+      "type": "header",
+      "content": "Tab 2: Going Out"
+    },
+    {
+      "type": "text",
+      "id": "tab2_label",
+      "label": "Tab label",
+      "default": "Going Out"
+    },
+    {
+      "type": "text",
+      "id": "tab2_subtitle",
+      "label": "Tab subtitle",
+      "default": "Glasses' Moment"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab2_scene_image",
+      "label": "Scene photo"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab2_data_image_1",
+      "label": "Data card image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab2_data_image_2",
+      "label": "Data card image 2"
+    },
+    {
+      "type": "richtext",
+      "id": "tab2_description",
+      "label": "Data description",
+      "default": "<p>Glasses on, just like any other pair. Walking down the street: \"You have a call at 10, it's the Shanghai client.\" She didn't ask. Glasses just knew.</p>"
+    },
+    {
+      "type": "text",
+      "id": "tab2_quote",
+      "label": "Quote text",
+      "default": "It reminded me about the meeting before I even checked my phone. Six microphones, zero phone pickups."
+    },
+    {
+      "type": "text",
+      "id": "tab2_quote_author",
+      "label": "Quote author",
+      "default": "Emma L., Startup Founder"
+    },
+    {
+      "type": "header",
+      "content": "Tab 3: Evening"
+    },
+    {
+      "type": "text",
+      "id": "tab3_label",
+      "label": "Tab label",
+      "default": "Evening"
+    },
+    {
+      "type": "text",
+      "id": "tab3_subtitle",
+      "label": "Tab subtitle",
+      "default": "Frame's Moment"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab3_scene_image",
+      "label": "Scene photo"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab3_data_image_1",
+      "label": "Data card image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab3_data_image_2",
+      "label": "Data card image 2"
+    },
+    {
+      "type": "richtext",
+      "id": "tab3_description",
+      "label": "Data description",
+      "default": "<p>Walking in, she looks up at the painting on the wall. Last month's trip to Provence with Mom, turned into an Impressionist oil painting. No matter how tired, seeing it softens the heart.</p>"
+    },
+    {
+      "type": "text",
+      "id": "tab3_quote",
+      "label": "Quote text",
+      "default": "Every day I come home, that painting of our Provence trip makes everything better. Frame doesn't speak, but it gives our home a soul."
+    },
+    {
+      "type": "text",
+      "id": "tab3_quote_author",
+      "label": "Quote author",
+      "default": "Mia C., Interior Architect"
+    },
+    {
+      "type": "header",
+      "content": "Tab 4: Night"
+    },
+    {
+      "type": "text",
+      "id": "tab4_label",
+      "label": "Tab label",
+      "default": "Night"
+    },
+    {
+      "type": "text",
+      "id": "tab4_subtitle",
+      "label": "Tab subtitle",
+      "default": "Ring Takes Over"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab4_scene_image",
+      "label": "Scene photo"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab4_data_image_1",
+      "label": "Data card image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab4_data_image_2",
+      "label": "Data card image 2"
+    },
+    {
+      "type": "richtext",
+      "id": "tab4_description",
+      "label": "Data description",
+      "default": "<p>She takes off the glasses. Ring senses she's settling down. Sleep tracking begins quietly. Tomorrow continues.</p>"
+    },
+    {
+      "type": "text",
+      "id": "tab4_quote",
+      "label": "Quote text",
+      "default": "I never worry about forgetting to track my sleep. Ring just knows when I'm winding down. 1.9 grams, always there."
+    },
+    {
+      "type": "text",
+      "id": "tab4_quote_author",
+      "label": "Quote author",
+      "default": "Olivia R., Nurse Practitioner"
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Her Day — Tabs",
+      "category": "Storytelling"
+    }
+  ]
+}
+{% endschema %}

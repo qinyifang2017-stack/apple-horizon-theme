@@ -1,0 +1,97 @@
+/* ============================================
+   xalgo 品牌自定义样式 — 奶油苹果设计系统
+   Cream Apple Design System
+   ============================================ */
+
+/* —— 品牌设计令牌 —— */
+:root {
+  --xalgo-cream: #FDFAF7;
+  --xalgo-rose: #E8A598;
+  --xalgo-rose-dark: #D4918A;
+  --xalgo-rose-light: #F2DDD8;
+  --xalgo-champagne: #C9A882;
+  --xalgo-warm-gray: #F5F0EB;
+  --xalgo-dark: #1A1F2E;
+  --xalgo-text-primary: #1D1D1F;
+  --xalgo-text-secondary: #6E6E73;
+  --xalgo-success: #A8C5A0;
+  --color-success: #A8C5A0;
+}
+
+/* —— 1. 毛玻璃导航效果 —— */
+header-component {
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  transition: background-color 0.3s ease;
+}
+
+header-component[transparent] {
+  background-color: rgba(253, 250, 247, 0.72) !important;
+}
+
+/* —— 2. 全局按钮优化 —— */
+.button,
+[class*="button-primary"] {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.button:hover,
+[class*="button-primary"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(232, 165, 152, 0.35);
+}
+
+.button-secondary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(29, 29, 31, 0.08);
+}
+
+/* —— 3. 数字等宽 —— */
+.product-price,
+[data-price],
+.price {
+  font-variant-numeric: tabular-nums;
+}
+
+/* —— 4. Hero 文案 Apple 风格排版 —— */
+.hero h1,
+.hero h2 {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.hero p {
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+/* —— 5. 平滑滚动 —— */
+html {
+  scroll-behavior: smooth;
+}
+
+/* —— 6. 卡片悬浮微动效 —— */
+.product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+/* —— 7. 链接着重色 —— */
+a:not(.button):not(.button-secondary):hover {
+  color: var(--xalgo-rose);
+}
+
+/* —— 8. 选中状态用品牌色 —— */
+::selection {
+  background-color: var(--xalgo-rose-light);
+  color: var(--xalgo-text-primary);
+}
