@@ -107,6 +107,20 @@
 {% stylesheet %}
   .xalgo-testimonials {
     overflow: hidden;
+    background-color: #f5f6f7 !important;
+  }
+
+  .xalgo-testimonials .page-width {
+    max-width: calc(var(--narrow-page-width) + 32px);
+    margin-inline: auto;
+    padding-inline: 16px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .xalgo-testimonials .page-width {
+      max-width: calc(var(--narrow-page-width) + 80px);
+      padding-inline: 40px;
+    }
   }
 
   .xalgo-testimonials__header {
@@ -316,7 +330,7 @@
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color scheme",
-      "default": "scheme-2"
+      "default": "scheme-1"
     },
     {
       "type": "range",

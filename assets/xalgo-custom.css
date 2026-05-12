@@ -109,3 +109,11 @@ a:not(.button):not(.button-secondary):hover {
   background-color: var(--xalgo-rose-dark);
   border-color: var(--xalgo-rose-dark);
 }
+
+/* —— 10. Testimonials 区域淡背景 —— */
+
+/* 给 testimonials section 加满屏淡米色背景 */
+#shopify-section-testimonials,
+.section-wrapper:has([class*="testimonial"]) {
+  background-color: #FAFAF8;
+}

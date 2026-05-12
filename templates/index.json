@@ -524,136 +524,54 @@
       }
     },
     "testimonials": {
-      "type": "section",
+      "type": "xalgo-testimonials",
       "blocks": {
-        "reviews_heading": {
-          "type": "text",
+        "testimonial_1": {
+          "type": "testimonial",
           "settings": {
-            "text": "<h2>Real Women, Real Words</h2>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "h2",
-            "font": "var(--font-heading--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground-heading)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 16,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "author_name": "Emma",
+            "author_title": "Nurse",
+            "platform": "xiaohongshu",
+            "rating": 5,
+            "content": "<p>The ring made me check for AFib for the first time. Now I'm not worried anymore.</p>",
+            "date": "3 days ago"
+          }
         },
-        "review_1": {
-          "type": "text",
+        "testimonial_2": {
+          "type": "testimonial",
           "settings": {
-            "text": "<p>★★★★★</p><p><em>\"The ring made me check for AFib for the first time. Now I'm not worried anymore.\"</em></p><p><strong>— Emma, Nurse</strong></p>",
-            "width": "fill",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "loose",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 16,
-            "padding-block-end": 16,
-            "padding-inline-start": 16,
-            "padding-inline-end": 16
-          },
-          "blocks": {}
+            "author_name": "Sarah",
+            "author_title": "Creative Director",
+            "platform": "instagram",
+            "rating": 5,
+            "content": "<p>Glasses reminded me of my meeting before I even checked my phone. Life-changing.</p>",
+            "date": "1 week ago"
+          }
         },
-        "review_2": {
-          "type": "text",
+        "testimonial_3": {
+          "type": "testimonial",
           "settings": {
-            "text": "<p>★★★★★</p><p><em>\"Glasses reminded me of my meeting before I even checked my phone. Life-changing.\"</em></p><p><strong>— Sarah, Creative Director</strong></p>",
-            "width": "fill",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "loose",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 16,
-            "padding-block-end": 16,
-            "padding-inline-start": 16,
-            "padding-inline-end": 16
-          },
-          "blocks": {}
-        },
-        "review_3": {
-          "type": "text",
-          "settings": {
-            "text": "<p>★★★★★</p><p><em>\"Frame turned our Kyoto trip into an oil painting. It's the first thing guests notice.\"</em></p><p><strong>— Mia, Architect</strong></p>",
-            "width": "fill",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "loose",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 16,
-            "padding-block-end": 16,
-            "padding-inline-start": 16,
-            "padding-inline-end": 16
-          },
-          "blocks": {}
+            "author_name": "Mia",
+            "author_title": "Architect",
+            "platform": "xiaohongshu",
+            "rating": 5,
+            "content": "<p>Frame turned our Kyoto trip into an oil painting. It's the first thing guests notice.</p>",
+            "date": "2 weeks ago"
+          }
         }
       },
       "block_order": [
-        "reviews_heading",
-        "review_1",
-        "review_2",
-        "review_3"
+        "testimonial_1",
+        "testimonial_2",
+        "testimonial_3"
       ],
-      "name": "Testimonials",
       "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "center",
-        "vertical_alignment": "center",
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
-        "section_width": "page-width",
-        "section_height": "",
-        "color_scheme": "scheme-2",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "padding-block-start": 60,
-        "padding-block-end": 60
+        "heading": "Real Women, Real Words",
+        "subheading": "Hear from our community",
+        "layout": "grid",
+        "color_scheme": "scheme-1",
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     }
   },
