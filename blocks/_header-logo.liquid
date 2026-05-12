@@ -55,31 +55,28 @@
     class="header-logo__image-container header-logo__image-container--original"
     data-testid="header-logo"
   >
-    {% render 'image',
-      image: settings.logo,
-      class: 'header-logo__image',
-      height: settings.logo_height,
-      alt_text_fallback: alt_text_fallback,
-      text_fallback: shop.name,
-      style: logo_style
-    %}
+    <svg width="220" height="50" viewBox="0 0 220 50" xmlns="http://www.w3.org/2000/svg" class="header-logo__image">
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter">
+            <!-- 【缩小断点的 X】 -->
+            <!-- 1. 主对角线（保持贯穿） -->
+            <path d="M 10 10 L 40 40" />
+            <!-- 2. 副对角线上半段（大幅向中心靠拢，从 29,21 延长到 27,23） -->
+            <path d="M 40 10 L 27 23" />
+            <!-- 3. 副对角线下半段（大幅向中心靠拢，从 21,29 延长到 23,27） -->
+            <path d="M 10 40 L 23 27" />
+            <!-- A -->
+            <path d="M 52 40 L 68 10 L 84 40" />
+            <!-- L -->
+            <path d="M 96 10 L 96 40 L 118 40" />
+            <!-- G -->
+            <path d="M 155 14 A 15 15 0 1 0 155 36 L 155 25 L 143 25" />
+            <!-- O (外圈) -->
+            <circle cx="187" cy="25" r="15" />
+        </g>
+        <!-- O (内圈：保持紧凑比例) -->
+        <circle cx="187" cy="25" r="11" fill="none" stroke="#C5A880" stroke-width="1.5" />
+    </svg>
   </span>
-
-  {% if use_inverse_logo %}
-    <span
-      class="header-logo__image-container header-logo__image-container--inverse"
-      data-testid="header-logo-inverse"
-    >
-      {% render 'image',
-        image: inverse_logo,
-        class: 'header-logo__image',
-        height: settings.logo_height,
-        alt_text_fallback: alt_text_fallback,
-        text_fallback: shop.name,
-        style: inverse_logo_style
-      %}
-    </span>
-  {% endif %}
 </a>
 
 {% stylesheet %}

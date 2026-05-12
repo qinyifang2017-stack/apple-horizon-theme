@@ -14,7 +14,7 @@
         "ring_heading": {
           "type": "text",
           "settings": {
-            "text": "<h1>1.9g. The weight of knowing.</h1>",
+            "text": "<h1>xRing</h1>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "center",
@@ -45,7 +45,7 @@
             "alignment": "center",
             "type_preset": "rte",
             "font": "var(--font-body--family)",
-            "font_size": "1.125rem",
+            "font_size": "1.5rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
@@ -64,7 +64,7 @@
         "ring_cta": {
           "type": "button",
           "settings": {
-            "label": "Shop Ring →",
+            "label": "Learn more",
             "link": "",
             "open_in_new_tab": false,
             "style_class": "button",
@@ -78,7 +78,7 @@
         "ring_learn": {
           "type": "button",
           "settings": {
-            "label": "Learn more",
+            "label": "Shop Now",
             "link": "",
             "open_in_new_tab": false,
             "style_class": "button-secondary",
@@ -108,23 +108,25 @@
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "center",
-        "vertical_alignment": "flex-end",
+        "vertical_alignment": "center",
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
+        "vertical_alignment_flex_direction_column": "center",
         "gap": 16,
         "section_width": "page-width",
-        "section_height": "large",
+        "section_height": "auto",
         "section_height_custom": 50,
-        "color_scheme": "scheme-6",
-        "toggle_overlay": true,
+        "color_scheme": "scheme-1",
+        "toggle_overlay": false,
         "overlay_color": "#12121240",
         "overlay_style": "gradient",
         "gradient_direction": "to bottom",
         "blurred_reflection": false,
         "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
+        "media_contained": false,
+        "media_stacked": true,
+        "padding-block-start": 48,
+        "padding-block-end": 0
       }
     },
     "hero_glasses": {
@@ -133,7 +135,7 @@
         "glasses_heading": {
           "type": "text",
           "settings": {
-            "text": "<h2>Still you. Just smarter.</h2>",
+            "text": "<h2>xGlass</h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "center",
@@ -164,7 +166,7 @@
             "alignment": "center",
             "type_preset": "rte",
             "font": "var(--font-body--family)",
-            "font_size": "1.125rem",
+            "font_size": "1.5rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
@@ -183,10 +185,24 @@
         "glasses_cta": {
           "type": "button",
           "settings": {
-            "label": "Shop Glasses →",
+            "label": "Learn more",
             "link": "",
             "open_in_new_tab": false,
             "style_class": "button",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        },
+        "glasses_buy": {
+          "type": "button",
+          "settings": {
+            "label": "Shop Now",
+            "link": "",
+            "open_in_new_tab": false,
+            "style_class": "button-secondary",
             "width": "fit-content",
             "custom_width": 100,
             "width_mobile": "fit-content",
@@ -198,7 +214,8 @@
       "block_order": [
         "glasses_heading",
         "glasses_subtitle",
-        "glasses_cta"
+        "glasses_cta",
+        "glasses_buy"
       ],
       "name": "Glasses Hero",
       "settings": {
@@ -212,23 +229,25 @@
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "center",
-        "vertical_alignment": "flex-end",
+        "vertical_alignment": "center",
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
+        "vertical_alignment_flex_direction_column": "center",
         "gap": 16,
         "section_width": "page-width",
-        "section_height": "large",
+        "section_height": "auto",
         "section_height_custom": 50,
-        "color_scheme": "scheme-6",
-        "toggle_overlay": true,
+        "color_scheme": "scheme-1",
+        "toggle_overlay": false,
         "overlay_color": "#12121240",
         "overlay_style": "gradient",
         "gradient_direction": "to bottom",
         "blurred_reflection": false,
         "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
+        "media_contained": false,
+        "media_stacked": true,
+        "padding-block-start": 48,
+        "padding-block-end": 0
       }
     },
     "hero_frame": {
@@ -237,7 +256,7 @@
         "frame_heading": {
           "type": "text",
           "settings": {
-            "text": "<h2>Your memory, as a masterpiece.</h2>",
+            "text": "<h2>xFrame</h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "center",
@@ -262,13 +281,13 @@
         "frame_subtitle": {
           "type": "text",
           "settings": {
-            "text": "<p>Upload a photo. Receive a painting.</p>",
+            "text": "<p>Your memory, as a masterpiece.</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "center",
             "type_preset": "rte",
             "font": "var(--font-body--family)",
-            "font_size": "1.125rem",
+            "font_size": "1.5rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
@@ -287,10 +306,24 @@
         "frame_cta": {
           "type": "button",
           "settings": {
-            "label": "Shop Frame →",
+            "label": "Learn more",
             "link": "",
             "open_in_new_tab": false,
             "style_class": "button",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        },
+        "frame_buy": {
+          "type": "button",
+          "settings": {
+            "label": "Shop Now",
+            "link": "",
+            "open_in_new_tab": false,
+            "style_class": "button-secondary",
             "width": "fit-content",
             "custom_width": 100,
             "width_mobile": "fit-content",
@@ -302,7 +335,8 @@
       "block_order": [
         "frame_heading",
         "frame_subtitle",
-        "frame_cta"
+        "frame_cta",
+        "frame_buy"
       ],
       "name": "Frame Hero",
       "settings": {
@@ -316,23 +350,25 @@
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "center",
-        "vertical_alignment": "flex-end",
+        "vertical_alignment": "center",
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
+        "vertical_alignment_flex_direction_column": "center",
         "gap": 16,
         "section_width": "page-width",
-        "section_height": "large",
+        "section_height": "auto",
         "section_height_custom": 50,
-        "color_scheme": "scheme-6",
-        "toggle_overlay": true,
+        "color_scheme": "scheme-1",
+        "toggle_overlay": false,
         "overlay_color": "#12121240",
         "overlay_style": "gradient",
         "gradient_direction": "to bottom",
         "blurred_reflection": false,
         "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
+        "media_contained": false,
+        "media_stacked": true,
+        "padding-block-start": 48,
+        "padding-block-end": 0
       }
     },
     "her_day_tabs": {
@@ -371,23 +407,23 @@
         "philosophy_label": {
           "type": "text",
           "settings": {
-            "text": "<h5>OUR PHILOSOPHY</h5>",
+            "text": "<h3>OUR PHILOSOPHY</h3>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
-            "type_preset": "h5",
+            "type_preset": "h3",
             "font": "var(--font-subheading--family)",
-            "font_size": "",
+            "font_size": "2rem",
             "line_height": "normal",
-            "letter_spacing": "var(--letter-spacing-sm)",
+            "letter_spacing": "-0.02em",
             "case": "uppercase",
             "wrap": "pretty",
-            "color": "var(--color-foreground)",
+            "color": "var(--xalgo-rose, #E8A598)",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
             "padding-block-start": 0,
-            "padding-block-end": 0,
+            "padding-block-end": 8,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
@@ -396,15 +432,15 @@
         "philosophy_heading": {
           "type": "text",
           "settings": {
-            "text": "<h2>Technology should feel like jewelry, not homework.</h2>",
+            "text": "<h4>Technology should feel like jewelry, not homework.</h4>",
             "width": "100%",
-            "max_width": "normal",
+            "max_width": "wide",
             "alignment": "left",
-            "type_preset": "h2",
+            "type_preset": "h4",
             "font": "var(--font-heading--family)",
             "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
+            "line_height": "tight",
+            "letter_spacing": "-0.01em",
             "case": "none",
             "wrap": "pretty",
             "color": "var(--color-foreground-heading)",
@@ -412,7 +448,7 @@
             "background_color": "#00000026",
             "corner_radius": 0,
             "padding-block-start": 0,
-            "padding-block-end": 0,
+            "padding-block-end": 8,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
@@ -423,11 +459,11 @@
           "settings": {
             "text": "<p>We believe the best technology is the kind you forget you're wearing. xalgo creates smart devices that are as natural as the ring on your finger, as invisible as your favorite pair of glasses, and as beautiful as the art on your wall.</p>",
             "width": "100%",
-            "max_width": "normal",
+            "max_width": "wide",
             "alignment": "left",
             "type_preset": "rte",
             "font": "var(--font-body--family)",
-            "font_size": "1rem",
+            "font_size": "1.0625rem",
             "line_height": "loose",
             "letter_spacing": "normal",
             "case": "none",
@@ -437,7 +473,7 @@
             "background_color": "#00000026",
             "corner_radius": 0,
             "padding-block-start": 0,
-            "padding-block-end": 8,
+            "padding-block-end": 12,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
@@ -472,9 +508,9 @@
         "vertical_alignment": "center",
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 20,
+        "gap": 10,
         "section_width": "page-width",
-        "section_height": "medium",
+        "section_height": "",
         "color_scheme": "scheme-1",
         "background_media": "none",
         "video_position": "cover",
@@ -483,8 +519,8 @@
         "border_width": 1,
         "border_opacity": 100,
         "border_radius": 0,
-        "padding-block-start": 60,
-        "padding-block-end": 60
+        "padding-block-start": 30,
+        "padding-block-end": 30
       }
     },
     "testimonials": {
@@ -619,113 +655,6 @@
         "padding-block-start": 60,
         "padding-block-end": 60
       }
-    },
-    "newsletter": {
-      "type": "section",
-      "blocks": {
-        "newsletter_heading": {
-          "type": "text",
-          "settings": {
-            "text": "<h3>Stay in the Know</h3>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "h3",
-            "font": "var(--font-heading--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground-heading)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "newsletter_text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Be first to know. No spam, ever.</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 8,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "newsletter_signup": {
-          "type": "email-signup",
-          "settings": {
-            "width": "fill",
-            "custom_width": 100,
-            "inherit_color_scheme": true,
-            "heading": "",
-            "heading_preset": "h3",
-            "color_scheme": "",
-            "border_style": "all",
-            "border_width": 1,
-            "border_radius": 100,
-            "input_type_preset": "paragraph",
-            "style_class": "button-unstyled",
-            "display_type": "arrow",
-            "label": "Sign up",
-            "integrated_button": true,
-            "button_type_preset": "paragraph",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "newsletter_heading",
-        "newsletter_text",
-        "newsletter_signup"
-      ],
-      "name": "Newsletter",
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "center",
-        "vertical_alignment": "center",
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
-        "section_width": "page-width",
-        "section_height": "",
-        "color_scheme": "scheme-1",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "padding-block-start": 48,
-        "padding-block-end": 48
-      }
     }
   },
   "order": [
@@ -734,7 +663,6 @@
     "hero_frame",
     "her_day_tabs",
     "brand_story",
-    "testimonials",
-    "newsletter"
+    "testimonials"
   ]
 }

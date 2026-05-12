@@ -1,5 +1,3 @@
-
-
 {% liquid
   assign media_count = 0
   assign media_count_mobile = 0
@@ -452,7 +450,7 @@
 
 <div
   id="Hero-{{ section.id }}"
-  class="hero color-{{ section.settings.color_scheme }}{% if section.blocks.size == 0 and section.settings.section_height == 'auto' %} hero--no-blocks-auto-height{% endif %}{% if section.settings.stack_media_on_mobile %} hero--stack-mobile{% endif %}"
+  class="hero color-{{ section.settings.color_scheme }}{% if section.blocks.size == 0 and section.settings.section_height == 'auto' %} hero--no-blocks-auto-height{% endif %}{% if section.settings.stack_media_on_mobile %} hero--stack-mobile{% endif %}{% if section.settings.media_contained %} hero--contained-media{% endif %}{% if section.settings.media_stacked %} hero--stacked-layout{% endif %}"
   style="
     --hero-border-style: {{ section.settings.border }};
     --hero-border-width: {{ section.settings.border_width }}px;
@@ -464,6 +462,11 @@
        --hero-min-height: 100svh;
     {% else %}
       --hero-min-height: var(--section-height-{{ section.settings.section_height }});
+    {% endif %}
+    {% if section.settings.enable_gradient_bg %}
+      background: linear-gradient({{ section.settings.gradient_bg_direction }}, {{ section.settings.gradient_color_1 }}, {{ section.settings.gradient_color_2 }}) !important;
+    {% elsif section.settings.custom_bg_color != blank and section.settings.custom_bg_color != 'rgba(0,0,0,0)' %}
+      background-color: {{ section.settings.custom_bg_color }} !important;
     {% endif %}
   "
   {% if request.visual_preview_mode %}
@@ -594,6 +597,126 @@
     display: grid;
     grid-column: 1 / -1;
     grid-template-columns: repeat(var(--hero-media-count, 1), 1fr);
+  }
+
+  /* Apple-style contained media: image centered with background color on sides */
+  .hero--contained-media .hero__media-grid {
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 100px);
+    max-width: 1440px;
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
+    right: auto;
+  }
+
+  .hero--contained-media .hero__media {
+    border-radius: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .hero--contained-media .hero__media-grid {
+      width: calc(100% - 32px);
+      border-radius: 0 0 10px 10px;
+    }
+  }
+
+  /* Apple-style stacked layout: text on top, image below */
+  .hero--stacked-layout {
+    min-height: auto;
+    margin-bottom: 10px;
+  }
+
+  .hero--stacked-layout .hero__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .hero--stacked-layout .hero__media-grid {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    order: 2;
+  }
+
+  .hero--stacked-layout .hero__content-wrapper {
+    position: relative;
+    inset: auto;
+    order: 1;
+    width: 100%;
+    z-index: var(--layer-flat);
+    /* Apple-style typography and spacing */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Force all direct children to full width to stack them vertically */
+  .hero--stacked-layout .hero__content-wrapper > * {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Allow button blocks to sit side-by-side */
+  .hero--stacked-layout .hero__content-wrapper > *:has(.button),
+  .hero--stacked-layout .hero__content-wrapper > *:has(.button-secondary),
+  .hero--stacked-layout .hero__content-wrapper > a.button,
+  .hero--stacked-layout .hero__content-wrapper > a.button-secondary {
+    width: auto !important;
+    margin: 12px 6px 0 6px !important; /* Restored original top margin */
+  }
+
+  /* Enforce center alignment and Apple typography tweaks */
+  .hero--stacked-layout .hero__content-wrapper h1,
+  .hero--stacked-layout .hero__content-wrapper h2 {
+    text-align: center !important;
+    font-size: clamp(40px, 6vw, 56px) !important;
+    font-weight: 600 !important;
+    line-height: 1.07 !important;
+    letter-spacing: -0.015em !important;
+    margin: 0 auto -6px auto !important; /* Restored original heading margin */
+  }
+
+  .hero--stacked-layout .hero__content-wrapper p {
+    text-align: center !important;
+    font-size: clamp(20px, 3vw, 26px) !important;
+    line-height: 1.1 !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.004em !important;
+    margin: 0 auto !important;
+  }
+
+  /* Apple pill-shaped buttons */
+  .hero--stacked-layout .hero__content-wrapper a.button,
+  .hero--stacked-layout .hero__content-wrapper a.button-secondary {
+    border-radius: 999px !important;
+    padding: 12px 22px !important;
+    font-size: 17px !important;
+    min-height: auto;
+  }
+
+  .hero--stacked-layout .hero__media {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+
+  .hero--stacked-layout .hero__link {
+    z-index: var(--layer-flat);
+  }
+
+  @media screen and (max-width: 749px) {
+    .hero--stacked-layout .hero__media-grid {
+      max-width: 100%;
+    }
   }
 
   .hero--auto .hero__media {
@@ -1150,6 +1273,48 @@
       "default": "scheme-1"
     },
     {
+      "type": "color",
+      "id": "custom_bg_color",
+      "label": "Custom background color",
+      "info": "Overrides color scheme background if set."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_gradient_bg",
+      "label": "Use gradient background",
+      "default": false,
+      "info": "Overrides color scheme and custom background color."
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_1",
+      "label": "Gradient start color",
+      "default": "#FFF5EC",
+      "visible_if": "{{ section.settings.enable_gradient_bg }}"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_2",
+      "label": "Gradient end color",
+      "default": "#E8A598",
+      "visible_if": "{{ section.settings.enable_gradient_bg }}"
+    },
+    {
+      "type": "select",
+      "id": "gradient_bg_direction",
+      "label": "Gradient direction",
+      "options": [
+        { "value": "to bottom", "label": "Top to bottom" },
+        { "value": "to top", "label": "Bottom to top" },
+        { "value": "to right", "label": "Left to right" },
+        { "value": "to left", "label": "Right to left" },
+        { "value": "135deg", "label": "Diagonal ↘" },
+        { "value": "45deg", "label": "Diagonal ↗" }
+      ],
+      "default": "to bottom",
+      "visible_if": "{{ section.settings.enable_gradient_bg }}"
+    },
+    {
       "type": "checkbox",
       "id": "toggle_overlay",
       "label": "t:settings.media_overlay"
@@ -1195,6 +1360,20 @@
       ],
       "default": "to top",
       "visible_if": "{{ section.settings.toggle_overlay and section.settings.overlay_style == 'gradient' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "media_contained",
+      "label": "Contained media (Apple style)",
+      "default": false,
+      "info": "Image centered with background color on sides"
+    },
+    {
+      "type": "checkbox",
+      "id": "media_stacked",
+      "label": "Stacked layout (text above, image below)",
+      "default": false,
+      "info": "Apple iPhone style: content on top, product image below"
     },
     {
       "type": "checkbox",

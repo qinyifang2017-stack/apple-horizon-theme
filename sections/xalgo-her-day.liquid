@@ -145,6 +145,16 @@
 {% stylesheet %}
   .xalgo-her-day {
     overflow: hidden;
+    max-width: calc(var(--narrow-page-width) + 32px);
+    margin-inline: auto;
+    padding-inline: 16px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .xalgo-her-day {
+      max-width: calc(var(--narrow-page-width) + 80px);
+      padding-inline: 40px;
+    }
   }
 
   .xalgo-her-day__heading-wrapper {
@@ -262,21 +272,23 @@
       grid-template-columns: 1.2fr 1fr 1fr;
       gap: 2.5rem;
       align-items: start;
-      min-height: 28rem;
     }
   }
 
-  /* Scene photo */
+  /* Scene photo — 3:4 ratio, max height 600px */
   .xalgo-panel__scene {
     border-radius: 12px;
     overflow: hidden;
     aspect-ratio: 3 / 4;
+    max-height: 600px;
+    width: 100%;
   }
 
   @media screen and (min-width: 750px) {
     .xalgo-panel__scene {
-      aspect-ratio: auto;
-      height: 100%;
+      aspect-ratio: 3 / 4;
+      max-height: 600px;
+      margin-inline: auto;
     }
   }
 
@@ -312,10 +324,13 @@
     border-radius: 16px;
     overflow: hidden;
     background: rgb(var(--color-foreground-rgb) / 0.04);
+    max-height: 250px;
   }
 
   .xalgo-panel__data-img {
     width: 100%;
+    max-height: 250px;
+    object-fit: cover;
     display: block;
     border-radius: 16px;
   }

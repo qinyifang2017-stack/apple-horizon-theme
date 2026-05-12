@@ -95,3 +95,17 @@ a:not(.button):not(.button-secondary):hover {
   background-color: var(--xalgo-rose-light);
   color: var(--xalgo-text-primary);
 }
+
+/* —— 9. Hero Section 品牌配色 —— */
+
+/* xRing Hero 按钮配色 */
+[id*="hero_ring"] .button:not(.button-secondary) {
+  background-color: var(--xalgo-rose);
+  color: white;
+  border-color: var(--xalgo-rose);
+}
+
+[id*="hero_ring"] .button:not(.button-secondary):hover {
+  background-color: var(--xalgo-rose-dark);
+  border-color: var(--xalgo-rose-dark);
+}
