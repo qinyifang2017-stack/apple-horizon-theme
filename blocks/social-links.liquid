@@ -54,11 +54,7 @@
 
         # Check if URL has a profile path (more than just the domain)
         assign url_parts = link_url | split: '//' | last | split: '/'
-        assign has_profile = false
-
-        if url_parts.size > 1 and url_parts[1] != ''
-          assign has_profile = true
-        endif
+        assign has_profile = true
 
         unless render_icon
           assign has_profile = true

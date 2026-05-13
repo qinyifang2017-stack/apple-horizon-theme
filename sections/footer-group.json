@@ -214,16 +214,15 @@
       },
       "block_order": [
         "footer_copyright_jweRK8",
-        "footer_policy_list_VCdnpa",
         "social_links_Ew63Kq"
       ],
       "name": "t:names.utilities",
       "settings": {
         "section_width": "page-width",
         "gap": 24,
-        "divider_thickness": 0,
+        "divider_thickness": 1,
         "color_scheme": "",
-        "padding-block-start": 20,
+        "padding-block-start": 24,
         "padding-block-end": 48
       }
     }

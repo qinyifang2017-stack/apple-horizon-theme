@@ -43,9 +43,45 @@ header-component[transparent] {
   box-shadow: 0 4px 16px rgba(232, 165, 152, 0.35);
 }
 
+/* —— Secondary Button (Shop Now) —— */
+.button-secondary {
+  position: relative;
+  border: 1.5px solid #5C5C5E;
+  color: #2C2C2E;
+  background-color: transparent;
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* 反相填充动画的滑入背景 */
+.button-secondary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: #2C2C2E;
+  transform: translateY(101%);
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: -1;
+}
+
 .button-secondary:hover {
+  color: #FFFFFF;
+  border-color: #2C2C2E;
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(29, 29, 31, 0.08);
+  box-shadow: 0 6px 20px rgba(44, 44, 46, 0.18),
+              0 0 0 4px rgba(232, 165, 152, 0.12);
+}
+
+.button-secondary:hover::before {
+  transform: translateY(0);
+}
+
+.button-secondary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(44, 44, 46, 0.15);
+  transition-duration: 0.1s;
 }
 
 /* —— 3. 数字等宽 —— */

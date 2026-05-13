@@ -59,15 +59,36 @@
                       {%- when 'xiaohongshu' -%}
                         <span class="xalgo-testimonial__platform-icon">📕</span>
                         <span class="xalgo-testimonial__platform-name">小红书</span>
+                      {%- when 'weibo' -%}
+                        <span class="xalgo-testimonial__platform-icon">🔴</span>
+                        <span class="xalgo-testimonial__platform-name">微博</span>
+                      {%- when 'douyin' -%}
+                        <span class="xalgo-testimonial__platform-icon">🎵</span>
+                        <span class="xalgo-testimonial__platform-name">抖音</span>
+                      {%- when 'bilibili' -%}
+                        <span class="xalgo-testimonial__platform-icon">📺</span>
+                        <span class="xalgo-testimonial__platform-name">哔哩哔哩</span>
                       {%- when 'instagram' -%}
                         <span class="xalgo-testimonial__platform-icon">📷</span>
                         <span class="xalgo-testimonial__platform-name">Instagram</span>
                       {%- when 'twitter' -%}
                         <span class="xalgo-testimonial__platform-icon">🐦</span>
-                        <span class="xalgo-testimonial__platform-name">Twitter</span>
-                      {%- when 'weibo' -%}
-                        <span class="xalgo-testimonial__platform-icon">🔴</span>
-                        <span class="xalgo-testimonial__platform-name">微博</span>
+                        <span class="xalgo-testimonial__platform-name">Twitter/X</span>
+                      {%- when 'facebook' -%}
+                        <span class="xalgo-testimonial__platform-icon">👤</span>
+                        <span class="xalgo-testimonial__platform-name">Facebook</span>
+                      {%- when 'youtube' -%}
+                        <span class="xalgo-testimonial__platform-icon">▶️</span>
+                        <span class="xalgo-testimonial__platform-name">YouTube</span>
+                      {%- when 'tiktok' -%}
+                        <span class="xalgo-testimonial__platform-icon">🎬</span>
+                        <span class="xalgo-testimonial__platform-name">TikTok</span>
+                      {%- when 'linkedin' -%}
+                        <span class="xalgo-testimonial__platform-icon">💼</span>
+                        <span class="xalgo-testimonial__platform-name">LinkedIn</span>
+                      {%- when 'reddit' -%}
+                        <span class="xalgo-testimonial__platform-icon">👽</span>
+                        <span class="xalgo-testimonial__platform-name">Reddit</span>
                     {%- endcase -%}
                   </div>
                 {%- endif -%}
@@ -107,7 +128,7 @@
 {% stylesheet %}
   .xalgo-testimonials {
     overflow: hidden;
-    background-color: #f5f6f7 !important;
+    background-color: #EDE6DC !important;
   }
 
   .xalgo-testimonials .page-width {
@@ -171,7 +192,7 @@
 
   /* Testimonial Card */
   .xalgo-testimonial {
-    background: rgb(var(--color-background-rgb));
+    background: #FFFFFF;
     border: 1px solid rgb(var(--color-border-rgb) / 0.1);
     border-radius: 12px;
     padding: 1.5rem;
@@ -265,17 +286,17 @@
   /* Rating */
   .xalgo-testimonial__rating {
     margin-bottom: 0.75rem;
-    color: var(--xalgo-rose, #E8A598);
+    color: #FFB800 !important;
     font-size: 1rem;
     letter-spacing: 2px;
   }
 
-  .xalgo-testimonial__star--filled {
-    color: var(--xalgo-rose, #E8A598);
+  .xalgo-testimonial__rating .xalgo-testimonial__star--filled {
+    color: #FFB800 !important;
   }
 
-  .xalgo-testimonial__star {
-    color: rgb(var(--color-foreground-rgb) / 0.2);
+  .xalgo-testimonial__rating .xalgo-testimonial__star {
+    color: rgb(0 0 0 / 0.15);
   }
 
   /* Content */
@@ -381,10 +402,17 @@
           "label": "Platform",
           "options": [
             { "value": "none", "label": "None" },
-            { "value": "xiaohongshu", "label": "小红书" },
+            { "value": "xiaohongshu", "label": "小红书 (Xiaohongshu)" },
+            { "value": "weibo", "label": "微博 (Weibo)" },
+            { "value": "douyin", "label": "抖音 (Douyin)" },
+            { "value": "bilibili", "label": "哔哩哔哩 (Bilibili)" },
             { "value": "instagram", "label": "Instagram" },
-            { "value": "twitter", "label": "Twitter" },
-            { "value": "weibo", "label": "微博" }
+            { "value": "twitter", "label": "Twitter/X" },
+            { "value": "facebook", "label": "Facebook" },
+            { "value": "youtube", "label": "YouTube" },
+            { "value": "tiktok", "label": "TikTok" },
+            { "value": "linkedin", "label": "LinkedIn" },
+            { "value": "reddit", "label": "Reddit" }
           ],
           "default": "xiaohongshu"
         },
