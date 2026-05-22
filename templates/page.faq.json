@@ -1,0 +1,57 @@
+{
+  "sections": {
+    "main": {
+      "type": "xalgo-faq",
+      "blocks": {
+        "faq_1": {
+          "type": "faq_item",
+          "settings": {
+            "category": "product",
+            "question": "What is xRing made of?",
+            "answer": "<p>xRing is crafted from aerospace-grade titanium, making it lightweight, durable, and hypoallergenic.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq_item",
+          "settings": {
+            "category": "product",
+            "question": "How long does the battery last?",
+            "answer": "<p>xRing lasts 5-8 days on a single charge depending on usage patterns.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq_item",
+          "settings": {
+            "category": "product",
+            "question": "Is it waterproof?",
+            "answer": "<p>Yes, xRing is water resistant up to 100 meters. You can wear it while swimming or showering.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq_item",
+          "settings": {
+            "category": "shipping",
+            "question": "How long does shipping take?",
+            "answer": "<p>Standard shipping takes 5-7 business days. Express shipping is available for 2-3 business days delivery.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq_item",
+          "settings": {
+            "category": "shipping",
+            "question": "Do you ship internationally?",
+            "answer": "<p>Yes, we ship to most countries worldwide. Shipping times and costs vary by destination.</p>"
+          }
+        }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5"],
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "subheading": "Find answers to common questions about our products and services",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": ["main"]
+}

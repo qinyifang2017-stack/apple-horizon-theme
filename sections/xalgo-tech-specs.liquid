@@ -1,0 +1,397 @@
+{% liquid
+  assign has_box = false
+  if section.settings.box_heading != blank or section.settings.box_items != blank
+    assign has_box = true
+  endif
+%}
+
+<section
+  id="xalgo-tech-specs-{{ section.id }}"
+  class="xalgo-tech-specs color-{{ section.settings.color_scheme }}"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="page-width xalgo-tech-specs__shell{% unless section.settings.image != blank or has_box %} xalgo-tech-specs__shell--text-only{% endunless %}">
+    {%- if section.settings.image != blank or has_box -%}
+      <aside class="xalgo-tech-specs__media-card">
+        {%- if section.settings.image != blank -%}
+          {{
+            section.settings.image
+            | image_url: width: 1200
+            | image_tag:
+              class: 'xalgo-tech-specs__image',
+              widths: '480, 720, 960, 1200',
+              sizes: '(min-width: 990px) 36vw, 100vw',
+              alt: section.settings.image.alt
+          }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'xalgo-tech-specs__image xalgo-tech-specs__image--placeholder' }}
+        {%- endif -%}
+
+        {%- if has_box -%}
+          <div class="xalgo-tech-specs__box">
+            {%- if section.settings.box_heading != blank -%}
+              <div class="xalgo-tech-specs__box-heading">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4.5 8.5 12 4l7.5 4.5v7L12 20l-7.5-4.5v-7Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="m4.8 8.7 7.2 4.2 7.2-4.2M12 13v6.7" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                <h3>{{ section.settings.box_heading }}</h3>
+              </div>
+            {%- endif -%}
+            {%- if section.settings.box_items != blank -%}
+              <div class="xalgo-tech-specs__box-items">{{ section.settings.box_items }}</div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </aside>
+    {%- endif -%}
+
+    <div class="xalgo-tech-specs__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="xalgo-tech-specs__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="xalgo-tech-specs__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <p class="xalgo-tech-specs__subheading">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+
+      <div class="xalgo-tech-specs__grid">
+        {%- for block in section.blocks -%}
+          <article class="xalgo-tech-specs__item" {{ block.shopify_attributes }}>
+            <div class="xalgo-tech-specs__icon" aria-hidden="true">
+              {%- case block.settings.icon -%}
+                {%- when 'sensor' -%}
+                  <svg viewBox="0 0 24 24"><path d="M12 20c4-3.4 7-6.3 7-10a4.2 4.2 0 0 0-7-3.1A4.2 4.2 0 0 0 5 10c0 3.7 3 6.6 7 10Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7.5 12h2l1-2.5 2.2 5 1.1-2.5h2.7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                {%- when 'compatibility' -%}
+                  <svg viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m8.6 12 2.2 2.2 4.8-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                {%- when 'size' -%}
+                  <svg viewBox="0 0 24 24"><path d="M6.5 19.5h11l-1-11a4.5 4.5 0 0 0-9 0l-1 11Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 8.5a3 3 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                {%- when 'battery' -%}
+                  <svg viewBox="0 0 24 24"><path d="M7 6h9.5a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 16.5 18H7a1.5 1.5 0 0 1-1.5-1.5v-9A1.5 1.5 0 0 1 7 6Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M20 10v4M8.5 9v6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                {%- when 'materials' -%}
+                  <svg viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                {%- when 'connectivity' -%}
+                  <svg viewBox="0 0 24 24"><path d="M7 4h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7V4Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 8h4M10 16h4M19 9.5h1.5M19 14.5h1.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                {%- else -%}
+                  <svg viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4l2.5 2.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              {%- endcase -%}
+            </div>
+            <div>
+              <h3>{{ block.settings.heading }}</h3>
+              <div class="xalgo-tech-specs__details">{{ block.settings.details }}</div>
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .xalgo-tech-specs {
+    --specs-cream: var(--xalgo-cream, #FDFAF7);
+    --specs-blush: var(--xalgo-rose-light, #F2DDD8);
+    --specs-rose: var(--xalgo-rose, #E8A598);
+    --specs-champagne: var(--xalgo-champagne, #C9A882);
+    --specs-ink: var(--xalgo-text-primary, #1D1D1F);
+    --specs-muted: var(--xalgo-text-secondary, #6E6E73);
+    background:
+      radial-gradient(circle at 8% 10%, color-mix(in srgb, var(--specs-blush) 76%, transparent) 0 20rem, transparent 34rem),
+      linear-gradient(135deg, var(--specs-cream) 0%, #fbf1eb 46%, var(--specs-blush) 100%);
+    color: var(--specs-ink);
+    overflow: hidden;
+  }
+
+  .xalgo-tech-specs .page-width {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  .xalgo-tech-specs__shell {
+    display: grid;
+    gap: clamp(2.5rem, 5vw, 5rem);
+  }
+
+  @media screen and (min-width: 990px) {
+    .xalgo-tech-specs__shell {
+      grid-template-columns: minmax(300px, 0.42fr) 1fr;
+      align-items: start;
+    }
+  }
+
+  .xalgo-tech-specs__shell--text-only {
+    max-width: 980px;
+  }
+
+  .xalgo-tech-specs__media-card {
+    position: relative;
+    min-height: 420px;
+  }
+
+  .xalgo-tech-specs__image {
+    width: min(100%, 440px);
+    height: auto;
+    display: block;
+    margin-inline: auto;
+    filter: drop-shadow(0 28px 46px rgb(201 168 130 / 0.22));
+  }
+
+  .xalgo-tech-specs__image--placeholder {
+    color: color-mix(in srgb, var(--specs-champagne) 42%, transparent);
+  }
+
+  .xalgo-tech-specs__box {
+    margin: 2rem auto 0;
+    max-width: 360px;
+    padding: 1.35rem 1.5rem;
+    border: 1px solid color-mix(in srgb, var(--specs-rose) 28%, transparent);
+    border-radius: 18px;
+    background: color-mix(in srgb, var(--specs-cream) 76%, var(--specs-blush));
+    box-shadow: 0 20px 60px rgb(201 168 130 / 0.16);
+    backdrop-filter: blur(12px);
+  }
+
+  .xalgo-tech-specs__box-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .xalgo-tech-specs__box-heading svg {
+    width: 24px;
+    height: 24px;
+    color: var(--specs-rose);
+  }
+
+  .xalgo-tech-specs__box-heading h3,
+  .xalgo-tech-specs__item h3,
+  .xalgo-tech-specs__heading {
+    color: currentColor;
+  }
+
+  .xalgo-tech-specs__box-heading h3 {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .xalgo-tech-specs__box-items p {
+    margin: 0.55rem 0 0;
+    line-height: 1.55;
+    color: var(--specs-muted);
+  }
+
+  .xalgo-tech-specs__eyebrow {
+    margin: 0 0 0.7rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--specs-rose);
+  }
+
+  .xalgo-tech-specs__heading {
+    margin: 0;
+    font-size: clamp(2.3rem, 5vw, 4.25rem);
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+  }
+
+  .xalgo-tech-specs__subheading {
+    max-width: 620px;
+    margin: 1rem 0 0;
+    color: var(--specs-muted);
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    line-height: 1.65;
+  }
+
+  .xalgo-tech-specs__grid {
+    display: grid;
+    gap: clamp(1.6rem, 3vw, 3.25rem) clamp(2rem, 5vw, 5.5rem);
+    margin-top: clamp(2.5rem, 5vw, 4.5rem);
+  }
+
+  @media screen and (min-width: 750px) {
+    .xalgo-tech-specs__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .xalgo-tech-specs__item {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .xalgo-tech-specs__icon {
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    color: var(--specs-rose);
+  }
+
+  .xalgo-tech-specs__icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .xalgo-tech-specs__item h3 {
+    margin: 0 0 0.8rem;
+    font-size: clamp(1.18rem, 1.7vw, 1.45rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .xalgo-tech-specs__details {
+    color: var(--specs-muted);
+    font-size: 0.96rem;
+    line-height: 1.7;
+  }
+
+  .xalgo-tech-specs__details p {
+    margin: 0.55rem 0 0;
+  }
+
+  .xalgo-tech-specs__details p:first-child {
+    margin-top: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Tech Specs (xalgo)",
+  "tag": "section",
+  "class": "section-wrapper xalgo-tech-specs-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Product details"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Tech specs"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "A cleaner, more editorial way to explain what is inside the product and what comes in the box."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Product image"
+    },
+    {
+      "type": "text",
+      "id": "box_heading",
+      "label": "Box heading",
+      "default": "In the box"
+    },
+    {
+      "type": "richtext",
+      "id": "box_items",
+      "label": "Box items",
+      "default": "<p>xRing</p><p>Dedicated charging dock</p><p>USB-C cable</p>"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec_group",
+      "name": "Spec group",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "sensor", "label": "Sensor" },
+            { "value": "compatibility", "label": "Compatibility" },
+            { "value": "size", "label": "Size" },
+            { "value": "battery", "label": "Battery" },
+            { "value": "materials", "label": "Materials" },
+            { "value": "connectivity", "label": "Connectivity" }
+          ],
+          "default": "sensor"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Sensors"
+        },
+        {
+          "type": "richtext",
+          "id": "details",
+          "label": "Details",
+          "default": "<p>Red and infrared LEDs measure blood oxygen levels.</p><p>Green and infrared LEDs track heart rate and HRV.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tech Specs (xalgo)",
+      "category": "Content",
+      "blocks": [
+        {
+          "type": "spec_group",
+          "settings": {
+            "icon": "sensor",
+            "heading": "Sensors",
+            "details": "<p>Red and infrared LEDs measure blood oxygen levels.</p><p>Green and infrared LEDs track heart rate and HRV.</p><p>Digital temperature sensors monitor body trends.</p>"
+          }
+        },
+        {
+          "type": "spec_group",
+          "settings": {
+            "icon": "battery",
+            "heading": "Battery life",
+            "details": "<p>5–8 days of typical use.</p><p>Fast charging with a compact dock.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
