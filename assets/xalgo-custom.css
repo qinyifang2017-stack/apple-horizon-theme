@@ -16,6 +16,8 @@
   --xalgo-text-secondary: #6E6E73;
   --xalgo-success: #A8C5A0;
   --color-success: #A8C5A0;
+  --style-border-radius-buttons-primary: 999px;
+  --style-border-radius-buttons-secondary: 999px;
 }
 
 /* —— 1. 毛玻璃导航效果 —— */
@@ -31,7 +33,9 @@ header-component[transparent] {
 
 /* —— 2. 全局按钮优化 —— */
 .button,
+.button-secondary,
 [class*="button-primary"] {
+  border-radius: 999px !important;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   font-weight: 500;
   letter-spacing: 0.01em;
@@ -144,6 +148,12 @@ a:not(.button):not(.button-secondary):hover {
 [id*="hero_ring"] .button:not(.button-secondary):hover {
   background-color: var(--xalgo-rose-dark);
   border-color: var(--xalgo-rose-dark);
+}
+
+/* xRing bottom CTA: keep only the footer divider line */
+.section-wrapper:has([data-testid="section-content"] a[href="/products/xring"]):has(h2) .custom-section-content {
+  border-inline: 0 !important;
+  border-top: 0 !important;
 }
 
 /* —— 10. Testimonials 区域淡背景 —— */

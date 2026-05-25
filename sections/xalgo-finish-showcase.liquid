@@ -19,35 +19,51 @@
       {%- endif -%}
     </div>
 
-    <div class="xalgo-finish-showcase__rail">
-      {%- for block in section.blocks -%}
-        <article class="xalgo-finish-showcase__card" {{ block.shopify_attributes }}>
-          <div
-            class="xalgo-finish-showcase__swatch"
-            style="--finish-color: {{ block.settings.color }}; --finish-color-2: {{ block.settings.color_2 }};"
-          >
-            {%- if block.settings.image != blank -%}
-              {{
-                block.settings.image
-                | image_url: width: 640
-                | image_tag:
-                  class: 'xalgo-finish-showcase__image',
-                  widths: '240, 360, 520, 640',
-                  sizes: '(min-width: 990px) 24vw, 78vw',
-                  alt: block.settings.image.alt
-              }}
-            {%- else -%}
-              <div class="xalgo-finish-showcase__ring" aria-hidden="true"></div>
-            {%- endif -%}
-          </div>
-          <div class="xalgo-finish-showcase__copy">
-            <h3>{{ block.settings.name }}</h3>
-            {%- if block.settings.description != blank -%}
-              <p>{{ block.settings.description }}</p>
-            {%- endif -%}
-          </div>
-        </article>
-      {%- endfor -%}
+    <div class="xalgo-finish-showcase__carousel" data-finish-carousel>
+      <div class="xalgo-finish-showcase__rail" data-finish-rail>
+        {%- for block in section.blocks -%}
+          <article class="xalgo-finish-showcase__card" {{ block.shopify_attributes }}>
+            <div
+              class="xalgo-finish-showcase__swatch"
+              style="--finish-color: {{ block.settings.color }}; --finish-color-2: {{ block.settings.color_2 }};"
+            >
+              {%- if block.settings.image != blank -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 640
+                  | image_tag:
+                    class: 'xalgo-finish-showcase__image',
+                    widths: '360, 520, 720, 960',
+                    sizes: '(min-width: 990px) 24vw, 78vw',
+                    alt: block.settings.image.alt
+                }}
+              {%- else -%}
+                <div class="xalgo-finish-showcase__ring" aria-hidden="true"></div>
+              {%- endif -%}
+            </div>
+            <div class="xalgo-finish-showcase__copy">
+              <h3>{{ block.settings.name }}</h3>
+              {%- if block.settings.description != blank -%}
+                <p>{{ block.settings.description }}</p>
+              {%- endif -%}
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+
+      <div class="xalgo-finish-showcase__controls" aria-label="Finish carousel controls">
+        <div class="xalgo-finish-showcase__progress" aria-hidden="true">
+          <span data-finish-progress></span>
+        </div>
+        <div class="xalgo-finish-showcase__buttons">
+          <button class="xalgo-finish-showcase__control" type="button" aria-label="Previous finishes" data-finish-prev>
+            <span aria-hidden="true">←</span>
+          </button>
+          <button class="xalgo-finish-showcase__control" type="button" aria-label="Next finishes" data-finish-next>
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </div>
     </div>
 
     {%- if section.settings.button_label != blank -%}
@@ -106,26 +122,104 @@
     line-height: 1.65;
   }
 
+  .xalgo-finish-showcase__carousel {
+    margin-inline: auto;
+  }
+
   .xalgo-finish-showcase__rail {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(240px, 1fr);
-    gap: 1rem;
+    grid-auto-columns: minmax(260px, 28vw);
+    gap: 1.25rem;
     overflow-x: auto;
-    padding: 0.25rem 0.25rem 1rem;
-    scroll-snap-type: x mandatory;
+    overflow-y: visible;
+    padding: 0.25rem 0 1.25rem;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .xalgo-finish-showcase__rail::-webkit-scrollbar {
+    display: none;
   }
 
   @media screen and (min-width: 990px) {
     .xalgo-finish-showcase__rail {
-      grid-auto-flow: initial;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      overflow: visible;
+      grid-auto-columns: clamp(280px, 22vw, 340px);
+    }
+  }
+
+  .xalgo-finish-showcase__controls {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    margin-top: 1.25rem;
+  }
+
+  .xalgo-finish-showcase__progress {
+    --finish-progress-width: 18%;
+    --finish-progress-left: 0%;
+    position: relative;
+    flex: 1;
+    height: 2px;
+    background: color-mix(in srgb, var(--finish-ink) 18%, transparent);
+    overflow: hidden;
+  }
+
+  .xalgo-finish-showcase__progress span {
+    position: absolute;
+    inset-block: 0;
+    left: var(--finish-progress-left, 0%);
+    width: var(--finish-progress-width, 18%);
+    background: color-mix(in srgb, var(--finish-ink) 82%, transparent);
+    transition: left 0.25s ease, width 0.25s ease;
+  }
+
+  .xalgo-finish-showcase__buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex: 0 0 auto;
+  }
+
+  .xalgo-finish-showcase__control {
+    width: 3rem;
+    aspect-ratio: 1;
+    border: 0;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: color-mix(in srgb, var(--finish-ink) 86%, transparent);
+    color: var(--finish-cream);
+    cursor: pointer;
+    font: inherit;
+    font-size: 1.55rem;
+    line-height: 1;
+    transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+  }
+
+  .xalgo-finish-showcase__control:hover {
+    transform: translateY(-1px);
+    background: var(--finish-ink);
+  }
+
+  .xalgo-finish-showcase__control:disabled {
+    opacity: 0.38;
+    cursor: default;
+    transform: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .xalgo-finish-showcase__controls {
+      align-items: stretch;
+      gap: 1rem;
+    }
+
+    .xalgo-finish-showcase__control {
+      width: 2.75rem;
     }
   }
 
   .xalgo-finish-showcase__card {
-    scroll-snap-align: center;
+    scroll-snap-align: start;
     border: 1px solid color-mix(in srgb, var(--finish-rose) 22%, transparent);
     border-radius: 28px;
     background: color-mix(in srgb, var(--finish-cream) 88%, #fff);
@@ -145,13 +239,16 @@
     background:
       radial-gradient(circle at 48% 36%, color-mix(in srgb, var(--finish-color) 64%, transparent) 0 4rem, transparent 8rem),
       linear-gradient(145deg, color-mix(in srgb, var(--finish-color) 32%, #fff), color-mix(in srgb, var(--finish-color-2) 42%, #fff));
+    overflow: hidden;
   }
 
   .xalgo-finish-showcase__image {
-    width: 78%;
-    max-width: 260px;
-    height: auto;
-    filter: drop-shadow(0 24px 32px rgb(0 0 0 / 0.12));
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    display: block;
+    object-fit: cover;
+    object-position: center;
   }
 
   .xalgo-finish-showcase__ring {
@@ -191,6 +288,54 @@
   }
 {% endstylesheet %}
 
+{% javascript %}
+  const finishCarousels = document.querySelectorAll('[data-finish-carousel]');
+
+  finishCarousels.forEach((carousel) => {
+    const rail = carousel.querySelector('[data-finish-rail]');
+    const previousButton = carousel.querySelector('[data-finish-prev]');
+    const nextButton = carousel.querySelector('[data-finish-next]');
+    const progress = carousel.querySelector('[data-finish-progress]');
+
+    if (!rail || !previousButton || !nextButton || !progress) return;
+
+    const getStep = () => {
+      const firstCard = rail.querySelector('.xalgo-finish-showcase__card');
+      if (!firstCard) return rail.clientWidth;
+
+      const styles = window.getComputedStyle(rail);
+      const gap = parseFloat(styles.columnGap || styles.gap || '0');
+      return firstCard.getBoundingClientRect().width + gap;
+    };
+
+    const update = () => {
+      const maxScroll = Math.max(rail.scrollWidth - rail.clientWidth, 0);
+      const scrollLeft = Math.min(Math.max(rail.scrollLeft, 0), maxScroll);
+      const visibleRatio = rail.scrollWidth > 0 ? rail.clientWidth / rail.scrollWidth : 1;
+      const progressWidth = Math.min(100, Math.max(12, visibleRatio * 100));
+      const maxProgressTravel = 100 - progressWidth;
+      const progressLeft = maxScroll > 0 ? (scrollLeft / maxScroll) * maxProgressTravel : 0;
+
+      progress.style.setProperty('--finish-progress-width', `${progressWidth}%`);
+      progress.style.setProperty('--finish-progress-left', `${progressLeft}%`);
+      previousButton.disabled = scrollLeft <= 1;
+      nextButton.disabled = scrollLeft >= maxScroll - 1;
+    };
+
+    previousButton.addEventListener('click', () => {
+      rail.scrollBy({ left: -getStep(), behavior: 'smooth' });
+    });
+
+    nextButton.addEventListener('click', () => {
+      rail.scrollBy({ left: getStep(), behavior: 'smooth' });
+    });
+
+    rail.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  });
+{% endjavascript %}
+
 {% schema %}
 {
   "name": "Finish Showcase (xalgo)",
@@ -224,8 +369,7 @@
     {
       "type": "url",
       "id": "button_link",
-      "label": "Button link",
-      "default": "/products/xring"
+      "label": "Button link"
     },
     {
       "type": "color_scheme",

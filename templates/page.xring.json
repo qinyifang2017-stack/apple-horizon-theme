@@ -236,12 +236,27 @@
             "padding-inline-end": 0
           },
           "blocks": {}
+        },
+        "intro_specs_link": {
+          "type": "button",
+          "settings": {
+            "label": "View tech specs",
+            "link": "#xring-tech-specs",
+            "open_in_new_tab": false,
+            "style_class": "button-secondary",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
         }
       },
       "block_order": [
         "intro_label",
         "intro_heading",
-        "intro_body"
+        "intro_body",
+        "intro_specs_link"
       ],
       "name": "xRing Introduction",
       "settings": {
@@ -262,8 +277,8 @@
         "border_width": 1,
         "border_opacity": 100,
         "border_radius": 0,
-        "padding-block-start": 72,
-        "padding-block-end": 24
+        "padding-block-start": 36,
+        "padding-block-end": 12
       }
     },
     "xring_metrics": {
@@ -308,7 +323,7 @@
             "metric_sleep_value": {
               "type": "text",
               "settings": {
-                "text": "<h3>5–8 days</h3>",
+                "text": "<h3>5-8 days</h3>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "center",
@@ -562,333 +577,7 @@
         "border_width": 1,
         "border_opacity": 100,
         "border_radius": 0,
-        "padding-block-start": 24,
-        "padding-block-end": 72
-      }
-    },
-    "xring_features": {
-      "type": "section",
-      "blocks": {
-        "features_heading": {
-          "type": "text",
-          "settings": {
-            "text": "<h2>Three signals. One simple picture.</h2>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "h2",
-            "font": "var(--font-heading--family)",
-            "font_size": "",
-            "line_height": "tight",
-            "letter_spacing": "-0.02em",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground-heading)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 8,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "feature_sleep": {
-          "type": "group",
-          "name": "Sleep and recovery",
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 10,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "padding-block-start": 24,
-            "padding-block-end": 24,
-            "padding-inline-start": 8,
-            "padding-inline-end": 8
-          },
-          "blocks": {
-            "feature_sleep_title": {
-              "type": "text",
-              "settings": {
-                "text": "<h3>Sleep & recovery</h3>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h4",
-                "font": "var(--font-heading--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground-heading)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "feature_sleep_text": {
-              "type": "text",
-              "settings": {
-                "text": "<p>See sleep depth, HRV and resting heart trends without wearing a screen to bed.</p>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "loose",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": ["feature_sleep_title", "feature_sleep_text"]
-        },
-        "feature_stress": {
-          "type": "group",
-          "name": "Stress balance",
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 10,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "padding-block-start": 24,
-            "padding-block-end": 24,
-            "padding-inline-start": 8,
-            "padding-inline-end": 8
-          },
-          "blocks": {
-            "feature_stress_title": {
-              "type": "text",
-              "settings": {
-                "text": "<h3>Stress balance</h3>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h4",
-                "font": "var(--font-heading--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground-heading)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "feature_stress_text": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Catch strain patterns early and build better recovery rituals around your actual day.</p>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "loose",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": ["feature_stress_title", "feature_stress_text"]
-        },
-        "feature_cycle": {
-          "type": "group",
-          "name": "Cycle awareness",
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 10,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "padding-block-start": 24,
-            "padding-block-end": 24,
-            "padding-inline-start": 8,
-            "padding-inline-end": 8
-          },
-          "blocks": {
-            "feature_cycle_title": {
-              "type": "text",
-              "settings": {
-                "text": "<h3>Cycle awareness</h3>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h4",
-                "font": "var(--font-heading--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground-heading)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "feature_cycle_text": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Temperature and recovery shifts help make monthly changes easier to notice.</p>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "loose",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": ["feature_cycle_title", "feature_cycle_text"]
-        }
-      },
-      "block_order": [
-        "features_heading",
-        "feature_sleep",
-        "feature_stress",
-        "feature_cycle"
-      ],
-      "name": "xRing Key Benefits",
-      "settings": {
-        "content_direction": "row",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "center",
-        "vertical_alignment": "flex-start",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 28,
-        "section_width": "page-width",
-        "section_height": "",
-        "color_scheme": "scheme-1",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "padding-block-start": 72,
+        "padding-block-start": 12,
         "padding-block-end": 72
       }
     },
@@ -898,22 +587,22 @@
         "sensing_point_1": {
           "type": "point",
           "settings": {
-            "heading": "多传感器交叉校准",
-            "text": "<p>红外、绿色 LED、体温与运动传感器协同工作，让睡眠、心率和恢复趋势更稳定。</p>"
+            "heading": "Cross-calibrated sensors",
+            "text": "<p>Infrared LEDs, green LEDs, temperature sensors and motion tracking work together to keep sleep, heart rate and recovery trends more reliable.</p>"
           }
         },
         "sensing_point_2": {
           "type": "point",
           "settings": {
-            "heading": "全天候连续监测",
-            "text": "<p>不需要手动开始或结束，xRing 会在你的生活节奏里安静记录关键变化。</p>"
+            "heading": "All-day continuous sensing",
+            "text": "<p>No manual start or stop. xRing quietly records meaningful changes as your day unfolds.</p>"
           }
         },
         "sensing_point_3": {
           "type": "point",
           "settings": {
-            "heading": "少一点打扰，多一点洞察",
-            "text": "<p>没有屏幕、没有夜间亮光，把复杂数据变成更容易理解的身体信号。</p>"
+            "heading": "Less interruption. More insight.",
+            "text": "<p>No screen, no nighttime glow. Complex data becomes body signals that are easier to understand.</p>"
           }
         }
       },
@@ -925,9 +614,9 @@
       "name": "xRing Smart Sensing",
       "settings": {
         "eyebrow": "Smart sensing",
-        "heading": "更聪明的感知方式。",
-        "body": "<p>xRing 的核心不是收集更多数字，而是把睡眠、心率、体温和活动变化整合成你每天能理解、能行动的健康信号。</p>",
-        "callout": "<p>连续监测，不打断生活。</p>",
+        "heading": "A smarter way to sense.",
+        "body": "<p>xRing is not about collecting more numbers. It brings sleep, heart rate, temperature and movement together into health signals you can understand and act on every day.</p>",
+        "callout": "<p>Continuous sensing, without interrupting life.</p>",
         "media_position": "left",
         "tone": "blush",
         "color_scheme": "scheme-1",
@@ -941,22 +630,22 @@
         "comfort_point_1": {
           "type": "point",
           "settings": {
-            "heading": "轻量钛金属",
-            "text": "<p>坚固、轻盈、低敏，适合长时间贴肤佩戴。</p>"
+            "heading": "Lightweight titanium",
+            "text": "<p>Strong, light and skin-friendly, made for long hours of close contact.</p>"
           }
         },
         "comfort_point_2": {
           "type": "point",
           "settings": {
-            "heading": "内侧更顺滑",
-            "text": "<p>贴近手指的一面减少突兀感，让传感器存在但不抢存在感。</p>"
+            "heading": "Smoother on the inside",
+            "text": "<p>The inner surface sits closer to the finger with less bulk, so the sensors are present without feeling intrusive.</p>"
           }
         },
         "comfort_point_3": {
           "type": "point",
           "settings": {
-            "heading": "全天候生活场景",
-            "text": "<p>睡觉、办公、运动和洗手都不用频繁摘下，健康追踪才不会中断。</p>"
+            "heading": "Built for daily life",
+            "text": "<p>Wear it through sleep, work, workouts and handwashing, so your health tracking does not keep starting over.</p>"
           }
         }
       },
@@ -968,9 +657,9 @@
       "name": "xRing Comfort",
       "settings": {
         "eyebrow": "All-day comfort",
-        "heading": "像首饰一样自然佩戴。",
-        "body": "<p>智能戒指真正难的是每天都愿意戴。xRing 把重量、材质和贴肤触感放在同等重要的位置，让健康监测自然融入日常。</p>",
-        "callout": "<p>健康科技不该像任务，更应该像你本来就会戴的戒指。</p>",
+        "heading": "Wear it as naturally as jewelry.",
+        "body": "<p>The hard part is making a smart ring you actually want to wear every day. xRing gives weight, material and skin feel the same importance as the sensors inside.</p>",
+        "callout": "<p>Health tech should feel less like a task and more like a ring you would wear anyway.</p>",
         "media_position": "right",
         "tone": "champagne",
         "color_scheme": "scheme-1",
@@ -984,22 +673,22 @@
         "app_point_1": {
           "type": "point",
           "settings": {
-            "heading": "睡眠与恢复",
-            "text": "<p>把夜间数据转化成第二天的恢复状态，帮助你判断今天该推进还是放缓。</p>"
+            "heading": "Sleep and recovery",
+            "text": "<p>Turn overnight data into a next-day recovery view, so you know when to push and when to ease up.</p>"
           }
         },
         "app_point_2": {
           "type": "point",
           "settings": {
-            "heading": "压力与活动节奏",
-            "text": "<p>看到哪些时段消耗最多，哪些习惯真的能让身体回到平衡。</p>"
+            "heading": "Stress and activity rhythm",
+            "text": "<p>See when your body works hardest, and which habits actually help you return to balance.</p>"
           }
         },
         "app_point_3": {
           "type": "point",
           "settings": {
-            "heading": "长期趋势",
-            "text": "<p>比单日分数更重要的是趋势，xalgo App 帮你识别那些慢慢发生的变化。</p>"
+            "heading": "Long-term trends",
+            "text": "<p>The trend matters more than a single score. The xalgo App helps you notice the slow changes you might otherwise miss.</p>"
           }
         }
       },
@@ -1011,9 +700,9 @@
       "name": "xRing App Insights",
       "settings": {
         "eyebrow": "App insights",
-        "heading": "数据最后要变成建议。",
-        "body": "<p>硬件负责安静记录，App 负责把复杂的生理信号翻译成清晰的日常建议。你看到的不是一堆数字，而是身体正在告诉你的方向。</p>",
-        "callout": "<p>从睡眠、压力、恢复到周期趋势，一处查看。</p>",
+        "heading": "Data should become guidance.",
+        "body": "<p>The ring records quietly. The app turns complex body signals into clear daily guidance, so you see direction instead of just numbers.</p>",
+        "callout": "<p>Sleep, stress, recovery and cycle trends in one place.</p>",
         "media_position": "left",
         "tone": "mist",
         "color_scheme": "scheme-1",
@@ -1028,7 +717,7 @@
           "type": "finish",
           "settings": {
             "name": "Rose",
-            "description": "柔和偏暖，适合日常首饰感穿搭。",
+            "description": "A soft, warm finish that works easily with everyday jewelry.",
             "color": "#E8A598",
             "color_2": "#F2DDD8"
           }
@@ -1037,7 +726,7 @@
           "type": "finish",
           "settings": {
             "name": "Champagne",
-            "description": "更接近经典金属首饰，温润但不张扬。",
+            "description": "A classic jewelry-like metal tone, warm without feeling loud.",
             "color": "#C9A882",
             "color_2": "#F3E7D7"
           }
@@ -1046,7 +735,7 @@
           "type": "finish",
           "settings": {
             "name": "Graphite",
-            "description": "深色低调，适合更克制的科技感。",
+            "description": "A darker, quieter finish with a more restrained tech feel.",
             "color": "#3D3D3F",
             "color_2": "#8A8580"
           }
@@ -1055,9 +744,27 @@
           "type": "finish",
           "settings": {
             "name": "Silver",
-            "description": "清爽明亮，适合轻盈、干净的佩戴风格。",
+            "description": "Bright and clean for a lighter, more minimal wearing style.",
             "color": "#D9D7D1",
             "color_2": "#FFFFFF"
+          }
+        },
+        "finish_black": {
+          "type": "finish",
+          "settings": {
+            "name": "Black",
+            "description": "A clean, understated finish for a sharper everyday look.",
+            "color": "#171717",
+            "color_2": "#5A5A5A"
+          }
+        },
+        "finish_gold": {
+          "type": "finish",
+          "settings": {
+            "name": "Gold",
+            "description": "A warmer polished finish with a classic jewelry feel.",
+            "color": "#D9B45F",
+            "color_2": "#FFF0C2"
           }
         }
       },
@@ -1065,15 +772,17 @@
         "finish_rose",
         "finish_champagne",
         "finish_graphite",
-        "finish_silver"
+        "finish_silver",
+        "finish_black",
+        "finish_gold"
       ],
       "name": "xRing Finishes",
       "settings": {
         "eyebrow": "Finishes",
-        "heading": "选择更像你的那一枚。",
-        "subheading": "健康设备也应该像首饰一样，成为你愿意每天佩戴的东西。",
+        "heading": "Choose the one that feels like you.",
+        "subheading": "A health device should still feel like jewelry - something you want to wear every day.",
         "button_label": "Choose your xRing",
-        "button_link": "/products/xring",
+        "button_link": "shopify://products/xring",
         "color_scheme": "scheme-1",
         "padding_top": 88,
         "padding_bottom": 88
@@ -1111,7 +820,7 @@
           "settings": {
             "icon": "battery",
             "heading": "Battery life",
-            "details": "<p>5–8 days of battery life</p><p>Typically charges in 20–80 minutes, depending on battery level</p>"
+            "details": "<p>5-8 days of battery life</p><p>Typically charges in 20-80 minutes, depending on battery level</p>"
           }
         },
         "spec_materials": {
@@ -1234,17 +943,17 @@
         "vertical_alignment_flex_direction_column": "center",
         "gap": 12,
         "section_width": "page-width",
-        "section_height": "medium",
+        "section_height": "small",
         "color_scheme": "scheme-1",
         "background_media": "none",
         "video_position": "cover",
         "background_image_position": "cover",
-        "border": "none",
+        "border": "solid",
         "border_width": 1,
-        "border_opacity": 100,
+        "border_opacity": 12,
         "border_radius": 0,
-        "padding-block-start": 72,
-        "padding-block-end": 88
+        "padding-block-start": 38,
+        "padding-block-end": 42
       }
     }
   },
@@ -1252,7 +961,6 @@
     "xring_hero",
     "xring_intro",
     "xring_metrics",
-    "xring_features",
     "xring_sensing",
     "xring_comfort",
     "xring_app",
