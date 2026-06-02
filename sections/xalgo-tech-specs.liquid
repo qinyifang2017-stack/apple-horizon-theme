@@ -1,33 +1,52 @@
 {% liquid
+  assign specs_anchor_id = section.settings.anchor_id | default: 'xring-tech-specs'
   assign has_box = false
   if section.settings.box_heading != blank or section.settings.box_items != blank
     assign has_box = true
   endif
+
+  assign has_media = false
+  if section.settings.media_type == 'video' and section.settings.video != blank
+    assign has_media = true
+  elsif section.settings.media_type == 'image' and section.settings.image != blank
+    assign has_media = true
+  endif
 %}
 
 <section
-  id="xring-tech-specs"
+  id="{{ specs_anchor_id }}"
   class="xalgo-tech-specs color-{{ section.settings.color_scheme }}"
   style="
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   "
 >
-  <div class="page-width xalgo-tech-specs__shell{% unless section.settings.image != blank or has_box %} xalgo-tech-specs__shell--text-only{% endunless %}">
-    {%- if section.settings.image != blank or has_box -%}
+  <div class="page-width xalgo-tech-specs__shell{% unless has_media or has_box %} xalgo-tech-specs__shell--text-only{% endunless %}">
+    {%- if has_media or has_box -%}
       <aside class="xalgo-tech-specs__media-card">
-        {%- if section.settings.image != blank -%}
+        {%- if section.settings.media_type == 'video' and section.settings.video != blank -%}
+          {{
+            section.settings.video
+            | video_tag:
+              poster: section.settings.video.preview_image,
+              autoplay: true,
+              loop: true,
+              controls: false,
+              muted: true,
+              class: 'xalgo-tech-specs__media xalgo-tech-specs__video'
+          }}
+        {%- elsif section.settings.image != blank -%}
           {{
             section.settings.image
             | image_url: width: 1200
             | image_tag:
-              class: 'xalgo-tech-specs__image',
+              class: 'xalgo-tech-specs__media xalgo-tech-specs__image',
               widths: '480, 720, 960, 1200',
               sizes: '(min-width: 990px) 36vw, 100vw',
               alt: section.settings.image.alt
           }}
         {%- else -%}
-          {{ 'product-1' | placeholder_svg_tag: 'xalgo-tech-specs__image xalgo-tech-specs__image--placeholder' }}
+          {{ 'product-1' | placeholder_svg_tag: 'xalgo-tech-specs__media xalgo-tech-specs__image xalgo-tech-specs__image--placeholder' }}
         {%- endif -%}
 
         {%- if has_box -%}
@@ -134,12 +153,19 @@
     min-height: 420px;
   }
 
-  .xalgo-tech-specs__image {
+  .xalgo-tech-specs__media {
     width: min(100%, 440px);
-    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    object-position: center;
     display: block;
     margin-inline: auto;
+    border-radius: 28px;
     filter: drop-shadow(0 28px 46px rgb(201 168 130 / 0.22));
+  }
+
+  .xalgo-tech-specs__video {
+    background: color-mix(in srgb, var(--specs-blush) 54%, var(--specs-cream));
   }
 
   .xalgo-tech-specs__image--placeholder {
@@ -275,6 +301,12 @@
   "settings": [
     {
       "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID",
+      "default": "xring-tech-specs"
+    },
+    {
+      "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
       "default": "Product details"
@@ -292,9 +324,26 @@
       "default": "A cleaner, more editorial way to explain what is inside the product and what comes in the box."
     },
     {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media type",
+      "options": [
+        { "value": "image", "label": "Image" },
+        { "value": "video", "label": "Video" }
+      ],
+      "default": "image"
+    },
+    {
       "type": "image_picker",
       "id": "image",
-      "label": "Product image"
+      "label": "Product image",
+      "visible_if": "{{ section.settings.media_type == 'image' }}"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Product video",
+      "visible_if": "{{ section.settings.media_type == 'video' }}"
     },
     {
       "type": "text",

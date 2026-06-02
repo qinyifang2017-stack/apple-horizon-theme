@@ -1,0 +1,364 @@
+<section
+  class="xalgo-xframe-cloud-sync color-{{ section.settings.color_scheme }}"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="page-width xalgo-xframe-cloud-sync__shell">
+    <div class="xalgo-xframe-cloud-sync__header">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="xalgo-xframe-cloud-sync__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="xalgo-xframe-cloud-sync__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.body != blank -%}
+        <div class="xalgo-xframe-cloud-sync__body">{{ section.settings.body }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="xalgo-xframe-cloud-sync__map" aria-label="Cloud sync network">
+      <div class="xalgo-xframe-cloud-sync__hub">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18h10.5a3.5 3.5 0 0 0 .6-6.95A5.5 5.5 0 0 0 7.5 9.5 4.25 4.25 0 0 0 7 18Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <span>{{ section.settings.hub_label }}</span>
+      </div>
+
+      <div class="xalgo-xframe-cloud-sync__nodes">
+        {%- for block in section.blocks -%}
+          <article class="xalgo-xframe-cloud-sync__node" {{ block.shopify_attributes }}>
+            <div class="xalgo-xframe-cloud-sync__icon" aria-hidden="true">
+              {%- case block.settings.icon -%}
+                {%- when 'phone' -%}
+                  <svg viewBox="0 0 24 24"><path d="M8 3.5h8a1.5 1.5 0 0 1 1.5 1.5v14a1.5 1.5 0 0 1-1.5 1.5H8A1.5 1.5 0 0 1 6.5 19V5A1.5 1.5 0 0 1 8 3.5Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 17.5h3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                {%- when 'family' -%}
+                  <svg viewBox="0 0 24 24"><path d="M8.5 11.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM15.8 10.8a2.5 2.5 0 1 0 0-5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M4 19a4.8 4.8 0 0 1 9 0M14 18.2a4 4 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                {%- when 'home' -%}
+                  <svg viewBox="0 0 24 24"><path d="m4 11 8-6.5 8 6.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 10v9h11v-9" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 19v-5h4v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                {%- when 'cloud' -%}
+                  <svg viewBox="0 0 24 24"><path d="M7 18h10.5a3.5 3.5 0 0 0 .6-6.95A5.5 5.5 0 0 0 7.5 9.5 4.25 4.25 0 0 0 7 18Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                {%- else -%}
+                  <svg viewBox="0 0 24 24"><path d="M5 6h14v12H5V6Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 20h6M12 18v2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              {%- endcase -%}
+            </div>
+            <div>
+              <h3>{{ block.settings.label }}</h3>
+              <p>{{ block.settings.description }}</p>
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .xalgo-xframe-cloud-sync {
+    --xframe-paper: #fffaf2;
+    --xframe-ink: var(--xalgo-text-primary, #1d1d1f);
+    --xframe-muted: var(--xalgo-text-secondary, #6e6e73);
+    --xframe-gold: var(--xalgo-champagne, #c9a882);
+    --xframe-rose: var(--xalgo-rose, #e8a598);
+    background:
+      radial-gradient(circle at 50% 44%, rgb(212 234 247 / 0.82), transparent 28rem),
+      linear-gradient(180deg, #fbf8ef 0%, #edf5f8 100%);
+    color: var(--xframe-ink);
+    overflow: hidden;
+  }
+
+  .xalgo-xframe-cloud-sync .page-width {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  .xalgo-xframe-cloud-sync__shell {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 5.5rem);
+  }
+
+  @media screen and (min-width: 990px) {
+    .xalgo-xframe-cloud-sync__shell {
+      grid-template-columns: minmax(280px, 0.7fr) minmax(0, 1.3fr);
+      align-items: center;
+    }
+  }
+
+  .xalgo-xframe-cloud-sync__eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--xframe-rose);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .xalgo-xframe-cloud-sync__heading {
+    max-width: 9ch;
+    margin: 0;
+    color: var(--xframe-ink);
+    font-size: clamp(2.8rem, 6vw, 6.2rem);
+    line-height: 0.86;
+    letter-spacing: -0.07em;
+  }
+
+  .xalgo-xframe-cloud-sync__body {
+    max-width: 590px;
+    margin-top: 1.25rem;
+    color: var(--xframe-muted);
+    font-size: clamp(1rem, 1.45vw, 1.18rem);
+    line-height: 1.7;
+  }
+
+  .xalgo-xframe-cloud-sync__body p {
+    margin: 0;
+  }
+
+  .xalgo-xframe-cloud-sync__map {
+    position: relative;
+    min-height: clamp(560px, 56vw, 720px);
+    display: grid;
+    place-items: center;
+  }
+
+  .xalgo-xframe-cloud-sync__map::before,
+  .xalgo-xframe-cloud-sync__map::after {
+    content: '';
+    position: absolute;
+    border: 1px solid rgb(201 168 130 / 0.28);
+    border-radius: 999px;
+  }
+
+  .xalgo-xframe-cloud-sync__map::before {
+    width: min(92%, 650px);
+    aspect-ratio: 1;
+  }
+
+  .xalgo-xframe-cloud-sync__map::after {
+    width: min(64%, 440px);
+    aspect-ratio: 1;
+  }
+
+  .xalgo-xframe-cloud-sync__hub {
+    position: relative;
+    z-index: 2;
+    width: clamp(138px, 18vw, 190px);
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 0.6rem;
+    border-radius: 999px;
+    background: rgb(255 250 242 / 0.76);
+    border: 1px solid rgb(255 255 255 / 0.7);
+    box-shadow: 0 32px 88px rgb(82 109 122 / 0.18);
+    backdrop-filter: blur(20px);
+  }
+
+  .xalgo-xframe-cloud-sync__hub svg {
+    width: 48px;
+    height: 48px;
+    color: var(--xframe-rose);
+  }
+
+  .xalgo-xframe-cloud-sync__hub span {
+    color: var(--xframe-ink);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .xalgo-xframe-cloud-sync__nodes {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+  }
+
+  .xalgo-xframe-cloud-sync__node {
+    position: absolute;
+    width: min(240px, 42vw);
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 0.85rem;
+    padding: 1rem;
+    border: 1px solid rgb(36 31 27 / 0.08);
+    border-radius: 24px;
+    background: rgb(255 255 255 / 0.68);
+    box-shadow: 0 22px 64px rgb(82 109 122 / 0.14);
+    backdrop-filter: blur(18px);
+  }
+
+  .xalgo-xframe-cloud-sync__node:nth-child(1) { left: 4%; top: 10%; }
+  .xalgo-xframe-cloud-sync__node:nth-child(2) { right: 3%; top: 18%; }
+  .xalgo-xframe-cloud-sync__node:nth-child(3) { left: 0; bottom: 18%; }
+  .xalgo-xframe-cloud-sync__node:nth-child(4) { right: 7%; bottom: 10%; }
+  .xalgo-xframe-cloud-sync__node:nth-child(5) { left: 35%; bottom: 0; }
+
+  .xalgo-xframe-cloud-sync__icon {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    background: color-mix(in srgb, var(--xframe-rose) 13%, white);
+    color: var(--xframe-rose);
+  }
+
+  .xalgo-xframe-cloud-sync__icon svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  .xalgo-xframe-cloud-sync__node h3 {
+    margin: 0 0 0.35rem;
+    color: var(--xframe-ink);
+    font-size: 1.08rem;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .xalgo-xframe-cloud-sync__node p {
+    margin: 0;
+    color: var(--xframe-muted);
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  @media screen and (max-width: 749px) {
+    .xalgo-xframe-cloud-sync__map {
+      min-height: auto;
+      display: grid;
+      gap: 1rem;
+      place-items: stretch;
+    }
+
+    .xalgo-xframe-cloud-sync__map::before,
+    .xalgo-xframe-cloud-sync__map::after {
+      display: none;
+    }
+
+    .xalgo-xframe-cloud-sync__hub,
+    .xalgo-xframe-cloud-sync__nodes,
+    .xalgo-xframe-cloud-sync__node {
+      position: static;
+      width: auto;
+    }
+
+    .xalgo-xframe-cloud-sync__hub {
+      justify-self: center;
+      width: 150px;
+    }
+
+    .xalgo-xframe-cloud-sync__nodes {
+      display: grid;
+      gap: 0.85rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "xFrame Cloud Sync",
+  "tag": "section",
+  "class": "section-wrapper xalgo-xframe-cloud-sync-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Cloud sync"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "One album, every home."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>Upload from the app, let the cloud organize the update, and keep selected frames refreshed for your home, your family, or someone far away.</p>"
+    },
+    {
+      "type": "text",
+      "id": "hub_label",
+      "label": "Hub label",
+      "default": "xFrame Cloud"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 104
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 104
+    }
+  ],
+  "blocks": [
+    {
+      "type": "sync_node",
+      "name": "Sync node",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "phone", "label": "Phone" },
+            { "value": "family", "label": "Family" },
+            { "value": "frame", "label": "Frame" },
+            { "value": "cloud", "label": "Cloud" },
+            { "value": "home", "label": "Home" }
+          ],
+          "default": "phone"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Phone upload"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Add new photos from the app and send them to the right frame."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "xFrame Cloud Sync",
+      "category": "Content",
+      "blocks": [
+        { "type": "sync_node" },
+        { "type": "sync_node" },
+        { "type": "sync_node" },
+        { "type": "sync_node" }
+      ]
+    }
+  ]
+}
+{% endschema %}

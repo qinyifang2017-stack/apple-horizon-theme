@@ -1,0 +1,345 @@
+<section
+  class="xalgo-xframe-album-wall color-{{ section.settings.color_scheme }}"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="page-width xalgo-xframe-album-wall__shell">
+    <div class="xalgo-xframe-album-wall__copy">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="xalgo-xframe-album-wall__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="xalgo-xframe-album-wall__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.body != blank -%}
+        <div class="xalgo-xframe-album-wall__body">{{ section.settings.body }}</div>
+      {%- endif -%}
+      {%- if section.settings.note != blank -%}
+        <div class="xalgo-xframe-album-wall__note">{{ section.settings.note }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="xalgo-xframe-album-wall__grid" aria-label="AI organized album examples">
+      {%- for block in section.blocks -%}
+        <article class="xalgo-xframe-album-wall__album" {{ block.shopify_attributes }}>
+          <div class="xalgo-xframe-album-wall__media">
+            {%- if block.settings.image != blank -%}
+              {{
+                block.settings.image
+                | image_url: width: 760
+                | image_tag:
+                  class: 'xalgo-xframe-album-wall__image',
+                  widths: '320, 520, 760',
+                  sizes: '(min-width: 990px) 20vw, 82vw',
+                  alt: block.settings.image.alt
+              }}
+            {%- else -%}
+              <div class="xalgo-xframe-album-wall__placeholder" aria-hidden="true"></div>
+            {%- endif -%}
+            {%- if block.settings.tag != blank -%}
+              <span class="xalgo-xframe-album-wall__tag">{{ block.settings.tag }}</span>
+            {%- endif -%}
+          </div>
+          <div class="xalgo-xframe-album-wall__album-copy">
+            <span>{{ block.settings.meta }}</span>
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.description }}</p>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .xalgo-xframe-album-wall {
+    --xframe-paper: #fffaf2;
+    --xframe-ink: var(--xalgo-text-primary, #1d1d1f);
+    --xframe-muted: var(--xalgo-text-secondary, #6e6e73);
+    --xframe-gold: var(--xalgo-champagne, #c9a882);
+    --xframe-rose: var(--xalgo-rose, #e8a598);
+    background:
+      linear-gradient(90deg, rgb(36 31 27 / 0.035) 1px, transparent 1px),
+      linear-gradient(0deg, rgb(36 31 27 / 0.035) 1px, transparent 1px),
+      var(--xframe-paper);
+    background-size: 44px 44px;
+    color: var(--xframe-ink);
+    overflow: hidden;
+  }
+
+  .xalgo-xframe-album-wall .page-width {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  .xalgo-xframe-album-wall__shell {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 6rem);
+    align-items: start;
+  }
+
+  @media screen and (min-width: 990px) {
+    .xalgo-xframe-album-wall__shell {
+      grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
+    }
+
+    .xalgo-xframe-album-wall__copy {
+      position: sticky;
+      top: 2rem;
+    }
+  }
+
+  .xalgo-xframe-album-wall__eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--xframe-rose);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .xalgo-xframe-album-wall__heading {
+    max-width: 9ch;
+    margin: 0;
+    color: var(--xframe-ink);
+    font-size: clamp(2.7rem, 6vw, 6.4rem);
+    line-height: 0.86;
+    letter-spacing: -0.07em;
+  }
+
+  .xalgo-xframe-album-wall__body {
+    max-width: 580px;
+    margin-top: 1.3rem;
+    color: var(--xframe-muted);
+    font-size: clamp(1rem, 1.45vw, 1.18rem);
+    line-height: 1.7;
+  }
+
+  .xalgo-xframe-album-wall__body p,
+  .xalgo-xframe-album-wall__note p {
+    margin: 0;
+  }
+
+  .xalgo-xframe-album-wall__note {
+    max-width: 420px;
+    margin-top: 1.5rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid color-mix(in srgb, var(--xframe-gold) 28%, transparent);
+    border-radius: 20px;
+    background: rgb(255 255 255 / 0.56);
+    color: var(--xframe-muted);
+    line-height: 1.55;
+  }
+
+  .xalgo-xframe-album-wall__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(0.9rem, 1.8vw, 1.25rem);
+  }
+
+  @media screen and (min-width: 750px) {
+    .xalgo-xframe-album-wall__album:nth-child(2),
+    .xalgo-xframe-album-wall__album:nth-child(5) {
+      margin-top: 3.2rem;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .xalgo-xframe-album-wall__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .xalgo-xframe-album-wall__album {
+    overflow: hidden;
+    border: 1px solid rgb(36 31 27 / 0.08);
+    border-radius: clamp(24px, 4vw, 36px);
+    background: rgb(255 255 255 / 0.62);
+    box-shadow: 0 24px 68px rgb(91 63 37 / 0.12);
+    transition: transform 0.26s ease, box-shadow 0.26s ease;
+  }
+
+  .xalgo-xframe-album-wall__album:hover {
+    transform: translateY(-5px) rotate(-0.4deg);
+    box-shadow: 0 32px 84px rgb(91 63 37 / 0.18);
+  }
+
+  .xalgo-xframe-album-wall__media {
+    position: relative;
+    height: clamp(210px, 25vw, 340px);
+    overflow: hidden;
+    background: #efe1ce;
+  }
+
+  .xalgo-xframe-album-wall__image,
+  .xalgo-xframe-album-wall__placeholder {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .xalgo-xframe-album-wall__placeholder {
+    background:
+      radial-gradient(circle at 34% 24%, rgb(232 165 152 / 0.75), transparent 27%),
+      radial-gradient(circle at 78% 72%, rgb(201 168 130 / 0.66), transparent 29%),
+      linear-gradient(145deg, #f8efe4, #d9ebf2);
+  }
+
+  .xalgo-xframe-album-wall__tag {
+    position: absolute;
+    left: 0.85rem;
+    top: 0.85rem;
+    padding: 0.45rem 0.7rem;
+    border-radius: 999px;
+    background: rgb(255 250 242 / 0.78);
+    color: var(--xframe-ink);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    backdrop-filter: blur(14px);
+  }
+
+  .xalgo-xframe-album-wall__album-copy {
+    padding: 1rem 1.1rem 1.2rem;
+  }
+
+  .xalgo-xframe-album-wall__album-copy span {
+    display: block;
+    margin-bottom: 0.6rem;
+    color: var(--xframe-rose);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .xalgo-xframe-album-wall__album-copy h3 {
+    margin: 0 0 0.45rem;
+    color: var(--xframe-ink);
+    font-size: clamp(1.28rem, 2vw, 1.7rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .xalgo-xframe-album-wall__album-copy p {
+    margin: 0;
+    color: var(--xframe-muted);
+    line-height: 1.55;
+    font-size: 0.95rem;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "xFrame Album Wall",
+  "tag": "section",
+  "class": "section-wrapper xalgo-xframe-album-wall-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "AI album organization"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Let the album arrange itself."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>xFrame helps turn a messy camera roll into themed albums for people, trips, pets, holidays and daily moments — so the best photos are ready for the wall.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "note",
+      "label": "Note",
+      "default": "<p>AI can surface stronger images, reduce repeats, and keep the display feeling fresh without manual slideshow management.</p>"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 104
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 104
+    }
+  ],
+  "blocks": [
+    {
+      "type": "album",
+      "name": "Album",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Family"
+        },
+        {
+          "type": "text",
+          "id": "meta",
+          "label": "Meta",
+          "default": "AI sorted"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Faces, warm expressions and everyday rituals gathered into one living album."
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag",
+          "default": "Memory"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "xFrame Album Wall",
+      "category": "Content",
+      "blocks": [
+        { "type": "album" },
+        { "type": "album" },
+        { "type": "album" },
+        { "type": "album" },
+        { "type": "album" }
+      ]
+    }
+  ]
+}
+{% endschema %}

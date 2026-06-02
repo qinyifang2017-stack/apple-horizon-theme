@@ -150,8 +150,9 @@ a:not(.button):not(.button-secondary):hover {
   border-color: var(--xalgo-rose-dark);
 }
 
-/* xRing bottom CTA: keep only the footer divider line */
-.section-wrapper:has([data-testid="section-content"] a[href="/products/xring"]):has(h2) .custom-section-content {
+/* xRing/xGlass bottom CTA: keep only the footer divider line */
+.section-wrapper:has([data-testid="section-content"] a[href="/products/xring"]):has(h2) .custom-section-content,
+.section-wrapper:has([data-testid="section-content"] a[href="/products/xglass"]):has(h2) .custom-section-content {
   border-inline: 0 !important;
   border-top: 0 !important;
 }

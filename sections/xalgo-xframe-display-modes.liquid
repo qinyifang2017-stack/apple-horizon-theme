@@ -1,0 +1,299 @@
+<section
+  class="xalgo-xframe-display-modes color-{{ section.settings.color_scheme }}"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="page-width">
+    <div class="xalgo-xframe-display-modes__header">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="xalgo-xframe-display-modes__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="xalgo-xframe-display-modes__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.body != blank -%}
+        <div class="xalgo-xframe-display-modes__body">{{ section.settings.body }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="xalgo-xframe-display-modes__rail" aria-label="xFrame display modes">
+      {%- for block in section.blocks -%}
+        <article class="xalgo-xframe-display-modes__mode" style="--mode-accent: {{ block.settings.accent_color }};" {{ block.shopify_attributes }}>
+          <div class="xalgo-xframe-display-modes__preview">
+            {%- if block.settings.image != blank -%}
+              {{
+                block.settings.image
+                | image_url: width: 760
+                | image_tag:
+                  class: 'xalgo-xframe-display-modes__image',
+                  widths: '320, 520, 760',
+                  sizes: '(min-width: 990px) 24vw, 78vw',
+                  alt: block.settings.image.alt
+              }}
+            {%- else -%}
+              <div class="xalgo-xframe-display-modes__placeholder" aria-hidden="true"></div>
+            {%- endif -%}
+          </div>
+          <h3>{{ block.settings.name }}</h3>
+          <p>{{ block.settings.description }}</p>
+        </article>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.button_label != blank -%}
+      <div class="xalgo-xframe-display-modes__cta">
+        <a class="button" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .xalgo-xframe-display-modes {
+    --xframe-paper: #fffaf2;
+    --xframe-ink: var(--xalgo-text-primary, #1d1d1f);
+    --xframe-muted: var(--xalgo-text-secondary, #6e6e73);
+    --xframe-gold: var(--xalgo-champagne, #c9a882);
+    --xframe-rose: var(--xalgo-rose, #e8a598);
+    background: linear-gradient(180deg, #fffaf6 0%, #f5ede2 100%);
+    color: var(--xframe-ink);
+    overflow: hidden;
+  }
+
+  .xalgo-xframe-display-modes .page-width {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  .xalgo-xframe-display-modes__header {
+    display: grid;
+    gap: 1rem;
+    max-width: 760px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .xalgo-xframe-display-modes__eyebrow {
+    margin: 0;
+    color: var(--xframe-rose);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .xalgo-xframe-display-modes__heading {
+    margin: 0;
+    color: var(--xframe-ink);
+    font-size: clamp(2.4rem, 5.6vw, 5.8rem);
+    line-height: 0.9;
+    letter-spacing: -0.065em;
+  }
+
+  .xalgo-xframe-display-modes__body {
+    max-width: 620px;
+    margin-inline: auto;
+    color: var(--xframe-muted);
+    font-size: clamp(1rem, 1.45vw, 1.18rem);
+    line-height: 1.68;
+  }
+
+  .xalgo-xframe-display-modes__body p {
+    margin: 0;
+  }
+
+  .xalgo-xframe-display-modes__rail {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(260px, 31vw);
+    gap: 1rem;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    overflow-x: auto;
+    padding: 0.3rem 0 1.2rem;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .xalgo-xframe-display-modes__rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media screen and (min-width: 990px) {
+    .xalgo-xframe-display-modes__rail {
+      grid-auto-columns: clamp(280px, 24vw, 360px);
+    }
+  }
+
+  .xalgo-xframe-display-modes__mode {
+    scroll-snap-align: start;
+    padding: 0.8rem 0.8rem 1.2rem;
+    border: 1px solid color-mix(in srgb, var(--mode-accent) 28%, transparent);
+    border-radius: 34px;
+    background: rgb(255 255 255 / 0.62);
+    box-shadow: 0 24px 68px rgb(91 63 37 / 0.11);
+    transition: transform 0.26s ease, box-shadow 0.26s ease;
+  }
+
+  .xalgo-xframe-display-modes__mode:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 32px 82px rgb(91 63 37 / 0.16);
+  }
+
+  .xalgo-xframe-display-modes__preview {
+    aspect-ratio: 1.36;
+    padding: 0.62rem;
+    border-radius: 26px;
+    background: linear-gradient(145deg, #2b211c, #8b6f53);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.28);
+  }
+
+  .xalgo-xframe-display-modes__image,
+  .xalgo-xframe-display-modes__placeholder {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 18px;
+    object-fit: cover;
+    overflow: hidden;
+  }
+
+  .xalgo-xframe-display-modes__placeholder {
+    background:
+      radial-gradient(circle at 30% 24%, color-mix(in srgb, var(--mode-accent) 76%, white), transparent 27%),
+      radial-gradient(circle at 72% 72%, rgb(212 234 247 / 0.82), transparent 30%),
+      linear-gradient(135deg, #fff6e8, #ead4c8);
+  }
+
+  .xalgo-xframe-display-modes__mode h3 {
+    margin: 1rem 0 0.45rem;
+    color: var(--xframe-ink);
+    font-size: 1.28rem;
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+
+  .xalgo-xframe-display-modes__mode p {
+    margin: 0;
+    color: var(--xframe-muted);
+    line-height: 1.55;
+    font-size: 0.95rem;
+  }
+
+  .xalgo-xframe-display-modes__cta {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(2rem, 4vw, 3rem);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "xFrame Display Modes",
+  "tag": "section",
+  "class": "section-wrapper xalgo-xframe-display-modes-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Display modes"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "One frame, many moods."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>Choose how xFrame should feel today: a family album, an AI canvas, a travel replay, a daily moment, or a seasonal theme.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Choose xFrame"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "mode",
+      "name": "Mode",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Family Album"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "A warm rotation of people, moments, and everyday scenes."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent color",
+          "default": "#E8A598"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "xFrame Display Modes",
+      "category": "Content",
+      "blocks": [
+        { "type": "mode" },
+        { "type": "mode" },
+        { "type": "mode" },
+        { "type": "mode" },
+        { "type": "mode" }
+      ]
+    }
+  ]
+}
+{% endschema %}

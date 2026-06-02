@@ -1,0 +1,345 @@
+<section
+  class="xalgo-xframe-generation-studio color-{{ section.settings.color_scheme }}"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="page-width xalgo-xframe-generation-studio__shell">
+    <div class="xalgo-xframe-generation-studio__panel">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="xalgo-xframe-generation-studio__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="xalgo-xframe-generation-studio__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.body != blank -%}
+        <div class="xalgo-xframe-generation-studio__body">{{ section.settings.body }}</div>
+      {%- endif -%}
+
+      <div class="xalgo-xframe-generation-studio__prompt">
+        <span>{{ section.settings.prompt_label }}</span>
+        <strong>{{ section.settings.prompt_text }}</strong>
+        <div class="xalgo-xframe-generation-studio__cursor" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <div class="xalgo-xframe-generation-studio__stage" aria-label="AI generated xFrame content examples">
+      <div class="xalgo-xframe-generation-studio__main-frame">
+        {%- if section.settings.main_image != blank -%}
+          {{
+            section.settings.main_image
+            | image_url: width: 1200
+            | image_tag:
+              class: 'xalgo-xframe-generation-studio__main-image',
+              widths: '520, 760, 1000, 1200',
+              sizes: '(min-width: 990px) 40vw, 88vw',
+              alt: section.settings.main_image.alt
+          }}
+        {%- else -%}
+          <div class="xalgo-xframe-generation-studio__generated-art" aria-hidden="true"></div>
+        {%- endif -%}
+      </div>
+
+      <div class="xalgo-xframe-generation-studio__cards">
+        {%- for block in section.blocks -%}
+          <article class="xalgo-xframe-generation-studio__card" {{ block.shopify_attributes }}>
+            <span>{{ block.settings.style_label }}</span>
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.description }}</p>
+          </article>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .xalgo-xframe-generation-studio {
+    --xframe-wall: #241f1b;
+    --xframe-paper: #fffaf2;
+    --xframe-ink: var(--xalgo-text-primary, #1d1d1f);
+    --xframe-muted: var(--xalgo-text-secondary, #6e6e73);
+    --xframe-gold: var(--xalgo-champagne, #c9a882);
+    --xframe-rose: var(--xalgo-rose, #e8a598);
+    background:
+      radial-gradient(circle at 72% 18%, rgb(232 165 152 / 0.2), transparent 26rem),
+      linear-gradient(135deg, #211c19 0%, var(--xframe-wall) 54%, #151211 100%);
+    color: var(--xframe-paper);
+    overflow: hidden;
+  }
+
+  .xalgo-xframe-generation-studio .page-width {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  .xalgo-xframe-generation-studio__shell {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 6rem);
+    align-items: center;
+  }
+
+  @media screen and (min-width: 990px) {
+    .xalgo-xframe-generation-studio__shell {
+      grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+    }
+  }
+
+  .xalgo-xframe-generation-studio__panel {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .xalgo-xframe-generation-studio__eyebrow {
+    margin: 0;
+    color: color-mix(in srgb, var(--xframe-rose) 88%, white);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .xalgo-xframe-generation-studio__heading {
+    max-width: 9ch;
+    margin: 0;
+    color: var(--xframe-paper);
+    font-size: clamp(2.8rem, 6.5vw, 6.8rem);
+    line-height: 0.84;
+    letter-spacing: -0.075em;
+  }
+
+  .xalgo-xframe-generation-studio__body {
+    max-width: 580px;
+    color: rgb(255 250 242 / 0.72);
+    font-size: clamp(1rem, 1.45vw, 1.2rem);
+    line-height: 1.72;
+  }
+
+  .xalgo-xframe-generation-studio__body p {
+    margin: 0;
+  }
+
+  .xalgo-xframe-generation-studio__prompt {
+    margin-top: 1rem;
+    padding: 1.15rem 1.2rem;
+    border: 1px solid rgb(255 250 242 / 0.14);
+    border-radius: 28px;
+    background: rgb(255 250 242 / 0.09);
+    box-shadow: 0 24px 68px rgb(0 0 0 / 0.18);
+    backdrop-filter: blur(18px);
+  }
+
+  .xalgo-xframe-generation-studio__prompt span {
+    display: block;
+    margin-bottom: 0.6rem;
+    color: var(--xframe-rose);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .xalgo-xframe-generation-studio__prompt strong {
+    color: var(--xframe-paper);
+    font-size: clamp(1.2rem, 2.3vw, 2rem);
+    line-height: 1.16;
+    letter-spacing: -0.035em;
+  }
+
+  .xalgo-xframe-generation-studio__cursor {
+    width: 42%;
+    height: 2px;
+    margin-top: 1rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--xframe-rose), transparent);
+  }
+
+  .xalgo-xframe-generation-studio__stage {
+    position: relative;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .xalgo-xframe-generation-studio__main-frame {
+    position: relative;
+    width: min(100%, 760px);
+    aspect-ratio: 1.45;
+    margin-inline: auto;
+    padding: clamp(0.72rem, 1.5vw, 1.15rem);
+    border-radius: clamp(26px, 4vw, 42px);
+    background: linear-gradient(145deg, #fff2d7, #b0835a 42%, #201815 43%, #0f0d0c 100%);
+    box-shadow: 0 38px 110px rgb(0 0 0 / 0.36);
+  }
+
+  .xalgo-xframe-generation-studio__main-image,
+  .xalgo-xframe-generation-studio__generated-art {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: clamp(18px, 3vw, 30px);
+    object-fit: cover;
+    overflow: hidden;
+  }
+
+  .xalgo-xframe-generation-studio__generated-art {
+    background:
+      radial-gradient(circle at 22% 24%, #fcdcdd 0 10%, transparent 28%),
+      radial-gradient(circle at 72% 36%, #d4eaf7 0 12%, transparent 32%),
+      radial-gradient(circle at 46% 78%, #c9a882 0 10%, transparent 26%),
+      linear-gradient(135deg, #fff6e8 0%, #e8c5b8 52%, #d6e6eb 100%);
+  }
+
+  .xalgo-xframe-generation-studio__cards {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .xalgo-xframe-generation-studio__cards {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .xalgo-xframe-generation-studio__card {
+    padding: 1rem;
+    border: 1px solid rgb(255 250 242 / 0.13);
+    border-radius: 22px;
+    background: rgb(255 250 242 / 0.08);
+    backdrop-filter: blur(16px);
+  }
+
+  .xalgo-xframe-generation-studio__card span {
+    display: block;
+    margin-bottom: 0.7rem;
+    color: var(--xframe-rose);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .xalgo-xframe-generation-studio__card h3 {
+    margin: 0 0 0.45rem;
+    color: var(--xframe-paper);
+    font-size: 1.2rem;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+  }
+
+  .xalgo-xframe-generation-studio__card p {
+    margin: 0;
+    color: rgb(255 250 242 / 0.64);
+    line-height: 1.52;
+    font-size: 0.94rem;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "xFrame Generation Studio",
+  "tag": "section",
+  "class": "section-wrapper xalgo-xframe-generation-studio-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Generative content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Make the wall feel new again."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>xFrame can turn family photos into more expressive visuals: art-style scenes, memory boards, seasonal canvases, and ambient images made for the room.</p>"
+    },
+    {
+      "type": "text",
+      "id": "prompt_label",
+      "label": "Prompt label",
+      "default": "Prompt"
+    },
+    {
+      "type": "text",
+      "id": "prompt_text",
+      "label": "Prompt text",
+      "default": "Turn our beach trip into watercolor art."
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main generated image"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 104
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 104
+    }
+  ],
+  "blocks": [
+    {
+      "type": "generation",
+      "name": "Generation card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "style_label",
+          "label": "Style label",
+          "default": "AI art"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Photo to canvas"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Transform a favorite image into a softer artwork for the room."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "xFrame Generation Studio",
+      "category": "Content",
+      "blocks": [
+        { "type": "generation" },
+        { "type": "generation" },
+        { "type": "generation" }
+      ]
+    }
+  ]
+}
+{% endschema %}

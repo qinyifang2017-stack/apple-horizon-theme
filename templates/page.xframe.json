@@ -1,0 +1,411 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */{
+  "sections": {
+    "xframe_hero": {
+      "type": "xalgo-xframe-hero",
+      "name": "xFrame Hero",
+      "settings": {
+        "eyebrow": "xFrame 智能画框",
+        "heading": "Your memories, curated by AI.",
+        "subheading": "<p>xFrame organizes your albums, generates beautiful new visuals, and keeps every frame in sync through the cloud.</p>",
+        "primary_button_label": "Choose xFrame",
+        "primary_button_link": "/products/xframe",
+        "secondary_button_label": "See AI features",
+        "secondary_button_link": "#xframe-memory-os",
+        "accent_label_1": "AI album curation",
+        "accent_label_2": "Cloud synced",
+        "accent_label_3": "Generate new scenes",
+        "color_scheme": "scheme-1",
+        "padding_top": 88,
+        "padding_bottom": 72
+      }
+    },
+    "xframe_memory_os": {
+      "type": "xalgo-xframe-memory-os",
+      "blocks": {
+        "memory_organize": {
+          "type": "feature",
+          "settings": {
+            "kicker": "Organize",
+            "icon": "album",
+            "heading": "AI sorts the camera roll.",
+            "text": "<p>People, places, scenes and important dates become living albums that are ready to display.</p>"
+          }
+        },
+        "memory_sync": {
+          "type": "feature",
+          "settings": {
+            "kicker": "Sync",
+            "icon": "cloud",
+            "heading": "New memories arrive automatically.",
+            "text": "<p>Upload from the app, share with family, and keep selected frames refreshed through the cloud.</p>"
+          }
+        },
+        "memory_generate": {
+          "type": "feature",
+          "settings": {
+            "kicker": "Generate",
+            "icon": "spark",
+            "heading": "Photos become wall-ready art.",
+            "text": "<p>Turn favorite moments into AI-assisted canvases, story cards and seasonal displays made for home.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "memory_organize",
+        "memory_sync",
+        "memory_generate"
+      ],
+      "name": "xFrame Memory OS",
+      "settings": {
+        "anchor_id": "xframe-memory-os",
+        "eyebrow": "Living Gallery OS",
+        "heading": "A frame that thinks in memories.",
+        "body": "<p>xFrame combines AI album organization, cloud sync, and generative content so your photos become a living gallery instead of a forgotten camera roll.</p>",
+        "color_scheme": "scheme-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "xframe_album_wall": {
+      "type": "xalgo-xframe-album-wall",
+      "blocks": {
+        "album_family": {
+          "type": "album",
+          "settings": {
+            "title": "Family",
+            "meta": "AI sorted",
+            "description": "Faces, warm expressions and everyday rituals gathered into one living album.",
+            "tag": "People"
+          }
+        },
+        "album_travel": {
+          "type": "album",
+          "settings": {
+            "title": "Travel",
+            "meta": "Place aware",
+            "description": "Trips become visual chapters, from first arrival to the quiet photo you almost missed.",
+            "tag": "Places"
+          }
+        },
+        "album_pets": {
+          "type": "album",
+          "settings": {
+            "title": "Pets",
+            "meta": "Scene grouped",
+            "description": "The small daily moments that make home feel alive, ready to resurface naturally.",
+            "tag": "Home"
+          }
+        },
+        "album_holidays": {
+          "type": "album",
+          "settings": {
+            "title": "Holidays",
+            "meta": "Date matched",
+            "description": "Birthdays, festivals and anniversaries can reappear when the day feels right.",
+            "tag": "Calendar"
+          }
+        },
+        "album_daily": {
+          "type": "album",
+          "settings": {
+            "title": "Daily Moments",
+            "meta": "Fresh picks",
+            "description": "Reduce repeats and surface clearer, warmer images without managing a slideshow by hand.",
+            "tag": "Today"
+          }
+        }
+      },
+      "block_order": [
+        "album_family",
+        "album_travel",
+        "album_pets",
+        "album_holidays",
+        "album_daily"
+      ],
+      "name": "xFrame Album Wall",
+      "settings": {
+        "eyebrow": "AI album organization",
+        "heading": "Let the album arrange itself.",
+        "body": "<p>xFrame helps turn a messy camera roll into themed albums for people, trips, pets, holidays and daily moments — so the best photos are ready for the wall.</p>",
+        "note": "<p>AI can surface stronger images, reduce repeats, and keep the display feeling fresh without manual slideshow management.</p>",
+        "color_scheme": "scheme-1",
+        "padding_top": 104,
+        "padding_bottom": 104
+      }
+    },
+    "xframe_generation_studio": {
+      "type": "xalgo-xframe-generation-studio",
+      "blocks": {
+        "generation_art": {
+          "type": "generation",
+          "settings": {
+            "style_label": "AI art",
+            "title": "Photo to canvas",
+            "description": "Transform a favorite image into a softer artwork for the room."
+          }
+        },
+        "generation_story": {
+          "type": "generation",
+          "settings": {
+            "style_label": "Story board",
+            "title": "Trip to memory board",
+            "description": "Group related photos into a visual story that feels ready for guests."
+          }
+        },
+        "generation_season": {
+          "type": "generation",
+          "settings": {
+            "style_label": "Seasonal",
+            "title": "Holiday theme",
+            "description": "Create birthday, festival or anniversary displays from your own moments."
+          }
+        }
+      },
+      "block_order": [
+        "generation_art",
+        "generation_story",
+        "generation_season"
+      ],
+      "name": "xFrame Generation Studio",
+      "settings": {
+        "eyebrow": "Generative content",
+        "heading": "Make the wall feel new again.",
+        "body": "<p>xFrame can turn family photos into more expressive visuals: art-style scenes, memory boards, seasonal canvases, and ambient images made for the room.</p>",
+        "prompt_label": "Prompt",
+        "prompt_text": "Turn our beach trip into watercolor art.",
+        "color_scheme": "scheme-1",
+        "padding_top": 104,
+        "padding_bottom": 104
+      }
+    },
+    "xframe_cloud_sync": {
+      "type": "xalgo-xframe-cloud-sync",
+      "blocks": {
+        "sync_phone": {
+          "type": "sync_node",
+          "settings": {
+            "icon": "phone",
+            "label": "Phone upload",
+            "description": "Add new photos from the app and send them to the right frame."
+          }
+        },
+        "sync_family": {
+          "type": "sync_node",
+          "settings": {
+            "icon": "family",
+            "label": "Family albums",
+            "description": "Let selected family members contribute to shared albums."
+          }
+        },
+        "sync_living": {
+          "type": "sync_node",
+          "settings": {
+            "icon": "frame",
+            "label": "Living room",
+            "description": "Keep the main frame updated with today’s display mode."
+          }
+        },
+        "sync_remote": {
+          "type": "sync_node",
+          "settings": {
+            "icon": "home",
+            "label": "Remote home",
+            "description": "Send fresh moments to another home without passing around files."
+          }
+        }
+      },
+      "block_order": [
+        "sync_phone",
+        "sync_family",
+        "sync_living",
+        "sync_remote"
+      ],
+      "name": "xFrame Cloud Sync",
+      "settings": {
+        "eyebrow": "Cloud sync",
+        "heading": "One album, every home.",
+        "body": "<p>Upload from the app, let the cloud organize the update, and keep selected frames refreshed for your home, your family, or someone far away.</p>",
+        "hub_label": "xFrame Cloud",
+        "color_scheme": "scheme-1",
+        "padding_top": 104,
+        "padding_bottom": 104
+      }
+    },
+    "xframe_display_modes": {
+      "type": "xalgo-xframe-display-modes",
+      "blocks": {
+        "mode_family": {
+          "type": "mode",
+          "settings": {
+            "name": "Family Album",
+            "description": "A warm rotation of people, moments, and everyday scenes.",
+            "accent_color": "#E8A598"
+          }
+        },
+        "mode_canvas": {
+          "type": "mode",
+          "settings": {
+            "name": "AI Canvas",
+            "description": "Generated artwork and ambient visuals made from your memories.",
+            "accent_color": "#C9A882"
+          }
+        },
+        "mode_travel": {
+          "type": "mode",
+          "settings": {
+            "name": "Travel Replay",
+            "description": "A journey retold as a changing wall gallery.",
+            "accent_color": "#D4EAF7"
+          }
+        },
+        "mode_daily": {
+          "type": "mode",
+          "settings": {
+            "name": "Daily Moments",
+            "description": "Fresh picks from the ordinary days that make home feel personal.",
+            "accent_color": "#F2DDD8"
+          }
+        },
+        "mode_holiday": {
+          "type": "mode",
+          "settings": {
+            "name": "Holiday Theme",
+            "description": "Seasonal boards for birthdays, festivals and anniversaries.",
+            "accent_color": "#D9B45F"
+          }
+        }
+      },
+      "block_order": [
+        "mode_family",
+        "mode_canvas",
+        "mode_travel",
+        "mode_daily",
+        "mode_holiday"
+      ],
+      "name": "xFrame Display Modes",
+      "settings": {
+        "eyebrow": "Display modes",
+        "heading": "One frame, many moods.",
+        "body": "<p>Choose how xFrame should feel today: a family album, an AI canvas, a travel replay, a daily moment, or a seasonal theme.</p>",
+        "button_label": "Choose xFrame",
+        "button_link": "/products/xframe",
+        "color_scheme": "scheme-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "xframe_cta": {
+      "type": "section",
+      "blocks": {
+        "cta_heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Turn every wall into a living album.</h2>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h2",
+            "font": "var(--font-heading--family)",
+            "font_size": "",
+            "line_height": "tight",
+            "letter_spacing": "-0.02em",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 8,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "cta_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Choose xFrame and let AI organize, generate, and sync the memories your home should see every day.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1.125rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 12,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "cta_button": {
+          "type": "button",
+          "settings": {
+            "label": "Shop xFrame",
+            "link": "/products/xframe",
+            "open_in_new_tab": false,
+            "style_class": "button",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "cta_heading",
+        "cta_text",
+        "cta_button"
+      ],
+      "name": "xFrame Bottom CTA",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "small",
+        "color_scheme": "scheme-1",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "solid",
+        "border_width": 1,
+        "border_opacity": 12,
+        "border_radius": 0,
+        "padding-block-start": 38,
+        "padding-block-end": 42
+      }
+    }
+  },
+  "order": [
+    "xframe_hero",
+    "xframe_memory_os",
+    "xframe_album_wall",
+    "xframe_generation_studio",
+    "xframe_cloud_sync",
+    "xframe_display_modes",
+    "xframe_cta"
+  ]
+}

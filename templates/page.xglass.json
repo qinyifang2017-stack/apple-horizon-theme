@@ -1,0 +1,640 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */{
+  "sections": {
+    "xglass_hero": {
+      "type": "hero",
+      "blocks": {
+        "hero_eyebrow": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Meet xGlass</p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.875rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "uppercase",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "hero_heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h1>AI assistance, spoken softly.</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h1",
+            "font": "var(--font-heading--family)",
+            "font_size": "",
+            "line_height": "tight",
+            "letter_spacing": "-0.03em",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "hero_subtitle": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Voice notes, AI help, and clear controls — ready when speaking is faster than typing.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1.25rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 8,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "hero_shop": {
+          "type": "button",
+          "settings": {
+            "label": "Choose your xGlass",
+            "link": "/products/xglass",
+            "open_in_new_tab": false,
+            "style_class": "button",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        },
+        "hero_faq": {
+          "type": "button",
+          "settings": {
+            "label": "Read FAQ",
+            "link": "/pages/faq#product",
+            "open_in_new_tab": false,
+            "style_class": "button-secondary",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "hero_eyebrow",
+        "hero_heading",
+        "hero_subtitle",
+        "hero_shop",
+        "hero_faq"
+      ],
+      "name": "xGlass Hero",
+      "settings": {
+        "media_type_1": "image",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "full-screen",
+        "section_height_custom": 70,
+        "color_scheme": "scheme-1",
+        "enable_gradient_bg": true,
+        "gradient_color_1": "#edf5f8",
+        "gradient_color_2": "#faf7f1",
+        "gradient_bg_direction": "to bottom",
+        "toggle_overlay": false,
+        "overlay_color": "#12121240",
+        "overlay_style": "gradient",
+        "gradient_direction": "to bottom",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "media_contained": false,
+        "media_stacked": true,
+        "padding-block-start": 72,
+        "padding-block-end": 40
+      }
+    },
+    "xglass_intro": {
+      "type": "section",
+      "blocks": {
+        "intro_label": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Voice-first intelligence</p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.875rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "uppercase",
+            "wrap": "pretty",
+            "color": "var(--xalgo-rose, #E8A598)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "intro_heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Designed around the moment before you reach for your phone.</h2>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h2",
+            "font": "var(--font-heading--family)",
+            "font_size": "",
+            "line_height": "tight",
+            "letter_spacing": "-0.02em",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 8,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "intro_body": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Speak, capture, and let AI organize the moment — then review everything in the xalgo App.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1.125rem",
+            "line_height": "loose",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "intro_button": {
+          "type": "button",
+          "settings": {
+            "label": "View tech specs",
+            "link": "#xglass-tech-specs",
+            "open_in_new_tab": false,
+            "style_class": "button-secondary",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "intro_label",
+        "intro_heading",
+        "intro_body",
+        "intro_button"
+      ],
+      "name": "xGlass Introduction",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "color_scheme": "scheme-1",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "padding-block-start": 36,
+        "padding-block-end": 44
+      }
+    },
+    "xglass_experience": {
+      "type": "xalgo-xglass-experience",
+      "blocks": {
+        "flow_command": {
+          "type": "flow_step",
+          "settings": {
+            "icon": "command",
+            "heading": "Speak",
+            "text": "<p>Ask, save a note, or set a reminder with a short voice command.</p>"
+          }
+        },
+        "flow_capture": {
+          "type": "flow_step",
+          "settings": {
+            "icon": "listen",
+            "heading": "Capture",
+            "text": "<p>Audio input keeps the moment lightweight, fast, and screen-free.</p>"
+          }
+        },
+        "flow_assist": {
+          "type": "flow_step",
+          "settings": {
+            "icon": "assist",
+            "heading": "Organize",
+            "text": "<p>AI turns spoken input into a cleaner note, task, or summary.</p>"
+          }
+        },
+        "flow_review": {
+          "type": "flow_step",
+          "settings": {
+            "icon": "review",
+            "heading": "Review",
+            "text": "<p>Check, edit, or discard the result in the xalgo App.</p>"
+          }
+        },
+        "scenario_commute": {
+          "type": "scenario",
+          "settings": {
+            "label": "Commute",
+            "heading": "Save thoughts while moving.",
+            "text": "<p>Capture an idea or reminder without stopping, unlocking your phone or breaking pace.</p>"
+          }
+        },
+        "scenario_meeting": {
+          "type": "scenario",
+          "settings": {
+            "label": "Meetings",
+            "heading": "Turn talk into follow-up.",
+            "text": "<p>Use audio notes and summaries to keep track of decisions, then review them before sharing or acting.</p>"
+          }
+        },
+        "scenario_handsfree": {
+          "type": "scenario",
+          "settings": {
+            "label": "Hands busy",
+            "heading": "Ask without reaching.",
+            "text": "<p>Use voice-first assistance when typing is awkward, distracting or simply too slow.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "flow_command",
+        "flow_capture",
+        "flow_assist",
+        "flow_review",
+        "scenario_commute",
+        "scenario_meeting",
+        "scenario_handsfree"
+      ],
+      "name": "xGlass Voice Flow",
+      "settings": {
+        "eyebrow": "Voice-first flow",
+        "heading": "Voice becomes the shortcut.",
+        "subheading": "<p>Speak a request, capture the moment, let AI organize it, then review the result in the xalgo App.</p>",
+        "prompt_label": "Voice command",
+        "prompt_text": "Remind me what we just agreed on.",
+        "color_scheme": "scheme-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "xglass_colorways": {
+      "type": "xalgo-product-story",
+      "blocks": {
+        "fit_point_1": {
+          "type": "point",
+          "settings": {
+            "heading": "One frame silhouette",
+            "text": "<p>xGlass keeps the eyewear decision focused with one everyday frame shape instead of pretending to be a large style catalogue.</p>"
+          }
+        },
+        "fit_point_2": {
+          "type": "point",
+          "settings": {
+            "heading": "Color makes it personal",
+            "text": "<p>Colorways give users a simple style choice while the product story stays centered on interaction, comfort and trust.</p>"
+          }
+        },
+        "fit_point_3": {
+          "type": "point",
+          "settings": {
+            "heading": "Comfort before complexity",
+            "text": "<p>Weight balance, nose fit and temple pressure matter more than adding many decorative variants too early.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "fit_point_1",
+        "fit_point_2",
+        "fit_point_3"
+      ],
+      "name": "xGlass Frame and Colorways",
+      "settings": {
+        "eyebrow": "Frame strategy",
+        "heading": "One frame. Considered colors.",
+        "body": "<p>The frame story stays simple: one main silhouette for daily wear, with color differences for personal style. This keeps the page honest while still giving the buying journey a clear choice.</p>",
+        "callout": "<p>One shape keeps the choice simple; color makes it personal.</p>",
+        "media_position": "right",
+        "tone": "mist",
+        "color_scheme": "scheme-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "xglass_boundaries": {
+      "type": "xalgo-xglass-boundaries",
+      "blocks": {
+        "boundary_recording": {
+          "type": "boundary",
+          "settings": {
+            "label": "Visible listening",
+            "heading": "Show when listening.",
+            "text": "<p>Clear status feedback helps people understand when audio capture or transcription is active.</p>"
+          }
+        },
+        "boundary_bystander": {
+          "type": "boundary",
+          "settings": {
+            "label": "Bystander privacy",
+            "heading": "Respect shared spaces.",
+            "text": "<p>Microphones can include nearby voices, so shared spaces deserve clear expectations.</p>"
+          }
+        },
+        "boundary_ai": {
+          "type": "boundary",
+          "settings": {
+            "label": "AI responsibility",
+            "heading": "Keep AI reviewable.",
+            "text": "<p>Summaries and suggestions help organize information, but users make the final call.</p>"
+          }
+        },
+        "boundary_scope": {
+          "type": "boundary",
+          "settings": {
+            "label": "Current scope",
+            "heading": "Stay audio-first.",
+            "text": "<p>The experience centers on voice commands, audio notes, AI assistance, and environmental awareness.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "boundary_recording",
+        "boundary_bystander",
+        "boundary_ai",
+        "boundary_scope"
+      ],
+      "name": "xGlass Privacy Boundaries",
+      "settings": {
+        "eyebrow": "Privacy and responsibility",
+        "heading": "Respect the room.",
+        "body": "<p>xGlass keeps listening visible, consent understandable, and AI output reviewable.</p>",
+        "color_scheme": "scheme-1",
+        "padding_top": 104,
+        "padding_bottom": 104
+      }
+    },
+    "xglass_specs": {
+      "type": "xalgo-tech-specs",
+      "blocks": {
+        "spec_audio": {
+          "type": "spec_group",
+          "settings": {
+            "icon": "sensor",
+            "heading": "Audio input",
+            "details": "<p>Microphone-led voice commands and audio note capture</p><p>Designed for short prompts, reminders, summaries and assistant interactions</p><p>Audio-first positioning for hands-free moments throughout the day</p>"
+          }
+        },
+        "spec_ai": {
+          "type": "spec_group",
+          "settings": {
+            "icon": "compatibility",
+            "heading": "AI assistant",
+            "details": "<p>Voice input can be processed into notes, tasks and summaries in supported workflows</p><p>AI output should be reviewed by the user before acting on it</p><p>Important decisions remain the user's responsibility</p>"
+          }
+        },
+        "spec_privacy": {
+          "type": "spec_group",
+          "settings": {
+            "icon": "connectivity",
+            "heading": "Privacy controls",
+            "details": "<p>Recording and transcription states should be made clear to the wearer</p><p>Users should follow local consent rules before recording conversations</p><p>Companion-app records should be reviewable and removable</p>"
+          }
+        },
+        "spec_fit": {
+          "type": "spec_group",
+          "settings": {
+            "icon": "size",
+            "heading": "Fit and frame",
+            "details": "<p>One everyday frame silhouette with colorway choices</p><p>Built around lightweight wear, balanced temples and all-day comfort</p><p>Available colors can be configured on the product page</p>"
+          }
+        },
+        "spec_battery": {
+          "type": "spec_group",
+          "settings": {
+            "icon": "battery",
+            "heading": "Battery and charging",
+            "details": "<p>Battery details can be updated once final hardware specifications are confirmed</p><p>USB-C charging accessories can be listed in the box contents</p>"
+          }
+        },
+        "spec_app": {
+          "type": "spec_group",
+          "settings": {
+            "icon": "materials",
+            "heading": "xalgo App",
+            "details": "<p>Review captured content, manage assistant settings and adjust privacy preferences</p><p>Works with supported iOS and Android devices once configured</p>"
+          }
+        }
+      },
+      "block_order": [
+        "spec_audio",
+        "spec_ai",
+        "spec_privacy",
+        "spec_fit",
+        "spec_battery",
+        "spec_app"
+      ],
+      "name": "xGlass Tech Specs",
+      "settings": {
+        "anchor_id": "xglass-tech-specs",
+        "eyebrow": "xGlass details",
+        "heading": "Tech specs",
+        "subheading": "A practical overview of voice interaction, AI support, privacy expectations, fit and app connectivity.",
+        "media_type": "image",
+        "box_heading": "In the box",
+        "box_items": "<p>xGlass</p><p>Charging cable</p><p>Carrying case</p><p>Quick start guide</p>",
+        "color_scheme": "scheme-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "xglass_cta": {
+      "type": "section",
+      "blocks": {
+        "cta_heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Ready to choose your xGlass?</h2>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h2",
+            "font": "var(--font-heading--family)",
+            "font_size": "",
+            "line_height": "tight",
+            "letter_spacing": "-0.02em",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 8,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "cta_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Choose the focused frame option available today, then select the colorway that fits your daily style.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1.125rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 12,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "cta_button": {
+          "type": "button",
+          "settings": {
+            "label": "Choose your xGlass",
+            "link": "/products/xglass",
+            "open_in_new_tab": false,
+            "style_class": "button",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "cta_heading",
+        "cta_text",
+        "cta_button"
+      ],
+      "name": "xGlass Bottom CTA",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "small",
+        "color_scheme": "scheme-1",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "solid",
+        "border_width": 1,
+        "border_opacity": 12,
+        "border_radius": 0,
+        "padding-block-start": 38,
+        "padding-block-end": 42
+      }
+    }
+  },
+  "order": [
+    "xglass_hero",
+    "xglass_intro",
+    "xglass_experience",
+    "xglass_colorways",
+    "xglass_boundaries",
+    "xglass_specs",
+    "xglass_cta"
+  ]
+}

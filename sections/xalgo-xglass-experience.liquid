@@ -1,0 +1,516 @@
+{% liquid
+  assign flow_blocks = section.blocks | where: 'type', 'flow_step'
+  assign scenario_blocks = section.blocks | where: 'type', 'scenario'
+%}
+
+<section
+  class="xalgo-xglass-experience color-{{ section.settings.color_scheme }}"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="page-width xalgo-xglass-experience__shell">
+    <div class="xalgo-xglass-experience__intro">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="xalgo-xglass-experience__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="xalgo-xglass-experience__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <div class="xalgo-xglass-experience__subheading">{{ section.settings.subheading }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="xalgo-xglass-experience__stage" aria-label="xGlass voice interaction flow">
+      <div class="xalgo-xglass-experience__prompt">
+        <span>{{ section.settings.prompt_label }}</span>
+        <strong>{{ section.settings.prompt_text }}</strong>
+        <div class="xalgo-xglass-experience__wave" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+
+      <div class="xalgo-xglass-experience__flow">
+        {%- for block in flow_blocks -%}
+          <article class="xalgo-xglass-experience__step" {{ block.shopify_attributes }}>
+            <div class="xalgo-xglass-experience__step-meta">
+              <div class="xalgo-xglass-experience__step-icon" aria-hidden="true">
+                {%- case block.settings.icon -%}
+                  {%- when 'command' -%}
+                    <svg viewBox="0 0 24 24"><path d="M8 9.5a4 4 0 0 1 8 0v3a4 4 0 0 1-8 0v-3Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 12.5a7 7 0 0 0 14 0M12 19.5V22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  {%- when 'listen' -%}
+                    <svg viewBox="0 0 24 24"><path d="M4 12h2m12 0h2M7.5 7.5l1.4 1.4m6.2 6.2 1.4 1.4M12 4v2m0 12v2m4.5-12.5-1.4 1.4m-6.2 6.2-1.4 1.4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M9.5 12a2.5 2.5 0 1 0 5 0 2.5 2.5 0 0 0-5 0Z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                  {%- when 'assist' -%}
+                    <svg viewBox="0 0 24 24"><path d="M12 3.5 13.8 9l5.7 1.8-5.7 1.8L12 18l-1.8-5.4-5.7-1.8L10.2 9 12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M18 16.5 18.8 19l2.2.7-2.2.7-.8 2.1-.8-2.1-2.2-.7 2.2-.7.8-2.5Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+                  {%- else -%}
+                    <svg viewBox="0 0 24 24"><path d="M6 4.5h12v15H6v-15Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 9h6M9 12h6M9 15h3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                {%- endcase -%}
+              </div>
+              <span class="xalgo-xglass-experience__step-number">{{ forloop.index | prepend: '0' }}</span>
+            </div>
+            <h3>{{ block.settings.heading }}</h3>
+            <div class="xalgo-xglass-experience__step-text">{{ block.settings.text }}</div>
+          </article>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    {%- if scenario_blocks.size > 0 -%}
+      <div class="xalgo-xglass-experience__scenarios">
+        {%- for block in scenario_blocks -%}
+          <article class="xalgo-xglass-experience__scenario" {{ block.shopify_attributes }}>
+            <span>{{ block.settings.label }}</span>
+            <h3>{{ block.settings.heading }}</h3>
+            <div>{{ block.settings.text }}</div>
+          </article>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .xalgo-xglass-experience {
+    --xglass-blue: #EAF3F7;
+    --xglass-cream: var(--xalgo-cream, #FDFAF7);
+    --xglass-rose: var(--xalgo-rose, #E8A598);
+    --xglass-champagne: var(--xalgo-champagne, #C9A882);
+    --xglass-ink: var(--xalgo-text-primary, #1D1D1F);
+    --xglass-muted: var(--xalgo-text-secondary, #6E6E73);
+    background:
+      radial-gradient(circle at 12% 16%, color-mix(in srgb, var(--xglass-rose) 20%, transparent) 0 18rem, transparent 30rem),
+      linear-gradient(135deg, #f7fbfc 0%, var(--xglass-blue) 48%, var(--xglass-cream) 100%);
+    color: var(--xglass-ink);
+    overflow: hidden;
+  }
+
+  .xalgo-xglass-experience .page-width {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  .xalgo-xglass-experience__shell {
+    display: grid;
+    gap: clamp(2.4rem, 5vw, 4.5rem);
+  }
+
+  @media screen and (min-width: 990px) {
+    .xalgo-xglass-experience__shell {
+      grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+      align-items: center;
+    }
+
+    .xalgo-xglass-experience__scenarios {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .xalgo-xglass-experience__intro {
+    display: grid;
+    gap: 1rem;
+    max-width: 620px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .xalgo-xglass-experience__intro {
+      padding-top: 1rem;
+    }
+  }
+
+  .xalgo-xglass-experience__eyebrow {
+    margin: 0;
+    color: var(--xglass-rose);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .xalgo-xglass-experience__heading {
+    max-width: 10ch;
+    margin: 0;
+    color: var(--xglass-ink);
+    font-size: clamp(2.4rem, 5vw, 5.2rem);
+    line-height: 0.94;
+    letter-spacing: -0.055em;
+  }
+
+  .xalgo-xglass-experience__subheading {
+    max-width: 620px;
+    color: var(--xglass-muted);
+    font-size: clamp(1rem, 1.45vw, 1.22rem);
+    line-height: 1.7;
+  }
+
+  .xalgo-xglass-experience__subheading p,
+  .xalgo-xglass-experience__step-text p,
+  .xalgo-xglass-experience__scenario p {
+    margin: 0;
+  }
+
+  .xalgo-xglass-experience__stage {
+    position: relative;
+    display: grid;
+    gap: clamp(1.25rem, 2.5vw, 1.8rem);
+    padding: clamp(1.25rem, 2.6vw, 1.8rem);
+    border: 1px solid rgb(255 255 255 / 0.7);
+    border-radius: clamp(30px, 4vw, 48px);
+    background:
+      radial-gradient(circle at 16% 10%, rgb(232 165 152 / 0.18), transparent 28%),
+      radial-gradient(circle at 86% 84%, rgb(201 168 130 / 0.14), transparent 32%),
+      rgb(255 255 255 / 0.68);
+    box-shadow: 0 34px 100px rgb(107 125 137 / 0.16);
+    backdrop-filter: blur(22px);
+  }
+
+  .xalgo-xglass-experience__stage::before {
+    content: '';
+    position: absolute;
+    left: clamp(2rem, 5vw, 4rem);
+    right: clamp(2rem, 5vw, 4rem);
+    top: 5.35rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgb(232 165 152 / 0.42), rgb(201 168 130 / 0.34), transparent);
+  }
+
+  .xalgo-xglass-experience__prompt {
+    position: relative;
+    z-index: 1;
+    justify-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    max-width: min(100%, 520px);
+    padding: 0.85rem 1.1rem;
+    border: 1px solid rgb(26 31 46 / 0.08);
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.84);
+    color: var(--xglass-ink);
+    box-shadow: 0 16px 42px rgb(107 125 137 / 0.12);
+    backdrop-filter: blur(16px);
+  }
+
+  .xalgo-xglass-experience__prompt::before {
+    content: '';
+    width: 0.7rem;
+    height: 0.7rem;
+    flex: 0 0 auto;
+    border-radius: 999px;
+    background: var(--xglass-rose);
+    box-shadow: 0 0 0 0.45rem rgb(232 165 152 / 0.14);
+  }
+
+  .xalgo-xglass-experience__prompt span {
+    color: var(--xglass-rose);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .xalgo-xglass-experience__prompt strong {
+    color: var(--xglass-ink);
+    font-size: clamp(0.98rem, 1.5vw, 1.18rem);
+    line-height: 1.28;
+    letter-spacing: -0.015em;
+  }
+
+  .xalgo-xglass-experience__wave {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.18rem;
+    margin-left: auto;
+  }
+
+  .xalgo-xglass-experience__wave i {
+    display: block;
+    width: 3px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--xglass-rose) 58%, white);
+  }
+
+  .xalgo-xglass-experience__wave i:nth-child(1),
+  .xalgo-xglass-experience__wave i:nth-child(5) {
+    height: 0.55rem;
+  }
+
+  .xalgo-xglass-experience__wave i:nth-child(2),
+  .xalgo-xglass-experience__wave i:nth-child(4) {
+    height: 0.9rem;
+  }
+
+  .xalgo-xglass-experience__wave i:nth-child(3) {
+    height: 1.25rem;
+  }
+
+  .xalgo-xglass-experience__flow {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .xalgo-xglass-experience__flow {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .xalgo-xglass-experience__step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    min-height: 210px;
+    overflow: hidden;
+    padding: 1.2rem;
+    border: 1px solid rgb(255 255 255 / 0.72);
+    border-radius: 28px;
+    background: rgb(255 255 255 / 0.76);
+    box-shadow: 0 18px 44px rgb(107 125 137 / 0.08);
+    transition: transform 0.28s ease, box-shadow 0.28s ease;
+  }
+
+  @media screen and (min-width: 750px) {
+    .xalgo-xglass-experience__step:nth-child(even) {
+      margin-top: 1.25rem;
+    }
+  }
+
+  .xalgo-xglass-experience__step::before {
+    content: '';
+    position: absolute;
+    inset: auto 1.2rem 0;
+    height: 3px;
+    border-radius: 999px 999px 0 0;
+    background: linear-gradient(90deg, var(--xglass-rose), color-mix(in srgb, var(--xglass-champagne) 70%, white));
+    opacity: 0.34;
+  }
+
+  .xalgo-xglass-experience__step:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 24px 58px rgb(107 125 137 / 0.13);
+  }
+
+  .xalgo-xglass-experience__step-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .xalgo-xglass-experience__step-icon {
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    background: color-mix(in srgb, var(--xglass-rose) 13%, white);
+    color: var(--xglass-rose);
+  }
+
+  .xalgo-xglass-experience__step-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .xalgo-xglass-experience__step-number {
+    color: color-mix(in srgb, var(--xglass-champagne) 78%, transparent);
+    font-size: 0.82rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.06em;
+  }
+
+  .xalgo-xglass-experience__step h3 {
+    margin: 0;
+    color: var(--xglass-ink);
+    font-size: clamp(1.25rem, 1.7vw, 1.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+
+  .xalgo-xglass-experience__step-text,
+  .xalgo-xglass-experience__scenario div {
+    color: var(--xglass-muted);
+    line-height: 1.55;
+  }
+
+  .xalgo-xglass-experience__scenarios {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .xalgo-xglass-experience__scenarios {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .xalgo-xglass-experience__scenario {
+    padding: clamp(1.1rem, 2.5vw, 1.55rem);
+    border: 1px solid color-mix(in srgb, var(--xglass-champagne) 16%, transparent);
+    border-radius: 24px;
+    background: rgb(255 255 255 / 0.38);
+    box-shadow: none;
+  }
+
+  .xalgo-xglass-experience__scenario span {
+    display: block;
+    margin-bottom: 0.85rem;
+    color: var(--xglass-rose);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .xalgo-xglass-experience__scenario h3 {
+    margin: 0 0 0.55rem;
+    color: var(--xglass-ink);
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "xGlass Experience",
+  "tag": "section",
+  "class": "section-wrapper xalgo-xglass-experience-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Voice-first flow"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Say it. Save it. Move on."
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>xGlass is not built like a ring page. Its story is a flow: quick spoken input, clear capture, AI help and reviewable output in the xalgo App.</p>"
+    },
+    {
+      "type": "text",
+      "id": "prompt_label",
+      "label": "Prompt label",
+      "default": "Example prompt"
+    },
+    {
+      "type": "text",
+      "id": "prompt_text",
+      "label": "Prompt text",
+      "default": "Remind me what we just agreed on."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "flow_step",
+      "name": "Flow step",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "command", "label": "Command" },
+            { "value": "listen", "label": "Listen" },
+            { "value": "assist", "label": "Assist" },
+            { "value": "review", "label": "Review" }
+          ],
+          "default": "command"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Speak naturally"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Use short voice commands for notes, reminders and everyday questions.</p>"
+        }
+      ]
+    },
+    {
+      "type": "scenario",
+      "name": "Scenario",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Commute"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Capture thoughts while moving."
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Save a thought or create a reminder without stopping to type.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "xGlass Experience",
+      "category": "Content",
+      "blocks": [
+        { "type": "flow_step" },
+        { "type": "flow_step" },
+        { "type": "flow_step" },
+        { "type": "flow_step" },
+        { "type": "scenario" },
+        { "type": "scenario" },
+        { "type": "scenario" }
+      ]
+    }
+  ]
+}
+{% endschema %}
