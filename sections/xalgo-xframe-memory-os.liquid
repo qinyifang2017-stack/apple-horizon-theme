@@ -19,44 +19,87 @@
       {%- endif -%}
     </div>
 
-    <div class="xalgo-xframe-memory-os__console">
-      <div class="xalgo-xframe-memory-os__rail" aria-hidden="true"></div>
-      {%- for block in section.blocks -%}
-        <article class="xalgo-xframe-memory-os__feature" {{ block.shopify_attributes }}>
-          <div class="xalgo-xframe-memory-os__feature-top">
-            <div class="xalgo-xframe-memory-os__icon" aria-hidden="true">
-              {%- case block.settings.icon -%}
-                {%- when 'cloud' -%}
-                  <svg viewBox="0 0 24 24"><path d="M7 18h10.5a3.5 3.5 0 0 0 .6-6.95A5.5 5.5 0 0 0 7.5 9.5 4.25 4.25 0 0 0 7 18Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-                {%- when 'spark' -%}
-                  <svg viewBox="0 0 24 24"><path d="M12 3.5 13.8 9l5.7 1.8-5.7 1.8L12 18l-1.8-5.4-5.7-1.8L10.2 9 12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m18.2 16.4.6 1.8 1.8.6-1.8.6-.6 1.8-.6-1.8-1.8-.6 1.8-.6.6-1.8Z" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
-                {%- when 'people' -%}
-                  <svg viewBox="0 0 24 24"><path d="M8.6 11.3a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM15.8 10.4a2.55 2.55 0 1 0 0-5.1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3.8 19.2a5 5 0 0 1 9.6 0M13.8 17.7a4.2 4.2 0 0 1 6.4 1.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                {%- when 'calendar' -%}
-                  <svg viewBox="0 0 24 24"><path d="M5 6.5h14v13H5v-13ZM8 4v4M16 4v4M5 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 13h2M12 13h2M16 13h1M8 16h2M12 16h2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                {%- else -%}
-                  <svg viewBox="0 0 24 24"><path d="M5 5.5h14v13H5v-13Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m7.5 15.5 3.2-3.2 2 2 2.8-3.4 2 4.6M8.5 8.8h2.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              {%- endcase -%}
-            </div>
-            <span>{{ block.settings.kicker }}</span>
+    <div class="xalgo-xframe-memory-os__flow" aria-label="xFrame app generation flow">
+      <article class="xalgo-xframe-memory-os__step xalgo-xframe-memory-os__step--chat">
+        <div class="xalgo-xframe-memory-os__step-meta">
+          <span>01</span>
+          <strong>App chat</strong>
+        </div>
+        <div class="xalgo-xframe-memory-os__phone">
+          <div class="xalgo-xframe-memory-os__phone-bar" aria-hidden="true"></div>
+          <div class="xalgo-xframe-memory-os__message xalgo-xframe-memory-os__message--user">
+            <span>You</span>
+            <p>{{ section.settings.prompt_text }}</p>
           </div>
-          <h3>{{ block.settings.heading }}</h3>
-          <div class="xalgo-xframe-memory-os__feature-text">{{ block.settings.text }}</div>
-          {%- if block.settings.image != blank -%}
-            {{
-              block.settings.image
-              | image_url: width: 720
-              | image_tag:
-                class: 'xalgo-xframe-memory-os__image',
-                widths: '320, 520, 720',
-                sizes: '(min-width: 990px) 26vw, 86vw',
-                alt: block.settings.image.alt
-            }}
-          {%- else -%}
-            <div class="xalgo-xframe-memory-os__mini-frame" aria-hidden="true"><span></span></div>
-          {%- endif -%}
-        </article>
-      {%- endfor -%}
+          <div class="xalgo-xframe-memory-os__message xalgo-xframe-memory-os__message--ai">
+            <span>AI</span>
+            <p>{{ section.settings.ai_status_text }}</p>
+          </div>
+        </div>
+      </article>
+
+      <div class="xalgo-xframe-memory-os__connector" aria-hidden="true">
+        <span></span>
+      </div>
+
+      <article class="xalgo-xframe-memory-os__step xalgo-xframe-memory-os__step--result">
+        <div class="xalgo-xframe-memory-os__step-meta">
+          <span>02</span>
+          <strong>AI result</strong>
+        </div>
+        <div class="xalgo-xframe-memory-os__result-card">
+          <div class="xalgo-xframe-memory-os__generated-art" aria-hidden="true">
+            {%- if section.settings.result_image != blank -%}
+              {{
+                section.settings.result_image
+                | image_url: width: 900
+                | image_tag:
+                  class: 'xalgo-xframe-memory-os__art-image',
+                  widths: '360, 560, 720, 900',
+                  sizes: '(min-width: 990px) 26vw, 86vw',
+                  alt: section.settings.result_image.alt
+              }}
+            {%- endif -%}
+          </div>
+          <div class="xalgo-xframe-memory-os__result-copy">
+            <h3>{{ section.settings.result_heading }}</h3>
+            <p>{{ section.settings.result_text }}</p>
+          </div>
+        </div>
+      </article>
+
+      <div class="xalgo-xframe-memory-os__connector" aria-hidden="true">
+        <span></span>
+      </div>
+
+      <article class="xalgo-xframe-memory-os__step xalgo-xframe-memory-os__step--frame">
+        <div class="xalgo-xframe-memory-os__step-meta">
+          <span>03</span>
+          <strong>xFrame display</strong>
+        </div>
+        <div class="xalgo-xframe-memory-os__frame-card">
+          <div class="xalgo-xframe-memory-os__mini-frame" aria-hidden="true">
+            <span>
+              {%- if section.settings.frame_image != blank -%}
+                {{
+                  section.settings.frame_image
+                  | image_url: width: 900
+                  | image_tag:
+                    class: 'xalgo-xframe-memory-os__art-image',
+                    widths: '360, 560, 720, 900',
+                    sizes: '(min-width: 990px) 26vw, 86vw',
+                    alt: section.settings.frame_image.alt
+                }}
+              {%- endif -%}
+            </span>
+          </div>
+          <label class="xalgo-xframe-memory-os__check">
+            <input type="checkbox" checked disabled>
+            <span>{{ section.settings.approval_text }}</span>
+          </label>
+          <p>{{ section.settings.sync_text }}</p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -64,182 +107,367 @@
 {% stylesheet %}
   .xalgo-xframe-memory-os {
     --xframe-paper: #fffaf2;
+    --xframe-sand: #f5eadb;
+    --xframe-clay: #d7b894;
     --xframe-ink: var(--xalgo-text-primary, #1d1d1f);
     --xframe-muted: var(--xalgo-text-secondary, #6e6e73);
     --xframe-gold: var(--xalgo-champagne, #c9a882);
     --xframe-rose: var(--xalgo-rose, #e8a598);
+    position: relative;
     color: var(--xframe-ink);
-    background:
-      radial-gradient(circle at 12% 0%, rgb(232 165 152 / 0.18), transparent 28rem),
-      linear-gradient(180deg, #fffaf6 0%, #f6eee4 100%);
+    background: linear-gradient(180deg, #fbf8f3 0%, #f6efe6 100%);
     overflow: hidden;
   }
 
+  .xalgo-xframe-memory-os::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 18% 18%, rgb(255 250 242 / 0.72), transparent 24rem),
+      linear-gradient(90deg, rgb(93 68 45 / 0.018) 1px, transparent 1px),
+      linear-gradient(0deg, rgb(93 68 45 / 0.014) 1px, transparent 1px);
+    background-size: auto, 72px 72px, 72px 72px;
+    mask-image: linear-gradient(180deg, transparent, black 18%, black 82%, transparent);
+    pointer-events: none;
+  }
+
   .xalgo-xframe-memory-os .page-width {
-    max-width: 1280px;
+    position: relative;
+    z-index: 1;
+    max-width: 1440px;
     margin-inline: auto;
     padding-inline: 20px;
   }
 
   .xalgo-xframe-memory-os__header {
-    max-width: 760px;
+    max-width: 860px;
     margin-inline: auto;
     text-align: center;
   }
 
   .xalgo-xframe-memory-os__eyebrow {
-    margin: 0 0 0.75rem;
-    color: var(--xframe-rose);
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    margin: 0 0 0.9rem;
+    color: var(--xframe-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: normal;
+    text-transform: none;
   }
 
   .xalgo-xframe-memory-os__heading {
-    margin: 0;
+    max-width: none;
+    margin: 0 auto;
     color: var(--xframe-ink);
-    font-size: clamp(2.6rem, 6vw, 6.2rem);
-    line-height: 0.88;
-    letter-spacing: -0.065em;
+    font-size: var(--font-h2--size);
+    line-height: var(--font-h2--line-height);
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  @media screen and (max-width: 749px) {
+    .xalgo-xframe-memory-os__heading {
+      max-width: 11ch;
+      font-size: clamp(2rem, 8.5vw, 2.75rem);
+      white-space: normal;
+    }
   }
 
   .xalgo-xframe-memory-os__body {
-    max-width: 680px;
-    margin: 1.25rem auto 0;
+    max-width: 620px;
+    margin: 1.1rem auto 0;
     color: var(--xframe-muted);
-    font-size: clamp(1rem, 1.6vw, 1.22rem);
-    line-height: 1.7;
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
 
   .xalgo-xframe-memory-os__body p,
-  .xalgo-xframe-memory-os__feature-text p {
+  .xalgo-xframe-memory-os__message p,
+  .xalgo-xframe-memory-os__result-copy p,
+  .xalgo-xframe-memory-os__frame-card p {
     margin: 0;
   }
 
-  .xalgo-xframe-memory-os__console {
-    position: relative;
+  .xalgo-xframe-memory-os__flow {
     display: grid;
-    gap: 1rem;
-    margin-top: clamp(3rem, 6vw, 5rem);
+    gap: clamp(1rem, 2vw, 1.4rem);
+    margin-top: clamp(3rem, 5vw, 4.5rem);
   }
 
   @media screen and (min-width: 990px) {
-    .xalgo-xframe-memory-os__console {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      align-items: stretch;
+    .xalgo-xframe-memory-os__flow {
+      grid-template-columns: minmax(0, 1.05fr) 56px minmax(0, 1fr) 56px minmax(0, 1.05fr);
+      align-items: center;
     }
   }
 
-  .xalgo-xframe-memory-os__rail {
-    position: absolute;
-    left: 8%;
-    right: 8%;
-    top: 4.4rem;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgb(201 168 130 / 0.42), rgb(232 165 152 / 0.42), transparent);
-  }
-
-  @media screen and (max-width: 989px) {
-    .xalgo-xframe-memory-os__rail {
-      display: none;
-    }
-  }
-
-  .xalgo-xframe-memory-os__feature {
+  .xalgo-xframe-memory-os__step {
     position: relative;
+    min-height: 430px;
     display: flex;
     flex-direction: column;
-    min-height: 430px;
-    padding: clamp(1.25rem, 2.6vw, 1.8rem);
-    border: 1px solid rgb(36 31 27 / 0.08);
-    border-radius: clamp(28px, 4vw, 44px);
-    background: rgb(255 250 242 / 0.78);
-    box-shadow: 0 28px 86px rgb(91 63 37 / 0.11);
+    padding: clamp(1rem, 2vw, 1.35rem);
+    border: 1px solid rgb(93 68 45 / 0.08);
+    border-radius: clamp(28px, 4vw, 42px);
+    background:
+      linear-gradient(180deg, rgb(255 252 247 / 0.9), rgb(250 242 232 / 0.76)),
+      rgb(255 250 242 / 0.8);
+    box-shadow: 0 22px 58px rgb(93 68 45 / 0.09);
     backdrop-filter: blur(18px);
     overflow: hidden;
   }
 
-  @media screen and (min-width: 990px) {
-    .xalgo-xframe-memory-os__feature:nth-child(3) {
-      margin-top: 3rem;
-    }
+  .xalgo-xframe-memory-os__step::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.72;
+    pointer-events: none;
+  }
 
-    .xalgo-xframe-memory-os__feature:nth-child(4) {
-      margin-top: 1.2rem;
+  .xalgo-xframe-memory-os__step > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .xalgo-xframe-memory-os__step--chat::before {
+    background:
+      radial-gradient(circle at 18% 14%, rgb(196 143 96 / 0.16), transparent 15rem),
+      linear-gradient(160deg, transparent 0 58%, rgb(93 68 45 / 0.035) 58% 100%);
+  }
+
+  .xalgo-xframe-memory-os__step--result::before {
+    background:
+      radial-gradient(circle at 78% 16%, rgb(215 184 148 / 0.22), transparent 15rem),
+      repeating-linear-gradient(135deg, rgb(93 68 45 / 0.032) 0 1px, transparent 1px 13px);
+  }
+
+  .xalgo-xframe-memory-os__step--frame::before {
+    background:
+      radial-gradient(circle at 50% 14%, rgb(151 126 99 / 0.13), transparent 16rem),
+      linear-gradient(180deg, transparent 0 62%, rgb(215 184 148 / 0.12) 100%);
+  }
+
+  @media screen and (min-width: 990px) {
+    .xalgo-xframe-memory-os__step--result {
+      transform: translateY(2rem);
     }
   }
 
-  .xalgo-xframe-memory-os__feature-top {
+  .xalgo-xframe-memory-os__step-meta {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: 1.3rem;
+    margin-bottom: 1.2rem;
   }
 
-  .xalgo-xframe-memory-os__feature-top span {
-    color: var(--xframe-rose);
+  .xalgo-xframe-memory-os__step-meta span {
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    background: rgb(154 108 74 / 0.1);
+    color: #9a6c4a;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .xalgo-xframe-memory-os__step-meta strong {
+    color: #9a6c4a;
     font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 0.13em;
     text-transform: uppercase;
   }
 
-  .xalgo-xframe-memory-os__icon {
-    width: 48px;
-    height: 48px;
-    display: grid;
-    place-items: center;
-    border-radius: 18px;
-    background: color-mix(in srgb, var(--xframe-rose) 13%, white);
-    color: var(--xframe-rose);
+  .xalgo-xframe-memory-os__phone,
+  .xalgo-xframe-memory-os__result-card,
+  .xalgo-xframe-memory-os__frame-card {
+    flex: 1;
   }
 
-  .xalgo-xframe-memory-os__icon svg {
-    width: 28px;
-    height: 28px;
+  .xalgo-xframe-memory-os__phone {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 0.85rem;
+    border-radius: 28px;
+    background: linear-gradient(180deg, #2a221d, #3a2b22);
+    box-shadow: inset 0 0 0 1px rgb(255 250 242 / 0.12);
   }
 
-  .xalgo-xframe-memory-os__feature h3 {
-    max-width: 9ch;
-    margin: 0;
-    color: var(--xframe-ink);
-    font-size: clamp(2rem, 3.3vw, 3.5rem);
-    line-height: 0.9;
-    letter-spacing: -0.06em;
+  .xalgo-xframe-memory-os__phone-bar {
+    width: 34%;
+    height: 0.38rem;
+    margin: 0 auto 0.4rem;
+    border-radius: 999px;
+    background: rgb(255 250 242 / 0.26);
   }
 
-  .xalgo-xframe-memory-os__feature-text {
-    margin-top: 1rem;
-    color: var(--xframe-muted);
-    line-height: 1.62;
+  .xalgo-xframe-memory-os__message {
+    max-width: 92%;
+    padding: 0.78rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.88rem;
+    line-height: 1.48;
   }
 
-  .xalgo-xframe-memory-os__image,
-  .xalgo-xframe-memory-os__mini-frame {
+  .xalgo-xframe-memory-os__message span {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .xalgo-xframe-memory-os__message--user {
+    align-self: flex-end;
+    background: #d9b28c;
+    color: #2d211b;
+  }
+
+  .xalgo-xframe-memory-os__message--ai {
+    align-self: flex-start;
+    background: rgb(255 250 242 / 0.12);
+    color: rgb(255 250 242 / 0.82);
+  }
+
+  .xalgo-xframe-memory-os__connector {
+    display: none;
+  }
+
+  @media screen and (min-width: 990px) {
+    .xalgo-xframe-memory-os__connector {
+      display: grid;
+      place-items: center;
+    }
+  }
+
+  .xalgo-xframe-memory-os__connector span {
     width: 100%;
-    aspect-ratio: 1.36;
-    margin-top: auto;
-    border-radius: 24px;
-    object-fit: cover;
+    height: 2px;
+    background: linear-gradient(90deg, rgb(154 108 74 / 0.12), rgb(154 108 74 / 0.55), rgb(154 108 74 / 0.12));
+  }
+
+  .xalgo-xframe-memory-os__connector span::after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    margin: -4px 0 0 auto;
+    border-top: 2px solid rgb(154 108 74 / 0.7);
+    border-right: 2px solid rgb(154 108 74 / 0.7);
+    transform: rotate(45deg);
+  }
+
+  .xalgo-xframe-memory-os__result-card {
+    display: grid;
+    grid-template-rows: minmax(210px, 1fr) auto;
+    gap: 1rem;
+  }
+
+  .xalgo-xframe-memory-os__generated-art,
+  .xalgo-xframe-memory-os__mini-frame span {
+    position: relative;
     overflow: hidden;
+    background:
+      radial-gradient(circle at 18% 20%, #ffe1a9 0 10%, transparent 26%),
+      radial-gradient(circle at 82% 18%, #8eb9c9 0 14%, transparent 34%),
+      linear-gradient(180deg, #f6c9a5 0%, #eca77e 44%, #78b0c1 45%, #b9d8dd 100%);
+  }
+
+  .xalgo-xframe-memory-os__generated-art::before,
+  .xalgo-xframe-memory-os__mini-frame span::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgb(255 255 255 / 0.1), transparent 24%, rgb(36 31 27 / 0.08) 49%, transparent 52%),
+      radial-gradient(ellipse at 28% 82%, rgb(255 250 242 / 0.24), transparent 34%);
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+  }
+
+  .xalgo-xframe-memory-os__art-image {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .xalgo-xframe-memory-os__generated-art {
+    min-height: 200px;
+    border-radius: 26px;
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.42);
+  }
+
+  .xalgo-xframe-memory-os__result-copy h3 {
+    margin: 0 0 0.35rem;
+    color: var(--xframe-ink);
+    font-size: clamp(1.15rem, 1.7vw, 1.48rem);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+  }
+
+  .xalgo-xframe-memory-os__result-copy p,
+  .xalgo-xframe-memory-os__frame-card p {
+    color: var(--xframe-muted);
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  .xalgo-xframe-memory-os__frame-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   .xalgo-xframe-memory-os__mini-frame {
-    position: relative;
     display: grid;
     place-items: center;
-    background: linear-gradient(145deg, #efe1ce, #dcebf0);
+    min-height: 220px;
+    border-radius: 28px;
+    background:
+      radial-gradient(circle at 50% 44%, rgb(255 252 247 / 0.72), transparent 11rem),
+      linear-gradient(145deg, #efe1ce, #e7d4bd);
   }
 
   .xalgo-xframe-memory-os__mini-frame span {
-    width: 72%;
+    width: 80%;
     aspect-ratio: 1.45;
-    border: 10px solid #2b211c;
-    border-radius: 18px;
-    background: linear-gradient(135deg, #fff6e8, #e8a598 54%, #b8d3dd);
-    box-shadow: 0 18px 48px rgb(36 31 27 / 0.18);
+    border: 8px solid #2b211c;
+    border-radius: 16px;
+    box-shadow: 0 16px 40px rgb(36 31 27 / 0.16);
+  }
+
+  .xalgo-xframe-memory-os__check {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.72rem 0.85rem;
+    border: 1px solid rgb(154 108 74 / 0.16);
+    border-radius: 999px;
+    background: rgb(255 252 247 / 0.62);
+    color: var(--xframe-ink);
+    font-size: 0.92rem;
+    font-weight: 800;
+  }
+
+  .xalgo-xframe-memory-os__check input {
+    width: 1rem;
+    height: 1rem;
+    accent-color: #9a6c4a;
+  }
+
+  @media screen and (max-width: 749px) {
+    .xalgo-xframe-memory-os__step {
+      min-height: auto;
+    }
   }
 {% endstylesheet %}
 
@@ -259,19 +487,65 @@
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "Living Gallery OS"
+      "default": "App to frame flow"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "A frame that thinks in memories."
+      "default": "Create it in the app. Approve it for the frame."
     },
     {
       "type": "richtext",
       "id": "body",
       "label": "Body",
-      "default": "<p>xFrame combines AI album organization, cloud sync, and generative content so your photos become a living gallery instead of a forgotten camera roll.</p>"
+      "default": "<p>Use app chat to describe the image, review the AI result, then decide whether it should sync to xFrame.</p>"
+    },
+    {
+      "type": "text",
+      "id": "prompt_text",
+      "label": "Prompt text",
+      "default": "Create a sunrise beach image in a Van Gogh-inspired style."
+    },
+    {
+      "type": "text",
+      "id": "ai_status_text",
+      "label": "AI status text",
+      "default": "Generating a painterly sunrise beach scene for review."
+    },
+    {
+      "type": "text",
+      "id": "result_heading",
+      "label": "Result heading",
+      "default": "Sunrise Beach"
+    },
+    {
+      "type": "text",
+      "id": "result_text",
+      "label": "Result text",
+      "default": "A warm, brush-like seaside image returns to the app conversation first."
+    },
+    {
+      "type": "image_picker",
+      "id": "result_image",
+      "label": "AI result image"
+    },
+    {
+      "type": "image_picker",
+      "id": "frame_image",
+      "label": "Frame display image"
+    },
+    {
+      "type": "text",
+      "id": "approval_text",
+      "label": "Approval text",
+      "default": "Show on xFrame"
+    },
+    {
+      "type": "text",
+      "id": "sync_text",
+      "label": "Sync text",
+      "default": "Once approved, cloud sync sends the selected image to the paired frame."
     },
     {
       "type": "color_scheme",
@@ -300,59 +574,10 @@
       "default": 96
     }
   ],
-  "blocks": [
-    {
-      "type": "feature",
-      "name": "Feature",
-      "settings": [
-        {
-          "type": "text",
-          "id": "kicker",
-          "label": "Kicker",
-          "default": "Organize"
-        },
-        {
-          "type": "select",
-          "id": "icon",
-          "label": "Icon",
-          "options": [
-            { "value": "album", "label": "Album" },
-            { "value": "cloud", "label": "Cloud" },
-            { "value": "spark", "label": "Spark" },
-            { "value": "people", "label": "People" },
-            { "value": "calendar", "label": "Calendar" }
-          ],
-          "default": "album"
-        },
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Heading",
-          "default": "AI sorts the camera roll."
-        },
-        {
-          "type": "richtext",
-          "id": "text",
-          "label": "Text",
-          "default": "<p>People, places, scenes and important dates become living albums that are ready to display.</p>"
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        }
-      ]
-    }
-  ],
   "presets": [
     {
       "name": "xFrame Memory OS",
-      "category": "Content",
-      "blocks": [
-        { "type": "feature" },
-        { "type": "feature" },
-        { "type": "feature" }
-      ]
+      "category": "Content"
     }
   ]
 }

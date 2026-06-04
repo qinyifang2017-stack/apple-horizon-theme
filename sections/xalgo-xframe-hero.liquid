@@ -28,10 +28,10 @@
     </div>
 
     <div class="xalgo-xframe-hero__gallery" aria-label="xFrame smart gallery preview">
-      <div class="xalgo-xframe-hero__art-card xalgo-xframe-hero__art-card--one" aria-hidden="true"></div>
-      <div class="xalgo-xframe-hero__art-card xalgo-xframe-hero__art-card--two" aria-hidden="true"></div>
-
       <div class="xalgo-xframe-hero__frame">
+        <div class="xalgo-xframe-hero__frame-bar" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
         <div class="xalgo-xframe-hero__screen">
           {%- if section.settings.hero_image != blank -%}
             {{
@@ -75,7 +75,7 @@
     --xframe-gold: var(--xalgo-champagne, #c9a882);
     --xframe-rose: var(--xalgo-rose, #e8a598);
     position: relative;
-    min-height: 100svh;
+    min-height: auto;
     display: grid;
     align-items: center;
     overflow: hidden;
@@ -99,7 +99,7 @@
   }
 
   .xalgo-xframe-hero .page-width {
-    max-width: 1320px;
+    max-width: 1440px;
     margin-inline: auto;
     padding-inline: 20px;
   }
@@ -114,7 +114,7 @@
 
   @media screen and (min-width: 990px) {
     .xalgo-xframe-hero__shell {
-      grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+      grid-template-columns: minmax(0, 0.76fr) minmax(0, 1.24fr);
     }
   }
 
@@ -131,17 +131,23 @@
     max-width: 10ch;
     margin: 0;
     color: var(--xframe-paper);
-    font-size: clamp(3.8rem, 9vw, 8.8rem);
-    line-height: 0.82;
+    font-size: clamp(2.5rem, 5.2vw, 5rem);
+    line-height: 0.86;
     letter-spacing: -0.08em;
   }
 
   .xalgo-xframe-hero__subheading {
     max-width: 640px;
-    margin-top: 1.5rem;
+    margin-top: 1.2rem;
     color: rgb(255 250 242 / 0.76);
-    font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+    font-size: 1.25rem;
     line-height: 1.62;
+  }
+
+  @media screen and (max-width: 749px) {
+    .xalgo-xframe-hero__subheading {
+      font-size: 1.1rem;
+    }
   }
 
   .xalgo-xframe-hero__subheading p {
@@ -152,12 +158,44 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.85rem;
-    margin-top: 2rem;
+    margin-top: 1.55rem;
+  }
+
+  .xalgo-xframe-hero__actions .button:not(.button-secondary) {
+    --button-color: #ffffff;
+    --button-background-color: #E8A598;
+    --button-border-color: #E8A598;
+    color: #ffffff !important;
+    background-color: #E8A598 !important;
+    border-color: #E8A598 !important;
+  }
+
+  .xalgo-xframe-hero__actions .button:not(.button-secondary):hover {
+    --button-color: #ffffff;
+    --button-background-color: #D4918A;
+    --button-border-color: #D4918A;
+    color: #ffffff !important;
+    background-color: #D4918A !important;
+    border-color: #D4918A !important;
+  }
+
+  .xalgo-xframe-hero__actions .button-secondary {
+    border-color: rgb(255 250 242 / 0.5);
+    background: transparent;
+    color: var(--xframe-paper);
+    box-shadow: none;
+  }
+
+  .xalgo-xframe-hero__actions .button-secondary:hover {
+    border-color: rgb(255 250 242 / 0.5) !important;
+    background: var(--xframe-paper) !important;
+    background-color: var(--xframe-paper) !important;
+    box-shadow: none;
   }
 
   .xalgo-xframe-hero__gallery {
     position: relative;
-    min-height: clamp(430px, 54vw, 720px);
+    min-height: clamp(420px, 40vw, 560px);
     display: grid;
     place-items: center;
     perspective: 1200px;
@@ -165,25 +203,41 @@
 
   .xalgo-xframe-hero__frame {
     position: relative;
-    width: min(100%, 680px);
-    aspect-ratio: 1.38;
-    padding: clamp(0.8rem, 1.8vw, 1.25rem);
-    border-radius: clamp(24px, 4vw, 44px);
+    width: min(100%, 740px);
+    aspect-ratio: 1.36;
+    padding: clamp(0.7rem, 1.4vw, 1rem);
+    border-radius: clamp(24px, 4vw, 42px);
     background:
-      linear-gradient(145deg, #fff6e8, #a98055 42%, #31251d 43%, #120f0d 100%);
+      linear-gradient(145deg, rgb(241 237 229 / 0.48) 0%, rgb(201 192 180 / 0.4) 44%, rgb(139 130 120 / 0.38) 100%);
     box-shadow:
       0 44px 120px rgb(0 0 0 / 0.42),
-      inset 0 1px 0 rgb(255 255 255 / 0.36);
-    transform: rotateY(-8deg) rotateX(2deg);
+      inset 0 1px 0 rgb(255 255 255 / 0.55);
+  }
+
+  .xalgo-xframe-hero__frame-bar {
+    position: absolute;
+    top: clamp(0.55rem, 1.2vw, 0.8rem);
+    left: 50%;
+    z-index: 2;
+    display: flex;
+    gap: 0.35rem;
+    transform: translateX(-50%);
+  }
+
+  .xalgo-xframe-hero__frame-bar span {
+    width: 0.42rem;
+    height: 0.42rem;
+    border-radius: 999px;
+    background: rgb(255 250 242 / 0.36);
   }
 
   .xalgo-xframe-hero__screen {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    border-radius: clamp(16px, 3vw, 30px);
-    background: #17110f;
-    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12);
+    border-radius: clamp(18px, 3vw, 32px);
+    background: #11100e;
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08);
   }
 
   .xalgo-xframe-hero__image {
@@ -195,46 +249,31 @@
 
   .xalgo-xframe-hero__placeholder {
     height: 100%;
-    display: grid;
-    grid-template-columns: 1.16fr 0.84fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 0.75rem;
-    padding: 0.75rem;
-    background: linear-gradient(135deg, #f4dfcc 0%, #dbeaf2 48%, #f7f1e8 100%);
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 14% 18%, rgb(255 210 177 / 0.95) 0 6%, transparent 15%),
+      radial-gradient(circle at 82% 18%, rgb(168 211 226 / 0.82) 0 11%, transparent 30%),
+      linear-gradient(180deg, #f7e1c6 0%, #efc198 45%, #7fb3c5 46%, #b9d5dc 100%);
   }
 
-  .xalgo-xframe-hero__placeholder span {
-    border-radius: 18px;
-    background: linear-gradient(135deg, rgb(36 31 27 / 0.12), rgb(255 255 255 / 0.62));
-    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.28);
-  }
-
-  .xalgo-xframe-hero__placeholder span:first-child {
-    grid-row: 1 / -1;
-    background: radial-gradient(circle at 38% 24%, #e8a598, transparent 24%), linear-gradient(145deg, #fff7ea, #c9a882);
-  }
-
-  .xalgo-xframe-hero__art-card {
+  .xalgo-xframe-hero__placeholder::before,
+  .xalgo-xframe-hero__placeholder::after {
+    content: '';
     position: absolute;
-    width: clamp(150px, 18vw, 260px);
-    aspect-ratio: 0.78;
-    border: 10px solid rgb(255 250 242 / 0.92);
-    border-radius: 18px;
-    box-shadow: 0 28px 74px rgb(0 0 0 / 0.28);
+    inset-inline: -8%;
+    bottom: 17%;
+    height: 24%;
+    border-radius: 50% 50% 0 0;
+    background: rgb(255 250 242 / 0.22);
+    transform: rotate(-2deg);
   }
 
-  .xalgo-xframe-hero__art-card--one {
-    left: 0;
-    top: 8%;
-    background: linear-gradient(145deg, #e7b9a9, #f7efe1 58%, #99b6c2);
-    transform: rotate(-9deg);
-  }
-
-  .xalgo-xframe-hero__art-card--two {
-    right: 2%;
-    bottom: 2%;
-    background: radial-gradient(circle at 38% 32%, #fcdcdd, transparent 34%), linear-gradient(145deg, #fbf4ea, #c9a882);
-    transform: rotate(8deg);
+  .xalgo-xframe-hero__placeholder::after {
+    bottom: 8%;
+    height: 18%;
+    background: rgb(36 31 27 / 0.12);
+    transform: rotate(2deg);
   }
 
   .xalgo-xframe-hero__chips {
@@ -268,10 +307,7 @@
 
     .xalgo-xframe-hero__frame {
       transform: none;
-    }
-
-    .xalgo-xframe-hero__art-card {
-      opacity: 0.62;
+      width: min(100%, 620px);
     }
 
     .xalgo-xframe-hero__chips {
@@ -294,7 +330,7 @@
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "xFrame 智能画框"
+      "default": "xFrame Smart Frame"
     },
     {
       "type": "text",
@@ -312,7 +348,7 @@
       "type": "text",
       "id": "primary_button_label",
       "label": "Primary button label",
-      "default": "Choose xFrame"
+      "default": "Choose your xFrame"
     },
     {
       "type": "url",
@@ -323,7 +359,7 @@
       "type": "text",
       "id": "secondary_button_label",
       "label": "Secondary button label",
-      "default": "See AI features"
+      "default": "Read FAQ"
     },
     {
       "type": "url",
@@ -367,7 +403,7 @@
       "max": 160,
       "step": 4,
       "unit": "px",
-      "default": 88
+      "default": 64
     },
     {
       "type": "range",
@@ -377,7 +413,7 @@
       "max": 160,
       "step": 4,
       "unit": "px",
-      "default": 72
+      "default": 64
     }
   ],
   "presets": [

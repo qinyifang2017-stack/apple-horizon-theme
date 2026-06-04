@@ -21,34 +21,56 @@
       {%- endif -%}
     </div>
 
-    <div class="xalgo-xframe-album-wall__grid" aria-label="AI organized album examples">
-      {%- for block in section.blocks -%}
-        <article class="xalgo-xframe-album-wall__album" {{ block.shopify_attributes }}>
-          <div class="xalgo-xframe-album-wall__media">
-            {%- if block.settings.image != blank -%}
-              {{
-                block.settings.image
-                | image_url: width: 760
-                | image_tag:
-                  class: 'xalgo-xframe-album-wall__image',
-                  widths: '320, 520, 760',
-                  sizes: '(min-width: 990px) 20vw, 82vw',
-                  alt: block.settings.image.alt
-              }}
-            {%- else -%}
-              <div class="xalgo-xframe-album-wall__placeholder" aria-hidden="true"></div>
-            {%- endif -%}
-            {%- if block.settings.tag != blank -%}
-              <span class="xalgo-xframe-album-wall__tag">{{ block.settings.tag }}</span>
-            {%- endif -%}
-          </div>
-          <div class="xalgo-xframe-album-wall__album-copy">
+    {%- assign first_block = section.blocks.first -%}
+    {%- assign before_image = section.settings.before_image -%}
+    {%- if before_image == blank and first_block.settings.image != blank -%}
+      {%- assign before_image = first_block.settings.image -%}
+    {%- endif -%}
+    <div class="xalgo-xframe-album-wall__showcase" aria-label="Oil-painting transformation preview">
+      <div class="xalgo-xframe-album-wall__before-after">
+        <div class="xalgo-xframe-album-wall__preview xalgo-xframe-album-wall__preview--before">
+          {%- if before_image != blank -%}
+            {{
+              before_image
+              | image_url: width: 900
+              | image_tag:
+                class: 'xalgo-xframe-album-wall__image',
+                widths: '320, 520, 760, 900',
+                sizes: '(min-width: 990px) 30vw, 82vw',
+                alt: before_image.alt
+            }}
+          {%- else -%}
+            <div class="xalgo-xframe-album-wall__placeholder xalgo-xframe-album-wall__placeholder--before" aria-hidden="true"></div>
+          {%- endif -%}
+          <span>{{ section.settings.before_label }}</span>
+        </div>
+        <div class="xalgo-xframe-album-wall__preview xalgo-xframe-album-wall__preview--after">
+          {%- if section.settings.after_image != blank -%}
+            {{
+              section.settings.after_image
+              | image_url: width: 900
+              | image_tag:
+                class: 'xalgo-xframe-album-wall__image xalgo-xframe-album-wall__image--after',
+                widths: '320, 520, 760, 900',
+                sizes: '(min-width: 990px) 30vw, 82vw',
+                alt: section.settings.after_image.alt
+            }}
+          {%- else -%}
+            <div class="xalgo-xframe-album-wall__placeholder xalgo-xframe-album-wall__placeholder--after" aria-hidden="true"></div>
+          {%- endif -%}
+          <span>{{ section.settings.after_label }}</span>
+        </div>
+      </div>
+
+      <div class="xalgo-xframe-album-wall__points">
+        {%- for block in section.blocks limit: 3 -%}
+          <article class="xalgo-xframe-album-wall__point" {{ block.shopify_attributes }}>
             <span>{{ block.settings.meta }}</span>
             <h3>{{ block.settings.title }}</h3>
             <p>{{ block.settings.description }}</p>
-          </div>
-        </article>
-      {%- endfor -%}
+          </article>
+        {%- endfor -%}
+      </div>
     </div>
   </div>
 </section>
@@ -60,17 +82,30 @@
     --xframe-muted: var(--xalgo-text-secondary, #6e6e73);
     --xframe-gold: var(--xalgo-champagne, #c9a882);
     --xframe-rose: var(--xalgo-rose, #e8a598);
+    position: relative;
     background:
+      radial-gradient(circle at 82% 18%, rgb(232 165 152 / 0.18), transparent 24rem),
+      radial-gradient(circle at 18% 74%, rgb(201 168 130 / 0.16), transparent 28rem),
       linear-gradient(90deg, rgb(36 31 27 / 0.035) 1px, transparent 1px),
       linear-gradient(0deg, rgb(36 31 27 / 0.035) 1px, transparent 1px),
-      var(--xframe-paper);
-    background-size: 44px 44px;
+      linear-gradient(180deg, #fffaf2 0%, #f8efe5 100%);
+    background-size: auto, auto, 44px 44px, 44px 44px, auto;
     color: var(--xframe-ink);
     overflow: hidden;
   }
 
+  .xalgo-xframe-album-wall::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 0 46%, rgb(255 255 255 / 0.52) 46% 63%, transparent 63% 100%);
+    pointer-events: none;
+  }
+
   .xalgo-xframe-album-wall .page-width {
-    max-width: 1280px;
+    position: relative;
+    z-index: 1;
+    max-width: 1440px;
     margin-inline: auto;
     padding-inline: 20px;
   }
@@ -105,7 +140,7 @@
     max-width: 9ch;
     margin: 0;
     color: var(--xframe-ink);
-    font-size: clamp(2.7rem, 6vw, 6.4rem);
+    font-size: clamp(2.3rem, 4.8vw, 4.7rem);
     line-height: 0.86;
     letter-spacing: -0.07em;
   }
@@ -129,49 +164,129 @@
     padding: 1rem 1.1rem;
     border: 1px solid color-mix(in srgb, var(--xframe-gold) 28%, transparent);
     border-radius: 20px;
-    background: rgb(255 255 255 / 0.56);
+    background: rgb(255 255 255 / 0.7);
     color: var(--xframe-muted);
     line-height: 1.55;
+    box-shadow: 0 18px 48px rgb(91 63 37 / 0.08);
+    backdrop-filter: blur(14px);
   }
 
-  .xalgo-xframe-album-wall__grid {
+  .xalgo-xframe-album-wall__showcase {
+    position: relative;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(0.9rem, 1.8vw, 1.25rem);
+    gap: 1rem;
+  }
+
+  .xalgo-xframe-album-wall__showcase::before {
+    content: '';
+    position: absolute;
+    inset: clamp(-1.2rem, -2vw, -0.8rem);
+    border: 1px solid rgb(201 168 130 / 0.18);
+    border-radius: clamp(32px, 5vw, 52px);
+    background: rgb(255 250 242 / 0.34);
+    box-shadow: 0 28px 82px rgb(91 63 37 / 0.08);
+    pointer-events: none;
+  }
+
+  .xalgo-xframe-album-wall__showcase > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .xalgo-xframe-album-wall__before-after {
+    display: grid;
+    gap: 1rem;
   }
 
   @media screen and (min-width: 750px) {
-    .xalgo-xframe-album-wall__album:nth-child(2),
-    .xalgo-xframe-album-wall__album:nth-child(5) {
-      margin-top: 3.2rem;
+    .xalgo-xframe-album-wall__before-after {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
-  @media screen and (max-width: 640px) {
-    .xalgo-xframe-album-wall__grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .xalgo-xframe-album-wall__album {
+  .xalgo-xframe-album-wall__preview {
+    position: relative;
+    min-height: clamp(240px, 24vw, 340px);
     overflow: hidden;
     border: 1px solid rgb(36 31 27 / 0.08);
     border-radius: clamp(24px, 4vw, 36px);
-    background: rgb(255 255 255 / 0.62);
+    background: rgb(255 255 255 / 0.72);
     box-shadow: 0 24px 68px rgb(91 63 37 / 0.12);
-    transition: transform 0.26s ease, box-shadow 0.26s ease;
   }
 
-  .xalgo-xframe-album-wall__album:hover {
-    transform: translateY(-5px) rotate(-0.4deg);
-    box-shadow: 0 32px 84px rgb(91 63 37 / 0.18);
+  .xalgo-xframe-album-wall__preview--after {
+    transform: rotate(1deg) translateY(0.7rem);
+    border-color: rgb(201 168 130 / 0.28);
+    box-shadow: 0 30px 82px rgb(91 63 37 / 0.16);
   }
 
-  .xalgo-xframe-album-wall__media {
-    position: relative;
-    height: clamp(210px, 25vw, 340px);
-    overflow: hidden;
-    background: #efe1ce;
+  .xalgo-xframe-album-wall__preview span {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    padding: 0.45rem 0.7rem;
+    border-radius: 999px;
+    background: rgb(255 250 242 / 0.8);
+    color: var(--xframe-ink);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    backdrop-filter: blur(14px);
+  }
+
+  .xalgo-xframe-album-wall__points {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .xalgo-xframe-album-wall__points {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .xalgo-xframe-album-wall__point {
+    padding: 1rem;
+    border: 1px solid rgb(36 31 27 / 0.08);
+    border-radius: 20px;
+    background: rgb(255 255 255 / 0.62);
+    box-shadow: 0 18px 46px rgb(91 63 37 / 0.08);
+    backdrop-filter: blur(12px);
+  }
+
+  .xalgo-xframe-album-wall__point:nth-child(2) {
+    background: rgb(255 250 242 / 0.86);
+    transform: translateY(0.75rem);
+  }
+
+  .xalgo-xframe-album-wall__point:nth-child(3) {
+    background: rgb(246 238 228 / 0.78);
+  }
+
+  .xalgo-xframe-album-wall__point span {
+    display: block;
+    margin-bottom: 0.55rem;
+    color: var(--xframe-rose);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .xalgo-xframe-album-wall__point h3 {
+    margin: 0 0 0.35rem;
+    color: var(--xframe-ink);
+    font-size: clamp(1.08rem, 1.5vw, 1.3rem);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+  }
+
+  .xalgo-xframe-album-wall__point p {
+    margin: 0;
+    color: var(--xframe-muted);
+    line-height: 1.5;
+    font-size: 0.9rem;
   }
 
   .xalgo-xframe-album-wall__image,
@@ -189,49 +304,18 @@
       linear-gradient(145deg, #f8efe4, #d9ebf2);
   }
 
-  .xalgo-xframe-album-wall__tag {
-    position: absolute;
-    left: 0.85rem;
-    top: 0.85rem;
-    padding: 0.45rem 0.7rem;
-    border-radius: 999px;
-    background: rgb(255 250 242 / 0.78);
-    color: var(--xframe-ink);
-    font-size: 0.7rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    backdrop-filter: blur(14px);
+  .xalgo-xframe-album-wall__placeholder--before {
+    filter: saturate(0.85) contrast(0.95);
   }
 
-  .xalgo-xframe-album-wall__album-copy {
-    padding: 1rem 1.1rem 1.2rem;
+  .xalgo-xframe-album-wall__placeholder--after {
+    background:
+      radial-gradient(circle at 34% 24%, rgb(232 165 152 / 0.9), transparent 24%),
+      radial-gradient(circle at 78% 72%, rgb(201 168 130 / 0.78), transparent 28%),
+      linear-gradient(145deg, #f3d0ae, #c7dde4);
+    filter: saturate(1.22) contrast(1.05);
   }
 
-  .xalgo-xframe-album-wall__album-copy span {
-    display: block;
-    margin-bottom: 0.6rem;
-    color: var(--xframe-rose);
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .xalgo-xframe-album-wall__album-copy h3 {
-    margin: 0 0 0.45rem;
-    color: var(--xframe-ink);
-    font-size: clamp(1.28rem, 2vw, 1.7rem);
-    line-height: 1;
-    letter-spacing: -0.04em;
-  }
-
-  .xalgo-xframe-album-wall__album-copy p {
-    margin: 0;
-    color: var(--xframe-muted);
-    line-height: 1.55;
-    font-size: 0.95rem;
-  }
 {% endstylesheet %}
 
 {% schema %}
@@ -263,6 +347,28 @@
       "id": "note",
       "label": "Note",
       "default": "<p>AI can surface stronger images, reduce repeats, and keep the display feeling fresh without manual slideshow management.</p>"
+    },
+    {
+      "type": "text",
+      "id": "before_label",
+      "label": "Before label",
+      "default": "Original photo"
+    },
+    {
+      "type": "text",
+      "id": "after_label",
+      "label": "After label",
+      "default": "Oil-painting style"
+    },
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "Original photo image"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "Oil-painting style image"
     },
     {
       "type": "color_scheme",

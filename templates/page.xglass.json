@@ -45,7 +45,7 @@
             "alignment": "center",
             "type_preset": "h1",
             "font": "var(--font-heading--family)",
-            "font_size": "",
+            "font_size": "clamp(2.5rem, 5.2vw, 5rem)",
             "line_height": "tight",
             "letter_spacing": "-0.03em",
             "case": "none",
@@ -190,7 +190,7 @@
         "intro_heading": {
           "type": "text",
           "settings": {
-            "text": "<h2>Designed around the moment before you reach for your phone.</h2>",
+            "text": "<h2>AI help before you reach for your phone.</h2>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",

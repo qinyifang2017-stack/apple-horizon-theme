@@ -45,7 +45,7 @@
             "alignment": "center",
             "type_preset": "h1",
             "font": "var(--font-heading--family)",
-            "font_size": "",
+            "font_size": "clamp(2.5rem, 5.2vw, 5rem)",
             "line_height": "tight",
             "letter_spacing": "-0.03em",
             "case": "none",
