@@ -413,7 +413,7 @@
         "philosophy_label": {
           "type": "text",
           "settings": {
-            "text": "<h3>OUR PHILOSOPHY</h3>",
+            "text": "<h3>OUR VISION</h3>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -438,7 +438,7 @@
         "philosophy_heading": {
           "type": "text",
           "settings": {
-            "text": "<h4>Technology should feel like jewelry, not homework.</h4>",
+            "text": "<h4>Personal AI beyond the screen.</h4>",
             "width": "100%",
             "max_width": "wide",
             "alignment": "left",
@@ -463,7 +463,7 @@
         "philosophy_body": {
           "type": "text",
           "settings": {
-            "text": "<p>We believe the best technology is the kind you forget you're wearing. xalgo creates smart devices that are as natural as the ring on your finger, as invisible as your favorite pair of glasses, and as beautiful as the art on your wall.</p>",
+            "text": "<p>xalgo creates AI products that live closer to everyday life — sensing the body, understanding the view, and turning memories into living moments.</p>",
             "width": "100%",
             "max_width": "wide",
             "alignment": "left",
@@ -488,8 +488,8 @@
         "philosophy_cta": {
           "type": "button",
           "settings": {
-            "label": "Explore the Collection →",
-            "link": "shopify://collections/all",
+            "label": "Read our vision",
+            "link": "/pages/vision",
             "open_in_new_tab": false,
             "style_class": "button",
             "width": "fit-content",

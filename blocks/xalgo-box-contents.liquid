@@ -1,0 +1,62 @@
+{% comment %}
+  Renders product-specific box contents for the shared product template.
+{% endcomment %}
+
+{%- liquid
+  assign product_handle = closest.product.handle | default: product.handle
+-%}
+
+{%- case product_handle -%}
+  {%- when 'xring' -%}
+    <ul class="xalgo-box-contents" {{ block.shopify_attributes }}>
+      <li>xRing</li>
+      <li>Dedicated charging dock</li>
+      <li>USB-C cable</li>
+    </ul>
+  {%- when 'xglass' -%}
+    <ul class="xalgo-box-contents" {{ block.shopify_attributes }}>
+      <li>xGlass</li>
+      <li>Charging cable</li>
+      <li>Carrying case</li>
+      <li>Quick start guide</li>
+    </ul>
+  {%- when 'xframe' -%}
+    <ul class="xalgo-box-contents" {{ block.shopify_attributes }}>
+      <li>xFrame</li>
+      <li>Power adapter</li>
+      <li>Power cable</li>
+      <li>Quick start guide</li>
+    </ul>
+  {%- else -%}
+    <p class="xalgo-box-contents__fallback" {{ block.shopify_attributes }}>
+      {{ closest.product.title | default: product.title }}, required charging accessories, and quick start materials where included.
+    </p>
+{%- endcase -%}
+
+{% stylesheet %}
+  .xalgo-box-contents {
+    margin: 0;
+    padding-inline-start: 1.1rem;
+  }
+
+  .xalgo-box-contents li + li {
+    margin-block-start: 0.35rem;
+  }
+
+  .xalgo-box-contents__fallback {
+    margin: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Box contents (xalgo)",
+  "tag": null,
+  "settings": [],
+  "presets": [
+    {
+      "name": "Box contents (xalgo)"
+    }
+  ]
+}
+{% endschema %}

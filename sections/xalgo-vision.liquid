@@ -1,0 +1,364 @@
+{% comment %}
+  xalgo Vision page — long-form brand vision for Personal AI beyond the screen.
+{% endcomment %}
+
+<section
+  id="xalgo-vision-{{ section.id }}"
+  class="xalgo-vision color-{{ section.settings.color_scheme }}"
+  style="
+    --vision-padding-top: {{ section.settings.padding_top }}px;
+    --vision-padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="xalgo-vision__shell">
+    <header class="xalgo-vision__hero">
+      <p class="xalgo-vision__eyebrow">Our Vision</p>
+      <h1 class="xalgo-vision__title">Personal AI beyond the screen.</h1>
+      <p class="xalgo-vision__lede">
+        xalgo is building a new kind of personal AI ecosystem — one that moves beyond apps and screens, and becomes part of the body, the view, and the spaces where life happens.
+      </p>
+    </header>
+
+    <div class="xalgo-vision__section xalgo-vision__section--intro">
+      <p>
+        AI is becoming more powerful every day. It can answer questions, generate images, summarize information, and help people create in ways that once felt impossible.
+      </p>
+      <p>
+        But for most people, AI still lives inside a screen. It waits behind an app icon. It asks for prompts. It depends on typing, tapping, and switching attention away from the world in front of us.
+      </p>
+      <p>
+        At xalgo, we believe the next step for personal AI is not just making it more intelligent. It is making it more present, more natural, and less intrusive.
+      </p>
+    </div>
+
+    <div class="xalgo-vision__statement">
+      <p>We want AI to move closer to real life — not by demanding more attention, but by quietly understanding the moments, signals, and memories that already shape our days.</p>
+    </div>
+
+    <section class="xalgo-vision__section" aria-labelledby="vision-products-heading">
+      <div class="xalgo-vision__section-header">
+        <p class="xalgo-vision__kicker">Three ways AI gets closer to life</p>
+        <h2 id="vision-products-heading">The body. The view. The memory of a place.</h2>
+      </div>
+
+      <div class="xalgo-vision__pillars">
+        <article class="xalgo-vision__pillar">
+          <span class="xalgo-vision__pillar-label">Body</span>
+          <h3>xRing</h3>
+          <p>
+            The body is one of the most important sources of personal information. xRing brings AI closer to physical signals — sleep, recovery, daily rhythm, and long-term health trends.
+          </p>
+          <p>
+            It is designed to help people notice patterns that are easy to miss, and turn them into simple, meaningful insights without asking them to constantly check data.
+          </p>
+        </article>
+
+        <article class="xalgo-vision__pillar">
+          <span class="xalgo-vision__pillar-label">View</span>
+          <h3>xGlass</h3>
+          <p>
+            The world we see is full of context. xGlass brings AI into the field of view, where information, interaction, and daily decisions naturally happen.
+          </p>
+          <p>
+            It is designed for moments when reaching for a phone feels like a break in attention — when intelligence should feel immediate, lightweight, and close to what you are already experiencing.
+          </p>
+        </article>
+
+        <article class="xalgo-vision__pillar">
+          <span class="xalgo-vision__pillar-label">Memory</span>
+          <h3>xFrame</h3>
+          <p>
+            Memory should not be locked inside a camera roll. xFrame brings AI into the spaces where people live, turning images and personal moments into something visible, emotional, and shared.
+          </p>
+          <p>
+            It helps transform photos into living memories — not just files to store, but moments that can return to the room, the family, and the everyday environment.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="xalgo-vision__section xalgo-vision__section--split" aria-labelledby="quiet-intelligence-heading">
+      <div class="xalgo-vision__section-header">
+        <p class="xalgo-vision__kicker">Quiet intelligence</p>
+        <h2 id="quiet-intelligence-heading">Useful technology should know when to appear — and when to disappear.</h2>
+      </div>
+      <div class="xalgo-vision__copy">
+        <p>
+          We do not believe the best technology is always the loudest. For personal AI to become truly useful, it must support people without taking over their attention. It should understand context without making life feel more complicated.
+        </p>
+        <p>
+          Quiet intelligence is not passive. It is attentive. It works in the background, respects the rhythm of daily life, and brings information forward only when it becomes useful.
+        </p>
+        <p>
+          It helps people feel more aware, not more distracted. More connected, not more controlled. More present, not more dependent on screens.
+        </p>
+      </div>
+    </section>
+
+    <section class="xalgo-vision__section xalgo-vision__section--split" aria-labelledby="ecosystem-heading">
+      <div class="xalgo-vision__section-header">
+        <p class="xalgo-vision__kicker">What we are building</p>
+        <h2 id="ecosystem-heading">A personal AI ecosystem shaped around everyday life.</h2>
+      </div>
+      <div class="xalgo-vision__copy">
+        <p>
+          xRing, xGlass, and xFrame are our first steps toward a broader personal AI ecosystem. Each product starts from a different part of life, but they are connected by the same belief: AI should become more personal by becoming more natural.
+        </p>
+        <p>
+          The future of personal AI will not be defined by one device. It will be shaped by a network of intelligent objects that understand different parts of life and work together with care. Some will be worn. Some will be seen. Some will live quietly in the spaces around us.
+        </p>
+        <p>
+          Our goal is to make these experiences feel unified, useful, and deeply personal — not an ecosystem built around more screens, but AI that adapts to the way people already live.
+        </p>
+      </div>
+    </section>
+
+    <footer class="xalgo-vision__closing">
+      <p>
+        xalgo exists to make AI feel closer to people. Not louder. Not more demanding. Not trapped inside another interface.
+      </p>
+      <p>
+        But closer to the body, closer to the world we see, and closer to the memories that make everyday life meaningful.
+      </p>
+      <strong>This is personal AI beyond the screen.</strong>
+    </footer>
+  </div>
+</section>
+
+{% stylesheet %}
+  .xalgo-vision {
+    --vision-bg: oklch(0.975 0.012 63);
+    --vision-ink: oklch(0.215 0.018 45);
+    --vision-muted: oklch(0.48 0.015 45);
+    --vision-line: oklch(0.86 0.012 63);
+    --vision-soft: oklch(0.945 0.016 63);
+    --vision-accent: var(--xalgo-rose, #e8a598);
+
+    background: var(--vision-bg);
+    color: var(--vision-ink);
+    padding-block: var(--vision-padding-top) var(--vision-padding-bottom);
+  }
+
+  .xalgo-vision__shell {
+    width: min(1120px, calc(100% - 32px));
+    margin-inline: auto;
+  }
+
+  .xalgo-vision__hero {
+    max-width: 860px;
+    padding-block: clamp(48px, 8vw, 108px) clamp(40px, 7vw, 88px);
+  }
+
+  .xalgo-vision__eyebrow,
+  .xalgo-vision__kicker,
+  .xalgo-vision__pillar-label {
+    margin: 0;
+    color: var(--vision-accent);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .xalgo-vision__title {
+    max-width: 780px;
+    margin: 12px 0 0;
+    color: var(--vision-ink);
+    font-size: clamp(3rem, 8vw, 7rem);
+    line-height: 0.92;
+    letter-spacing: -0.065em;
+  }
+
+  .xalgo-vision__lede {
+    max-width: 720px;
+    margin: 28px 0 0;
+    color: var(--vision-muted);
+    font-size: clamp(1.125rem, 2vw, 1.45rem);
+    line-height: 1.45;
+  }
+
+  .xalgo-vision__section {
+    padding-block: clamp(44px, 7vw, 84px);
+    border-block-start: 1px solid var(--vision-line);
+  }
+
+  .xalgo-vision__section--intro {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(24px, 4vw, 48px);
+  }
+
+  .xalgo-vision__section--intro p,
+  .xalgo-vision__copy p,
+  .xalgo-vision__pillar p,
+  .xalgo-vision__closing p {
+    margin: 0;
+    color: var(--vision-muted);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .xalgo-vision__section--intro p + p,
+  .xalgo-vision__copy p + p,
+  .xalgo-vision__pillar p + p,
+  .xalgo-vision__closing p + p {
+    margin-block-start: 18px;
+  }
+
+  .xalgo-vision__statement {
+    margin-block: clamp(16px, 4vw, 44px) clamp(48px, 7vw, 92px);
+    padding: clamp(28px, 5vw, 56px);
+    border: 1px solid color-mix(in oklch, var(--vision-accent) 45%, var(--vision-line));
+    border-radius: 28px;
+    background: color-mix(in oklch, var(--vision-accent) 10%, var(--vision-bg));
+  }
+
+  .xalgo-vision__statement p {
+    max-width: 850px;
+    margin: 0;
+    color: var(--vision-ink);
+    font-size: clamp(1.5rem, 3.5vw, 3rem);
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+  }
+
+  .xalgo-vision__section-header {
+    max-width: 680px;
+  }
+
+  .xalgo-vision__section-header h2 {
+    margin: 12px 0 0;
+    color: var(--vision-ink);
+    font-size: clamp(2rem, 4.5vw, 4.25rem);
+    line-height: 1;
+    letter-spacing: -0.055em;
+  }
+
+  .xalgo-vision__pillars {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-block-start: clamp(32px, 5vw, 56px);
+  }
+
+  .xalgo-vision__pillar {
+    display: flex;
+    min-height: 410px;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: clamp(24px, 3vw, 34px);
+    border: 1px solid var(--vision-line);
+    border-radius: 26px;
+    background: var(--vision-soft);
+  }
+
+  .xalgo-vision__pillar h3 {
+    margin: 12px 0 20px;
+    color: var(--vision-ink);
+    font-size: clamp(1.75rem, 3vw, 2.7rem);
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+
+  .xalgo-vision__section--split {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr);
+    gap: clamp(28px, 6vw, 80px);
+    align-items: start;
+  }
+
+  .xalgo-vision__copy {
+    max-width: 640px;
+  }
+
+  .xalgo-vision__closing {
+    padding-block: clamp(52px, 9vw, 120px) clamp(24px, 6vw, 64px);
+    border-block-start: 1px solid var(--vision-line);
+  }
+
+  .xalgo-vision__closing p,
+  .xalgo-vision__closing strong {
+    display: block;
+    max-width: 860px;
+    color: var(--vision-ink);
+    font-size: clamp(1.6rem, 4vw, 4.6rem);
+    font-weight: 600;
+    line-height: 1.04;
+    letter-spacing: -0.055em;
+  }
+
+  .xalgo-vision__closing p + p {
+    margin-block-start: 26px;
+    color: var(--vision-muted);
+  }
+
+  .xalgo-vision__closing strong {
+    margin-block-start: 36px;
+    color: var(--vision-accent);
+  }
+
+  @media screen and (max-width: 900px) {
+    .xalgo-vision__section--intro,
+    .xalgo-vision__pillars,
+    .xalgo-vision__section--split {
+      grid-template-columns: 1fr;
+    }
+
+    .xalgo-vision__pillar {
+      min-height: auto;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .xalgo-vision__shell {
+      width: min(100% - 24px, 1120px);
+    }
+
+    .xalgo-vision__statement,
+    .xalgo-vision__pillar {
+      border-radius: 20px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Vision (xalgo)",
+  "tag": "section",
+  "class": "section-wrapper xalgo-vision-wrapper",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vision (xalgo)",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema %}
