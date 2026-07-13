@@ -1,0 +1,165 @@
+{%- doc -%}
+  Renders a product image stage that updates instantly when a variant color is selected.
+
+  @param {object} product_resource - The product object.
+{%- enddoc -%}
+
+{%- liquid
+  assign selected_variant = product_resource.selected_or_first_available_variant
+  assign stage_image = selected_variant.featured_image | default: selected_variant.featured_media.preview_image | default: product_resource.featured_image
+
+  if stage_image == blank
+    for product_option in product_resource.options_with_values
+      for product_option_value in product_option.values
+        if product_option_value.selected and product_option_value.swatch.image
+          assign stage_image = product_option_value.swatch.image
+          break
+        endif
+      endfor
+      if stage_image != blank
+        break
+      endif
+    endfor
+  endif
+
+  if stage_image == blank
+    for product_option in product_resource.options_with_values
+      for product_option_value in product_option.values
+        if product_option_value.swatch.image
+          assign stage_image = product_option_value.swatch.image
+          break
+        endif
+      endfor
+      if stage_image != blank
+        break
+      endif
+    endfor
+  endif
+-%}
+
+<xalgo-product-stage
+  class="xalgo-product-stage"
+  data-product-id="{{ product_resource.id }}"
+>
+  <div class="xalgo-product-stage__surface">
+    <div class="xalgo-product-stage__glow" aria-hidden="true"></div>
+    {%- if stage_image -%}
+      {{
+        stage_image
+        | image_url: width: 1800
+        | image_tag:
+          widths: '480, 720, 960, 1200, 1600, 1800',
+          sizes: '(min-width: 990px) 58vw, 100vw',
+          loading: 'eager',
+          fetchpriority: 'high',
+          alt: product_resource.title,
+          class: 'xalgo-product-stage__image',
+          data_xalgo_stage_image: ''
+      }}
+    {%- else -%}
+      {{ 'product-apparel-1' | placeholder_svg_tag: 'xalgo-product-stage__placeholder' }}
+    {%- endif -%}
+  </div>
+
+  <script type="application/json" data-xalgo-stage-images>
+    {
+      {%- assign rendered_image = false -%}
+      {%- for product_option in product_resource.options_with_values -%}
+        {%- for product_option_value in product_option.values -%}
+          {%- liquid
+            assign option_image = product_option_value.variant.featured_image | default: product_option_value.variant.featured_media.preview_image | default: product_option_value.swatch.image
+          -%}
+          {%- if option_image -%}
+            {%- if rendered_image -%},{%- endif -%}
+            "{{ product_option_value.id }}": {
+              "src": {{ option_image | image_url: width: 1800 | json }},
+              "alt": {{ product_option_value.name | append: ' ' | append: product_resource.title | json }}
+            }
+            {%- assign rendered_image = true -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    }
+  </script>
+</xalgo-product-stage>
+
+<script src="{{ 'xalgo-product-stage.js' | asset_url }}" type="module"></script>
+
+{% stylesheet %}
+  .xalgo-product-stage {
+    display: block;
+    position: sticky;
+    top: calc(var(--header-height, 0px) + 24px);
+  }
+
+  .xalgo-product-stage__surface {
+    position: relative;
+    min-height: clamp(520px, 72vh, 820px);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 28px;
+    background:
+      radial-gradient(circle at 50% 38%, rgb(255 255 255 / 0.92) 0 18%, rgb(243 247 250 / 0.74) 38%, rgb(225 232 240 / 0.55) 100%),
+      linear-gradient(145deg, #f8fafb 0%, #edf2f6 52%, #dde6ee 100%);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.78), 0 24px 70px rgb(64 78 96 / 0.12);
+    isolation: isolate;
+  }
+
+  .xalgo-product-stage__surface::after {
+    content: '';
+    position: absolute;
+    inset: auto 11% 10% 11%;
+    height: 18%;
+    border-radius: 999px;
+    background: rgb(76 91 112 / 0.14);
+    filter: blur(34px);
+    transform: scaleX(0.72);
+    z-index: 0;
+  }
+
+  .xalgo-product-stage__glow {
+    position: absolute;
+    width: min(58%, 520px);
+    aspect-ratio: 1;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.72);
+    filter: blur(52px);
+    z-index: 0;
+  }
+
+  .xalgo-product-stage__image,
+  .xalgo-product-stage__placeholder {
+    position: relative;
+    z-index: 1;
+    width: min(76%, 760px);
+    max-height: min(72vh, 720px);
+    object-fit: contain;
+    object-position: center;
+    transition: opacity 180ms ease, transform 260ms ease;
+    will-change: opacity, transform;
+  }
+
+  .xalgo-product-stage[data-changing='true'] .xalgo-product-stage__image {
+    opacity: 0;
+    transform: scale(0.985) translateY(4px);
+  }
+
+  @media screen and (max-width: 749px) {
+    .xalgo-product-stage {
+      position: relative;
+      top: auto;
+    }
+
+    .xalgo-product-stage__surface {
+      min-height: 420px;
+      border-radius: 20px;
+    }
+
+    .xalgo-product-stage__image,
+    .xalgo-product-stage__placeholder {
+      width: min(84%, 520px);
+      max-height: 390px;
+    }
+  }
+{% endstylesheet %}

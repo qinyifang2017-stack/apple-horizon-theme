@@ -174,10 +174,10 @@
               "type": "variant-picker",
               "settings": {
                 "variant_style": "buttons",
-                "show_swatches": false,
+                "show_swatches": true,
                 "alignment": "left",
                 "padding-block-start": 0,
-                "padding-block-end": 0,
+                "padding-block-end": 8,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
@@ -280,7 +280,9 @@
                       "blocks": {}
                     }
                   },
-                  "block_order": ["shipping_text"]
+                  "block_order": [
+                    "shipping_text"
+                  ]
                 },
                 "returns_row": {
                   "type": "_accordion-row",
@@ -300,7 +302,9 @@
                       "blocks": {}
                     }
                   },
-                  "block_order": ["returns_text"]
+                  "block_order": [
+                    "returns_text"
+                  ]
                 },
                 "warranty_row": {
                   "type": "_accordion-row",
@@ -320,7 +324,9 @@
                       "blocks": {}
                     }
                   },
-                  "block_order": ["warranty_text"]
+                  "block_order": [
+                    "warranty_text"
+                  ]
                 },
                 "box_row": {
                   "type": "_accordion-row",
@@ -331,16 +337,26 @@
                     "width": 20
                   },
                   "blocks": {
-                    "box_contents": {
-                      "type": "xalgo-box-contents",
-                      "settings": {},
+                    "box_contents_text": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>{{ closest.product.title }}, required charging accessories, and quick start materials where included.</p>",
+                        "width": "100%"
+                      },
                       "blocks": {}
                     }
                   },
-                  "block_order": ["box_contents"]
+                  "block_order": [
+                    "box_contents_text"
+                  ]
                 }
               },
-              "block_order": ["shipping_row", "returns_row", "warranty_row", "box_row"]
+              "block_order": [
+                "shipping_row",
+                "returns_row",
+                "warranty_row",
+                "box_row"
+              ]
             },
             "full_faq_link": {
               "type": "text",

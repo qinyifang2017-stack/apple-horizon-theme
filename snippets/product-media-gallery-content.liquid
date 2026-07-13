@@ -101,9 +101,14 @@
     endif
   endif
 
+  assign selected_swatch_image = nil
   assign sorted_media = '' | split: ','
   if selected_variant_media
     assign sorted_media = sorted_media | concat: selected_product.media | where: 'id', selected_variant_media.id
+
+    if sorted_media.size == 0
+      assign sorted_media = sorted_media | concat: selected_variant_media
+    endif
 
     for media in selected_product.media
       if block_settings.hide_variants and variant_images contains media.src and sorted_media.size > 0
@@ -115,8 +120,39 @@
         assign sorted_media = sorted_media | concat: found_media
       endif
     endfor
+  elsif block_settings.hide_variants
+    for product_option in selected_product.options_with_values
+      for product_option_value in product_option.values
+        if product_option_value.selected and product_option_value.swatch.image
+          assign selected_swatch_image = product_option_value.swatch.image
+          break
+        endif
+      endfor
+      if selected_swatch_image
+        break
+      endif
+    endfor
+
+    if selected_swatch_image == nil
+      for product_option in selected_product.options_with_values
+        for product_option_value in product_option.values
+          if product_option_value.swatch.image
+            assign selected_swatch_image = product_option_value.swatch.image
+            break
+          endif
+        endfor
+        if selected_swatch_image
+          break
+        endif
+      endfor
+    endif
   else
     assign sorted_media = selected_product.media
+  endif
+
+  assign gallery_media_count = sorted_media.size
+  if gallery_media_count == 0 and selected_swatch_image
+    assign gallery_media_count = 1
   endif
   assign has_image_drop = sorted_media | has: 'media_type', 'image'
 
@@ -355,6 +391,34 @@
     {{ block_shopify_attributes }}
   >
     {% capture slides %}
+      {% if selected_swatch_image and sorted_media.size == 0 %}
+        {% capture children %}
+          {{
+            selected_swatch_image
+            | image_url: width: 3840
+            | image_tag:
+              widths: '240, 352, 832, 1200, 1600, 1920, 2560, 3840',
+              alt: selected_product.title,
+              sizes: sizes,
+              loading: loading,
+              class: 'product-media__image',
+              fetchpriority: 'high'
+          }}
+        {% endcapture %}
+        {% capture class %}
+          {{ product_media_container_class }} product-media-container--image{% if block_settings.zoom %} product-media-container--zoomable{% endif %} product-media-container--tallest
+        {% endcapture %}
+        {% capture style %}
+          --media-preview-ratio: {{ selected_swatch_image.aspect_ratio | default: 1.0 }};
+        {% endcapture %}
+        {% render 'slideshow-slide',
+          index: 0,
+          children: children,
+          class: class,
+          style: style,
+          media_fit: block_settings.media_fit,
+        %}
+      {% endif %}
       {% for media in sorted_media %}
         {% capture children %}
           {%- liquid
@@ -438,7 +502,7 @@
       ref: 'slideshow',
       class: slideshow_class,
       slides: slides,
-      slide_count: sorted_media.size,
+      slide_count: gallery_media_count,
       slideshow_arrows: slideshow_arrows,
       arrows_position: icons_position,
       controls: controls
@@ -449,6 +513,41 @@
         class="media-gallery__grid list-unstyled"
         data-testid="media-gallery-grid"
       >
+        {% if selected_swatch_image and sorted_media.size == 0 %}
+          <li
+            ref="media[]"
+            class="{{ product_media_container_class }} product-media-container--image {% unless block_settings.aspect_ratio == 'adapt' %}product-media-container--force-aspect{% endunless %}"
+            style="{% if block_settings.aspect_ratio == 'adapt' %} --media-preview-ratio: {{ selected_swatch_image.aspect_ratio | default: 1.0 }};{% endif %} --media-radius: {{ block_settings.media_radius }}px;"
+          >
+            {% if block_settings.aspect_ratio != 'adapt' and block_settings.constrain_to_viewport %}
+              <div class="product-media-constraint-wrapper">
+                {{
+                  selected_swatch_image
+                  | image_url: width: 3840
+                  | image_tag:
+                    widths: '240, 352, 832, 1200, 1600, 1920, 2560, 3840',
+                    alt: selected_product.title,
+                    sizes: sizes,
+                    loading: loading,
+                    class: 'product-media__image',
+                    fetchpriority: 'high'
+                }}
+              </div>
+            {% else %}
+              {{
+                selected_swatch_image
+                | image_url: width: 3840
+                | image_tag:
+                  widths: '240, 352, 832, 1200, 1600, 1920, 2560, 3840',
+                  alt: selected_product.title,
+                  sizes: sizes,
+                  loading: loading,
+                  class: 'product-media__image',
+                  fetchpriority: 'high'
+              }}
+            {% endif %}
+          </li>
+        {% endif %}
         {% for media in sorted_media %}
           <li
             ref="media[]"
@@ -561,6 +660,28 @@
           <ul
             class="dialog-zoomed-gallery list-unstyled"
           >
+            {% if selected_swatch_image and sorted_media.size == 0 %}
+              <li
+                id="product-swatch-image-{{ block_id }}"
+                class="{{ product_media_container_class | remove: 'media-fit-cover' }} product-media-container--image product-media-container--zoomable"
+                style="{% if block_settings.aspect_ratio == 'adapt' %} --media-preview-ratio: {{ selected_swatch_image.aspect_ratio | default: 1.0 }};{% endif %}"
+                ref="media[]"
+                on:click="/close"
+              >
+                <drag-zoom-wrapper class="product-media__drag-zoom-wrapper">
+                  {{
+                    selected_swatch_image
+                    | image_url: width: 3840
+                    | image_tag:
+                      widths: '240, 352, 832, 1200, 1600, 1920, 2560, 3840',
+                      alt: selected_product.title,
+                      sizes: '100vw',
+                      loading: 'lazy',
+                      class: 'product-media__image'
+                  }}
+                </drag-zoom-wrapper>
+              </li>
+            {% endif %}
             {%- for media in sorted_media -%}
               <li
                 id="product-{{ media.id}}-{{ forloop.index }}"

@@ -5,11 +5,7 @@
 </script>
 
 {% capture media_gallery %}
-  {%- content_for 'block',
-    type: '_product-media-gallery',
-    id: 'media-gallery',
-    closest.product: closest.product
-  -%}
+  {%- render 'xalgo-product-stage', product_resource: closest.product -%}
 {% endcapture %}
 
 {% capture product_details %}
@@ -167,8 +163,25 @@
   </sticky-add-to-cart>
 {% endif %}
 
+{% liquid
+  assign product_media_size = closest.product.media.size
+  if product_media_size == 0
+    for product_option in closest.product.options_with_values
+      for product_option_value in product_option.values
+        if product_option_value.swatch.image
+          assign product_media_size = 1
+          break
+        endif
+      endfor
+      if product_media_size > 0
+        break
+      endif
+    endfor
+  endif
+%}
+
 {% render 'product-information-content',
-  product_media_size: closest.product.media.size,
+  product_media_size: 1,
   section_id: section.id,
   settings: section.settings,
   media_gallery: media_gallery,

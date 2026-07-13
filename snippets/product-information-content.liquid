@@ -48,6 +48,20 @@
     assign product_has_media = false
   endif
 
+  if product_has_media == false
+    for product_option in closest.product.options_with_values
+      for product_option_value in product_option.values
+        if product_option_value.swatch.image
+          assign product_has_media = true
+          break
+        endif
+      endfor
+      if product_has_media
+        break
+      endif
+    endfor
+  endif
+
   # Build product grid class
   assign product_grid_class = 'product-information__grid'
 
