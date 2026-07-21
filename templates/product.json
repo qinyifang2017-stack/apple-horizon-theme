@@ -1,12 +1,4 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */{
+{
   "sections": {
     "main": {
       "type": "product-information",
@@ -130,6 +122,32 @@
                   },
                   "blocks": {}
                 },
+                "eyebrow_tag": {
+                  "type": "text",
+                  "name": "Eyebrow tag",
+                  "settings": {
+                    "text": "<p>Smart Ring</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-body--family)",
+                    "font_size": "0.6875rem",
+                    "line_height": "normal",
+                    "letter_spacing": "loose",
+                    "case": "uppercase",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground-secondary)",
+                    "background": true,
+                    "background_color": "#0000000D",
+                    "corner_radius": 50,
+                    "padding-block-start": 4,
+                    "padding-block-end": 4,
+                    "padding-inline-start": 12,
+                    "padding-inline-end": 12
+                  },
+                  "blocks": {}
+                },
                 "price_tVjtKg": {
                   "type": "price",
                   "settings": {
@@ -154,6 +172,7 @@
                 }
               },
               "block_order": [
+                "eyebrow_tag",
                 "text_xrnftG",
                 "price_tVjtKg"
               ]
@@ -186,7 +205,7 @@
             "buy_buttons_eYQEYi": {
               "type": "buy-buttons",
               "settings": {
-                "stacking": true,
+                "stacking": false,
                 "show_pickup_availability": false,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
@@ -216,210 +235,13 @@
                 }
               },
               "block_order": []
-            },
-            "purchase_details_heading": {
-              "type": "text",
-              "name": "Purchase details heading",
-              "settings": {
-                "text": "<p>Good to know</p>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h6",
-                "font": "var(--font-primary--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "purchase_details_accordion": {
-              "type": "accordion",
-              "name": "Purchase details",
-              "settings": {
-                "icon": "plus",
-                "dividers": true,
-                "type_preset": "paragraph",
-                "inherit_color_scheme": true,
-                "color_scheme": "scheme-1",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "shipping_row": {
-                  "type": "_accordion-row",
-                  "settings": {
-                    "heading": "Shipping",
-                    "open_by_default": false,
-                    "icon": "plane",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "shipping_text": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>Orders are processed quickly and shipped with tracking, so you can follow delivery after checkout.</p>",
-                        "width": "100%"
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "shipping_text"
-                  ]
-                },
-                "returns_row": {
-                  "type": "_accordion-row",
-                  "settings": {
-                    "heading": "Returns",
-                    "open_by_default": false,
-                    "icon": "return",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "returns_text": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>If the product is not right for you, review the return window and condition requirements in our full FAQ before sending it back.</p>",
-                        "width": "100%"
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "returns_text"
-                  ]
-                },
-                "warranty_row": {
-                  "type": "_accordion-row",
-                  "settings": {
-                    "heading": "Warranty",
-                    "open_by_default": false,
-                    "icon": "check_box",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "warranty_text": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>Your product is covered for everyday use under our warranty policy.</p>",
-                        "width": "100%"
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "warranty_text"
-                  ]
-                },
-                "box_row": {
-                  "type": "_accordion-row",
-                  "settings": {
-                    "heading": "What’s in the box",
-                    "open_by_default": false,
-                    "icon": "box",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "box_contents_text": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>{{ closest.product.title }}, required charging accessories, and quick start materials where included.</p>",
-                        "width": "100%"
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "box_contents_text"
-                  ]
-                }
-              },
-              "block_order": [
-                "shipping_row",
-                "returns_row",
-                "warranty_row",
-                "box_row"
-              ]
-            },
-            "full_faq_link": {
-              "type": "text",
-              "name": "Full FAQ link",
-              "settings": {
-                "text": "<p>Still have questions? <a href=\"/pages/faq\">View full FAQ</a></p>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "0.875rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_aEtTtq": {
-              "type": "text",
-              "name": "Product description",
-              "settings": {
-                "text": "{{ closest.product.description }}",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-primary--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
             }
           },
           "block_order": [
             "group_icgrde",
             "divider_VJhene",
             "variant_picker_R3rGDr",
-            "buy_buttons_eYQEYi",
-            "purchase_details_heading",
-            "purchase_details_accordion",
-            "full_faq_link",
-            "text_aEtTtq"
+            "buy_buttons_eYQEYi"
           ]
         }
       },
@@ -433,9 +255,747 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "trust_and_details": {
+      "type": "section",
+      "blocks": {
+        "trust_badges_row": {
+          "type": "group",
+          "name": "Trust badges",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_row": "flex-start",
+            "vertical_alignment_flex_direction_row": "center",
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 16,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "padding-block-start": 0,
+            "padding-block-end": 40,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "badge_shipping": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "center",
+                "vertical_alignment": "center",
+                "gap": 8,
+                "width": "fill",
+                "inherit_color_scheme": true,
+                "padding-block-start": 28,
+                "padding-block-end": 28,
+                "padding-inline-start": 16,
+                "padding-inline-end": 16,
+                "custom_width": 100,
+                "border": "solid",
+                "border_width": 1,
+                "border_opacity": 15,
+                "border_radius": 16
+              },
+              "blocks": {
+                "badge_shipping_icon": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "truck",
+                    "width": 32
+                  }
+                },
+                "badge_shipping_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Free Shipping</p>",
+                    "width": "100%",
+                    "type_preset": "h4",
+                    "font_size": "",
+                    "alignment": "center",
+                    "color": "var(--color-foreground)"
+                  }
+                }
+              },
+              "block_order": [
+                "badge_shipping_icon",
+                "badge_shipping_text"
+              ]
+            },
+            "badge_returns": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "center",
+                "vertical_alignment": "center",
+                "gap": 8,
+                "width": "fill",
+                "inherit_color_scheme": true,
+                "padding-block-start": 28,
+                "padding-block-end": 28,
+                "padding-inline-start": 16,
+                "padding-inline-end": 16,
+                "custom_width": 100,
+                "border": "solid",
+                "border_width": 1,
+                "border_opacity": 15,
+                "border_radius": 16
+              },
+              "blocks": {
+                "badge_returns_icon": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "return",
+                    "width": 32
+                  }
+                },
+                "badge_returns_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>30-Day Returns</p>",
+                    "width": "100%",
+                    "type_preset": "h4",
+                    "font_size": "",
+                    "alignment": "center",
+                    "color": "var(--color-foreground)"
+                  }
+                }
+              },
+              "block_order": [
+                "badge_returns_icon",
+                "badge_returns_text"
+              ]
+            },
+            "badge_warranty": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "center",
+                "vertical_alignment": "center",
+                "gap": 8,
+                "width": "fill",
+                "inherit_color_scheme": true,
+                "padding-block-start": 28,
+                "padding-block-end": 28,
+                "padding-inline-start": 16,
+                "padding-inline-end": 16,
+                "custom_width": 100,
+                "border": "solid",
+                "border_width": 1,
+                "border_opacity": 15,
+                "border_radius": 16
+              },
+              "blocks": {
+                "badge_warranty_icon": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "check_box",
+                    "width": 32
+                  }
+                },
+                "badge_warranty_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>1-Year Warranty</p>",
+                    "width": "100%",
+                    "type_preset": "h4",
+                    "font_size": "",
+                    "alignment": "center",
+                    "color": "var(--color-foreground)"
+                  }
+                }
+              },
+              "block_order": [
+                "badge_warranty_icon",
+                "badge_warranty_text"
+              ]
+            }
+          },
+          "block_order": [
+            "badge_shipping",
+            "badge_returns",
+            "badge_warranty"
+          ]
+        },
+        "good_to_know": {
+          "type": "group",
+          "name": "Good to know",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "flex-start",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 16,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "gtk_heading": {
+              "type": "text",
+              "name": "Purchase details heading",
+              "settings": {
+                "text": "<p>Good to know</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "h4",
+                "font": "var(--font-primary--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 16,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "full_faq_link": {
+              "type": "text",
+              "name": "Full FAQ link",
+              "settings": {
+                "text": "<p>Still have questions? <a href=\"/pages/faq\">View full FAQ</a></p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "0.875rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 16,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "gtk_row1": {
+              "type": "group",
+              "name": "Row 1",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "flex-start",
+                "gap": 16,
+                "width": "fill",
+                "custom_width": 100,
+                "inherit_color_scheme": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "gtk_shipping": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "flex-start",
+                    "gap": 8,
+                    "width": "fill",
+                    "inherit_color_scheme": true,
+                    "padding-block-start": 20,
+                    "padding-block-end": 20,
+                    "padding-inline-start": 20,
+                    "padding-inline-end": 20,
+                    "custom_width": 100,
+                    "border": "solid",
+                    "border_width": 1,
+                    "border_opacity": 15,
+                    "border_radius": 16
+                  },
+                  "blocks": {
+                    "gtk_shipping_icon": {
+                      "type": "icon",
+                      "settings": {
+                        "icon": "plane",
+                        "width": 24
+                      }
+                    },
+                    "gtk_shipping_content": {
+                      "type": "group",
+                      "settings": {
+                        "content_direction": "column",
+                        "vertical_on_mobile": true,
+                        "horizontal_alignment": "flex-start",
+                        "vertical_alignment": "flex-start",
+                        "gap": 4,
+                        "width": "fill",
+                        "inherit_color_scheme": true,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {
+                        "gtk_shipping_title": {
+                          "type": "text",
+                          "settings": {
+                            "text": "<p><strong>Shipping</strong></p>",
+                            "width": "100%",
+                            "type_preset": "paragraph",
+                            "alignment": "left",
+                            "color": "var(--color-foreground)"
+                          }
+                        },
+                        "gtk_shipping_desc": {
+                          "type": "text",
+                          "settings": {
+                            "text": "<p>Orders are processed quickly and shipped with tracking, so you can follow delivery after checkout.</p>",
+                            "width": "100%",
+                            "type_preset": "paragraph",
+                            "font_size": "0.875rem",
+                            "alignment": "left",
+                            "color": "var(--color-foreground-secondary)"
+                          }
+                        }
+                      },
+                      "block_order": [
+                        "gtk_shipping_title",
+                        "gtk_shipping_desc"
+                      ]
+                    }
+                  },
+                  "block_order": [
+                    "gtk_shipping_icon",
+                    "gtk_shipping_content"
+                  ]
+                },
+                "gtk_returns": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "flex-start",
+                    "gap": 8,
+                    "width": "fill",
+                    "inherit_color_scheme": true,
+                    "padding-block-start": 20,
+                    "padding-block-end": 20,
+                    "padding-inline-start": 20,
+                    "padding-inline-end": 20,
+                    "custom_width": 100,
+                    "border": "solid",
+                    "border_width": 1,
+                    "border_opacity": 15,
+                    "border_radius": 16
+                  },
+                  "blocks": {
+                    "gtk_returns_icon": {
+                      "type": "icon",
+                      "settings": {
+                        "icon": "return",
+                        "width": 24
+                      }
+                    },
+                    "gtk_returns_content": {
+                      "type": "group",
+                      "settings": {
+                        "content_direction": "column",
+                        "vertical_on_mobile": true,
+                        "horizontal_alignment": "flex-start",
+                        "vertical_alignment": "flex-start",
+                        "gap": 4,
+                        "width": "fill",
+                        "inherit_color_scheme": true,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {
+                        "gtk_returns_title": {
+                          "type": "text",
+                          "settings": {
+                            "text": "<p><strong>Returns</strong></p>",
+                            "width": "100%",
+                            "type_preset": "paragraph",
+                            "alignment": "left",
+                            "color": "var(--color-foreground)"
+                          }
+                        },
+                        "gtk_returns_desc": {
+                          "type": "text",
+                          "settings": {
+                            "text": "<p>If the product is not right for you, review the return window and condition requirements in our full FAQ before sending it back.</p>",
+                            "width": "100%",
+                            "type_preset": "paragraph",
+                            "font_size": "0.875rem",
+                            "alignment": "left",
+                            "color": "var(--color-foreground-secondary)"
+                          }
+                        }
+                      },
+                      "block_order": [
+                        "gtk_returns_title",
+                        "gtk_returns_desc"
+                      ]
+                    }
+                  },
+                  "block_order": [
+                    "gtk_returns_icon",
+                    "gtk_returns_content"
+                  ]
+                }
+              },
+              "block_order": [
+                "gtk_shipping",
+                "gtk_returns"
+              ]
+            },
+            "gtk_row2": {
+              "type": "group",
+              "name": "Row 2",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "flex-start",
+                "gap": 16,
+                "width": "fill",
+                "custom_width": 100,
+                "inherit_color_scheme": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "gtk_warranty": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "flex-start",
+                    "gap": 8,
+                    "width": "fill",
+                    "inherit_color_scheme": true,
+                    "padding-block-start": 20,
+                    "padding-block-end": 20,
+                    "padding-inline-start": 20,
+                    "padding-inline-end": 20,
+                    "custom_width": 100,
+                    "border": "solid",
+                    "border_width": 1,
+                    "border_opacity": 15,
+                    "border_radius": 16
+                  },
+                  "blocks": {
+                    "gtk_warranty_icon": {
+                      "type": "icon",
+                      "settings": {
+                        "icon": "check_box",
+                        "width": 24
+                      }
+                    },
+                    "gtk_warranty_content": {
+                      "type": "group",
+                      "settings": {
+                        "content_direction": "column",
+                        "vertical_on_mobile": true,
+                        "horizontal_alignment": "flex-start",
+                        "vertical_alignment": "flex-start",
+                        "gap": 4,
+                        "width": "fill",
+                        "inherit_color_scheme": true,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {
+                        "gtk_warranty_title": {
+                          "type": "text",
+                          "settings": {
+                            "text": "<p><strong>Warranty</strong></p>",
+                            "width": "100%",
+                            "type_preset": "paragraph",
+                            "alignment": "left",
+                            "color": "var(--color-foreground)"
+                          }
+                        },
+                        "gtk_warranty_desc": {
+                          "type": "text",
+                          "settings": {
+                            "text": "<p>Your product is covered for everyday use under our warranty policy.</p>",
+                            "width": "100%",
+                            "type_preset": "paragraph",
+                            "font_size": "0.875rem",
+                            "alignment": "left",
+                            "color": "var(--color-foreground-secondary)"
+                          }
+                        }
+                      },
+                      "block_order": [
+                        "gtk_warranty_title",
+                        "gtk_warranty_desc"
+                      ]
+                    }
+                  },
+                  "block_order": [
+                    "gtk_warranty_icon",
+                    "gtk_warranty_content"
+                  ]
+                },
+                "gtk_box": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "flex-start",
+                    "gap": 8,
+                    "width": "fill",
+                    "inherit_color_scheme": true,
+                    "padding-block-start": 20,
+                    "padding-block-end": 20,
+                    "padding-inline-start": 20,
+                    "padding-inline-end": 20,
+                    "custom_width": 100,
+                    "border": "solid",
+                    "border_width": 1,
+                    "border_opacity": 15,
+                    "border_radius": 16
+                  },
+                  "blocks": {
+                    "gtk_box_icon": {
+                      "type": "icon",
+                      "settings": {
+                        "icon": "box",
+                        "width": 24
+                      }
+                    },
+                    "gtk_box_content": {
+                      "type": "group",
+                      "settings": {
+                        "content_direction": "column",
+                        "vertical_on_mobile": true,
+                        "horizontal_alignment": "flex-start",
+                        "vertical_alignment": "flex-start",
+                        "gap": 4,
+                        "width": "fill",
+                        "inherit_color_scheme": true,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {
+                        "gtk_box_title": {
+                          "type": "text",
+                          "settings": {
+                            "text": "<p><strong>What is in the box</strong></p>",
+                            "width": "100%",
+                            "type_preset": "paragraph",
+                            "alignment": "left",
+                            "color": "var(--color-foreground)"
+                          }
+                        },
+                        "gtk_box_desc": {
+                          "type": "text",
+                          "settings": {
+                            "text": "<p>{{ closest.product.title }}, required charging accessories, and quick start materials where included.</p>",
+                            "width": "100%",
+                            "type_preset": "paragraph",
+                            "font_size": "0.875rem",
+                            "alignment": "left",
+                            "color": "var(--color-foreground-secondary)"
+                          }
+                        }
+                      },
+                      "block_order": [
+                        "gtk_box_title",
+                        "gtk_box_desc"
+                      ]
+                    }
+                  },
+                  "block_order": [
+                    "gtk_box_icon",
+                    "gtk_box_content"
+                  ]
+                }
+              },
+              "block_order": [
+                "gtk_warranty",
+                "gtk_box"
+              ]
+            }
+          },
+          "block_order": [
+            "gtk_heading",
+            "gtk_row1",
+            "gtk_row2",
+            "full_faq_link"
+          ]
+        }
+      },
+      "block_order": [
+        "trust_badges_row",
+        "good_to_know"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "page-width",
+        "section_height": "",
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
+    },
+    "xring_tech_specs": {
+      "type": "xalgo-tech-specs",
+      "blocks": {
+        "spec_sensors": {
+          "type": "spec_group",
+          "settings": {
+            "icon": "sensor",
+            "heading": "Sensors",
+            "details": "<p>Red and infrared LEDs measure blood oxygen levels</p><p>Green and infrared LEDs run alternately to monitor heart rate and heart rate variability throughout the day</p><p>Digital temperature sensors monitor body temperature trends</p><p>An accelerometer tracks movement and activity all day</p>"
+          }
+        },
+        "spec_compatibility": {
+          "type": "spec_group",
+          "settings": {
+            "icon": "compatibility",
+            "heading": "Compatibility",
+            "details": "<p>The xalgo App supports English, Japanese, German, French, Spanish and other major languages</p><p>Metric and imperial units are supported</p><p>Works with iOS and Android systems</p>"
+          }
+        },
+        "spec_size": {
+          "type": "spec_group",
+          "settings": {
+            "icon": "size",
+            "heading": "Weight & dimensions",
+            "details": "<p>Ring width: 7.90 mm</p><p>Ring thickness: 2.88 mm</p><p>Weight: 3.3 to 5.2 g, depending on ring size</p>"
+          }
+        },
+        "spec_battery": {
+          "type": "spec_group",
+          "settings": {
+            "icon": "battery",
+            "heading": "Battery life",
+            "details": "<p>5-8 days of battery life</p><p>Typically charges in 20-80 minutes, depending on battery level</p>"
+          }
+        },
+        "spec_materials": {
+          "type": "spec_group",
+          "settings": {
+            "icon": "materials",
+            "heading": "Premium materials",
+            "details": "<p>Hypoallergenic titanium on both inner and outer surfaces</p><p>Smooth titanium inner surface</p><p>Water resistant up to 100 meters</p><p>Light scratches from everyday wear are normal</p>"
+          }
+        },
+        "spec_connectivity": {
+          "type": "spec_group",
+          "settings": {
+            "icon": "connectivity",
+            "heading": "Connectivity",
+            "details": "<p>Bluetooth Low Energy</p><p>Automatic firmware updates through the xalgo App</p><p>Airplane Mode supported</p><p>EMF safe</p>"
+          }
+        }
+      },
+      "block_order": [
+        "spec_sensors",
+        "spec_compatibility",
+        "spec_size",
+        "spec_battery",
+        "spec_materials",
+        "spec_connectivity"
+      ],
+      "name": "xRing Tech Specs",
+      "settings": {
+        "eyebrow": "xRing details",
+        "heading": "Tech specs",
+        "subheading": "Key sensors, battery life, materials, and compatibility details in one clear overview.",
+        "box_heading": "In the box",
+        "box_items": "<p>xRing</p><p>Dedicated charging dock</p><p>USB-C cable</p>",
+        "color_scheme": "scheme-1",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "trust_and_details",
+    "xring_tech_specs"
   ]
 }

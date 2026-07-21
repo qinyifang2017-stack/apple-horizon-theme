@@ -1,0 +1,14 @@
+﻿{
+  "$schema": "https://raw.githubusercontent.com/Shopify/theme-tools/main/packages/theme-check-node/lib/theme-check-schema.json",
+  "extends": "theme-check:recommended",
+  "ignore": [
+    "node_modules",
+    "dist",
+    "build"
+  ],
+  "settings": {
+    "ImgWidthAndHeight": {
+      "severity": "warning"
+    }
+  }
+}

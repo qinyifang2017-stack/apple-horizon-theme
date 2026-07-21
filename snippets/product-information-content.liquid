@@ -302,14 +302,14 @@
         .product-information__grid--half,
         .product-information--media-none
       ).product-information--media-left {
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: 2.2fr 1fr;
     }
 
     .product-information__grid:not(
         .product-information__grid--half,
         .product-information--media-none
       ).product-information--media-right {
-      grid-template-columns: 1fr 2fr;
+      grid-template-columns: 1fr 2.2fr;
     }
   }
 
@@ -327,5 +327,29 @@
   /* If the header is sticky, make product details content stick underneath the header */
   body:has(#header-group #header-component[data-sticky-state='active']) .product-details.sticky-content--desktop {
     --sticky-header-offset: var(--header-height);
+  }
+
+  .variant-picker .variant-button,
+  .variant-picker button[data-option-value-id] {
+    border-radius: 999px;
+    transition: border-color 160ms ease, background 160ms ease;
+  }
+
+  @media screen and (min-width: 750px) {
+    .product-details h1 {
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+  }
+
+  /* Inline quantity + CTA (Oura-style). Accelerated checkout wraps below. */
+  .product-form-buttons:not(.product-form-buttons--stacked) .accelerated-checkout-block {
+    flex: 1 0 100%;
+    margin-top: var(--gap-xs, 4px);
+  }
+
+  /* Trust badges wrap gracefully on narrow screens */
+  .product-details .group-block .group-block .group-block {
+    flex-wrap: wrap;
   }
 {% endstylesheet %}

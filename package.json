@@ -1,0 +1,34 @@
+﻿{
+    "name":  "apple-horizon-theme",
+    "version":  "1.0.0",
+    "private":  true,
+    "description":  "xalgo Cream Apple theme based on Shopify Horizon v3.5.1",
+    "type":  "module",
+    "scripts":  {
+                    "dev":  "shopify theme dev --theme-editor-mode",
+                    "dev:full":  "shopify theme dev",
+                    "push":  "shopify theme push --unpublished",
+                    "push:force":  "shopify theme push --theme=HEAD --force",
+                    "pull":  "shopify theme pull",
+                    "list":  "shopify theme list",
+                    "check":  "shopify theme check",
+                    "check:fix":  "shopify theme check --fix",
+                    "format":  "prettier --write \"**/*.{liquid,css,js,json}\"",
+                    "format:check":  "prettier --check \"**/*.{liquid,css,js,json}\"",
+                    "push:live":  "shopify theme push --allow-live",
+                    "push:only":  "shopify theme push --allow-live"
+                },
+    "keywords":  [
+                     "shopify",
+                     "theme",
+                     "horizon",
+                     "xalgo"
+                 ],
+    "license":  "UNLICENSED",
+    "devDependencies":  {
+                            "@shopify/cli":  "^3.83.0",
+                            "@shopify/theme-check-node":  "^3.26.1",
+                            "@shopify/prettier-plugin-liquid":  "^1.10.3",
+                            "prettier":  "^3.3.0"
+                        }
+}
