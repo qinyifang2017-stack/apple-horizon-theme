@@ -8,6 +8,143 @@
  * ------------------------------------------------------------
  */{
   "sections": {
+    "promo_banner": {
+      "type": "promo-banner",
+      "blocks": {
+        "promo_badge": {
+          "type": "_promo-badge",
+          "settings": {
+            "text": "Live on Kickstarter",
+            "icon": "none",
+            "style": "outline",
+            "link": "",
+            "open_in_new_tab": true,
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          }
+        },
+        "promo_heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h1>xGlass</h1>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h1",
+            "font": "var(--font-heading--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "promo_subheading": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The view ahead, quietly smarter.</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1.08rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 8,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "promo_progress": {
+          "type": "_promo-progress",
+          "settings": {
+            "primary_metric": "83% funded",
+            "metric_label": "Kickstarter early access",
+            "current_amount": "1247",
+            "goal_amount": "1500",
+            "progress_style": "success",
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          }
+        },
+        "promo_countdown": {
+          "type": "_promo-countdown",
+          "settings": {
+            "end_date": "",
+            "expired_text": "Early bird offer has ended",
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          }
+        },
+        "promo_cta": {
+          "type": "button",
+          "settings": {
+            "label": "Learn more",
+            "link": "",
+            "open_in_new_tab": false,
+            "style_class": "button",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "promo_badge",
+        "promo_heading",
+        "promo_subheading",
+        "promo_progress",
+        "promo_countdown",
+        "promo_cta"
+      ],
+      "settings": {
+        "enabled": true,
+        "media_type": "image",
+        "use_default_asset_images": true,
+        "background_alt": "xGlass Kickstarter campaign hero",
+        "backdrop_opacity": 30,
+        "overlay_card_background": "transparent",
+        "overlay_position": "left",        "toggle_overlay": true,
+        "overlay_color": "#00000066",
+        "section_width": "page-width",
+        "section_height": "full-screen",
+        "section_height_custom": 80,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "align_baseline": false,
+        "gap": 7,
+        "color_scheme": "scheme-1",
+        "link": "",
+        "open_in_new_tab": false,
+        "link_accessibility_text": "Back xGlass on Kickstarter",
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
+    },
     "hero_ring": {
       "type": "hero",
       "blocks": {
@@ -45,7 +182,7 @@
             "alignment": "center",
             "type_preset": "rte",
             "font": "var(--font-body--family)",
-            "font_size": "1.5rem",
+            "font_size": "1.25rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
@@ -107,10 +244,10 @@
         "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
-        "horizontal_alignment": "center",
+        "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
         "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
+        "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 16,
         "section_width": "page-width",
@@ -167,7 +304,7 @@
             "alignment": "center",
             "type_preset": "rte",
             "font": "var(--font-body--family)",
-            "font_size": "1.5rem",
+            "font_size": "1.25rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
@@ -229,10 +366,10 @@
         "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
-        "horizontal_alignment": "center",
+        "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
         "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
+        "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 16,
         "section_width": "page-width",
@@ -289,7 +426,7 @@
             "alignment": "center",
             "type_preset": "rte",
             "font": "var(--font-body--family)",
-            "font_size": "1.5rem",
+            "font_size": "1.25rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
@@ -351,10 +488,10 @@
         "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
-        "horizontal_alignment": "center",
+        "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
         "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
+        "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 16,
         "section_width": "page-width",
@@ -389,7 +526,7 @@
         "tab1_quote_author": "Sarah K., Product Designer",
         "tab2_label": "Going Out",
         "tab2_subtitle": "Glasses' Moment",
-        "tab2_description": "<p>Glasses on — just like any other pair. Walking down the street: \"You have a call at 10 with the Shanghai client.\" She didn't ask. Glasses just knew.</p>",
+        "tab2_description": "<p>Glasses on 鈥?just like any other pair. Walking down the street: \"You have a call at 10 with the Shanghai client.\" She didn't ask. Glasses just knew.</p>",
         "tab2_quote": "It reminded me about the meeting before I even checked my phone. Six microphones, zero phone pickups.",
         "tab2_quote_author": "Emma L., Startup Founder",
         "tab3_label": "Evening",
@@ -463,7 +600,7 @@
         "philosophy_body": {
           "type": "text",
           "settings": {
-            "text": "<p>xalgo creates AI products that live closer to everyday life — sensing the body, understanding the view, and turning memories into living moments.</p>",
+            "text": "<p>xalgo creates AI products that live closer to everyday life 鈥?sensing the body, understanding the view, and turning memories into living moments.</p>",
             "width": "100%",
             "max_width": "wide",
             "alignment": "left",
@@ -582,6 +719,7 @@
     }
   },
   "order": [
+    "promo_banner",
     "hero_ring",
     "hero_glasses",
     "hero_frame",

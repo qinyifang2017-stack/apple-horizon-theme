@@ -1,0 +1,229 @@
+{% assign block_settings = block.settings %}
+{% assign current_amount = block_settings.current_amount | default: '0' | plus: 0 %}
+{% assign goal_amount = block_settings.goal_amount | default: '100' | plus: 0 %}
+
+{%- if goal_amount > 0 -%}
+  {%- assign percent = current_amount | times: 100.0 | divided_by: goal_amount | round -%}
+{%- else -%}
+  {%- assign percent = 0 -%}
+{%- endif -%}
+{%- if percent > 100 -%}
+  {%- assign percent = 100 -%}
+{%- endif -%}
+
+<div
+  class="promo-progress spacing-style promo-progress--{{ block_settings.progress_style }}"
+  style="{% render 'spacing-style', settings: block_settings %}"
+  {{ block.shopify_attributes }}
+>
+  <div class="promo-progress__meta">
+    {%- if block_settings.primary_metric != blank -%}
+      <span class="promo-progress__metric">{{ block_settings.primary_metric }}</span>
+    {%- endif -%}
+    {%- if block_settings.metric_label != blank -%}
+      <span class="promo-progress__label">{{ block_settings.metric_label }}</span>
+    {%- endif -%}
+    <span class="promo-progress__percent">{{ percent }}%</span>
+  </div>
+  <div
+    class="promo-progress__track"
+    role="progressbar"
+    aria-valuenow="{{ percent }}"
+    aria-valuemin="0"
+    aria-valuemax="100"
+  >
+    <div class="promo-progress__fill" style="width: {{ percent }}%;"></div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .promo-progress {
+    width: min(100%, 320px);
+    margin-inline: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .promo-progress__meta {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: baseline;
+    justify-content: center;
+    gap: 9px;
+    margin-bottom: 7px;
+  }
+
+  .promo-progress__metric {
+    color: #1d1d1f;
+    font-size: clamp(0.72rem, 0.78vw, 0.82rem);
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+  }
+
+  .promo-progress__label {
+    color: rgb(29 29 31 / 58%);
+    font-size: 0.72rem;
+    white-space: nowrap;
+  }
+
+  .promo-progress__percent {
+    display: none;
+  }
+
+  .promo-progress__track {
+    height: 3px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 18%);
+  }
+
+  .promo-progress__fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #72f0a7 0%, #2fd478 100%);
+    transition: width 0.6s ease;
+  }
+
+  .promo-progress--urgent {
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  .promo-progress--urgent .promo-progress__percent {
+    color: #dc2626;
+  }
+
+  .promo-progress--urgent .promo-progress__track {
+    background: rgb(220 38 38 / 18%);
+  }
+
+  .promo-progress--urgent .promo-progress__fill {
+    background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+  }
+
+  .promo-progress--success .promo-progress__fill {
+    background: linear-gradient(90deg, #72f0a7 0%, #2fd478 100%);
+  }
+
+  .promo-banner--has-media .promo-progress__metric,
+  .promo-banner--has-media .promo-progress__label,
+  .promo-banner--has-media .promo-progress__percent {
+    color: inherit;
+    text-shadow: 0 2px 20px rgb(0 0 0 / 32%);
+  }
+
+  .promo-banner--has-media .promo-progress__label {
+    color: rgb(255 255 255 / 58%);
+  }
+
+  .promo-banner--has-media .promo-progress__track {
+    background: rgb(255 255 255 / 24%);
+  }
+
+  @media screen and (max-width: 749px) {
+    .promo-progress {
+      width: min(100%, 260px);
+    }
+
+    .promo-progress__meta {
+      grid-template-columns: 1fr auto;
+      gap: 2px 8px;
+    }
+
+    .promo-progress__label {
+      grid-column: 1 / -1;
+      white-space: normal;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Promo progress",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "primary_metric",
+      "label": "Primary metric",
+      "info": "Example: 1,247 backers or $89,000 raised",
+      "default": "1,247 backers"
+    },
+    {
+      "type": "text",
+      "id": "metric_label",
+      "label": "Metric label",
+      "info": "Example: of 1,500 early bird spots",
+      "default": "of 1,500 early bird spots"
+    },
+    {
+      "type": "text",
+      "id": "current_amount",
+      "label": "Current amount",
+      "info": "Numbers only. Used to calculate the bar percentage.",
+      "default": "1247"
+    },
+    {
+      "type": "text",
+      "id": "goal_amount",
+      "label": "Goal amount",
+      "info": "Numbers only. Used to calculate the bar percentage.",
+      "default": "1500"
+    },
+    {
+      "type": "select",
+      "id": "progress_style",
+      "label": "Bar style",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "urgent",
+          "label": "Urgent"
+        },
+        {
+          "value": "success",
+          "label": "Success"
+        }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promo progress"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,197 @@
+{% assign block_settings = block.settings %}
+
+{%- if block_settings.end_date != blank -%}
+  <promo-countdown
+    class="promo-countdown spacing-style"
+    style="{% render 'spacing-style', settings: block_settings %}"
+    data-end-date="{{ block_settings.end_date | escape }}"
+    data-expired-text="{{ block_settings.expired_text | escape }}"
+    {{ block.shopify_attributes }}
+  >
+    <div class="promo-countdown__units" role="timer" aria-live="polite">
+      <div class="promo-countdown__unit">
+        <span class="promo-countdown__number" data-days>00</span>
+        <span class="promo-countdown__label">Days</span>
+      </div>
+      <div class="promo-countdown__unit">
+        <span class="promo-countdown__number" data-hours>00</span>
+        <span class="promo-countdown__label">Hours</span>
+      </div>
+      <div class="promo-countdown__unit">
+        <span class="promo-countdown__number" data-minutes>00</span>
+        <span class="promo-countdown__label">Mins</span>
+      </div>
+      <div class="promo-countdown__unit">
+        <span class="promo-countdown__number" data-seconds>00</span>
+        <span class="promo-countdown__label">Secs</span>
+      </div>
+    </div>
+  </promo-countdown>
+
+  <script>
+    (() => {
+      class PromoCountdown extends HTMLElement {
+        connectedCallback() {
+          this.endDate = new Date(this.dataset.endDate).getTime();
+          this.expiredText = this.dataset.expiredText || 'Offer ended';
+          if (Number.isNaN(this.endDate)) return;
+          this.tick();
+          this.interval = window.setInterval(() => this.tick(), 1000);
+        }
+
+        disconnectedCallback() {
+          window.clearInterval(this.interval);
+        }
+
+        tick() {
+          const diff = this.endDate - Date.now();
+
+          if (diff <= 0) {
+            window.clearInterval(this.interval);
+            this.innerHTML = `<div class="promo-countdown__expired">${this.expiredText}</div>`;
+            return;
+          }
+
+          const days = Math.floor(diff / 86400000);
+          const hours = Math.floor((diff % 86400000) / 3600000);
+          const minutes = Math.floor((diff % 3600000) / 60000);
+          const seconds = Math.floor((diff % 60000) / 1000);
+
+          this.setValue('[data-days]', days);
+          this.setValue('[data-hours]', hours);
+          this.setValue('[data-minutes]', minutes);
+          this.setValue('[data-seconds]', seconds);
+        }
+
+        setValue(selector, value) {
+          const element = this.querySelector(selector);
+          if (element) element.textContent = String(value).padStart(2, '0');
+        }
+      }
+
+      if (!customElements.get('promo-countdown')) {
+        customElements.define('promo-countdown', PromoCountdown);
+      }
+    })();
+  </script>
+{%- endif -%}
+
+{% stylesheet %}
+  .promo-countdown__units {
+    display: flex;
+    justify-content: flex-start;
+    gap: 18px;
+  }
+
+  .promo-countdown__unit {
+    display: flex;
+    min-width: auto;
+    padding: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .promo-countdown__number {
+    color: #1d1d1f;
+    font-size: clamp(1.35rem, 2.1vw, 2.2rem);
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+  }
+
+  .promo-countdown__label {
+    color: rgb(29 29 31 / 48%);
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .promo-countdown__expired {
+    color: #1d1d1f;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .promo-banner--overlay-center .promo-countdown__units {
+    justify-content: center;
+  }
+
+  .promo-banner--has-media .promo-countdown__number,
+  .promo-banner--has-media .promo-countdown__label,
+  .promo-banner--has-media .promo-countdown__expired {
+    color: inherit;
+    text-shadow: 0 2px 20px rgb(0 0 0 / 32%);
+  }
+
+  .promo-banner--has-media .promo-countdown__label {
+    color: rgb(255 255 255 / 58%);
+  }
+
+  @media screen and (max-width: 749px) {
+    .promo-countdown__units {
+      gap: 14px;
+    }
+
+    .promo-countdown__unit {
+      min-width: auto;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Promo countdown",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "end_date",
+      "label": "End date",
+      "info": "Format: 2026-08-01 23:59:59"
+    },
+    {
+      "type": "text",
+      "id": "expired_text",
+      "label": "Expired text",
+      "default": "This offer has ended"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promo countdown"
+    }
+  ]
+}
+{% endschema %}

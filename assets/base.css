@@ -1986,9 +1986,45 @@ deferred-media[class] :is(.deferred-media__poster-button img, .deferred-media__p
   margin-block-end: var(--margin-xs);
 }
 
+.variant-option__legend--featured {
+  margin-block-end: 16px;
+  font-family: var(--font-primary--family);
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.1667;
+  letter-spacing: -0.02em;
+}
+
+.variant-option__heading {
+  display: block;
+  color: var(--color-foreground);
+}
+
+.variant-option__heading strong {
+  font-weight: 700;
+}
+
+.variant-option__heading span {
+  color: rgb(var(--color-foreground-rgb) / 0.55);
+  font-weight: 700;
+}
+
 .variant-option__swatch-value {
   padding-inline-start: var(--padding-xs);
   color: rgb(var(--color-foreground-rgb) / var(--opacity-70));
+  font-size: 1.125rem;
+}
+
+.variant-option__swatch-value--stacked {
+  display: block;
+  padding-inline-start: 0;
+  margin-block-start: 22px;
+  color: var(--color-foreground);
+  font-family: var(--font-primary--family);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.2353;
+  letter-spacing: -0.01em;
 }
 
 @media (prefers-reduced-motion: no-preference) {

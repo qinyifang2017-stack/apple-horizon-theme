@@ -1,331 +1,453 @@
 {% comment %}
-  xalgo Vision page — long-form brand vision for Personal AI beyond the screen.
+  MUSEVE Vision page. The section filename is kept as xalgo-vision so the
+  existing page.vision template continues to resolve without template churn.
 {% endcomment %}
 
 <section
-  id="xalgo-vision-{{ section.id }}"
-  class="xalgo-vision color-{{ section.settings.color_scheme }}"
+  id="museve-vision-{{ section.id }}"
+  class="museve-vision color-{{ section.settings.color_scheme }}"
   style="
-    --vision-padding-top: {{ section.settings.padding_top }}px;
-    --vision-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --mv-padding-top: {{ section.settings.padding_top }}px;
+    --mv-padding-bottom: {{ section.settings.padding_bottom }}px;
   "
 >
-  <div class="xalgo-vision__shell">
-    <header class="xalgo-vision__hero">
-      <p class="xalgo-vision__eyebrow">Our Vision</p>
-      <h1 class="xalgo-vision__title">Personal AI beyond the screen.</h1>
-      <p class="xalgo-vision__lede">
-        xalgo is building a new kind of personal AI ecosystem — one that moves beyond apps and screens, and becomes part of the body, the view, and the spaces where life happens.
-      </p>
-    </header>
-
-    <div class="xalgo-vision__section xalgo-vision__section--intro">
-      <p>
-        AI is becoming more powerful every day. It can answer questions, generate images, summarize information, and help people create in ways that once felt impossible.
-      </p>
-      <p>
-        But for most people, AI still lives inside a screen. It waits behind an app icon. It asks for prompts. It depends on typing, tapping, and switching attention away from the world in front of us.
-      </p>
-      <p>
-        At xalgo, we believe the next step for personal AI is not just making it more intelligent. It is making it more present, more natural, and less intrusive.
+  <header class="museve-vision__hero">
+    <div class="museve-vision__container">
+      <p class="museve-vision__eyebrow">Our Vision</p>
+      <h1 class="museve-vision__title">AI, made a natural<br>part of every day.</h1>
+      <p class="museve-vision__lede">
+        At MUSEVE, we believe great smart glasses should never feel like a device
+        strapped to your face. They should be beautiful, light, and comfortable &mdash;
+        worth wearing every day &mdash; with AI quietly at your side, ready whenever
+        you need it.
       </p>
     </div>
+  </header>
 
-    <div class="xalgo-vision__statement">
-      <p>We want AI to move closer to real life — not by demanding more attention, but by quietly understanding the moments, signals, and memories that already shape our days.</p>
+  <div class="museve-vision__quote museve-vision__reveal">
+    <div class="museve-vision__container museve-vision__container--narrow">
+      <p class="museve-vision__quote-text">
+        &ldquo;Innovation should not stay a concept. It should blend naturally
+        into everyday work and life.&rdquo;
+      </p>
+      <p class="museve-vision__quote-author">The MUSEVE Founding Team</p>
     </div>
+  </div>
 
-    <section class="xalgo-vision__section" aria-labelledby="vision-products-heading">
-      <div class="xalgo-vision__section-header">
-        <p class="xalgo-vision__kicker">Three ways AI gets closer to life</p>
-        <h2 id="vision-products-heading">The body. The view. The memory of a place.</h2>
-      </div>
-
-      <div class="xalgo-vision__pillars">
-        <article class="xalgo-vision__pillar">
-          <span class="xalgo-vision__pillar-label">Body</span>
-          <h3>xRing</h3>
-          <p>
-            The body is one of the most important sources of personal information. xRing brings AI closer to physical signals — sleep, recovery, daily rhythm, and long-term health trends.
-          </p>
-          <p>
-            It is designed to help people notice patterns that are easy to miss, and turn them into simple, meaningful insights without asking them to constantly check data.
-          </p>
-        </article>
-
-        <article class="xalgo-vision__pillar">
-          <span class="xalgo-vision__pillar-label">View</span>
-          <h3>xGlass</h3>
-          <p>
-            The world we see is full of context. xGlass brings AI into the field of view, where information, interaction, and daily decisions naturally happen.
-          </p>
-          <p>
-            It is designed for moments when reaching for a phone feels like a break in attention — when intelligence should feel immediate, lightweight, and close to what you are already experiencing.
-          </p>
-        </article>
-
-        <article class="xalgo-vision__pillar">
-          <span class="xalgo-vision__pillar-label">Memory</span>
-          <h3>xFrame</h3>
-          <p>
-            Memory should not be locked inside a camera roll. xFrame brings AI into the spaces where people live, turning images and personal moments into something visible, emotional, and shared.
-          </p>
-          <p>
-            It helps transform photos into living memories — not just files to store, but moments that can return to the room, the family, and the everyday environment.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="xalgo-vision__section xalgo-vision__section--split" aria-labelledby="quiet-intelligence-heading">
-      <div class="xalgo-vision__section-header">
-        <p class="xalgo-vision__kicker">Quiet intelligence</p>
-        <h2 id="quiet-intelligence-heading">Useful technology should know when to appear — and when to disappear.</h2>
-      </div>
-      <div class="xalgo-vision__copy">
+  <div class="museve-vision__section" id="about">
+    <div class="museve-vision__container museve-vision__reveal">
+      <p class="museve-vision__section-label">About MUSEVE</p>
+      <h2 class="museve-vision__section-title">Next-generation smart glasses,<br>made for everyday wear.</h2>
+      <p class="museve-vision__section-sub">A new consumer electronics brand from Nexgo, Inc.</p>
+      <div class="museve-vision__prose">
         <p>
-          We do not believe the best technology is always the loudest. For personal AI to become truly useful, it must support people without taking over their attention. It should understand context without making life feel more complicated.
+          MUSEVE is built by a group of tech enthusiasts, innovation specialists,
+          and seasoned electronics industry veterans. Backed by our parent
+          company&rsquo;s 25+ years of electronics manufacturing and product delivery
+          experience, we combine proven manufacturing capability,
+          fashion-forward aesthetics, cutting-edge technology, next-generation
+          AI interaction, and intelligent algorithms.
         </p>
         <p>
-          Quiet intelligence is not passive. It is attentive. It works in the background, respects the rhythm of daily life, and brings information forward only when it becomes useful.
-        </p>
-        <p>
-          It helps people feel more aware, not more distracted. More connected, not more controlled. More present, not more dependent on screens.
+          Our goal is simple: to create next-generation smart glasses that are
+          genuinely suited to daily wear and measurably improve your efficiency.
         </p>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <section class="xalgo-vision__section xalgo-vision__section--split" aria-labelledby="ecosystem-heading">
-      <div class="xalgo-vision__section-header">
-        <p class="xalgo-vision__kicker">What we are building</p>
-        <h2 id="ecosystem-heading">A personal AI ecosystem shaped around everyday life.</h2>
-      </div>
-      <div class="xalgo-vision__copy">
-        <p>
-          xRing, xGlass, and xFrame are our first steps toward a broader personal AI ecosystem. Each product starts from a different part of life, but they are connected by the same belief: AI should become more personal by becoming more natural.
-        </p>
-        <p>
-          The future of personal AI will not be defined by one device. It will be shaped by a network of intelligent objects that understand different parts of life and work together with care. Some will be worn. Some will be seen. Some will live quietly in the spaces around us.
-        </p>
-        <p>
-          Our goal is to make these experiences feel unified, useful, and deeply personal — not an ecosystem built around more screens, but AI that adapts to the way people already live.
-        </p>
-      </div>
-    </section>
-
-    <footer class="xalgo-vision__closing">
-      <p>
-        xalgo exists to make AI feel closer to people. Not louder. Not more demanding. Not trapped inside another interface.
+  <div class="museve-vision__section" id="vision">
+    <div class="museve-vision__container museve-vision__reveal">
+      <p class="museve-vision__section-label">What We Believe</p>
+      <h2 class="museve-vision__section-title">What we stand for.</h2>
+      <p class="museve-vision__section-sub">
+        From product definition to user experience, every step is guided by
+        reliable quality, long-term usability, and real user value.
       </p>
-      <p>
-        But closer to the body, closer to the world we see, and closer to the memories that make everyday life meaningful.
+
+      <div class="museve-vision__values">
+        <article class="museve-vision__value">
+          <h3 class="museve-vision__value-title">Great glasses first</h3>
+          <p class="museve-vision__value-desc">
+            Beautiful, light, and comfortable &mdash; worth wearing every day.
+            Technology should be a bonus, never a burden. That is where every
+            design decision starts.
+          </p>
+        </article>
+        <article class="museve-vision__value">
+          <h3 class="museve-vision__value-title">Invisible AI</h3>
+          <p class="museve-vision__value-desc">
+            AI should not come with a learning curve. It blends into your routine &mdash;
+            present when you need it, imperceptible when you do not.
+          </p>
+        </article>
+        <article class="museve-vision__value">
+          <h3 class="museve-vision__value-title">Real user value</h3>
+          <p class="museve-vision__value-desc">
+            We do not stack specs; we solve real problems. Every feature must
+            answer one question: does it genuinely make you more efficient?
+          </p>
+        </article>
+        <article class="museve-vision__value">
+          <h3 class="museve-vision__value-title">Built to last</h3>
+          <p class="museve-vision__value-desc">
+            Smart hardware should not be disposable. With dependable quality and
+            continuously evolving software, our products are made to stand
+            the test of time.
+          </p>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <div class="museve-vision__section" id="team">
+    <div class="museve-vision__container museve-vision__reveal">
+      <p class="museve-vision__section-label">Our Team</p>
+      <h2 class="museve-vision__section-title">Diverse backgrounds. One goal.</h2>
+      <div class="museve-vision__prose">
+        <p>
+          Our team brings together talent across engineering, industrial design,
+          software algorithms, supply chain management, brand marketing, and
+          customer service. From product definition and structural design to
+          hardware and software R&amp;D, manufacturing, and user experience &mdash;
+          we own every step of the journey.
+        </p>
+      </div>
+      <ul class="museve-vision__disciplines" aria-label="MUSEVE team disciplines">
+        <li>Engineering</li>
+        <li>Industrial Design</li>
+        <li>Software &amp; Algorithms</li>
+        <li>Supply Chain</li>
+        <li>Brand &amp; Marketing</li>
+        <li>Customer Service</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="museve-vision__section museve-vision__product museve-vision__reveal" id="product">
+    <div class="museve-vision__container museve-vision__container--narrow">
+      <p class="museve-vision__section-label">Coming Soon</p>
+      <h2 class="museve-vision__section-title">MUSEVE Smart Glasses</h2>
+      <p class="museve-vision__section-sub">
+        Our first consumer electronics product for users worldwide &mdash; where
+        lightweight, stylish eyewear design meets AI interaction, smart
+        recording, and intelligent information processing.
       </p>
-      <strong>This is personal AI beyond the screen.</strong>
-    </footer>
+      <ul class="museve-vision__features" aria-label="MUSEVE smart glasses features">
+        <li>Thin &amp; Light</li>
+        <li>All-Day Battery</li>
+        <li>AI Meeting Notes</li>
+        <li>Personal AI Assistant</li>
+        <li>Simple, Intuitive App</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="museve-vision__section" id="quality">
+    <div class="museve-vision__container museve-vision__reveal">
+      <p class="museve-vision__section-label">Manufacturing &amp; Quality</p>
+      <h2 class="museve-vision__section-title">Stable. Consistent. Traceable.</h2>
+      <div class="museve-vision__prose">
+        <p>
+          MUSEVE products are manufactured through a mature precision
+          manufacturing system, in partnership with Luxshare Precision, under
+          strict production management and reliability testing &mdash; delivering
+          stable, consistent, and fully traceable quality for every piece of
+          smart hardware we ship.
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
+<script>
+  (function () {
+    var section = document.getElementById('museve-vision-{{ section.id }}');
+    if (!section) return;
+
+    var revealItems = section.querySelectorAll('.museve-vision__reveal');
+
+    if (!('IntersectionObserver' in window)) {
+      revealItems.forEach(function (item) {
+        item.classList.add('is-visible');
+      });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealItems.forEach(function (item) {
+      observer.observe(item);
+    });
+  })();
+</script>
+
 {% stylesheet %}
-  .xalgo-vision {
-    --vision-bg: oklch(0.975 0.012 63);
-    --vision-ink: oklch(0.215 0.018 45);
-    --vision-muted: oklch(0.48 0.015 45);
-    --vision-line: oklch(0.86 0.012 63);
-    --vision-soft: oklch(0.945 0.016 63);
-    --vision-accent: var(--xalgo-rose, #e8a598);
+  .museve-vision {
+    --mv-text-primary: #1d1d1f;
+    --mv-text-secondary: #5f6268;
+    --mv-text-tertiary: #7b7e85;
+    --mv-accent: #0066cc;
+    --mv-accent-hover: #004499;
+    --mv-bg: #ffffff;
+    --mv-bg-subtle: #f5f5f7;
+    --mv-border: #d2d2d7;
 
-    background: var(--vision-bg);
-    color: var(--vision-ink);
-    padding-block: var(--vision-padding-top) var(--vision-padding-bottom);
+    background: var(--mv-bg);
+    color: var(--mv-text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Segoe UI", Roboto, Arial, sans-serif;
+    line-height: 1.6;
+    padding-block: var(--mv-padding-top) var(--mv-padding-bottom);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
-  .xalgo-vision__shell {
-    width: min(1120px, calc(100% - 32px));
+  .museve-vision *,
+  .museve-vision *::before,
+  .museve-vision *::after {
+    box-sizing: border-box;
+  }
+
+  .museve-vision a {
+    color: var(--mv-accent);
+    text-decoration: none;
+  }
+
+  .museve-vision a:hover {
+    color: var(--mv-accent-hover);
+    text-decoration: underline;
+  }
+
+  .museve-vision__container {
+    max-width: 980px;
     margin-inline: auto;
+    padding-inline: 22px;
   }
 
-  .xalgo-vision__hero {
-    max-width: 860px;
-    padding-block: clamp(48px, 8vw, 108px) clamp(40px, 7vw, 88px);
+  .museve-vision__container--narrow {
+    max-width: 700px;
   }
 
-  .xalgo-vision__eyebrow,
-  .xalgo-vision__kicker,
-  .xalgo-vision__pillar-label {
-    margin: 0;
-    color: var(--vision-accent);
-    font-size: 0.76rem;
+  .museve-vision__hero {
+    padding-block: 112px 96px;
+  }
+
+  .museve-vision__section {
+    padding-block: 96px;
+  }
+
+  .museve-vision__section + .museve-vision__section {
+    border-block-start: 1px solid var(--mv-border);
+  }
+
+  .museve-vision__eyebrow,
+  .museve-vision__section-label {
+    color: var(--mv-accent);
+    font-weight: 600;
+  }
+
+  .museve-vision__eyebrow {
+    margin: 0 0 12px;
+    font-size: 19px;
+  }
+
+  .museve-vision__title {
+    margin: 0 0 28px;
+    color: var(--mv-text-primary);
+    font-size: clamp(40px, 7vw, 72px);
     font-weight: 700;
-    letter-spacing: 0.14em;
+    line-height: 1.1;
+    letter-spacing: 0;
+  }
+
+  .museve-vision__lede {
+    max-width: 760px;
+    margin: 0;
+    color: var(--mv-text-secondary);
+    font-size: clamp(19px, 2.4vw, 24px);
+    line-height: 1.5;
+  }
+
+  .museve-vision__quote {
+    background: var(--mv-bg-subtle);
+    padding-block: 110px;
+    text-align: center;
+  }
+
+  .museve-vision__quote-text {
+    max-width: 820px;
+    margin: 0 auto 24px;
+    color: var(--mv-text-primary);
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: 0;
+  }
+
+  .museve-vision__quote-author {
+    margin: 0;
+    color: var(--mv-text-tertiary);
+    font-size: 15px;
+  }
+
+  .museve-vision__section-label {
+    margin: 0 0 14px;
+    font-size: 14px;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
   }
 
-  .xalgo-vision__title {
-    max-width: 780px;
-    margin: 12px 0 0;
-    color: var(--vision-ink);
-    font-size: clamp(3rem, 8vw, 7rem);
-    line-height: 0.92;
-    letter-spacing: -0.065em;
+  .museve-vision__section-title {
+    margin: 0 0 20px;
+    color: var(--mv-text-primary);
+    font-size: clamp(28px, 4.5vw, 44px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: 0;
   }
 
-  .xalgo-vision__lede {
-    max-width: 720px;
-    margin: 28px 0 0;
-    color: var(--vision-muted);
-    font-size: clamp(1.125rem, 2vw, 1.45rem);
-    line-height: 1.45;
-  }
-
-  .xalgo-vision__section {
-    padding-block: clamp(44px, 7vw, 84px);
-    border-block-start: 1px solid var(--vision-line);
-  }
-
-  .xalgo-vision__section--intro {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(24px, 4vw, 48px);
-  }
-
-  .xalgo-vision__section--intro p,
-  .xalgo-vision__copy p,
-  .xalgo-vision__pillar p,
-  .xalgo-vision__closing p {
-    margin: 0;
-    color: var(--vision-muted);
-    font-size: 1rem;
-    line-height: 1.75;
-  }
-
-  .xalgo-vision__section--intro p + p,
-  .xalgo-vision__copy p + p,
-  .xalgo-vision__pillar p + p,
-  .xalgo-vision__closing p + p {
-    margin-block-start: 18px;
-  }
-
-  .xalgo-vision__statement {
-    margin-block: clamp(16px, 4vw, 44px) clamp(48px, 7vw, 92px);
-    padding: clamp(28px, 5vw, 56px);
-    border: 1px solid color-mix(in oklch, var(--vision-accent) 45%, var(--vision-line));
-    border-radius: 28px;
-    background: color-mix(in oklch, var(--vision-accent) 10%, var(--vision-bg));
-  }
-
-  .xalgo-vision__statement p {
-    max-width: 850px;
-    margin: 0;
-    color: var(--vision-ink);
-    font-size: clamp(1.5rem, 3.5vw, 3rem);
-    line-height: 1.12;
-    letter-spacing: -0.035em;
-  }
-
-  .xalgo-vision__section-header {
+  .museve-vision__section-sub {
     max-width: 680px;
+    margin: 0 0 32px;
+    color: var(--mv-text-secondary);
+    font-size: 19px;
   }
 
-  .xalgo-vision__section-header h2 {
-    margin: 12px 0 0;
-    color: var(--vision-ink);
-    font-size: clamp(2rem, 4.5vw, 4.25rem);
-    line-height: 1;
-    letter-spacing: -0.055em;
+  .museve-vision__prose p {
+    max-width: 700px;
+    margin: 0 0 1.2em;
+    color: var(--mv-text-primary);
+    font-size: 17px;
   }
 
-  .xalgo-vision__pillars {
+  .museve-vision__prose p:last-child {
+    margin-bottom: 0;
+  }
+
+  .museve-vision__values {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
-    margin-block-start: clamp(32px, 5vw, 56px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 48px 64px;
+    margin-block-start: 56px;
   }
 
-  .xalgo-vision__pillar {
-    display: flex;
-    min-height: 410px;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: clamp(24px, 3vw, 34px);
-    border: 1px solid var(--vision-line);
-    border-radius: 26px;
-    background: var(--vision-soft);
-  }
-
-  .xalgo-vision__pillar h3 {
-    margin: 12px 0 20px;
-    color: var(--vision-ink);
-    font-size: clamp(1.75rem, 3vw, 2.7rem);
-    line-height: 1;
-    letter-spacing: -0.045em;
-  }
-
-  .xalgo-vision__section--split {
-    display: grid;
-    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr);
-    gap: clamp(28px, 6vw, 80px);
-    align-items: start;
-  }
-
-  .xalgo-vision__copy {
-    max-width: 640px;
-  }
-
-  .xalgo-vision__closing {
-    padding-block: clamp(52px, 9vw, 120px) clamp(24px, 6vw, 64px);
-    border-block-start: 1px solid var(--vision-line);
-  }
-
-  .xalgo-vision__closing p,
-  .xalgo-vision__closing strong {
-    display: block;
-    max-width: 860px;
-    color: var(--vision-ink);
-    font-size: clamp(1.6rem, 4vw, 4.6rem);
+  .museve-vision__value-title {
+    margin: 0 0 8px;
+    color: var(--mv-text-primary);
+    font-size: 21px;
     font-weight: 600;
-    line-height: 1.04;
-    letter-spacing: -0.055em;
   }
 
-  .xalgo-vision__closing p + p {
-    margin-block-start: 26px;
-    color: var(--vision-muted);
+  .museve-vision__value-desc {
+    margin: 0;
+    color: var(--mv-text-secondary);
+    font-size: 15px;
+    line-height: 1.65;
   }
 
-  .xalgo-vision__closing strong {
-    margin-block-start: 36px;
-    color: var(--vision-accent);
+  .museve-vision__disciplines,
+  .museve-vision__features {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
   }
 
-  @media screen and (max-width: 900px) {
-    .xalgo-vision__section--intro,
-    .xalgo-vision__pillars,
-    .xalgo-vision__section--split {
+  .museve-vision__disciplines {
+    gap: 10px;
+    margin: 36px 0 0;
+  }
+
+  .museve-vision__disciplines li {
+    border: 1px solid var(--mv-border);
+    border-radius: 999px;
+    color: var(--mv-text-secondary);
+    font-size: 14px;
+    padding: 6px 16px;
+  }
+
+  .museve-vision__product {
+    background: var(--mv-bg-subtle);
+    text-align: center;
+  }
+
+  .museve-vision__product .museve-vision__section-sub {
+    margin-inline: auto;
+  }
+
+  .museve-vision__features {
+    justify-content: center;
+    gap: 12px 40px;
+    margin: 40px 0 0;
+  }
+
+  .museve-vision__features li {
+    min-width: 132px;
+    color: var(--mv-text-primary);
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .museve-vision__features li::before {
+    content: "";
+    display: block;
+    width: 28px;
+    height: 2px;
+    margin: 0 auto 12px;
+    background: var(--mv-accent);
+  }
+
+  .museve-vision__reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .museve-vision__reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media screen and (max-width: 734px) {
+    .museve-vision__hero {
+      padding-block: 88px 72px;
+    }
+
+    .museve-vision__section {
+      padding-block: 72px;
+    }
+
+    .museve-vision__quote {
+      padding-block: 82px;
+    }
+
+    .museve-vision__values {
       grid-template-columns: 1fr;
-    }
-
-    .xalgo-vision__pillar {
-      min-height: auto;
+      gap: 36px;
     }
   }
 
-  @media screen and (max-width: 640px) {
-    .xalgo-vision__shell {
-      width: min(100% - 24px, 1120px);
-    }
-
-    .xalgo-vision__statement,
-    .xalgo-vision__pillar {
-      border-radius: 20px;
+  @media (prefers-reduced-motion: reduce) {
+    .museve-vision__reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
   }
 {% endstylesheet %}
 
 {% schema %}
 {
-  "name": "Vision (xalgo)",
+  "name": "Vision (MUSEVE)",
   "tag": "section",
-  "class": "section-wrapper xalgo-vision-wrapper",
+  "class": "section-wrapper museve-vision-wrapper",
   "settings": [
     {
       "type": "color_scheme",
@@ -356,7 +478,7 @@
   ],
   "presets": [
     {
-      "name": "Vision (xalgo)",
+      "name": "Vision (MUSEVE)",
       "category": "Content"
     }
   ]

@@ -1,0 +1,98 @@
+{% liquid
+  assign product_resource = closest.product | default: product
+  assign product_handle = product_resource.handle | downcase
+  assign product_title = product_resource.title | downcase
+  assign landing_url = blank
+  assign landing_label = blank
+
+  if product_handle contains 'ring' or product_title contains 'ring'
+    assign landing_url = '/pages/xring'
+    assign landing_label = 'Still deciding? Explore xRing features'
+  elsif product_handle contains 'glass' or product_title contains 'glass'
+    assign landing_url = '/pages/xglass'
+    assign landing_label = 'Still deciding? Explore xGlass features'
+  elsif product_handle contains 'frame' or product_title contains 'frame'
+    assign landing_url = '/pages/xframe'
+    assign landing_label = 'Still deciding? Explore xFrame features'
+  endif
+%}
+
+  <div
+    class="product-support-links"
+    {{ block.shopify_attributes }}
+  >
+    {% if landing_url != blank %}
+    <p class="product-support-links__landing"><a href="{{ landing_url }}">{{ landing_label }}</a></p>
+  {% endif %}
+  <p class="product-support-links__faq">Still have questions? <a href="/pages/faq">View full FAQ</a></p>
+</div>
+
+{% stylesheet %}
+  .product-support-links {
+    width: 100%;
+    padding-block-start: 16px;
+    color: var(--color-foreground);
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .product-support-links p {
+    margin: 0;
+  }
+
+  .product-support-links p + p {
+    margin-block-start: 10px;
+  }
+
+  .product-support-links__landing a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border: 1px solid rgb(var(--color-foreground-rgb) / 0.18);
+    border-radius: 999px;
+    color: var(--color-foreground);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    transition: border-color var(--animation-speed) var(--animation-easing),
+      background-color var(--animation-speed) var(--animation-easing),
+      color var(--animation-speed) var(--animation-easing);
+  }
+
+  .product-support-links__landing a:hover {
+    border-color: rgb(var(--color-foreground-rgb) / 0.35);
+    background-color: rgb(var(--color-foreground-rgb) / 0.04);
+    color: var(--color-foreground);
+  }
+
+  .product-support-links__faq {
+    color: var(--color-foreground-secondary);
+    font-size: 0.9375rem;
+  }
+
+  .product-support-links__faq a {
+    color: var(--color-foreground);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
+  }
+
+  .product-support-links__faq a:hover {
+    color: var(--color-primary-hover);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product support links",
+  "tag": null,
+  "presets": [
+    {
+      "name": "Product support links",
+      "category": "t:categories.product"
+    }
+  ]
+}
+{% endschema %}

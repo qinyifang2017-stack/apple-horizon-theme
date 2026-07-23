@@ -76,10 +76,46 @@
             ref="fieldsets[]"
             {{ option_id_attribute }}
           >
-            <legend>
-              {{ product_option.name | escape -}}
-              {%- if variant_style == 'swatch' -%}
-                <span class="variant-option__swatch-value">{{ product_option.selected_value }}</span>
+            {%- liquid
+              assign option_name_downcase = product_option.name | downcase
+              assign selected_value_downcase = product_option.selected_value | downcase
+              assign is_color_option = false
+              assign is_frame_option = false
+
+              if option_name_downcase == 'color' or option_name_downcase == 'colour'
+                assign is_color_option = true
+              endif
+
+              if option_name_downcase contains 'frame' or option_name_downcase contains 'rim' or product_option.name contains '镜框' or product_option.name contains '框型'
+                assign is_frame_option = true
+              endif
+
+              if selected_value_downcase contains 'frame' or selected_value_downcase contains 'rim' or selected_value_downcase contains 'full' or selected_value_downcase contains 'semi' or product_option.selected_value contains '全框' or product_option.selected_value contains '半框'
+                assign is_frame_option = true
+              endif
+            -%}
+            <legend{% if is_color_option or is_frame_option %} class="variant-option__legend--featured"{% endif %}>
+              {%- if is_color_option -%}
+                <span class="variant-option__heading">
+                  <strong>{{ product_option.name | escape }}.</strong>
+                  <span>Pick your favorite.</span>
+                </span>
+                <span class="variant-option__swatch-value variant-option__swatch-value--stacked">
+                  {{ product_option.name | escape }} - {{ product_option.selected_value }}
+                </span>
+              {%- elsif is_frame_option -%}
+                <span class="variant-option__heading">
+                  <strong>{{ product_option.name | escape }}.</strong>
+                  <span>Choose your fit.</span>
+                </span>
+                <span class="variant-option__swatch-value variant-option__swatch-value--stacked">
+                  {{ product_option.name | escape }} - {{ product_option.selected_value }}
+                </span>
+              {%- else -%}
+                {{ product_option.name | escape -}}
+                {%- if variant_style == 'swatch' -%}
+                  <span class="variant-option__swatch-value">{{ product_option.selected_value }}</span>
+                {%- endif %}
               {%- endif %}
             </legend>
             {%- for product_option_value in product_option.values -%}

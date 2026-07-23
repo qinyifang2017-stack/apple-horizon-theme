@@ -1,0 +1,738 @@
+{% liquid
+  assign media_type = section.settings.media_type
+  assign desktop_image = section.settings.image
+  assign mobile_image = section.settings.image_mobile | default: desktop_image
+  assign has_media = false
+  assign use_asset_fallback = false
+
+  if media_type == 'image' and desktop_image != blank
+    assign has_media = true
+  elsif media_type == 'video' and section.settings.video != blank
+    assign has_media = true
+  elsif media_type == 'image' and section.settings.use_default_asset_images
+    assign has_media = true
+    assign use_asset_fallback = true
+  endif
+%}
+
+{%- if section.settings.enabled -%}
+  <div
+    id="PromoBanner-{{ section.id }}"
+    class="promo-banner color-{{ section.settings.color_scheme }} promo-banner--overlay-{{ section.settings.overlay_position }}{% if has_media %} promo-banner--has-media{% else %} promo-banner--no-media{% endif %}"
+    style="
+      {% if section.settings.section_height == 'custom' %}
+        --promo-min-height: {{ section.settings.section_height_custom }}svh;
+      {% elsif section.settings.section_height == 'full-screen' %}
+        --promo-min-height: 100svh;
+      {% else %}
+        --promo-min-height: var(--section-height-{{ section.settings.section_height }}, 80svh);
+      {% endif %}
+      --promo-overlay-background: {{ section.settings.overlay_card_background }};
+      --promo-backdrop-opacity: {{ section.settings.backdrop_opacity | divided_by: 100.0 }};
+    "
+    {% if request.visual_preview_mode %}data-shopify-visual-preview{% endif %}
+  >
+    <div class="promo-banner__background" aria-hidden="true">
+      {%- if has_media -%}
+        {%- if media_type == 'image' -%}
+          {%- if use_asset_fallback -%}
+            <picture>
+              <source
+                media="(max-width: 749px)"
+                srcset="{{ 'xglass-campaign-hero-mobile.jpg' | asset_url }}"
+              >
+              <img
+                src="{{ 'xglass-campaign-hero-desktop.jpg' | asset_url }}"
+                alt="{{ section.settings.background_alt | escape }}"
+                class="promo-banner__background-media"
+                fetchpriority="high"
+              >
+            </picture>
+          {%- else -%}
+            <picture>
+              {%- if section.settings.image_mobile != blank -%}
+                <source
+                  media="(max-width: 749px)"
+                  srcset="{{ mobile_image | image_url: width: 1200 }}"
+                >
+              {%- endif -%}
+              {{
+                desktop_image
+                | image_url: width: 3840
+                | image_tag:
+                  class: 'promo-banner__background-media',
+                  widths: '832, 1200, 1600, 1920, 2560, 3840',
+                  sizes: '100vw',
+                  fetchpriority: 'high',
+                  alt: section.settings.background_alt | default: desktop_image.alt
+              }}
+            </picture>
+          {%- endif -%}
+        {%- else -%}
+          {{
+            section.settings.video
+            | video_tag:
+              autoplay: true,
+              loop: true,
+              controls: false,
+              muted: true,
+              class: 'promo-banner__background-media'
+          }}
+        {%- endif -%}
+      {%- else -%}
+        <div class="promo-banner__upload-prompt">
+          <span>Upload a full-screen xGlass campaign image</span>
+        </div>
+      {%- endif -%}
+      <div class="promo-banner__backdrop"></div>
+    </div>
+
+    {%- if section.settings.link != blank -%}
+      <a
+        href="{{ section.settings.link }}"
+        class="promo-banner__link"
+        {% if section.settings.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}
+        aria-label="{{ section.settings.link_accessibility_text | default: 'Promotion' | escape }}"
+      ></a>
+    {%- endif -%}
+
+    <div
+      class="promo-banner__container section section--full-width spacing-style"
+      style="{% render 'spacing-style', settings: section.settings %}"
+    >
+      <div class="promo-banner__overlay-card {{ section.settings.section_width }}">
+        <div
+          class="
+            promo-banner__content
+            layout-panel-flex
+            layout-panel-flex--{{ section.settings.content_direction }}
+            {% if section.settings.vertical_on_mobile %}mobile-column{% endif %}
+            section-content-wrapper
+          "
+          style="{% render 'layout-panel-style', settings: section.settings %}"
+        >
+          {% content_for 'blocks' %}
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .promo-banner {
+    position: relative;
+    display: flex;
+    min-height: var(--promo-min-height);
+    overflow: hidden;
+    background: #f5f5f7;
+    color: var(--color-foreground);
+    isolation: isolate;
+  }
+
+  .promo-banner__background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .promo-banner__background picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .promo-banner__background-media {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .promo-banner__backdrop {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 18%, rgb(255 255 255 / 34%) 0%, rgb(255 255 255 / 12%) 24%, rgb(255 255 255 / 0%) 48%),
+      linear-gradient(180deg, rgb(0 0 0 / 34%) 0%, rgb(0 0 0 / 10%) 34%, rgb(0 0 0 / 0%) 62%),
+      linear-gradient(0deg, rgb(0 0 0 / 38%) 0%, rgb(0 0 0 / 8%) 36%, rgb(0 0 0 / 0%) 70%);
+    pointer-events: none;
+  }
+
+  .promo-banner--overlay-center .promo-banner__backdrop {
+    background: rgb(0 0 0 / var(--promo-backdrop-opacity));
+  }
+
+  .promo-banner--overlay-right .promo-banner__backdrop {
+    background:
+      linear-gradient(270deg, rgb(0 0 0 / calc(var(--promo-backdrop-opacity) + 0.12)) 0%, rgb(0 0 0 / var(--promo-backdrop-opacity)) 36%, rgb(0 0 0 / 0%) 70%),
+      linear-gradient(0deg, rgb(0 0 0 / 18%) 0%, rgb(0 0 0 / 0%) 45%);
+  }
+
+  .promo-banner--no-media .promo-banner__background {
+    background:
+      radial-gradient(circle at 70% 35%, rgb(5 150 105 / 18%) 0 18%, transparent 42%),
+      linear-gradient(135deg, #f7fff9 0%, #edf8ef 48%, #ffffff 100%);
+  }
+
+  .promo-banner--no-media .promo-banner__backdrop {
+    background: linear-gradient(90deg, rgb(255 255 255 / 86%) 0%, rgb(255 255 255 / 32%) 58%, rgb(255 255 255 / 0%) 100%);
+  }
+
+  .promo-banner__upload-prompt {
+    position: absolute;
+    right: clamp(24px, 8vw, 120px);
+    bottom: clamp(32px, 10vw, 120px);
+    display: grid;
+    width: min(42vw, 560px);
+    min-height: min(38vw, 420px);
+    place-items: center;
+    border: 1px dashed rgb(5 150 105 / 30%);
+    border-radius: 44px;
+    background: rgb(255 255 255 / 48%);
+    color: rgb(29 29 31 / 48%);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    text-align: center;
+  }
+
+  .promo-banner__link {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+  }
+
+  .promo-banner__container {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    width: 100%;
+    min-height: var(--promo-min-height);
+  }
+
+  .promo-banner__overlay-card {
+    display: flex;
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: clamp(24px, 5vw, 88px);
+    align-items: stretch;
+    box-sizing: border-box;
+  }
+
+  .promo-banner--overlay-left .promo-banner__overlay-card {
+    justify-content: center;
+  }
+
+  .promo-banner--overlay-center .promo-banner__overlay-card {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .promo-banner--overlay-right .promo-banner__overlay-card {
+    justify-content: flex-end;
+  }
+
+  .promo-banner__content {
+    position: relative;
+    z-index: 4;
+    display: grid;
+    width: min(100%, 860px);
+    min-height: var(--promo-min-height);
+    padding: clamp(78px, 11svh, 124px) 0 clamp(42px, 7svh, 82px);
+    align-content: end;
+    justify-items: center;
+    text-align: center;
+    text-shadow: 0 2px 28px rgb(0 0 0 / 20%);
+    transform: none;
+    pointer-events: none;
+  }
+
+  .promo-banner__content > * {
+    pointer-events: auto;
+  }
+
+  .promo-banner__content h1,
+  .promo-banner__content h2 {
+    max-width: none;
+    margin-block: 0;
+    font-size: clamp(4.5rem, 9.2vw, 9.5rem);
+    letter-spacing: -0.075em;
+    line-height: 0.86;
+  }
+
+  .promo-banner__content p {
+    max-width: 30rem;
+    margin-inline: auto;
+    font-size: clamp(1.18rem, 1.7vw, 1.65rem);
+    letter-spacing: -0.032em;
+    line-height: 1.12;
+  }
+
+  .promo-banner--has-media .promo-banner__content,
+  .promo-banner--has-media .promo-banner__content h1,
+  .promo-banner--has-media .promo-banner__content h2,
+  .promo-banner--has-media .promo-banner__content p {
+    color: #fff;
+  }
+
+  .promo-banner--has-media .promo-banner__content p {
+    color: rgb(255 255 255 / 88%);
+  }
+
+  .promo-banner--has-media .promo-badge__pill,
+  .promo-banner--has-media .promo-progress__metric,
+  .promo-banner--has-media .promo-progress__label,
+  .promo-banner--has-media .promo-progress__percent,
+  .promo-banner--has-media .promo-countdown__number,
+  .promo-banner--has-media .promo-countdown__label {
+    color: inherit;
+  }
+
+  .promo-banner .button {
+    min-width: auto;
+    min-height: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: rgb(255 255 255 / 86%);
+    box-shadow: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .promo-banner .button:hover {
+    background: transparent;
+    color: #fff;
+    transform: none;
+  }
+
+  .promo-banner .button::after {
+    content: '›';
+    margin-left: 0.34em;
+    font-size: 1.12em;
+    line-height: 0;
+  }
+
+  @media screen and (max-width: 989px) {
+    .promo-banner__upload-prompt {
+      right: 5vw;
+      bottom: 5vw;
+      width: 90vw;
+      min-height: 32svh;
+      opacity: 0.35;
+    }
+
+    .promo-banner__overlay-card,
+    .promo-banner--overlay-left .promo-banner__overlay-card,
+    .promo-banner--overlay-center .promo-banner__overlay-card,
+    .promo-banner--overlay-right .promo-banner__overlay-card {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .promo-banner__content h1,
+    .promo-banner__content h2,
+    .promo-banner__content p {
+      margin-inline: auto;
+    }
+
+    .promo-banner__content {
+      width: min(100%, 680px);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .promo-banner__overlay-card {
+      padding-inline: 22px;
+    }
+
+    .promo-banner__content {
+      width: 100%;
+      padding: 72px 0 32px;
+      transform: none;
+    }
+
+    .promo-banner__content h1,
+    .promo-banner__content h2 {
+      max-width: none;
+      font-size: clamp(4rem, 18vw, 6.5rem);
+      letter-spacing: -0.072em;
+    }
+
+    .promo-banner__content p {
+      max-width: 20rem;
+      font-size: 1.15rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Promo banner",
+  "tag": "section",
+  "class": "promo-banner-wrapper section-wrapper",
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "_promo-countdown"
+    },
+    {
+      "type": "_promo-progress"
+    },
+    {
+      "type": "_promo-badge"
+    }
+  ],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Enable promo banner",
+      "info": "Turn off to hide this section without deleting it.",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Background hero"
+    },
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media type",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "image",
+          "label": "Image"
+        },
+        {
+          "value": "video",
+          "label": "Video"
+        }
+      ],
+      "default": "image"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_default_asset_images",
+      "label": "Use processed xGlass scene image",
+      "info": "Uses the edited scene photo saved in theme assets. Uploading a background image overrides this.",
+      "default": true,
+      "visible_if": "{{ section.settings.media_type == 'image' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop background image",
+      "info": "Upload the full campaign poster or product lifestyle image.",
+      "visible_if": "{{ section.settings.media_type == 'image' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile background image",
+      "visible_if": "{{ section.settings.media_type == 'image' }}"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Background video",
+      "visible_if": "{{ section.settings.media_type == 'video' }}"
+    },
+    {
+      "type": "text",
+      "id": "background_alt",
+      "label": "Background image alt text",
+      "default": "xGlass campaign hero"
+    },
+    {
+      "type": "range",
+      "id": "backdrop_opacity",
+      "label": "Backdrop opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "default": 25
+    },
+    {
+      "type": "color_background",
+      "id": "overlay_card_background",
+      "label": "Overlay card background",
+      "default": "linear-gradient(135deg, rgba(0,0,0,0.42), rgba(0,0,0,0.18))"
+    },
+    {
+      "type": "select",
+      "id": "overlay_position",
+      "label": "Overlay position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Content width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "Page"
+        },
+        {
+          "value": "full-width",
+          "label": "Full"
+        }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "select",
+      "id": "section_height",
+      "label": "Section height",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        },
+        {
+          "value": "full-screen",
+          "label": "Full screen"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ],
+      "default": "full-screen"
+    },
+    {
+      "type": "range",
+      "id": "section_height_custom",
+      "label": "Custom height",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "svh",
+      "default": 80,
+      "visible_if": "{{ section.settings.section_height == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "content_direction",
+      "label": "Content direction",
+      "options": [
+        {
+          "value": "column",
+          "label": "Vertical"
+        },
+        {
+          "value": "row",
+          "label": "Horizontal"
+        }
+      ],
+      "default": "column"
+    },
+    {
+      "type": "checkbox",
+      "id": "vertical_on_mobile",
+      "label": "Stack on mobile",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "horizontal_alignment",
+      "label": "Horizontal alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        },
+        {
+          "value": "space-between",
+          "label": "Space between"
+        }
+      ],
+      "default": "flex-start"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "horizontal_alignment_flex_direction_column",
+      "label": "Horizontal alignment when vertical",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "flex-start"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment_flex_direction_column",
+      "label": "Vertical alignment when vertical",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "checkbox",
+      "id": "align_baseline",
+      "label": "Align baseline",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Link"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Section link"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_in_new_tab",
+      "label": "Open in new tab",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "link_accessibility_text",
+      "label": "Link accessibility text",
+      "info": "Describe the promotion for screen readers."
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promo banner"
+    }
+  ]
+}
+{% endschema %}

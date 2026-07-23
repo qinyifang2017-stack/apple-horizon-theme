@@ -1,11 +1,19 @@
 
-{% render 'button', link: block.settings.link %}
+{%- unless block.settings.show_button == false -%}
+  {% render 'button', link: block.settings.link %}
+{%- endunless -%}
 
 {% schema %}
 {
   "name": "t:names.button",
   "tag": null,
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show button",
+      "default": true
+    },
     {
       "type": "text",
       "id": "label",
@@ -107,6 +115,7 @@
       "name": "t:names.button",
       "category": "t:categories.basic",
       "settings": {
+        "show_button": true,
         "link": "shopify://collections/all"
       }
     }
