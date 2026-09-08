@@ -1,10 +1,10 @@
-
-
 {% liquid
   assign block_settings = block.settings
   assign image = settings.logo
 
-  if block_settings.inverse and settings.logo_inverse
+  if block_settings.image
+    assign image = block_settings.image
+  elsif block_settings.inverse and settings.logo_inverse
     assign image = settings.logo_inverse
   endif
 %}
@@ -72,17 +72,21 @@
   .logo-block {
     width: calc(var(--logo-width) + var(--padding-inline-start) + var(--padding-inline-end));
     max-width: 100%;
-    max-height: calc(var(--logo-height, 100%) + var(--padding-block-start) + var(--padding-block-end));
+    max-height: calc(
+      var(--logo-height, 100%) + var(--padding-block-start) + var(--padding-block-end)
+    );
     font-size: var(--logo-height);
     display: flex;
 
     @media screen and (max-width: 749px) {
       max-height: calc(
-        var(--logo-height-mobile, var(--logo-height, 100%)) + var(--padding-block-start) + var(--padding-block-end)
+        var(--logo-height-mobile, var(--logo-height, 100%)) + var(--padding-block-start) +
+          var(--padding-block-end)
       );
       font-size: var(--logo-height-mobile, var(--logo-height));
       width: calc(
-        var(--logo-width-mobile, var(--logo-width)) + var(--padding-inline-start) + var(--padding-inline-end)
+        var(--logo-width-mobile, var(--logo-width)) + var(--padding-inline-start) +
+          var(--padding-inline-end)
       );
     }
   }
@@ -105,6 +109,12 @@
   "name": "t:names.logo",
   "tag": null,
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:settings.image",
+      "info": "t:content.edit_logo_in_theme_settings"
+    },
     {
       "type": "checkbox",
       "label": "t:settings.use_inverse_logo",
@@ -135,7 +145,7 @@
         }
       ],
       "default": "heading",
-      "visible_if": "{{ settings.logo == blank and settings.logo_inverse == blank or block.settings.inverse == false }}"
+      "visible_if": "{{ settings.logo == blank and settings.logo_inverse == blank and block.settings.image == blank or block.settings.inverse == false }}"
     },
     {
       "type": "paragraph",

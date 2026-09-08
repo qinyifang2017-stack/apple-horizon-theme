@@ -16,8 +16,8 @@
       <p class="museve-contact__eyebrow">Contact MUSEVE</p>
       <h1 class="museve-contact__title">Tell us what you need next.</h1>
       <p class="museve-contact__lede">
-        Whether you have a product question, need support, or want to discuss
-        business opportunities, our team is here to help.
+        Whether you have a product question, need support, or want to discuss business
+        opportunities, our team is here to help.
       </p>
     </header>
 
@@ -27,8 +27,8 @@
           <p class="museve-contact__route-label">Customer Support</p>
           <h2>Product questions and after-sales help.</h2>
           <p>
-            For product questions, order assistance, warranty, or after-sales
-            support, contact our support team.
+            For product questions, order assistance, warranty, or after-sales support, contact our
+            support team.
           </p>
           <a href="mailto:{{ section.settings.support_email | escape }}">
             {{ section.settings.support_email }}
@@ -39,8 +39,8 @@
           <p class="museve-contact__route-label">Business &amp; Partnerships</p>
           <h2>Distribution, retail, media, and collaboration.</h2>
           <p>
-            For partnership opportunities, media inquiries, channel discussions,
-            or general business communication, email our business team.
+            For partnership opportunities, media inquiries, channel discussions, or general business
+            communication, email our business team.
           </p>
           <a href="mailto:{{ section.settings.business_email | escape }}">
             {{ section.settings.business_email }}
@@ -59,14 +59,25 @@
           <input name="contact[id]" type="hidden" value="{{ form_id }}">
 
           {%- if form.errors and form.id == form_id -%}
-            <div class="museve-contact__notice museve-contact__notice--error" tabindex="-1" autofocus>
+            <div
+              class="museve-contact__notice museve-contact__notice--error"
+              tabindex="-1"
+              autofocus
+            >
               {{- 'icon-error.svg' | inline_asset_content -}}
-              <span>{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</span>
+              <span>
+                {{- form.errors.translated_fields.email | capitalize }}
+                {{ form.errors.messages.email -}}
+              </span>
             </div>
           {%- endif -%}
 
           {%- if form.posted_successfully? and form.id == form_id -%}
-            <div class="museve-contact__notice museve-contact__notice--success" tabindex="-1" autofocus>
+            <div
+              class="museve-contact__notice museve-contact__notice--success"
+              tabindex="-1"
+              autofocus
+            >
               {{- 'icon-checkmark.svg' | inline_asset_content -}}
               <span>{{ 'blocks.contact_form.post_success' | t }}</span>
             </div>
@@ -86,7 +97,9 @@
             </div>
 
             <div class="museve-contact__field">
-              <label for="MUSEVEContact-email-{{ section.id }}">Email <span aria-hidden="true">*</span></label>
+              <label for="MUSEVEContact-email-{{ section.id }}"
+                >Email <span aria-hidden="true">*</span></label
+              >
               <input
                 type="email"
                 id="MUSEVEContact-email-{{ section.id }}"
@@ -158,11 +171,19 @@
         </div>
         <div>
           <dt>Phone</dt>
-          <dd><a href="tel:{{ section.settings.phone | remove: '-' | escape }}">{{ section.settings.phone }}</a></dd>
+          <dd>
+            <a href="tel:{{ section.settings.phone | remove: '-' | escape }}">
+              {{- section.settings.phone -}}
+            </a>
+          </dd>
         </div>
         <div>
           <dt>Email</dt>
-          <dd><a href="mailto:{{ section.settings.support_email | escape }}">{{ section.settings.support_email }}</a></dd>
+          <dd>
+            <a href="mailto:{{ section.settings.support_email | escape }}">
+              {{- section.settings.support_email -}}
+            </a>
+          </dd>
         </div>
         <div>
           <dt>Address</dt>
@@ -175,17 +196,19 @@
 
 {% stylesheet %}
   .museve-contact {
-    --mc-ink: #17181c;
-    --mc-muted: #5d626b;
-    --mc-soft: #f3f5f6;
+    --mc-ink: var(--xalgo-text-primary, #1d1d1f);
+    --mc-muted: #6e6e73;
+    --mc-soft: #f5f0eb;
     --mc-panel: #ffffff;
-    --mc-line: #d9dee3;
-    --mc-accent: #0066cc;
-    --mc-accent-soft: #e8f2ff;
-    --mc-focus: #1a73e8;
+    --mc-line: #e5ddd3;
+    --mc-accent: var(--xalgo-champagne, #c9a882);
+    --mc-accent-soft: #f2e9dc;
+    --mc-focus: #b06557;
+    --mc-link: #b06557;
 
-    background: #fbfbfa;
+    background: var(--xalgo-cream, #fdfaf7);
     color: var(--mc-ink);
+    font-family: var(--font-body--family, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif);
     padding-block: var(--mc-padding-top) var(--mc-padding-bottom);
   }
 
@@ -217,10 +240,11 @@
     max-width: 720px;
     margin: 12px 0 0;
     color: var(--mc-ink);
+    font-family: var(--font-heading--family, inherit);
     font-size: clamp(3rem, 7.2vw, 6.6rem);
     font-weight: 680;
     line-height: 0.96;
-    letter-spacing: 0;
+    letter-spacing: -0.02em;
   }
 
   .museve-contact__lede {
@@ -247,7 +271,7 @@
   .museve-contact__form-panel,
   .museve-contact__company {
     border: 1px solid var(--mc-line);
-    border-radius: 8px;
+    border-radius: 14px;
     background: var(--mc-panel);
   }
 
@@ -275,7 +299,7 @@
 
   .museve-contact__route a,
   .museve-contact__details a {
-    color: var(--mc-accent);
+    color: var(--mc-link);
     text-decoration: none;
   }
 
@@ -292,7 +316,7 @@
 
   .museve-contact__form-panel {
     padding: clamp(24px, 4vw, 42px);
-    box-shadow: 0 24px 80px rgba(23, 24, 28, 0.08);
+    box-shadow: 0 24px 80px rgba(29, 29, 31, 0.06);
   }
 
   .museve-contact__form-heading {
@@ -330,13 +354,16 @@
   .museve-contact__field textarea {
     width: 100%;
     border: 1px solid var(--mc-line);
-    border-radius: 8px;
+    border-radius: 14px;
     background: var(--mc-soft);
     color: var(--mc-ink);
     font: inherit;
     font-size: 1rem;
     padding: 14px 15px;
-    transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      border-color 0.2s ease,
+      background-color 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
   .museve-contact__field textarea {
@@ -350,7 +377,7 @@
     outline: 0;
     border-color: var(--mc-focus);
     background: #ffffff;
-    box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.14);
+    box-shadow: 0 0 0 4px rgba(176, 101, 87, 0.14);
   }
 
   .museve-contact__submit {
@@ -362,7 +389,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    border-radius: 8px;
+    border-radius: 14px;
     padding: 12px 14px;
     font-size: 0.95rem;
   }

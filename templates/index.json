@@ -6,15 +6,159 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */ {
   "sections": {
-    $18,
+    "promo_banner": {
+      "type": "promo-banner",
+      "blocks": {
+        "promo_badge": {
+          "type": "_promo-badge",
+          "settings": {
+            "text": "Live on Kickstarter",
+            "icon": "none",
+            "style": "outline",
+            "link": "",
+            "open_in_new_tab": true,
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          }
+        },
+        "promo_heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h1>Now live on Kickstarter</h1>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h1",
+            "font": "var(--font-heading--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "promo_subheading": {
+          "type": "text",
+          "settings": {
+            "text": "<p>xGlass — the view ahead, quietly smarter. Back the campaign and be among the first to wear it.</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1.08rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 8,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "promo_progress": {
+          "type": "_promo-progress",
+          "settings": {
+            "primary_metric": "83% funded",
+            "metric_label": "Kickstarter early access",
+            "current_amount": "1247",
+            "goal_amount": "1500",
+            "progress_style": "success",
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          }
+        },
+        "promo_countdown": {
+          "type": "_promo-countdown",
+          "settings": {
+            "end_date": "",
+            "expired_text": "Early bird offer has ended",
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          }
+        },
+        "promo_cta": {
+          "type": "button",
+          "settings": {
+            "label": "Back it on Kickstarter",
+            "link": "",
+            "open_in_new_tab": true,
+            "style_class": "button",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        },
+        "promo_landing": {
+          "type": "button",
+          "settings": {
+            "label": "Explore xGlass",
+            "link": "/pages/xglass",
+            "open_in_new_tab": false,
+            "style_class": "button-secondary",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "promo_badge",
+        "promo_heading",
+        "promo_subheading",
+        "promo_progress",
+        "promo_countdown",
+        "promo_cta",
+        "promo_landing"
+      ],
+      "name": "Promo Banner",
+      "settings": {
+        "enabled": true,
+        "media_type": "image",
+        "use_default_asset_images": true,
+        "background_alt": "xGlass Kickstarter campaign hero",
+        "backdrop_opacity": 30,
+        "overlay_card_background": "transparent",
+        "overlay_position": "left",
+        "section_width": "page-width",
+        "section_height": "full-screen",
+        "section_height_custom": 80,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "align_baseline": false,
+        "gap": 8,
         "color_scheme": "scheme-1",
         "link": "",
         "open_in_new_tab": false,
         "link_accessibility_text": "Back xGlass on Kickstarter",
         "padding-block-start": 56,
-        "padding-block-end": 56
+        "padding-block-end": 56,
+        "layout_style": "dark"
       }
     },
     "hero_ring": {
@@ -99,14 +243,10 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "ring_heading",
-        "ring_subtitle",
-        "ring_cta",
-        "ring_learn"
-      ],
+      "block_order": ["ring_heading", "ring_subtitle", "ring_cta", "ring_learn"],
       "name": "Ring Hero",
       "settings": {
+        "enabled": true,
         "media_type_1": "image",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
@@ -126,7 +266,7 @@
         "section_height": "auto",
         "section_height_custom": 50,
         "color_scheme": "scheme-1",
-        "custom_bg_color": "#e6e3f4",
+        "custom_bg_color": "#D9DEE9",
         "toggle_overlay": false,
         "overlay_color": "#12121240",
         "overlay_style": "gradient",
@@ -221,14 +361,10 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "glasses_heading",
-        "glasses_subtitle",
-        "glasses_cta",
-        "glasses_buy"
-      ],
+      "block_order": ["glasses_heading", "glasses_subtitle", "glasses_cta", "glasses_buy"],
       "name": "Glasses Hero",
       "settings": {
+        "enabled": true,
         "media_type_1": "image",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
@@ -248,7 +384,7 @@
         "section_height": "auto",
         "section_height_custom": 50,
         "color_scheme": "scheme-1",
-        "custom_bg_color": "#fcdcdd",
+        "custom_bg_color": "#F5E4E1",
         "toggle_overlay": false,
         "overlay_color": "#12121240",
         "overlay_style": "gradient",
@@ -343,14 +479,10 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "frame_heading",
-        "frame_subtitle",
-        "frame_cta",
-        "frame_buy"
-      ],
+      "block_order": ["frame_heading", "frame_subtitle", "frame_cta", "frame_buy"],
       "name": "Frame Hero",
       "settings": {
+        "enabled": true,
         "media_type_1": "image",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
@@ -433,7 +565,7 @@
             "letter_spacing": "-0.02em",
             "case": "uppercase",
             "wrap": "pretty",
-            "color": "var(--xalgo-rose, #E8A598)",
+            "color": "var(--xalgo-champagne, #C9A882)",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -472,7 +604,7 @@
         "philosophy_body": {
           "type": "text",
           "settings": {
-            "text": "<p>xalgo creates AI products that live closer to everyday life 鈥?sensing the body, understanding the view, and turning memories into living moments.</p>",
+            "text": "<p>xalgo creates AI products that live closer to everyday life — sensing the body, understanding the view, and turning memories into living moments.</p>",
             "width": "100%",
             "max_width": "wide",
             "alignment": "left",
@@ -575,11 +707,7 @@
           }
         }
       },
-      "block_order": [
-        "testimonial_1",
-        "testimonial_2",
-        "testimonial_3"
-      ],
+      "block_order": ["testimonial_1", "testimonial_2", "testimonial_3"],
       "settings": {
         "heading": "Real Women, Real Words",
         "subheading": "Hear from our community",

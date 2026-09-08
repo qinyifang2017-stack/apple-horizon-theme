@@ -4,8 +4,8 @@
 {% endcomment %}
 
 {%- liquid
-  assign categories_order = 'product,order,shipping,returns,membership' | split: ','
-  assign category_labels = 'Product,Orders,Shipping,Returns,Membership' | split: ','
+  assign categories_order = 'product,order,shipping,returns,support' | split: ','
+  assign category_labels = 'Product,Orders,Shipping,Returns & Warranty,Support' | split: ','
   assign active_categories_str = ''
 
   for block in section.blocks
@@ -50,7 +50,9 @@
               name="faq-tab-{{ section.id }}"
               id="faq-tab-{{ section.id }}-{{ cat }}"
               class="xalgo-faq__tab-input"
-              {% unless first_tab_set %}checked{% endunless %}
+              {% unless first_tab_set %}
+                checked
+              {% endunless %}
             >
             {%- for label_cat in categories_order -%}
               {%- if label_cat == cat -%}
@@ -58,7 +60,9 @@
                   class="xalgo-faq__tab-label"
                   for="faq-tab-{{ section.id }}-{{ cat }}"
                   role="tab"
-                >{{ category_labels[forloop.index0] }}</label>
+                >
+                  {{- category_labels[forloop.index0] -}}
+                </label>
               {%- endif -%}
             {%- endfor -%}
             {%- assign first_tab_set = true -%}
@@ -81,7 +85,13 @@
                   <details class="xalgo-faq__item" {{ block.shopify_attributes }}>
                     <summary class="xalgo-faq__question">
                       <span>{{ block.settings.question }}</span>
-                      <svg class="xalgo-faq__icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <svg
+                        class="xalgo-faq__icon"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                      >
                         <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
                     </summary>
@@ -100,7 +110,7 @@
 </section>
 
 <script>
-  (function() {
+  (function () {
     var section = document.getElementById('xalgo-faq-{{ section.id }}');
     if (!section) return;
     var hash = window.location.hash.replace('#', '');
@@ -112,7 +122,7 @@
 
 {% stylesheet %}
   .xalgo-faq {
-    background-color: #FAFAF8;
+    background-color: #fafaf8;
   }
 
   .xalgo-faq .page-width {
@@ -164,7 +174,9 @@
     font-size: 0.875rem;
     font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
     background: transparent;
     border: 1px solid rgba(0, 0, 0, 0.12);
     color: inherit;
@@ -188,16 +200,56 @@
     display: block;
   }
 
-  .xalgo-faq__tabs:has(.xalgo-faq__tab-input:nth-of-type(1):checked) ~ .xalgo-faq__panels .xalgo-faq__panel { display: none; }
-  .xalgo-faq__tabs:has(.xalgo-faq__tab-input:nth-of-type(1):checked) ~ .xalgo-faq__panels .xalgo-faq__panel:nth-child(1) { display: block; }
-  .xalgo-faq__tabs:has(.xalgo-faq__tab-input:nth-of-type(2):checked) ~ .xalgo-faq__panels .xalgo-faq__panel { display: none; }
-  .xalgo-faq__tabs:has(.xalgo-faq__tab-input:nth-of-type(2):checked) ~ .xalgo-faq__panels .xalgo-faq__panel:nth-child(2) { display: block; }
-  .xalgo-faq__tabs:has(.xalgo-faq__tab-input:nth-of-type(3):checked) ~ .xalgo-faq__panels .xalgo-faq__panel { display: none; }
-  .xalgo-faq__tabs:has(.xalgo-faq__tab-input:nth-of-type(3):checked) ~ .xalgo-faq__panels .xalgo-faq__panel:nth-child(3) { display: block; }
-  .xalgo-faq__tabs:has(.xalgo-faq__tab-input:nth-of-type(4):checked) ~ .xalgo-faq__panels .xalgo-faq__panel { display: none; }
-  .xalgo-faq__tabs:has(.xalgo-faq__tab-input:nth-of-type(4):checked) ~ .xalgo-faq__panels .xalgo-faq__panel:nth-child(4) { display: block; }
-  .xalgo-faq__tabs:has(.xalgo-faq__tab-input:nth-of-type(5):checked) ~ .xalgo-faq__panels .xalgo-faq__panel { display: none; }
-  .xalgo-faq__tabs:has(.xalgo-faq__tab-input:nth-of-type(5):checked) ~ .xalgo-faq__panels .xalgo-faq__panel:nth-child(5) { display: block; }
+  .xalgo-faq__tabs:has(.xalgo-faq__tab-input:nth-of-type(1):checked)
+    ~ .xalgo-faq__panels
+    .xalgo-faq__panel {
+    display: none;
+  }
+  .xalgo-faq__tabs:has(.xalgo-faq__tab-input:nth-of-type(1):checked)
+    ~ .xalgo-faq__panels
+    .xalgo-faq__panel:nth-child(1) {
+    display: block;
+  }
+  .xalgo-faq__tabs:has(.xalgo-faq__tab-input:nth-of-type(2):checked)
+    ~ .xalgo-faq__panels
+    .xalgo-faq__panel {
+    display: none;
+  }
+  .xalgo-faq__tabs:has(.xalgo-faq__tab-input:nth-of-type(2):checked)
+    ~ .xalgo-faq__panels
+    .xalgo-faq__panel:nth-child(2) {
+    display: block;
+  }
+  .xalgo-faq__tabs:has(.xalgo-faq__tab-input:nth-of-type(3):checked)
+    ~ .xalgo-faq__panels
+    .xalgo-faq__panel {
+    display: none;
+  }
+  .xalgo-faq__tabs:has(.xalgo-faq__tab-input:nth-of-type(3):checked)
+    ~ .xalgo-faq__panels
+    .xalgo-faq__panel:nth-child(3) {
+    display: block;
+  }
+  .xalgo-faq__tabs:has(.xalgo-faq__tab-input:nth-of-type(4):checked)
+    ~ .xalgo-faq__panels
+    .xalgo-faq__panel {
+    display: none;
+  }
+  .xalgo-faq__tabs:has(.xalgo-faq__tab-input:nth-of-type(4):checked)
+    ~ .xalgo-faq__panels
+    .xalgo-faq__panel:nth-child(4) {
+    display: block;
+  }
+  .xalgo-faq__tabs:has(.xalgo-faq__tab-input:nth-of-type(5):checked)
+    ~ .xalgo-faq__panels
+    .xalgo-faq__panel {
+    display: none;
+  }
+  .xalgo-faq__tabs:has(.xalgo-faq__tab-input:nth-of-type(5):checked)
+    ~ .xalgo-faq__panels
+    .xalgo-faq__panel:nth-child(5) {
+    display: block;
+  }
 
   /* Accordion items */
   .xalgo-faq__item {
@@ -214,6 +266,16 @@
     font-weight: 500;
     cursor: pointer;
     list-style: none;
+    color: inherit;
+    transition: color 0.2s ease;
+  }
+
+  .xalgo-faq__question:hover {
+    color: var(--color-foreground-heading);
+  }
+
+  .xalgo-faq__question:hover .xalgo-faq__icon {
+    color: var(--xalgo-champagne, #c9a882);
   }
 
   .xalgo-faq__question::-webkit-details-marker {
@@ -301,8 +363,8 @@
             { "value": "product", "label": "Product" },
             { "value": "order", "label": "Orders" },
             { "value": "shipping", "label": "Shipping" },
-            { "value": "returns", "label": "Returns" },
-            { "value": "membership", "label": "Membership" }
+            { "value": "returns", "label": "Returns & Warranty" },
+            { "value": "support", "label": "Support" }
           ],
           "default": "product"
         },

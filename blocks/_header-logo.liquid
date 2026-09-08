@@ -1,32 +1,7 @@
-
-
 {% liquid
   assign block_settings = block.settings
-  assign use_inverse_logo = false
-
-  if section.settings.enable_transparent_header_home and template.name == 'index' and section.settings.home_color_scheme == 'inverse'
-    assign use_inverse_logo = true
-  elsif section.settings.enable_transparent_header_product and template.name == 'product' and section.settings.product_color_scheme == 'inverse'
-    assign use_inverse_logo = true
-  elsif section.settings.enable_transparent_header_collection and template.name == 'collection' and section.settings.collection_color_scheme == 'inverse'
-    assign use_inverse_logo = true
-  endif
-
-  if use_inverse_logo
-    if settings.logo_inverse != blank
-      assign inverse_logo = settings.logo_inverse
-    else
-      assign inverse_logo = settings.logo
-    endif
-  endif
-
-  assign alt_text_fallback = 'accessibility.home_logo_alt' | t: store_name: shop.name
 %}
 
-{% comment %}
-  Output all logo variants, use CSS to hide/show the appropriate one
-  based on the .header[transparent] selector
-{% endcomment %}
 <a
   {% if template.name == 'index' and block_settings.hide_logo_on_home_page %}
     data-hidden-on-home-page
@@ -36,47 +11,30 @@
   style="
     {% render 'size-style', settings: block_settings %}
     {% render 'spacing-style', settings: block_settings %}
-    --font-family: var(--font-body--family);
-    --font-style: var(--font-body--style);
-    --font-weight: 600;
   "
   {{ block.shopify_attributes }}
 >
-  {% liquid
-    assign logo_width = settings.logo_height | times: settings.logo.aspect_ratio | ceil
-    assign logo_width_mobile = settings.logo_height_mobile | times: settings.logo.aspect_ratio | ceil
-    assign inverse_logo_width = settings.logo_height | times: inverse_logo.aspect_ratio | ceil
-    assign inverse_logo_width_mobile = settings.logo_height_mobile | times: inverse_logo.aspect_ratio | ceil
-    assign logo_style = '--header-logo-image-width: ' | append: logo_width | append: 'px;' | append: '--header-logo-image-width-mobile: ' | append: logo_width_mobile | append: 'px; --header-logo-image-height: ' | append: settings.logo_height | append: 'px; --header-logo-image-height-mobile: ' | append: settings.logo_height_mobile | append: 'px;'
-    assign inverse_logo_style = '--header-logo-image-width: ' | append: inverse_logo_width | append: 'px;' | append: '--header-logo-image-width-mobile: ' | append: inverse_logo_width_mobile | append: 'px; --header-logo-image-height: ' | append: settings.logo_height | append: 'px; --header-logo-image-height-mobile: ' | append: settings.logo_height_mobile | append: 'px;'
-  %}
-
-  <span
-    class="header-logo__image-container header-logo__image-container--original"
-    data-testid="header-logo"
-  >
-    <svg width="220" height="50" viewBox="0 0 220 50" xmlns="http://www.w3.org/2000/svg" class="header-logo__image">
-        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter">
-            <!-- 【缩小断点的 X】 -->
-            <!-- 1. 主对角线（保持贯穿） -->
-            <path d="M 10 10 L 40 40" />
-            <!-- 2. 副对角线上半段（大幅向中心靠拢，从 29,21 延长到 27,23） -->
-            <path d="M 40 10 L 27 23" />
-            <!-- 3. 副对角线下半段（大幅向中心靠拢，从 21,29 延长到 23,27） -->
-            <path d="M 10 40 L 23 27" />
-            <!-- A -->
-            <path d="M 52 40 L 68 10 L 84 40" />
-            <!-- L -->
-            <path d="M 96 10 L 96 40 L 118 40" />
-            <!-- G -->
-            <path d="M 155 14 A 15 15 0 1 0 155 36 L 155 25 L 143 25" />
-            <!-- O (外圈) -->
-            <circle cx="187" cy="25" r="15" />
-        </g>
-        <!-- O (内圈：保持紧凑比例) -->
-        <circle cx="187" cy="25" r="11" fill="none" stroke="#C5A880" stroke-width="1.5" />
-    </svg>
-  </span>
+  {%- if block_settings.image -%}
+    {%- assign logo_img_height = settings.logo_height | default: 36 -%}
+    {%- assign logo_img_height_mobile = settings.logo_height_mobile | default: 28 -%}
+    {%- assign logo_img_width = logo_img_height
+      | times: block_settings.image.aspect_ratio
+      | round
+    -%}
+    {%- assign logo_img_width_mobile = logo_img_height_mobile
+      | times: block_settings.image.aspect_ratio
+      | round
+    -%}
+    <img
+      src="{{ block_settings.image | image_url: width: 1024 }}"
+      srcset="{{ block_settings.image | image_url: width: 256 }} 1x, {{ block_settings.image | image_url: width: 512 }} 2x"
+      alt="{{ shop.name }}"
+      class="header-logo__image"
+      width="{{ block_settings.image.width }}"
+      height="{{ block_settings.image.height }}"
+      style="--header-logo-image-width: {{ logo_img_width }}px; --header-logo-image-height: {{ logo_img_height }}px; --header-logo-image-width-mobile: {{ logo_img_width_mobile }}px; --header-logo-image-height-mobile: {{ logo_img_height_mobile }}px;"
+    >
+  {%- endif -%}
 </a>
 
 {% stylesheet %}
@@ -127,14 +85,6 @@
       width: var(--header-logo-image-width);
     }
   }
-
-  .header-logo:has(.header-logo__image-container--inverse) .header-logo__image-container--original {
-    display: var(--header-logo-display, block);
-  }
-
-  .header-logo__image-container--inverse {
-    display: var(--header-logo-inverse-display, none);
-  }
 {% endstylesheet %}
 
 {% schema %}
@@ -144,8 +94,9 @@
   "class": "header-logo",
   "settings": [
     {
-      "type": "paragraph",
-      "content": "t:content.edit_logo_in_theme_settings"
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:settings.image"
     },
     {
       "type": "header",

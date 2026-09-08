@@ -1,57 +1,326 @@
-{
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */ {
   "sections": {
     "main": {
       "type": "xalgo-faq",
       "blocks": {
-        "faq_1": {
+        "faq_product_1": {
           "type": "faq_item",
           "settings": {
             "category": "product",
-            "question": "What is xRing made of?",
-            "answer": "<p>xRing is crafted from aerospace-grade titanium, making it lightweight, durable, and hypoallergenic.</p>"
+            "question": "What is included in the box?",
+            "answer": "<p>Every MUSEVE order includes the device, a charging case or cable, a quick start guide, and spare parts where applicable (such as nose pads or ring sizing sleeves).</p>"
           }
         },
-        "faq_2": {
+        "faq_product_2": {
           "type": "faq_item",
           "settings": {
             "category": "product",
             "question": "How long does the battery last?",
-            "answer": "<p>xRing lasts 5-8 days on a single charge depending on usage patterns.</p>"
+            "answer": "<p>Battery life varies by usage. xRing lasts 5-8 days on a single charge. For the latest battery specifications of each product, please check its product page.</p>"
           }
         },
-        "faq_3": {
+        "faq_product_3": {
           "type": "faq_item",
           "settings": {
             "category": "product",
-            "question": "Is it waterproof?",
-            "answer": "<p>Yes, xRing is water resistant up to 100 meters. You can wear it while swimming or showering.</p>"
+            "question": "Is it waterproof or water resistant?",
+            "answer": "<p>Yes. xRing is water resistant up to 100 meters, so you can wear it while swimming, showering, or washing your hands. Check each product page for its specific rating.</p>"
           }
         },
-        "faq_4": {
+        "faq_product_4": {
+          "type": "faq_item",
+          "settings": {
+            "category": "product",
+            "question": "Which phones are compatible?",
+            "answer": "<p>The MUSEVE app supports iOS 15.0 and above, and Android 9.0 and above. Bluetooth 5.2 or later is recommended for the best experience.</p>"
+          }
+        },
+        "faq_product_5": {
+          "type": "faq_item",
+          "settings": {
+            "category": "product",
+            "question": "How do I choose the right ring size?",
+            "answer": "<p>Each xRing order includes free sizing sleeves so you can find your perfect fit at home. If you need help, our support team can guide you through measuring your finger.</p>"
+          }
+        },
+        "faq_product_6": {
+          "type": "faq_item",
+          "settings": {
+            "category": "product",
+            "question": "Is my health data private and secure?",
+            "answer": "<p>Yes. Your data is encrypted in transit and at rest, and is never sold to third parties. You can export or permanently delete your data anytime from the app settings.</p>"
+          }
+        },
+        "faq_product_7": {
+          "type": "faq_item",
+          "settings": {
+            "category": "product",
+            "question": "Do I need a subscription to use the app?",
+            "answer": "<p>No. Core features are free forever. An optional premium plan unlocks advanced insights and longer data history, but the device works fully without it.</p>"
+          }
+        },
+        "faq_order_1": {
+          "type": "faq_item",
+          "settings": {
+            "category": "order",
+            "question": "How do I track my order?",
+            "answer": "<p>Once your order ships, you will receive an email with a tracking number. You can also track your order anytime from the link in the shipping confirmation email.</p>"
+          }
+        },
+        "faq_order_2": {
+          "type": "faq_item",
+          "settings": {
+            "category": "order",
+            "question": "Can I change my shipping address after ordering?",
+            "answer": "<p>If your order has not shipped yet, contact us at support@museve.com with your order number and the new address, and we will update it for you.</p>"
+          }
+        },
+        "faq_order_3": {
+          "type": "faq_item",
+          "settings": {
+            "category": "order",
+            "question": "What payment methods do you accept?",
+            "answer": "<p>We accept all major credit and debit cards, PayPal, Shop Pay, Apple Pay, and Google Pay.</p>"
+          }
+        },
+        "faq_order_4": {
+          "type": "faq_item",
+          "settings": {
+            "category": "order",
+            "question": "Can I cancel or modify my order?",
+            "answer": "<p>Orders can usually be cancelled or modified within 24 hours of purchase, before they are processed for shipping. Contact support as soon as possible and we will do our best to help.</p>"
+          }
+        },
+        "faq_shipping_1": {
           "type": "faq_item",
           "settings": {
             "category": "shipping",
             "question": "How long does shipping take?",
-            "answer": "<p>Standard shipping takes 5-7 business days. Express shipping is available for 2-3 business days delivery.</p>"
+            "answer": "<p>Standard shipping takes 5-7 business days. Express shipping is available for 2-3 business days delivery, depending on your destination.</p>"
           }
         },
-        "faq_5": {
+        "faq_shipping_2": {
           "type": "faq_item",
           "settings": {
             "category": "shipping",
             "question": "Do you ship internationally?",
-            "answer": "<p>Yes, we ship to most countries worldwide. Shipping times and costs vary by destination.</p>"
+            "answer": "<p>Yes, we ship to most countries worldwide. Shipping times and costs vary by destination and are shown at checkout.</p>"
+          }
+        },
+        "faq_shipping_3": {
+          "type": "faq_item",
+          "settings": {
+            "category": "shipping",
+            "question": "Do I have to pay customs duties or taxes?",
+            "answer": "<p>For international orders, any customs duties or import taxes are the responsibility of the recipient and are collected by your local carrier upon delivery.</p>"
+          }
+        },
+        "faq_shipping_4": {
+          "type": "faq_item",
+          "settings": {
+            "category": "shipping",
+            "question": "My package shows delivered but I have not received it.",
+            "answer": "<p>Please check with household members and around your doorstep or mailbox. If it is still missing after 24 hours, contact us with your order number and we will investigate with the carrier right away.</p>"
+          }
+        },
+        "faq_returns_1": {
+          "type": "faq_item",
+          "settings": {
+            "category": "returns",
+            "question": "What is your return policy?",
+            "answer": "<p>You can return most items within 30 days of delivery for a full refund, as long as the product is in good condition with all accessories included.</p>"
+          }
+        },
+        "faq_returns_2": {
+          "type": "faq_item",
+          "settings": {
+            "category": "returns",
+            "question": "How do I start a return?",
+            "answer": "<p>Email support@museve.com with your order number and the reason for the return. We will send you a return label and step-by-step instructions.</p>"
+          }
+        },
+        "faq_returns_3": {
+          "type": "faq_item",
+          "settings": {
+            "category": "returns",
+            "question": "How long is the warranty?",
+            "answer": "<p>All MUSEVE devices come with a 1-year limited warranty covering manufacturing defects. Warranty claims are handled by our support team with proof of purchase.</p>"
+          }
+        },
+        "faq_returns_4": {
+          "type": "faq_item",
+          "settings": {
+            "category": "returns",
+            "question": "My device arrived damaged. What should I do?",
+            "answer": "<p>We are sorry about that. Contact us within 7 days of delivery with photos of the packaging and the device, and we will send a free replacement or issue a full refund.</p>"
+          }
+        },
+        "faq_support_1": {
+          "type": "faq_item",
+          "settings": {
+            "category": "support",
+            "question": "How do I contact customer support?",
+            "answer": "<p>Email us at support@museve.com or use the contact form on our Contact page. We reply within 24 hours on business days.</p>"
+          }
+        },
+        "faq_support_2": {
+          "type": "faq_item",
+          "settings": {
+            "category": "support",
+            "question": "My device will not connect to the app.",
+            "answer": "<p>First make sure Bluetooth is on and the device is charged. Then restart the app and your phone, and remove the device from the app before pairing again. If it still fails, contact support and we will help you step by step.</p>"
+          }
+        },
+        "faq_support_3": {
+          "type": "faq_item",
+          "settings": {
+            "category": "support",
+            "question": "How do I update the firmware?",
+            "answer": "<p>Open the MUSEVE app, go to Device Settings, and tap Firmware Update while your device is nearby and charged. Updates take a few minutes and your data is preserved.</p>"
+          }
+        },
+        "faq_support_4": {
+          "type": "faq_item",
+          "settings": {
+            "category": "support",
+            "question": "Where can I find user manuals?",
+            "answer": "<p>Digital manuals are available in the MUSEVE app under Device Settings, and printed quick-start guides are included in every box.</p>"
           }
         }
       },
-      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5"],
+      "block_order": [
+        "faq_product_1",
+        "faq_product_2",
+        "faq_product_3",
+        "faq_product_4",
+        "faq_product_5",
+        "faq_product_6",
+        "faq_product_7",
+        "faq_order_1",
+        "faq_order_2",
+        "faq_order_3",
+        "faq_order_4",
+        "faq_shipping_1",
+        "faq_shipping_2",
+        "faq_shipping_3",
+        "faq_shipping_4",
+        "faq_returns_1",
+        "faq_returns_2",
+        "faq_returns_3",
+        "faq_returns_4",
+        "faq_support_1",
+        "faq_support_2",
+        "faq_support_3",
+        "faq_support_4"
+      ],
       "settings": {
         "heading": "Frequently Asked Questions",
         "subheading": "Find answers to common questions about our products and services",
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "faq_cta": {
+      "type": "section",
+      "blocks": {
+        "cta_heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h3>Still need help?</h3>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h3",
+            "font": "var(--font-heading--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 8,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "cta_body": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our team replies within 24 hours on business days. Email us or send a message — a real person will get back to you.</p>",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1.0625rem",
+            "line_height": "loose",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 20,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "cta_button": {
+          "type": "button",
+          "settings": {
+            "label": "Contact us",
+            "link": "/pages/contact",
+            "open_in_new_tab": false,
+            "style_class": "button",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": ["cta_heading", "cta_body", "cta_button"],
+      "name": "FAQ CTA",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "align_baseline": false,
+        "gap": 8,
+        "section_width": "page-width",
+        "section_height": "",
+        "color_scheme": "scheme-3",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
     }
   },
-  "order": ["main"]
+  "order": ["main", "faq_cta"]
 }

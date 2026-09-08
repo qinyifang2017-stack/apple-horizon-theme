@@ -112,7 +112,8 @@
   endif
 %}
 
-{% capture media_slot_1 %}
+{%- if section.settings.enabled -%}
+  {% capture media_slot_1 %}
   {%- if media_1 == 'image' and media_1_mobile == 'image' -%}
     {%- comment -%} Both desktop and mobile are images. Assume similar images, and this is art direction: use picture element. {%- endcomment -%}
     <picture
@@ -216,7 +217,7 @@
   {%- endif -%}
 {% endcapture %}
 
-{% capture media_slot_2 %}
+  {% capture media_slot_2 %}
   {%- if media_2 == 'image' and media_2_mobile == 'image' -%}
     {%- comment -%} Both desktop and mobile are images. Assume this is art direction: use picture element.  {%- endcomment -%}
     <picture
@@ -320,7 +321,7 @@
   {%- endif -%}
 {% endcapture %}
 
-{% capture media %}
+  {% capture media %}
   {{ media_slot_1 }}
   {{ media_slot_2 }}
 
@@ -329,7 +330,7 @@
   {%- endif -%}
 {% endcapture %}
 
-{% capture media_blurred %}
+  {% capture media_blurred %}
   {% if media_1 == 'image' %}
     {{
       section.settings.image_1
@@ -361,7 +362,7 @@
   {% endif %}
 {% endcapture %}
 
-{% capture mobile_media_blurred %}
+  {% capture mobile_media_blurred %}
   {%- comment -%}
     On mobile we need to check:
     1. If the media should be stacked. If it is,we check for the second (bottom) image first, then for the first (top) image.
@@ -448,99 +449,103 @@
   {% endif %}
 {% endcapture %}
 
-<div
-  id="Hero-{{ section.id }}"
-  class="hero color-{{ section.settings.color_scheme }}{% if section.blocks.size == 0 and section.settings.section_height == 'auto' %} hero--no-blocks-auto-height{% endif %}{% if section.settings.stack_media_on_mobile %} hero--stack-mobile{% endif %}{% if section.settings.media_contained %} hero--contained-media{% endif %}{% if section.settings.media_stacked %} hero--stacked-layout{% endif %}"
-  style="
-    --hero-border-style: {{ section.settings.border }};
-    --hero-border-width: {{ section.settings.border_width }}px;
-    --hero-border-opacity: {{ section.settings.border_opacity }}%;
-    --blur-opacity: {{ section.settings.reflection_opacity | divided_by: 100.0 }};
-    {% if section.settings.section_height == 'custom' %}
-      --hero-min-height: {{ section.settings.section_height_custom }}svh;
-    {% elsif section.settings.section_height == "full-screen" %}
-       --hero-min-height: 100svh;
-    {% else %}
-      --hero-min-height: var(--section-height-{{ section.settings.section_height }});
-    {% endif %}
-    {% if section.settings.enable_gradient_bg %}
-      background: linear-gradient({{ section.settings.gradient_bg_direction }}, {{ section.settings.gradient_color_1 }}, {{ section.settings.gradient_color_2 }}) !important;
-    {% elsif section.settings.custom_bg_color != blank and section.settings.custom_bg_color != 'rgba(0,0,0,0)' %}
-      background-color: {{ section.settings.custom_bg_color }} !important;
-    {% endif %}
-  "
-  {% if request.visual_preview_mode %}
-    data-shopify-visual-preview
-  {% endif %}
-  {% if section.settings.blurred_reflection and has_only_video == false or has_only_video_mobile == false %}
-    data-blur-shadow="true"
-  {% endif %}
->
-  {% if section.settings.blurred_reflection %}
-    {% unless has_only_video %}
-      <div
-        class="hero__blurred-image hero__blurred-image--desktop"
-        data-testid="hero-blurred-image-desktop"
-      >
-        {{ media_blurred }}
-      </div>
-    {% endunless %}
-    {% if show_mobile_blurred_reflection %}
-      <div
-        class="hero__blurred-image hero__blurred-image--mobile"
-        data-testid="hero-blurred-image-mobile"
-      >
-        {{ mobile_media_blurred }}
-      </div>
-    {% endif %}
-  {% endif %}
-
-  {% comment %}
-    Hardcoded to section--full-width bc the media has to be full width in all cases.
-    hero__content-wrapper applies section_width.
-  {% endcomment %}
-
   <div
-    class="hero__container spacing-style section section--full-width"
-    style="{% render 'spacing-style', settings: section.settings %}"
+    id="Hero-{{ section.id }}"
+    class="hero color-{{ section.settings.color_scheme }}{% if section.blocks.size == 0 and section.settings.section_height == 'auto' %} hero--no-blocks-auto-height{% endif %}{% if section.settings.stack_media_on_mobile %} hero--stack-mobile{% endif %}{% if section.settings.media_contained %} hero--contained-media{% endif %}{% if section.settings.media_stacked %} hero--stacked-layout{% endif %}"
+    style="
+      --hero-border-style: {{ section.settings.border }};
+      --hero-border-width: {{ section.settings.border_width }}px;
+      --hero-border-opacity: {{ section.settings.border_opacity }}%;
+      --blur-opacity: {{ section.settings.reflection_opacity | divided_by: 100.0 }};
+      {% if section.settings.section_height == 'custom' %}
+        --hero-min-height: {{ section.settings.section_height_custom }}svh;
+      {% elsif section.settings.section_height == "full-screen" %}
+         --hero-min-height: 100svh;
+      {% else %}
+        --hero-min-height: var(--section-height-{{ section.settings.section_height }});
+      {% endif %}
+      {% if section.settings.enable_gradient_bg %}
+        background: linear-gradient({{ section.settings.gradient_bg_direction }}, {{ section.settings.gradient_color_1 }}, {{ section.settings.gradient_color_2 }}) !important;
+      {% elsif section.settings.custom_bg_color != blank and section.settings.custom_bg_color != 'rgba(0,0,0,0)' %}
+        background-color: {{ section.settings.custom_bg_color }} !important;
+      {% endif %}
+    "
+    {% if request.visual_preview_mode %}
+      data-shopify-visual-preview
+    {% endif %}
+    {% if section.settings.blurred_reflection
+      and has_only_video == false
+      or has_only_video_mobile == false
+    %}
+      data-blur-shadow="true"
+    {% endif %}
   >
-    {%- if section.settings.link != blank -%}
-      <a
-        href="{{ section.settings.link }}"
-        class="hero__link"
-        {% if section.settings.open_in_new_tab %}
-          target="_blank" rel="noopener"
-        {% endif %}
-      ></a>
-    {%- endif -%}
+    {% if section.settings.blurred_reflection %}
+      {% unless has_only_video %}
+        <div
+          class="hero__blurred-image hero__blurred-image--desktop"
+          data-testid="hero-blurred-image-desktop"
+        >
+          {{ media_blurred }}
+        </div>
+      {% endunless %}
+      {% if show_mobile_blurred_reflection %}
+        <div
+          class="hero__blurred-image hero__blurred-image--mobile"
+          data-testid="hero-blurred-image-mobile"
+        >
+          {{ mobile_media_blurred }}
+        </div>
+      {% endif %}
+    {% endif %}
+
+    {% comment %}
+      Hardcoded to section--full-width bc the media has to be full width in all cases.
+      hero__content-wrapper applies section_width.
+    {% endcomment %}
+
     <div
-      class="hero__media-grid"
-      style="--hero-media-count: {{ media_count }};--hero-media-count-mobile: {{ media_count_mobile }};{%- if section.settings.image_1 != blank -%} --hero-media-aspect-ratio: {{ section.settings.image_1.aspect_ratio }};{% endif %}"
-      data-testid="hero-media-wrapper"
+      class="hero__container spacing-style section section--full-width"
+      style="{% render 'spacing-style', settings: section.settings %}"
     >
-      {% liquid
-        if section.settings.toggle_overlay
-          render 'overlay', settings: section.settings
-        endif
-      %}
-      {{ media }}
-    </div>
-    <div
-      class="
-        hero__content-wrapper
-        layout-panel-flex
-        layout-panel-flex--{{ section.settings.content_direction }}
-        {% if section.settings.vertical_on_mobile %}mobile-column{% endif %}
-        section-content-wrapper
-        {{section.settings.section_width}}
-        {% if request.design_mode %}hero__content-wrapper--design-mode{% endif %}
-      "
-      style="{% render 'layout-panel-style', settings: section.settings %}"
-    >
-      {% content_for 'blocks' %}
+      {%- if section.settings.link != blank -%}
+        <a
+          href="{{ section.settings.link }}"
+          class="hero__link"
+          {% if section.settings.open_in_new_tab %}
+            target="_blank" rel="noopener"
+          {% endif %}
+        ></a>
+      {%- endif -%}
+      <div
+        class="hero__media-grid"
+        style="--hero-media-count: {{ media_count }};--hero-media-count-mobile: {{ media_count_mobile }};{%- if section.settings.image_1 != blank -%} --hero-media-aspect-ratio: {{ section.settings.image_1.aspect_ratio }};{% endif %}"
+        data-testid="hero-media-wrapper"
+      >
+        {% liquid
+          if section.settings.toggle_overlay
+            render 'overlay', settings: section.settings
+          endif
+        %}
+        {{ media }}
+      </div>
+      <div
+        class="
+          hero__content-wrapper
+          layout-panel-flex
+          layout-panel-flex--{{ section.settings.content_direction }}
+          {% if section.settings.vertical_on_mobile %}mobile-column{% endif %}
+          section-content-wrapper
+          {{section.settings.section_width}}
+          {% if request.design_mode %}hero__content-wrapper--design-mode{% endif %}
+        "
+        style="{% render 'layout-panel-style', settings: section.settings %}"
+      >
+        {% content_for 'blocks' %}
+      </div>
     </div>
   </div>
-</div>
+{%- endif -%}
 
 {% stylesheet %}
   .hero-wrapper {
@@ -566,7 +571,8 @@
   .hero__container {
     position: relative;
     overflow: hidden;
-    border: var(--hero-border-width) var(--hero-border-style) rgb(var(--color-border-rgb) / var(--hero-border-opacity));
+    border: var(--hero-border-width) var(--hero-border-style)
+      rgb(var(--color-border-rgb) / var(--hero-border-opacity));
     min-height: inherit;
     align-items: var(--vertical-alignment-mobile);
     justify-content: var(--horizontal-alignment);
@@ -774,7 +780,10 @@
     /* Mobile stacking */
     .hero--stack-mobile .hero__media-grid {
       grid-template-columns: 1fr;
-      grid-template-rows: repeat(var(--hero-media-count-mobile, 1), calc(100% / var(--hero-media-count-mobile, 1)));
+      grid-template-rows: repeat(
+        var(--hero-media-count-mobile, 1),
+        calc(100% / var(--hero-media-count-mobile, 1))
+      );
     }
   }
 
@@ -799,7 +808,12 @@
 
   .hero[data-blur-shadow='true'] {
     --blurred-reflection-filter-saturate: saturate(1.5);
-    --blurred-reflection-mask-image: linear-gradient(to bottom, #000 0%, #000 60%, transparent 100%);
+    --blurred-reflection-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 60%,
+      transparent 100%
+    );
     --blurred-reflection-box-shadow: rgb(0 0 0 / 5%) 0 0 1rem;
     --blurred-reflection-filter-blur: blur(20px);
     --blurred-reflection-scale: scale(2, 1.25);
@@ -902,6 +916,13 @@
     "groups": ["header"]
   },
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Enable section",
+      "info": "Turn off to hide this section without deleting it.",
+      "default": true
+    },
     {
       "type": "header",
       "content": "t:content.media_1"
