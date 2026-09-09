@@ -383,3 +383,174 @@ a:not(.button):not(.button-secondary):not(.menu-list__link):not(.menu__item a):n
     font-size: 16px !important;
   }
 }
+
+/* ============================================================
+   政策协议页（/policies/*）：排版优化 + 目录导航
+   目录由 xalgo-policy.js 动态生成，样式对无目录情况同样生效
+   ============================================================ */
+
+.shopify-policy__container {
+  --policy-divider: rgb(var(--color-foreground-rgb) / 0.08);
+  max-width: 780px;
+  margin-inline: auto;
+  padding-inline: var(--page-margin, 16px);
+  padding-block: clamp(40px, 6vw, 72px) clamp(64px, 8vw, 96px);
+}
+
+.shopify-policy__title {
+  margin-block-end: clamp(28px, 4vw, 44px);
+}
+
+.shopify-policy__title h1 {
+  font-size: clamp(26px, 3.4vw, 34px);
+  letter-spacing: -0.01em;
+}
+
+/* —— 正文排版：拉开行距与段距，建立层级 —— */
+.shopify-policy__body {
+  font-size: 16px;
+  line-height: 1.85;
+  color: rgb(var(--color-foreground-rgb) / 0.82);
+  overflow-wrap: break-word;
+}
+
+.shopify-policy__body p {
+  margin-block: 0 1.15em;
+}
+
+.shopify-policy__body :is(h2, h3) {
+  color: var(--color-foreground);
+  scroll-margin-top: calc(var(--header-height, 64px) + var(--header-group-height, 0px) + 24px);
+}
+
+.shopify-policy__body h2 {
+  font-size: 1.22em;
+  margin-block: 2.4em 0.9em;
+  padding-block-start: 1.6em;
+  border-block-start: 1px solid var(--policy-divider);
+}
+
+.shopify-policy__body h3 {
+  font-size: 1.08em;
+  margin-block: 1.8em 0.6em;
+}
+
+.shopify-policy__body > :first-child:is(h2, h3) {
+  border-block-start: 0;
+  padding-block-start: 0;
+  margin-block-start: 0;
+}
+
+.shopify-policy__body :is(ul, ol) {
+  margin-block: 0 1.4em;
+  padding-inline-start: 1.4em;
+}
+
+.shopify-policy__body li {
+  margin-block: 0.45em;
+  padding-inline-start: 0.2em;
+}
+
+.shopify-policy__body li::marker {
+  color: rgb(var(--color-foreground-rgb) / 0.45);
+}
+
+.shopify-policy__body a {
+  color: var(--color-foreground);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* —— 两栏布局：目录 + 正文（桌面端） —— */
+@media screen and (min-width: 990px) {
+  .shopify-policy__container.policy-has-toc {
+    max-width: 1080px;
+    display: grid;
+    grid-template-columns: 230px minmax(0, 720px);
+    justify-content: center;
+    column-gap: 56px;
+  }
+
+  .policy-has-toc .shopify-policy__title {
+    grid-column: 1 / -1;
+  }
+
+  .policy-has-toc .policy-toc {
+    grid-column: 1;
+  }
+
+  .policy-has-toc .shopify-policy__body {
+    grid-column: 2;
+  }
+
+  .policy-toc__inner {
+    position: sticky;
+    top: calc(var(--header-height, 64px) + var(--header-group-height, 0px) + 28px);
+  }
+}
+
+/* —— 目录组件 —— */
+.policy-toc {
+  margin-block-end: 28px;
+}
+
+.policy-toc__label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(var(--color-foreground-rgb) / 0.5);
+  margin-block-end: 12px;
+}
+
+.policy-toc__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.policy-toc__list a {
+  display: block;
+  padding: 6px 12px;
+  border-inline-start: 2px solid rgb(var(--color-foreground-rgb) / 0.1);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: rgb(var(--color-foreground-rgb) / 0.65);
+  text-decoration: none;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.policy-toc__list a:hover {
+  color: var(--color-foreground);
+}
+
+.policy-toc__list a.is-active {
+  color: var(--color-foreground);
+  font-weight: 600;
+  border-inline-start-color: var(--color-foreground);
+}
+
+.policy-toc__list .policy-toc__sub {
+  padding-inline-start: 24px;
+  font-size: 12.5px;
+}
+
+/* 移动端：目录收成可滚动的小盒子 */
+@media screen and (max-width: 989px) {
+  .policy-toc {
+    border: 1px solid var(--policy-divider);
+    border-radius: 12px;
+    padding: 14px 16px;
+    background: rgb(var(--color-foreground-rgb) / 0.02);
+  }
+
+  .policy-toc__list {
+    max-height: 200px;
+    overflow-y: auto;
+  }
+}

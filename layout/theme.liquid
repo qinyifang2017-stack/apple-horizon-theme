@@ -131,6 +131,11 @@
       {% sections 'footer-group' %}
     </footer>
 
+    <script
+      src="{{ 'xalgo-policy.js' | asset_url }}"
+      defer
+    ></script>
+
     {% render 'search-modal' %}
 
     {% if settings.quick_add or settings.mobile_quick_add %}
