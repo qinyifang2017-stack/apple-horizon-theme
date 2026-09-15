@@ -2284,5 +2284,17 @@
         "default": "equal-width-buttons"
       }
     ]
+  },
+  {
+    "name": "Back to top",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "back_to_top_enabled",
+        "label": "Show back-to-top button",
+        "info": "Appears on all pages after scrolling past the first screen.",
+        "default": true
+      }
+    ]
   }
 ]

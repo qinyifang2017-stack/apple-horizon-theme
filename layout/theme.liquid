@@ -125,16 +125,19 @@
       data-template="{{ template }}"
     >
       {{ content_for_layout }}
+
+      {% comment %}
+        政策页目录导航：内联同步执行（外链脚本需网络往返，会导致布局闪变）。
+        非政策页脚本内部 guard 直接 return，无副作用。
+      {% endcomment %}
+      {% render 'xalgo-policy' %}
     </main>
 
     <footer>
       {% sections 'footer-group' %}
     </footer>
 
-    <script
-      src="{{ 'xalgo-policy.js' | asset_url }}"
-      defer
-    ></script>
+    {% render 'back-to-top' %}
 
     {% render 'search-modal' %}
 

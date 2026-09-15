@@ -1,0 +1,79 @@
+{% comment %}
+  回到顶部悬浮按钮：全站生效，开关在 主题设置 → Back to top。
+  样式在 xalgo-custom.css（.back-to-top），滚动超过一屏后淡入。
+{% endcomment %}
+{%- if settings.back_to_top_enabled -%}
+  <button
+    type="button"
+    class="back-to-top"
+    aria-label="Back to top"
+    hidden
+  >
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M8 13V3M8 3L3.5 7.5M8 3l4.5 4.5"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </button>
+
+  <script>
+    (function () {
+      var btn = document.querySelector('.back-to-top');
+      if (!btn) return;
+
+      var threshold = function () {
+        return window.innerHeight * 0.8;
+      };
+      var visible = false;
+      var ticking = false;
+
+      function update() {
+        ticking = false;
+        var shouldShow = window.scrollY > threshold();
+        if (shouldShow === visible) return;
+        visible = shouldShow;
+        if (shouldShow) {
+          btn.hidden = false;
+          /* 下一帧再加类，保证 transition 生效 */
+          requestAnimationFrame(function () {
+            btn.classList.add('is-visible');
+          });
+        } else {
+          btn.classList.remove('is-visible');
+          /* 等淡出动画结束再隐藏 */
+          setTimeout(function () {
+            if (!visible) btn.hidden = true;
+          }, 300);
+        }
+      }
+
+      window.addEventListener(
+        'scroll',
+        function () {
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(update);
+          }
+        },
+        { passive: true }
+      );
+
+      btn.addEventListener('click', function () {
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+      });
+
+      update();
+    })();
+  </script>
+{%- endif -%}

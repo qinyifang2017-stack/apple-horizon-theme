@@ -1,17 +1,14 @@
-/**
- * 政策协议页（/policies/*）目录导航生成器
- * 依赖 xalgo-custom.css 中的 .policy-toc / .policy-has-toc 样式。
- * 逻辑：
- *  1. 扫描 .shopify-policy__body 内的 h2/h3，补全 id 作为锚点
- *  2. 生成左侧目录（桌面 sticky / 移动端收纳盒）
- *  3. IntersectionObserver 滚动高亮当前章节
- * 没有任何 h2/h3 标题时不渲染目录，页面保持纯文章排版。
- */
+{% comment %}
+  政策协议页目录导航生成器（内联执行，避免外链脚本导致的布局闪变）。
+  依赖 xalgo-custom.css 中的 .policy-toc / .policy-has-toc 样式。
+  非政策页 guard 直接 return，无副作用。
+{% endcomment %}
+<script>
 (function () {
   'use strict';
 
   var container = document.querySelector('.shopify-policy__container');
-  if (!container) return;
+  if (!container || container.classList.contains('policy-has-toc')) return;
 
   /* 政策正文容器：优先官方类名，兜底取标题后的第一个兄弟元素并补上类名 */
   var body = container.querySelector('.shopify-policy__body');
@@ -104,6 +101,17 @@
     Object.keys(links).forEach(function (key) {
       links[key].classList.toggle('is-active', key === id);
     });
+    /* 目录自身可滚动时，把当前项滚进可视区（手动算 scrollTop，避免 scrollIntoView 连带滚动页面） */
+    var active = links[id];
+    if (active && nav.scrollHeight > nav.clientHeight) {
+      var itemTop = active.offsetTop;
+      var itemBottom = itemTop + active.offsetHeight;
+      if (itemTop < nav.scrollTop) {
+        nav.scrollTop = itemTop - 8;
+      } else if (itemBottom > nav.scrollTop + nav.clientHeight) {
+        nav.scrollTop = itemBottom - nav.clientHeight + 8;
+      }
+    }
   }
 
   if ('IntersectionObserver' in window) {
@@ -129,3 +137,4 @@
 
   setActive(tocItems[0].id);
 })();
+</script>

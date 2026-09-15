@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */ {
+ */
+{
   "sections": {
     "promo_banner": {
       "type": "promo-banner",
@@ -21,7 +22,8 @@
             "open_in_new_tab": true,
             "padding-block-start": 0,
             "padding-block-end": 0
-          }
+          },
+          "blocks": {}
         },
         "promo_heading": {
           "type": "text",
@@ -83,7 +85,8 @@
             "progress_style": "success",
             "padding-block-start": 0,
             "padding-block-end": 0
-          }
+          },
+          "blocks": {}
         },
         "promo_countdown": {
           "type": "_promo-countdown",
@@ -92,35 +95,83 @@
             "expired_text": "Early bird offer has ended",
             "padding-block-start": 0,
             "padding-block-end": 0
-          }
+          },
+          "blocks": {}
         },
-        "promo_cta": {
-          "type": "button",
+        "promo_buttons": {
+          "type": "group",
           "settings": {
-            "label": "Back it on Kickstarter",
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 16,
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "scheme-1",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
             "link": "",
-            "open_in_new_tab": true,
-            "style_class": "button",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
-        },
-        "promo_landing": {
-          "type": "button",
-          "settings": {
-            "label": "Explore xGlass",
-            "link": "/pages/xglass",
             "open_in_new_tab": false,
-            "style_class": "button-secondary",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
+            "placeholder": "",
+            "padding-block-start": 8,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
-          "blocks": {}
+          "blocks": {
+            "promo_cta": {
+              "type": "button",
+              "settings": {
+                "show_button": true,
+                "label": "Back it on Kickstarter",
+                "link": "https://www.tapd.cn/",
+                "open_in_new_tab": true,
+                "style_class": "button",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            },
+            "promo_landing": {
+              "type": "button",
+              "settings": {
+                "show_button": true,
+                "label": "Explore xGlass",
+                "link": "/pages/xglass",
+                "open_in_new_tab": false,
+                "style_class": "button-secondary",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "promo_cta",
+            "promo_landing"
+          ]
         }
       },
       "block_order": [
@@ -129,12 +180,12 @@
         "promo_subheading",
         "promo_progress",
         "promo_countdown",
-        "promo_cta",
-        "promo_landing"
+        "promo_buttons"
       ],
       "name": "Promo Banner",
       "settings": {
         "enabled": true,
+        "layout_style": "dark",
         "media_type": "image",
         "use_default_asset_images": true,
         "background_alt": "xGlass Kickstarter campaign hero",
@@ -157,8 +208,7 @@
         "open_in_new_tab": false,
         "link_accessibility_text": "Back xGlass on Kickstarter",
         "padding-block-start": 56,
-        "padding-block-end": 56,
-        "layout_style": "dark"
+        "padding-block-end": 56
       }
     },
     "hero_ring": {
@@ -217,7 +267,8 @@
         "ring_cta": {
           "type": "button",
           "settings": {
-            "label": "Learn more",
+            "show_button": true,
+            "label": "On the Horizon",
             "link": "",
             "open_in_new_tab": false,
             "style_class": "button",
@@ -231,6 +282,7 @@
         "ring_learn": {
           "type": "button",
           "settings": {
+            "show_button": false,
             "label": "Shop Now",
             "link": "",
             "open_in_new_tab": false,
@@ -243,16 +295,23 @@
           "blocks": {}
         }
       },
-      "block_order": ["ring_heading", "ring_subtitle", "ring_cta", "ring_learn"],
+      "block_order": [
+        "ring_heading",
+        "ring_subtitle",
+        "ring_cta",
+        "ring_learn"
+      ],
       "name": "Ring Hero",
       "settings": {
         "enabled": true,
         "media_type_1": "image",
         "media_type_2": "image",
+        "image_2": "shopify://shop_images/home_ring.png",
         "stack_media_on_mobile": false,
         "custom_mobile_media": false,
         "media_type_1_mobile": "image",
         "media_type_2_mobile": "image",
+        "link": "",
         "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -266,15 +325,19 @@
         "section_height": "auto",
         "section_height_custom": 50,
         "color_scheme": "scheme-1",
-        "custom_bg_color": "#D9DEE9",
+        "custom_bg_color": "#d9dee9",
+        "enable_gradient_bg": false,
+        "gradient_color_1": "#fff5ec",
+        "gradient_color_2": "#e8a598",
+        "gradient_bg_direction": "to bottom",
         "toggle_overlay": false,
         "overlay_color": "#12121240",
         "overlay_style": "gradient",
         "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
         "media_contained": false,
         "media_stacked": true,
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
         "padding-block-start": 48,
         "padding-block-end": 0
       }
@@ -335,6 +398,7 @@
         "glasses_cta": {
           "type": "button",
           "settings": {
+            "show_button": true,
             "label": "Learn more",
             "link": "",
             "open_in_new_tab": false,
@@ -349,6 +413,7 @@
         "glasses_buy": {
           "type": "button",
           "settings": {
+            "show_button": true,
             "label": "Shop Now",
             "link": "",
             "open_in_new_tab": false,
@@ -361,16 +426,22 @@
           "blocks": {}
         }
       },
-      "block_order": ["glasses_heading", "glasses_subtitle", "glasses_cta", "glasses_buy"],
+      "block_order": [
+        "glasses_heading",
+        "glasses_subtitle",
+        "glasses_cta",
+        "glasses_buy"
+      ],
       "name": "Glasses Hero",
       "settings": {
-        "enabled": true,
+        "enabled": false,
         "media_type_1": "image",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
         "custom_mobile_media": false,
         "media_type_1_mobile": "image",
         "media_type_2_mobile": "image",
+        "link": "",
         "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -384,15 +455,19 @@
         "section_height": "auto",
         "section_height_custom": 50,
         "color_scheme": "scheme-1",
-        "custom_bg_color": "#F5E4E1",
+        "custom_bg_color": "#f5e4e1",
+        "enable_gradient_bg": false,
+        "gradient_color_1": "#fff5ec",
+        "gradient_color_2": "#e8a598",
+        "gradient_bg_direction": "to bottom",
         "toggle_overlay": false,
         "overlay_color": "#12121240",
         "overlay_style": "gradient",
         "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
         "media_contained": false,
         "media_stacked": true,
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
         "padding-block-start": 48,
         "padding-block-end": 0
       }
@@ -453,8 +528,9 @@
         "frame_cta": {
           "type": "button",
           "settings": {
-            "label": "Learn more",
-            "link": "/pages/xframe",
+            "show_button": true,
+            "label": "On the Horizon",
+            "link": "",
             "open_in_new_tab": false,
             "style_class": "button",
             "width": "fit-content",
@@ -467,6 +543,7 @@
         "frame_buy": {
           "type": "button",
           "settings": {
+            "show_button": false,
             "label": "Shop Now",
             "link": "/products/xframe",
             "open_in_new_tab": false,
@@ -479,16 +556,23 @@
           "blocks": {}
         }
       },
-      "block_order": ["frame_heading", "frame_subtitle", "frame_cta", "frame_buy"],
+      "block_order": [
+        "frame_heading",
+        "frame_subtitle",
+        "frame_cta",
+        "frame_buy"
+      ],
       "name": "Frame Hero",
       "settings": {
         "enabled": true,
         "media_type_1": "image",
+        "image_1": "shopify://shop_images/home_hero3.png",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
         "custom_mobile_media": false,
         "media_type_1_mobile": "image",
         "media_type_2_mobile": "image",
+        "link": "",
         "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -502,6 +586,7 @@
         "section_height": "auto",
         "section_height_custom": 50,
         "color_scheme": "scheme-1",
+        "custom_bg_color": "",
         "enable_gradient_bg": true,
         "gradient_color_1": "#d4eaf7",
         "gradient_color_2": "#edf5f8",
@@ -510,10 +595,10 @@
         "overlay_color": "#12121240",
         "overlay_style": "gradient",
         "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
         "media_contained": false,
         "media_stacked": true,
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
         "padding-block-start": 48,
         "padding-block-end": 0
       }
@@ -521,10 +606,11 @@
     "her_day_tabs": {
       "type": "xalgo-her-day",
       "settings": {
-        "heading": "Her Day with xalgo",
+        "heading": "One  Day with Museve",
         "subheading": "Ring cares for her body. Glasses care for her time. Frame cares for her memory.",
         "tab1_label": "Morning",
         "tab1_subtitle": "Ring's Moment",
+        "tab1_scene_image": "shopify://shop_images/xGlass_scene_01.png",
         "tab1_description": "<p>All night, Ring quietly recorded. Deep sleep 1h 42min. HRV 62. No apnea risk signals. Today feels good.</p>",
         "tab1_quote": "Ring tracked everything overnight. 1.9 grams of peace of mind, watching over me while I sleep.",
         "tab1_quote_author": "Sarah K., Product Designer",
@@ -629,6 +715,7 @@
         "philosophy_cta": {
           "type": "button",
           "settings": {
+            "show_button": true,
             "label": "Read our vision",
             "link": "/pages/vision",
             "open_in_new_tab": false,
@@ -653,11 +740,13 @@
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
+        "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 10,
         "section_width": "page-width",
         "section_height": "",
+        "section_height_custom": 50,
         "color_scheme": "scheme-1",
         "background_media": "none",
         "video_position": "cover",
@@ -666,6 +755,10 @@
         "border_width": 1,
         "border_opacity": 100,
         "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
         "padding-block-start": 30,
         "padding-block-end": 30
       }
@@ -707,7 +800,11 @@
           }
         }
       },
-      "block_order": ["testimonial_1", "testimonial_2", "testimonial_3"],
+      "block_order": [
+        "testimonial_1",
+        "testimonial_2",
+        "testimonial_3"
+      ],
       "settings": {
         "heading": "Real Women, Real Words",
         "subheading": "Hear from our community",

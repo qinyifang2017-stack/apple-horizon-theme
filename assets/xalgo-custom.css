@@ -146,6 +146,11 @@ a:not(.button):not(.button-secondary):not(.menu-list__link):not(.menu__item a):n
   color: var(--xalgo-champagne);
 }
 
+/* —— 公告栏底部分隔线：主题默认 20% 太重，压淡 —— */
+aside.announcement-bar {
+  border-block-end-color: rgb(var(--color-border-rgb) / 0.08);
+}
+
 /* —— 8. 选中状态用品牌色 —— */
 ::selection {
   background-color: var(--xalgo-rose-light);
@@ -420,7 +425,7 @@ a:not(.button):not(.button-secondary):not(.menu-list__link):not(.menu__item a):n
 
 .shopify-policy__body :is(h2, h3) {
   color: var(--color-foreground);
-  scroll-margin-top: calc(var(--header-height, 64px) + var(--header-group-height, 0px) + 24px);
+  scroll-margin-top: calc(var(--header-height, 64px) + 16px);
 }
 
 .shopify-policy__body h2 {
@@ -477,15 +482,19 @@ a:not(.button):not(.button-secondary):not(.menu-list__link):not(.menu__item a):n
 
   .policy-has-toc .policy-toc {
     grid-column: 1;
+    position: sticky;
+    /* 公告条会随滚动收起，固定可见的只有 header，吸附位置贴 header 底部即可 */
+    top: calc(var(--header-height, 64px) + 16px);
+    align-self: start;
+    max-height: calc(100vh - var(--header-height, 64px) - 48px);
+    overflow-y: auto;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - 32px), transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - 32px), transparent 100%);
   }
 
   .policy-has-toc .shopify-policy__body {
     grid-column: 2;
-  }
-
-  .policy-toc__inner {
-    position: sticky;
-    top: calc(var(--header-height, 64px) + var(--header-group-height, 0px) + 28px);
   }
 }
 
@@ -512,25 +521,31 @@ a:not(.button):not(.button-secondary):not(.menu-list__link):not(.menu__item a):n
   gap: 2px;
 }
 
-.policy-toc__list a {
+/* 政策正文若带 .rte 类，base.css 的 `.rte ul a(:hover)` 会把链接刷成品牌粉并加下划线，
+   其权重 (0,3,2) 高于普通目录规则，这里用 !important 强制中性色 */
+.policy-toc .policy-toc__list a {
   display: block;
   padding: 6px 12px;
   border-inline-start: 2px solid rgb(var(--color-foreground-rgb) / 0.1);
   font-size: 13.5px;
   line-height: 1.5;
-  color: rgb(var(--color-foreground-rgb) / 0.65);
-  text-decoration: none;
+  /* stylelint-disable-next-line declaration-no-important */
+  color: rgb(var(--color-foreground-rgb) / 0.65) !important;
+  /* stylelint-disable-next-line declaration-no-important */
+  text-decoration: none !important;
   transition:
     color 0.15s ease,
     border-color 0.15s ease;
 }
 
-.policy-toc__list a:hover {
-  color: var(--color-foreground);
+.policy-toc .policy-toc__list a:hover {
+  /* stylelint-disable-next-line declaration-no-important */
+  color: var(--color-foreground) !important;
 }
 
-.policy-toc__list a.is-active {
-  color: var(--color-foreground);
+.policy-toc .policy-toc__list a.is-active {
+  /* stylelint-disable-next-line declaration-no-important */
+  color: var(--color-foreground) !important;
   font-weight: 600;
   border-inline-start-color: var(--color-foreground);
 }
@@ -540,7 +555,62 @@ a:not(.button):not(.button-secondary):not(.menu-list__link):not(.menu__item a):n
   font-size: 12.5px;
 }
 
-/* 移动端：目录收成可滚动的小盒子 */
+/* —— 页脚顶部圆角：柔化和页面内容的硬边界，消除"台阶感" —— */
+footer > .shopify-section:first-child .section-background {
+  border-start-start-radius: 28px;
+  border-start-end-radius: 28px;
+}
+
+/* —— 回到顶部按钮 —— */
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 28px;
+  z-index: calc(var(--layer-sticky, 8) + 2);
+  display: grid;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgb(var(--color-foreground-rgb) / 0.12);
+  border-radius: 50%;
+  background: var(--xalgo-cream, #fdfaf7);
+  color: var(--xalgo-text-primary, #1d1d1f);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 10%);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* display:grid 会覆盖 UA 的 [hidden]，需显式隐藏 */
+.back-to-top[hidden] {
+  display: none;
+}
+
+.back-to-top:hover {
+  background: var(--xalgo-champagne, #c9a882);
+  border-color: var(--xalgo-champagne, #c9a882);
+  color: #fff;
+}
+
+@media screen and (min-width: 750px) {
+  .back-to-top {
+    right: 32px;
+    bottom: 36px;
+  }
+}
+
+/* —— 移动端：目录收成可滚动的小盒子 —— */
 @media screen and (max-width: 989px) {
   .policy-toc {
     border: 1px solid var(--policy-divider);
@@ -552,5 +622,6 @@ a:not(.button):not(.button-secondary):not(.menu-list__link):not(.menu__item a):n
   .policy-toc__list {
     max-height: 200px;
     overflow-y: auto;
+    scrollbar-width: none;
   }
 }
