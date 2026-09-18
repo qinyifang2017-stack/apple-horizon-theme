@@ -555,12 +555,6 @@ aside.announcement-bar {
   font-size: 12.5px;
 }
 
-/* —— 页脚顶部圆角：柔化和页面内容的硬边界，消除"台阶感" —— */
-footer > .shopify-section:first-child .section-background {
-  border-start-start-radius: 28px;
-  border-start-end-radius: 28px;
-}
-
 /* —— 回到顶部按钮 —— */
 .back-to-top {
   position: fixed;
@@ -598,9 +592,9 @@ footer > .shopify-section:first-child .section-background {
 }
 
 .back-to-top:hover {
-  background: var(--xalgo-champagne, #c9a882);
-  border-color: var(--xalgo-champagne, #c9a882);
-  color: #fff;
+  background: rgb(255 255 255 / 0.16);
+  border-color: rgb(255 255 255 / 0.28);
+  color: var(--xalgo-champagne, #c9a882);
 }
 
 @media screen and (min-width: 750px) {

@@ -53,7 +53,7 @@
         "promo_subheading": {
           "type": "text",
           "settings": {
-            "text": "<p>xGlass — the view ahead, quietly smarter. Back the campaign and be among the first to wear it.</p>",
+            "text": "<p>xGlass — Put On Possibility. Back the campaign and be among the first to wear it.</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "center",
@@ -373,7 +373,7 @@
         "glasses_subtitle": {
           "type": "text",
           "settings": {
-            "text": "<p>It speaks before you ask.</p>",
+            "text": "<p>Put On Possibility.</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "center",

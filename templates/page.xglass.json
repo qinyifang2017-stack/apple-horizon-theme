@@ -14,7 +14,7 @@
         "hero_eyebrow": {
           "type": "text",
           "settings": {
-            "text": "<p>Meet xGlass</p>",
+            "text": "<p>Introducing xGlass</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -39,7 +39,7 @@
         "hero_heading": {
           "type": "text",
           "settings": {
-            "text": "<h1>AI assistance, spoken softly.</h1>",
+            "text": "<h1>Put On Possibility.</h1>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -64,7 +64,7 @@
         "hero_subtitle": {
           "type": "text",
           "settings": {
-            "text": "<p>Voice notes, AI help, and clear controls — ready when speaking is faster than typing.</p>",
+            "text": "<p>Voice notes, hands-free calls and AI help — ready when speaking is faster than typing.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "center",
@@ -126,6 +126,7 @@
       "settings": {
         "media_type_1": "image",
         "media_type_2": "image",
+        "image_1": "shopify://shop_images/xGlass_scene_01.png",
         "stack_media_on_mobile": false,
         "custom_mobile_media": false,
         "media_type_1_mobile": "image",
@@ -215,7 +216,7 @@
         "intro_body": {
           "type": "text",
           "settings": {
-            "text": "<p>Speak, capture, and let AI organize the moment — then review everything in the xalgo App.</p>",
+            "text": "<p>Speak, capture, and let AI organize the moment — then review everything in the Museve app.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "center",
@@ -289,7 +290,7 @@
           "settings": {
             "icon": "command",
             "heading": "Speak",
-            "text": "<p>Ask, save a note, or set a reminder with a short voice command.</p>"
+            "text": "<p>Say the wake phrase, then start recording, save a note, or set a reminder with a short voice command.</p>"
           }
         },
         "flow_capture": {
@@ -305,7 +306,7 @@
           "settings": {
             "icon": "assist",
             "heading": "Organize",
-            "text": "<p>AI turns spoken input into a cleaner note, task, or summary.</p>"
+            "text": "<p>AI structures the moment into transcripts, summaries, action items and timeline Memory Cards.</p>"
           }
         },
         "flow_review": {
@@ -313,7 +314,7 @@
           "settings": {
             "icon": "review",
             "heading": "Review",
-            "text": "<p>Check, edit, or discard the result in the xalgo App.</p>"
+            "text": "<p>Check, edit, or share the result in the Museve app.</p>"
           }
         },
         "scenario_commute": {
@@ -335,9 +336,9 @@
         "scenario_handsfree": {
           "type": "scenario",
           "settings": {
-            "label": "Hands busy",
-            "heading": "Ask without reaching.",
-            "text": "<p>Use voice-first assistance when typing is awkward, distracting or simply too slow.</p>"
+            "label": "Face to face",
+            "heading": "Talk across languages.",
+            "text": "<p>Face-to-face real-time translation, plus silent eye-gesture and facial-muscle controls for moments when typing or speaking aloud is awkward.</p>"
           }
         }
       },
@@ -354,7 +355,7 @@
       "settings": {
         "eyebrow": "Voice-first flow",
         "heading": "Voice becomes the shortcut.",
-        "subheading": "<p>Speak a request, capture the moment, let AI organize it, then review the result in the xalgo App.</p>",
+        "subheading": "<p>Speak a request, capture the moment, let AI organize it, then review the result in the Museve app.</p>",
         "prompt_label": "Voice command",
         "prompt_text": "Remind me what we just agreed on.",
         "color_scheme": "scheme-1",
@@ -368,22 +369,22 @@
         "fit_point_1": {
           "type": "point",
           "settings": {
-            "heading": "One frame silhouette",
-            "text": "<p>xGlass keeps the eyewear decision focused with one everyday frame shape instead of pretending to be a large style catalogue.</p>"
+            "heading": "Four frame shapes",
+            "text": "<p>Browline, Panto, Boston and Wellington — four silhouettes, so the eyewear decision starts with a shape that already suits your face.</p>"
           }
         },
         "fit_point_2": {
           "type": "point",
           "settings": {
-            "heading": "Color makes it personal",
-            "text": "<p>Colorways give users a simple style choice while the product story stays centered on interaction, comfort and trust.</p>"
+            "heading": "Five finishes",
+            "text": "<p>Dark brown, silver, gunmetal, light gold and matte black give a simple style choice while the story stays centered on interaction, comfort and trust.</p>"
           }
         },
         "fit_point_3": {
           "type": "point",
           "settings": {
-            "heading": "Comfort before complexity",
-            "text": "<p>Weight balance, nose fit and temple pressure matter more than adding many decorative variants too early.</p>"
+            "heading": "About 19 grams",
+            "text": "<p>Cellulose acetate front, titanium-alloy temples with German-made OBE hinges — fully assembled around 19.4 g, with all electronics hidden inside.</p>"
           }
         }
       },
@@ -395,9 +396,9 @@
       "name": "xGlass Frame and Colorways",
       "settings": {
         "eyebrow": "Frame strategy",
-        "heading": "One frame. Considered colors.",
-        "body": "<p>The frame story stays simple: one main silhouette for daily wear, with color differences for personal style. This keeps the page honest while still giving the buying journey a clear choice.</p>",
-        "callout": "<p>One shape keeps the choice simple; color makes it personal.</p>",
+        "heading": "Ordinary eyewear, hidden intelligence.",
+        "body": "<p>Four shapes and five finishes for daily wear, with microphones, battery and sensors built into the temples. Photochromic lenses come standard, and prescription lenses can be ordered with a valid prescription.</p>",
+        "callout": "<p>Four shapes, five finishes, one goal: glasses you would wear anyway.</p>",
         "media_position": "right",
         "tone": "mist",
         "color_scheme": "scheme-1",
@@ -412,8 +413,8 @@
           "type": "boundary",
           "settings": {
             "label": "Visible listening",
-            "heading": "Show when listening.",
-            "text": "<p>Clear status feedback helps people understand when audio capture or transcription is active.</p>"
+            "heading": "Show when recording.",
+            "text": "<p>An LED indicator and notification sounds mark the exact moment recording starts and stops, so people around you always know the state.</p>"
           }
         },
         "boundary_bystander": {
@@ -421,7 +422,7 @@
           "settings": {
             "label": "Bystander privacy",
             "heading": "Respect shared spaces.",
-            "text": "<p>Microphones can include nearby voices, so shared spaces deserve clear expectations.</p>"
+            "text": "<p>Microphones can include nearby voices, so tell people before you record and follow local consent rules.</p>"
           }
         },
         "boundary_ai": {
@@ -429,7 +430,7 @@
           "settings": {
             "label": "AI responsibility",
             "heading": "Keep AI reviewable.",
-            "text": "<p>Summaries and suggestions help organize information, but users make the final call.</p>"
+            "text": "<p>Wake-word detection runs on-device — audio before activation is never uploaded. Transcripts and summaries stay reviewable, editable and exportable in the Museve app.</p>"
           }
         },
         "boundary_scope": {
@@ -437,7 +438,7 @@
           "settings": {
             "label": "Current scope",
             "heading": "Stay audio-first.",
-            "text": "<p>The experience centers on voice commands, audio notes, AI assistance, and environmental awareness.</p>"
+            "text": "<p>The experience centers on voice commands, audio notes, hands-free calls, AI assistance, and a searchable memory of what you captured.</p>"
           }
         }
       },
@@ -464,32 +465,32 @@
           "type": "spec_group",
           "settings": {
             "icon": "sensor",
-            "heading": "Audio input",
-            "details": "<p>Microphone-led voice commands and audio note capture</p><p>Designed for short prompts, reminders, summaries and assistant interactions</p><p>Audio-first positioning for hands-free moments throughout the day</p>"
+            "heading": "Audio and sensing",
+            "details": "<p>4 × digital array microphones + 1 × analog microphone with noise reduction and beamforming</p><p>Speaker recognition labels different voices in transcripts</p><p>256 MB local storage keeps about 72 hours of audio before sync</p><p>2 × built-in speakers for calls and prompts</p>"
           }
         },
-        "spec_ai": {
+        "spec_controls": {
           "type": "spec_group",
           "settings": {
             "icon": "compatibility",
-            "heading": "AI assistant",
-            "details": "<p>Voice input can be processed into notes, tasks and summaries in supported workflows</p><p>AI output should be reviewed by the user before acting on it</p><p>Important decisions remain the user's responsibility</p>"
+            "heading": "Silent controls",
+            "details": "<p>Eye-gesture control (EOG) and facial-muscle control (fEMG) — hands-free commands nobody else can hear</p><p>Voice wake with a customizable phrase; detection runs locally on the device</p><p>6-axis IMU and wear detection wake the glasses when you put them on and sleep them when you take them off</p>"
           }
         },
-        "spec_privacy": {
+        "spec_connectivity": {
           "type": "spec_group",
           "settings": {
             "icon": "connectivity",
-            "heading": "Privacy controls",
-            "details": "<p>Recording and transcription states should be made clear to the wearer</p><p>Users should follow local consent rules before recording conversations</p><p>Companion-app records should be reviewable and removable</p>"
+            "heading": "Connectivity and app",
+            "details": "<p>Bluetooth Low Energy 5.4 plus classic Bluetooth for pairing and calls</p><p>Audio is cached locally first, then processed by cloud AI when a connection is available</p><p>Review, edit and share everything in the Museve app on iOS and Android</p>"
           }
         },
         "spec_fit": {
           "type": "spec_group",
           "settings": {
             "icon": "size",
-            "heading": "Fit and frame",
-            "details": "<p>One everyday frame silhouette with colorway choices</p><p>Built around lightweight wear, balanced temples and all-day comfort</p><p>Available colors can be configured on the product page</p>"
+            "heading": "Frame and fit",
+            "details": "<p>Four silhouettes — Browline, Panto, Boston and Wellington — with 145 mm temples</p><p>Cellulose acetate front, titanium-alloy + TR90 temples, German-made OBE hinges</p><p>About 19.4 g fully assembled, with integrated nose pads</p><p>IPX4 / IP65 dust and water resistance (final rating pending testing)</p>"
           }
         },
         "spec_battery": {
@@ -497,35 +498,35 @@
           "settings": {
             "icon": "battery",
             "heading": "Battery and charging",
-            "details": "<p>Battery details can be updated once final hardware specifications are confirmed</p><p>USB-C charging accessories can be listed in the box contents</p>"
+            "details": "<p>Up to 12 hours with all features on; more than 24 hours in typical mixed use</p><p>About 30 minutes in the case for 80% charge</p><p>Magnetic charging case (1,200 mAh, USB-C) adds roughly 6–8 full charges</p>"
           }
         },
-        "spec_app": {
+        "spec_lenses": {
           "type": "spec_group",
           "settings": {
             "icon": "materials",
-            "heading": "xalgo App",
-            "details": "<p>Review captured content, manage assistant settings and adjust privacy preferences</p><p>Works with supported iOS and Android devices once configured</p>"
+            "heading": "Lens options",
+            "details": "<p>Photochromic lenses come standard — clear indoors, tinted outdoors</p><p>Optional UV, anti-reflective, anti-fingerprint and blue-light-filtering coatings</p><p>Prescription lenses in 1.56, 1.60, 1.67 or 1.74 index, matched to your prescription</p>"
           }
         }
       },
       "block_order": [
         "spec_audio",
-        "spec_ai",
-        "spec_privacy",
+        "spec_controls",
+        "spec_connectivity",
         "spec_fit",
         "spec_battery",
-        "spec_app"
+        "spec_lenses"
       ],
       "name": "xGlass Tech Specs",
       "settings": {
         "anchor_id": "xglass-tech-specs",
         "eyebrow": "xGlass details",
         "heading": "Tech specs",
-        "subheading": "A practical overview of voice interaction, AI support, privacy expectations, fit and app connectivity.",
+        "subheading": "A practical overview of sensing, silent controls, connectivity, fit, lenses and battery.",
         "media_type": "image",
         "box_heading": "In the box",
-        "box_items": "<p>xGlass</p><p>Charging cable</p><p>Carrying case</p><p>Quick start guide</p>",
+        "box_items": "<p>xGlass</p><p>Magnetic charging case (USB-C)</p><p>Cleaning cloth</p><p>Quick start guide and digital warranty card</p>",
         "color_scheme": "scheme-1",
         "padding_top": 96,
         "padding_bottom": 96
@@ -562,7 +563,7 @@
         "cta_text": {
           "type": "text",
           "settings": {
-            "text": "<p>Choose the focused frame option available today, then select the colorway that fits your daily style.</p>",
+            "text": "<p>Pick the frame shape and colorway that fit your daily style — prescription and photochromic lens options are available too.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "center",

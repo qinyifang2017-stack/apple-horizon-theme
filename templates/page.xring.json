@@ -688,7 +688,7 @@
           "type": "point",
           "settings": {
             "heading": "Long-term trends",
-            "text": "<p>The trend matters more than a single score. The xalgo App helps you notice the slow changes you might otherwise miss.</p>"
+            "text": "<p>The trend matters more than a single score. The Museve app helps you notice the slow changes you might otherwise miss.</p>"
           }
         }
       },
@@ -804,7 +804,7 @@
           "settings": {
             "icon": "compatibility",
             "heading": "Compatibility",
-            "details": "<p>The xalgo App supports English, Japanese, German, French, Spanish and other major languages</p><p>Metric and imperial units are supported</p><p>Works with iOS and Android systems</p>"
+            "details": "<p>The Museve app supports English, Japanese, German, French, Spanish and other major languages</p><p>Metric and imperial units are supported</p><p>Works with iOS and Android systems</p>"
           }
         },
         "spec_size": {
@@ -836,7 +836,7 @@
           "settings": {
             "icon": "connectivity",
             "heading": "Connectivity",
-            "details": "<p>Bluetooth Low Energy</p><p>Automatic firmware updates through the xalgo App</p><p>Airplane Mode supported</p><p>EMF safe</p>"
+            "details": "<p>Bluetooth Low Energy</p><p>Automatic firmware updates through the Museve app</p><p>Airplane Mode supported</p><p>EMF safe</p>"
           }
         }
       },
