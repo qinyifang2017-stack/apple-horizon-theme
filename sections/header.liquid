@@ -10,11 +10,11 @@
   assign rows = 'top,bottom' | split: ','
   assign search_style = 'none'
 
-  if section.settings.show_search
+  if section.settings.show_search and section.settings.show_header_actions != false
     assign search_style = 'modal'
   endif
 
-  if section.settings.show_search
+  if section.settings.show_search and section.settings.show_header_actions != false
     render 'predictive-search-styles'
     render 'slideshow-styles'
   endif
@@ -28,6 +28,9 @@
   elsif section.settings.enable_transparent_header_collection and template.name == 'collection'
     assign transparent = 'always'
     assign transparent_color_scheme = section.settings.collection_color_scheme
+  elsif section.settings.enable_transparent_header_glasses and template.name == 'page' and template.suffix == 'glasses'
+    assign transparent = 'always'
+    assign transparent_color_scheme = section.settings.home_color_scheme
   endif
 
   if section.settings.enable_sticky_header == 'always'
@@ -67,7 +70,9 @@
   # theme-check-enable UniqueStaticBlockId
 
   capture actions
-    render 'header-actions', customer_account_menu: section.settings.customer_account_menu, display_style: section.settings.actions_display_style, section: section
+    if section.settings.show_header_actions
+      render 'header-actions', customer_account_menu: section.settings.customer_account_menu, display_style: section.settings.actions_display_style, section: section
+    endif
   endcapture
 
   if shop.customer_accounts_enabled
@@ -1199,6 +1204,12 @@
       "content": "t:content.customer_account"
     },
     {
+      "type": "checkbox",
+      "id": "show_header_actions",
+      "label": "Show header icons (search, account, cart)",
+      "default": true
+    },
+    {
       "type": "paragraph",
       "content": "t:content.manage_customer_accounts"
     },
@@ -1566,7 +1577,7 @@
       "id": "color_scheme_transparent",
       "label": "t:settings.inverse",
       "default": "primary",
-      "visible_if": "{{ section.settings.enable_transparent_header_home or section.settings.enable_transparent_header_product or section.settings.enable_transparent_header_collection }}"
+      "visible_if": "{{ section.settings.enable_transparent_header_home or section.settings.enable_transparent_header_product or section.settings.enable_transparent_header_collection or section.settings.enable_transparent_header_glasses }}"
     },
     {
       "type": "header",
@@ -1576,6 +1587,12 @@
       "type": "checkbox",
       "id": "enable_transparent_header_home",
       "label": "t:settings.transparent_background",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_transparent_header_glasses",
+      "label": "Transparent background on Glasses landing page",
       "default": false
     },
     {

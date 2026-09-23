@@ -1,0 +1,402 @@
+{% comment %}
+  MUSEVE Hero — top of the Glasses landing page.
+  Centered copy + CTA row (one link button + optional signup-popup button) + full-width media + proof strip.
+  Background gradient is section-local; the theme color_scheme still drives text tokens via the .color-* class.
+{% endcomment %}
+
+<section
+  id="xalgo-museve-hero-{{ section.id }}"
+  class="xalgo-museve-hero color-{{ section.settings.color_scheme }}"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="page-width xalgo-museve-hero__shell">
+    <div class="xalgo-museve-hero__copy">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="xalgo-museve-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h1 class="xalgo-museve-hero__heading">{{ section.settings.heading }}</h1>
+      {%- endif -%}
+
+      {%- if section.settings.subheading != blank -%}
+        <p class="xalgo-museve-hero__sub">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+
+      <div class="xalgo-museve-hero__cta">
+        {%- if section.settings.button_label != blank -%}
+          {%- if section.settings.button_opens_signup -%}
+            <a
+              class="xalgo-museve-hero__btn xalgo-museve-hero__btn--primary"
+              href="#{{ section.settings.cta_anchor | default: 'museve-signup' }}"
+              data-open="signup"
+            >{{ section.settings.button_label }}</a>
+          {%- else -%}
+            <a
+              class="xalgo-museve-hero__btn xalgo-museve-hero__btn--primary"
+              href="{{ section.settings.button_url }}"
+              {% if section.settings.button_new_window %}target="_blank" rel="noopener"{% endif %}
+            >{{ section.settings.button_label }}</a>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.footnote_text != blank -%}
+        <p class="xalgo-museve-hero__footnote">{{ section.settings.footnote_text }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="xalgo-museve-hero__media">
+      {%- if section.settings.media_type == 'video' and section.settings.hero_video != blank -%}
+        {{
+          section.settings.hero_video
+          | video_tag:
+            poster: section.settings.hero_video.preview_image,
+            autoplay: true,
+            loop: true,
+            controls: false,
+            muted: true,
+            class: 'xalgo-museve-hero__image'
+        }}
+      {%- elsif section.settings.hero_image != blank -%}
+        {{
+          section.settings.hero_image
+          | image_url: width: 1960
+          | image_tag:
+            class: 'xalgo-museve-hero__image',
+            widths: '740, 980, 1400, 1960',
+            sizes: '(min-width: 990px) 980px, 100vw',
+            alt: section.settings.hero_image.alt
+        }}
+      {%- else -%}
+        <div class="xalgo-museve-hero__placeholder" role="img" aria-label="Product image placeholder">
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'xalgo-museve-hero__placeholder-svg' }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="xalgo-museve-hero__proof">
+      <div class="page-width">
+        <ul class="xalgo-museve-hero__proof-list">
+          {%- for block in section.blocks -%}
+            <li class="xalgo-museve-hero__proof-item" {{ block.shopify_attributes }}>
+              <strong>{{ block.settings.stat }}</strong>
+              <span>{{ block.settings.text }}</span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% stylesheet %}
+  .xalgo-museve-hero {
+    --mh-cream: var(--xalgo-cream, #fdfaf7);
+    --mh-ink: var(--xalgo-text-primary, #1d1d1f);
+    --mh-muted: var(--xalgo-text-secondary, #6e6e73);
+    --mh-rose: var(--xalgo-rose, #e8a598);
+    --mh-terracotta: var(--xalgo-terracotta, #b06557);
+    --mh-line: rgb(29 29 31 / 0.08);
+    --mh-champagne: var(--xalgo-champagne, #c9a882);
+
+    background: linear-gradient(180deg, #eef4f7 0%, #f4f4f2 45%, var(--mh-cream) 100%);
+    color: var(--mh-ink);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .xalgo-museve-hero__copy {
+    max-width: 960px;
+    margin-inline: auto;
+  }
+
+  .xalgo-museve-hero__eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--mh-terracotta);
+    font-weight: 700;
+    font-size: 0.76rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  .xalgo-museve-hero__heading {
+    margin: 0 auto;
+    font-size: clamp(2.2rem, 4.6vw, 3.9rem);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 1.04;
+    font-style: normal;
+    text-transform: none;
+    color: var(--mh-ink);
+    max-width: none;
+    text-wrap: balance;
+    white-space: pre-line;
+  }
+
+  .xalgo-museve-hero__heading sup {
+    font-size: 0.4em;
+    font-weight: 500;
+    color: var(--mh-muted);
+    vertical-align: top;
+    line-height: 1;
+    margin-left: 0.1em;
+  }
+
+  .xalgo-museve-hero__sub {
+    margin: 1.25rem auto 0;
+    max-width: 640px;
+    color: var(--mh-muted);
+    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+    line-height: 1.5;
+    white-space: pre-line;
+  }
+
+  .xalgo-museve-hero__cta {
+    margin-top: 1.9rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .xalgo-museve-hero__btn {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 48px;
+    padding: 0.8rem 1.6rem;
+    border-radius: 999px;
+    border: 1.5px solid transparent;
+    font-weight: 600;
+    font-size: 0.98rem;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.35s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .xalgo-museve-hero__btn:hover { transform: translateY(-1px); }
+  .xalgo-museve-hero__btn:focus-visible { outline: 3px solid var(--mh-rose); outline-offset: 2px; }
+
+  .xalgo-museve-hero__btn--primary {
+    background: transparent;
+    color: #fff;
+    border-color: var(--mh-terracotta);
+  }
+  /* ::after 是默认底色，::before 是 hover 自下而上铺满的深色层（与首页按钮同款动效） */
+  .xalgo-museve-hero__btn--primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: var(--mh-terracotta);
+    border-radius: inherit;
+  }
+  .xalgo-museve-hero__btn--primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: #9f584b;
+    transform: translateY(101%);
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .xalgo-museve-hero__btn--primary:hover::before { transform: translateY(0); }
+  .xalgo-museve-hero__btn--primary:hover {
+    border-color: #9f584b;
+    box-shadow: 0 6px 18px rgb(176 101 87 / 0.32);
+  }
+
+  .xalgo-museve-hero__btn--ghost {
+    background: transparent;
+    color: #2c2c2e;
+    border-color: #5c5c5e;
+  }
+  .xalgo-museve-hero__btn--ghost::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: #2c2c2e;
+    transform: translateY(101%);
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .xalgo-museve-hero__btn--ghost:hover::before { transform: translateY(0); }
+  .xalgo-museve-hero__btn--ghost:hover { color: #fff; border-color: #2c2c2e; }
+
+  .xalgo-museve-hero__footnote {
+    margin: 1.4rem auto 0;
+    max-width: 44ch;
+    color: var(--mh-muted);
+    font-size: 0.72rem;
+    line-height: 1.6;
+  }
+
+  .xalgo-museve-hero__media {
+    position: relative;
+    max-width: 980px;
+    margin: 2.6rem auto 0;
+    border-radius: 32px 32px 0 0;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background: #dfe6ea;
+  }
+
+  .xalgo-museve-hero__media img,
+  .xalgo-museve-hero__media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 22%;
+    display: block;
+  }
+
+  .xalgo-museve-hero__placeholder {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    border: 1.5px dashed color-mix(in srgb, var(--mh-champagne) 70%, transparent);
+    background: color-mix(in srgb, var(--xalgo-rose-light, #f2ddd8) 40%, var(--mh-cream));
+    color: color-mix(in srgb, var(--xalgo-gold-deep, #a87c4f) 70%, transparent);
+  }
+  .xalgo-museve-hero__placeholder svg { width: 52%; max-width: 360px; }
+
+  .xalgo-museve-hero__proof {
+    background: var(--mh-cream);
+    border-bottom: 1px solid var(--mh-line);
+    margin-top: 0;
+  }
+
+  .xalgo-museve-hero__proof-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .xalgo-museve-hero__proof-item {
+    padding: 1.4rem 1rem;
+    text-align: center;
+    border-left: 1px solid var(--mh-line);
+  }
+  .xalgo-museve-hero__proof-item:nth-child(odd) { border-left: 0; }
+  .xalgo-museve-hero__proof-item:nth-child(n + 3) { border-top: 1px solid var(--mh-line); }
+
+  .xalgo-museve-hero__proof-item strong {
+    display: block;
+    font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    color: var(--mh-ink);
+  }
+
+  .xalgo-museve-hero__proof-item span {
+    display: block;
+    margin: 0.15rem auto 0;
+    max-width: 26ch;
+    font-size: 0.86rem;
+    color: var(--mh-muted);
+    line-height: 1.5;
+    text-wrap: balance;
+    white-space: pre-line;
+  }
+
+  @media (min-width: 750px) {
+    .xalgo-museve-hero__proof-list { grid-template-columns: repeat(4, 1fr); }
+    .xalgo-museve-hero__proof-item { border-left: 1px solid var(--mh-line); }
+    .xalgo-museve-hero__proof-item:first-child { border-left: 0; }
+    .xalgo-museve-hero__proof-item:nth-child(n + 3) { border-top: 0; }
+    .xalgo-museve-hero__proof-item:nth-child(odd) { border-left: 1px solid var(--mh-line); }
+    .xalgo-museve-hero__proof-item:first-child { border-left: 0; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "MUSEVE Hero",
+  "tag": "section",
+  "class": "section-wrapper xalgo-museve-hero-wrapper",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Introducing MUSEVE Glasses" },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "World's First Pure Titanium Eye-Control AI Glasses",
+      "info": "Use a line break for the desktop split"
+    },
+    { "type": "text", "id": "footnote_text", "label": "Footnote text", "info": "Optional small print under the CTA. Leave empty to hide." },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Blink to capture meetings and ideas. AI turns them into searchable notes, to-dos and mind maps."
+    },
+    {
+      "type": "header",
+      "content": "CTA button"
+    },
+    {
+      "type": "paragraph",
+      "content": "One button at a time. Turn on \"opens signup dialog\" for the early-bird popup (needs a MUSEVE Signup section on the page); turn it off to link to the product page."
+    },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Get early-bird access" },
+    { "type": "checkbox", "id": "button_opens_signup", "label": "Opens signup dialog", "default": true },
+    { "type": "text", "id": "cta_anchor", "label": "Signup fallback anchor", "default": "museve-signup", "info": "Where the button scrolls if no signup dialog exists on the page.", "visible_if": "{{ section.settings.button_opens_signup }}" },
+    { "type": "url", "id": "button_url", "label": "Button URL", "visible_if": "{{ section.settings.button_opens_signup == false }}" },
+    { "type": "checkbox", "id": "button_new_window", "label": "Open link in new window", "default": false, "visible_if": "{{ section.settings.button_opens_signup == false }}" },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image", "visible_if": "{{ section.settings.media_type == 'image' }}" },
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media type",
+      "options": [
+        { "value": "image", "label": "Image" },
+        { "value": "video", "label": "Video" }
+      ],
+      "default": "image"
+    },
+    { "type": "video", "id": "hero_video", "label": "Hero video", "info": "Autoplays muted on loop.", "visible_if": "{{ section.settings.media_type == 'video' }}" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 56 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 0 }
+  ],
+  "blocks": [
+    {
+      "type": "proof_item",
+      "name": "Proof item",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "stat", "label": "Stat / headline" },
+        { "type": "textarea", "id": "text", "label": "Caption" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MUSEVE Hero",
+      "category": "Content",
+      "blocks": [
+        { "type": "proof_item", "settings": { "stat": "Fully customizable", "text": "4 shapes · 5 temple finishes\nRx-ready" } },
+        { "type": "proof_item", "settings": { "stat": "24 g", "text": "Pure titanium\nDesigned for everyday wear" } },
+        { "type": "proof_item", "settings": { "stat": "Your second brain", "text": "Every note captured\n— and searchable" } },
+        { "type": "proof_item", "settings": { "stat": "No camera", "text": "Microphones only\n0 awkward moments" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

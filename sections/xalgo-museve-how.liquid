@@ -1,0 +1,382 @@
+{% comment %}
+  MUSEVE How it works — "Silent when you need Voice when you want"
+  Split (copy + video card) above, 4 gesture chips, 4 numbered steps.
+{% endcomment %}
+
+<section
+  id="xalgo-museve-how-{{ section.id }}"
+  class="xalgo-museve-how color-{{ section.settings.color_scheme }}"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="page-width xalgo-museve-how__shell">
+    <div class="xalgo-museve-how__top">
+      <div class="xalgo-museve-how__copy">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="xalgo-museve-how__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="xalgo-museve-how__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <p class="xalgo-museve-how__lede">{{ section.settings.text }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="xalgo-museve-how__media-card">
+        {%- if section.settings.video != blank -%}
+          {{
+            section.settings.video
+            | video_tag:
+              image_size: 1200,
+              poster: section.settings.poster_image,
+              autoplay: true,
+              loop: true,
+              controls: false,
+              muted: true,
+              class: 'xalgo-museve-how__media'
+          }}
+        {%- elsif section.settings.poster_image != blank -%}
+          {{
+            section.settings.poster_image
+            | image_url: width: 1200
+            | image_tag:
+              class: 'xalgo-museve-how__media',
+              widths: '600, 900, 1200',
+              sizes: '(min-width: 990px) 48vw, 100vw',
+              alt: section.settings.poster_image.alt
+          }}
+        {%- else -%}
+          <div class="xalgo-museve-how__placeholder">
+            <svg viewBox="0 0 240 180" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+              <rect x="20" y="20" width="200" height="140" rx="16"/>
+              <path d="M100 70l50 20-50 20z" fill="currentColor" stroke="none" opacity=".55"/>
+            </svg>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- assign gesture_tabs = section.blocks | where: 'type', 'gesture_tab' -%}
+    {%- if gesture_tabs.size > 0 -%}
+      <div class="xalgo-museve-how__tabs">
+        {%- for block in gesture_tabs -%}
+          <span class="xalgo-museve-how__tab" {{ block.shopify_attributes }}>
+            <span class="xalgo-museve-how__tab-icon" aria-hidden="true">
+              {%- case block.settings.icon -%}
+                {%- when 'eye' -%}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                {%- when 'mic' -%}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+                {%- when 'nod' -%}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="7" r="4"/><path d="M12 11v6m-3 3l3-3 3 3"/></svg>
+                {%- when 'shake' -%}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="7" r="4"/><path d="M8 14h8l-4 4-4-4z"/></svg>
+                {%- else -%}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>
+              {%- endcase -%}
+            </span>
+            {{ block.settings.label }}
+          </span>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- assign steps = section.blocks | where: 'type', 'step' -%}
+    {%- if steps.size > 0 -%}
+      <div class="xalgo-museve-how__steps">
+        {%- for block in steps -%}
+          <div class="xalgo-museve-how__step" {{ block.shopify_attributes }}>
+            <div class="xalgo-museve-how__step-top">
+              <span class="xalgo-museve-how__step-icon" aria-hidden="true">
+                {%- case block.settings.icon -%}
+                  {%- when 'eye' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                  {%- when 'mic' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+                  {%- when 'sparkle' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8zM5 17l.8 1.7L7.5 19.5l-1.7.8L5 22l-.8-1.7-1.7-.8 1.7-.8z"/></svg>
+                  {%- when 'phone' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M9 7h6M9 11h6M9 15h3"/></svg>
+                  {%- else -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2.5 2.5"/></svg>
+                {%- endcase -%}
+              </span>
+              <span class="xalgo-museve-how__step-n">{{ block.settings.number }}</span>
+            </div>
+            <h3>{{ block.settings.heading }}</h3>
+            <p>{{ block.settings.text }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .xalgo-museve-how {
+    --mhw-cream: var(--xalgo-cream, #fdfaf7);
+    --mhw-ink: var(--xalgo-text-primary, #1d1d1f);
+    --mhw-muted: var(--xalgo-text-secondary, #6e6e73);
+    --mhw-terracotta: var(--xalgo-terracotta, #b06557);
+    --mhw-blush: var(--xalgo-rose-light, #f2ddd8);
+    --mhw-champagne: var(--xalgo-champagne, #c9a882);
+    --mhw-line: rgb(29 29 31 / 0.05);
+
+    background: var(--mhw-cream);
+    color: var(--mhw-ink);
+  }
+
+  .xalgo-museve-how__top {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+
+  @media (min-width: 990px) {
+    .xalgo-museve-how__top { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); }
+  }
+
+  .xalgo-museve-how__eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--mhw-terracotta);
+    font-weight: 700;
+    font-size: 0.76rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  .xalgo-museve-how__heading {
+    margin: 0;
+    font-size: clamp(2.2rem, 4.2vw, 3.9rem);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+    font-style: normal;
+    text-transform: none;
+    color: var(--mhw-ink);
+    max-width: 22ch;
+    text-wrap: balance;
+    white-space: pre-line;
+  }
+
+  .xalgo-museve-how__lede {
+    margin-top: 1.25rem;
+    max-width: 560px;
+    color: var(--mhw-muted);
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    line-height: 1.7;
+  }
+
+  .xalgo-museve-how__media-card {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 24px 70px rgb(201 168 130 / 0.18);
+    background: linear-gradient(160deg, #fff, #f6ece7);
+  }
+
+  .xalgo-museve-how__media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .xalgo-museve-how__placeholder {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    border: 1.5px dashed color-mix(in srgb, var(--mhw-champagne) 70%, transparent);
+    color: color-mix(in srgb, var(--xalgo-gold-deep, #a87c4f) 60%, transparent);
+  }
+  .xalgo-museve-how__placeholder svg { width: 52%; max-width: 240px; }
+
+  .xalgo-museve-how__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: clamp(1.6rem, 3vw, 2.4rem);
+  }
+
+  .xalgo-museve-how__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.4rem 0.85rem 0.4rem 0.55rem;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid rgb(29 29 31 / 0.08);
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: var(--mhw-ink);
+  }
+
+  .xalgo-museve-how__tab-icon {
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    background: var(--mhw-blush);
+    color: var(--mhw-terracotta);
+    flex: none;
+  }
+  .xalgo-museve-how__tab-icon svg { width: 16px; height: 16px; }
+
+  .xalgo-museve-how__steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  @media (min-width: 750px) {
+    .xalgo-museve-how__steps { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 990px) {
+    .xalgo-museve-how__steps { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .xalgo-museve-how__step {
+    padding: 1.5rem;
+    border-radius: 20px;
+    background: #fff;
+    border: 1px solid var(--mhw-line);
+    box-shadow: 0 12px 40px rgb(201 168 130 / 0.12);
+  }
+
+  .xalgo-museve-how__step-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.9rem;
+  }
+
+  .xalgo-museve-how__step-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    background: var(--mhw-blush);
+    color: var(--mhw-terracotta);
+  }
+  .xalgo-museve-how__step-icon svg { width: 18px; height: 18px; }
+
+  .xalgo-museve-how__step-n {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--mhw-champagne);
+    letter-spacing: 0.06em;
+  }
+
+  .xalgo-museve-how__step h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-style: normal;
+    text-transform: none;
+    color: var(--mhw-ink);
+  }
+
+  .xalgo-museve-how__step p {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--mhw-muted);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "MUSEVE How it works",
+  "tag": "section",
+  "class": "section-wrapper xalgo-museve-how-wrapper",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "How it works" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Silent when you need\nVoice when you want" },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Blink, clench, nod, shake — or just speak. Then decide what each one does, once, in the MUSEVE app."
+    },
+    { "type": "video", "id": "video", "label": "Video", "info": "Autoplays muted on loop." },
+    { "type": "image_picker", "id": "poster_image", "label": "Poster image", "info": "Shown when no video is set." },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 104 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 104 }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "eye", "label": "Eye" },
+            { "value": "mic", "label": "Microphone" },
+            { "value": "sparkle", "label": "Sparkle" },
+            { "value": "phone", "label": "App / phone" }
+          ],
+          "default": "eye"
+        },
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "heading", "label": "Heading" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    },
+    {
+      "type": "gesture_tab",
+      "name": "Gesture chip",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "eye", "label": "Eye" },
+            { "value": "mic", "label": "Microphone" },
+            { "value": "nod", "label": "Nod" },
+            { "value": "shake", "label": "Shake" },
+            { "value": "dot", "label": "Dot" }
+          ],
+          "default": "eye"
+        },
+        { "type": "text", "id": "label", "label": "Label", "default": "Blink" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MUSEVE How it works",
+      "category": "Content",
+      "blocks": [
+        { "type": "step", "settings": { "icon": "eye", "number": "01", "heading": "Control", "text": "A blink, a clench, a nod — or just say it." } },
+        { "type": "step", "settings": { "icon": "mic", "number": "02", "heading": "Capture", "text": "Meetings, ideas, lectures — without touching your phone." } },
+        { "type": "step", "settings": { "icon": "sparkle", "number": "03", "heading": "Organize", "text": "AI turns the audio into notes, to-dos and mind maps." } },
+        { "type": "step", "settings": { "icon": "phone", "number": "04", "heading": "Review", "text": "Every moment becomes a Memory Card on your timeline — searchable." } },
+        { "type": "gesture_tab", "settings": { "icon": "eye", "label": "Blink" } },
+        { "type": "gesture_tab", "settings": { "icon": "nod", "label": "Clench" } },
+        { "type": "gesture_tab", "settings": { "icon": "nod", "label": "Nod" } },
+        { "type": "gesture_tab", "settings": { "icon": "shake", "label": "Shake" } },
+        { "type": "gesture_tab", "settings": { "icon": "mic", "label": "Voice" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

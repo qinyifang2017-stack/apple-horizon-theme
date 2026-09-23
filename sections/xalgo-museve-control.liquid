@@ -1,0 +1,344 @@
+{% comment %}
+  MUSEVE Silent control — "Every day is full of things you wish you'd kept"
+  Split: text left / media card with capture-chip right; 3 scene cards below.
+{% endcomment %}
+
+<section
+  id="xalgo-museve-control-{{ section.id }}"
+  class="xalgo-museve-control color-{{ section.settings.color_scheme }}"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="page-width xalgo-museve-control__shell">
+    <div class="xalgo-museve-control__split">
+      <div class="xalgo-museve-control__copy">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="xalgo-museve-control__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="xalgo-museve-control__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <p class="xalgo-museve-control__lede">{{ section.settings.text }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="xalgo-museve-control__media">
+        {%- if section.settings.media_type == 'video' and section.settings.scene_video != blank -%}
+          {{
+            section.settings.scene_video
+            | video_tag:
+              poster: section.settings.scene_video.preview_image,
+              autoplay: true,
+              loop: true,
+              controls: false,
+              muted: true,
+              class: 'xalgo-museve-control__image'
+          }}
+        {%- elsif section.settings.scene_image != blank -%}
+          {{
+            section.settings.scene_image
+            | image_url: width: 1200
+            | image_tag:
+              class: 'xalgo-museve-control__image',
+              widths: '600, 900, 1200',
+              sizes: '(min-width: 990px) 48vw, 100vw',
+              alt: section.settings.scene_image.alt
+          }}
+        {%- else -%}
+          <svg class="xalgo-museve-control__placeholder" viewBox="0 0 400 300" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <rect x="40" y="70" width="320" height="170" rx="14"/>
+            <path d="M40 210h320M120 240v20M280 240v20M100 260h200"/>
+            <circle cx="150" cy="140" r="22"/>
+            <path d="M110 200c8-24 28-36 40-36s32 12 40 36M132 136h36"/>
+            <circle cx="260" cy="150" r="18"/>
+            <path d="M228 200c6-20 20-30 32-30s26 10 32 30"/>
+          </svg>
+        {%- endif -%}
+
+        {%- if section.settings.chip_tag != blank or section.settings.chip_text != blank -%}
+          <div class="xalgo-museve-control__chip">
+            {%- if section.settings.chip_tag != blank -%}
+              <span class="xalgo-museve-control__chip-tag">{{ section.settings.chip_tag }}</span>
+            {%- endif -%}
+            {%- if section.settings.chip_text != blank -%}
+              <strong>{{ section.settings.chip_text }}</strong>
+            {%- endif -%}
+            <span class="xalgo-museve-control__wave" aria-hidden="true">
+              <i style="height:8px"></i><i style="height:14px"></i><i style="height:10px"></i><i style="height:18px"></i><i style="height:12px"></i>
+            </span>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="xalgo-museve-control__scenes">
+        {%- for block in section.blocks -%}
+          <div class="xalgo-museve-control__scene" {{ block.shopify_attributes }}>
+            <p class="xalgo-museve-control__scene-label">{{ block.settings.label }}</p>
+            <h3>{{ block.settings.heading }}</h3>
+            <p>{{ block.settings.text }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .xalgo-museve-control {
+    --mc-ink: var(--xalgo-text-primary, #1d1d1f);
+    --mc-muted: var(--xalgo-text-secondary, #6e6e73);
+    --mc-rose: var(--xalgo-rose, #e8a598);
+    --mc-terracotta: var(--xalgo-terracotta, #b06557);
+    --mc-champagne: var(--xalgo-champagne, #c9a882);
+    --mc-warm: var(--xalgo-warm-gray, #f5f0eb);
+    --mc-blush: var(--xalgo-rose-light, #f2ddd8);
+    --mc-gold: var(--xalgo-gold-deep, #a87c4f);
+
+    background:
+      radial-gradient(circle at 88% 8%, rgb(232 165 152 / 0.32) 0 18rem, transparent 32rem),
+      radial-gradient(circle at 6% 90%, rgb(225 237 245 / 0.9) 0 16rem, transparent 30rem),
+      var(--mc-warm);
+    color: var(--mc-ink);
+  }
+
+  .xalgo-museve-control__split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2.5rem, 6vw, 5.5rem);
+    align-items: center;
+  }
+
+  @media (min-width: 990px) {
+    .xalgo-museve-control__split {
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    }
+  }
+
+  .xalgo-museve-control__eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--mc-terracotta);
+    font-weight: 700;
+    font-size: 0.76rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  .xalgo-museve-control__heading {
+    margin: 0;
+    font-size: clamp(2rem, 2.9vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 1.08;
+    font-style: normal;
+    text-transform: none;
+    color: var(--mc-ink);
+    text-wrap: balance;
+    white-space: pre-line;
+  }
+
+  .xalgo-museve-control__lede {
+    margin-top: 1.25rem;
+    max-width: 560px;
+    color: var(--mc-muted);
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    line-height: 1.7;
+  }
+
+  .xalgo-museve-control__media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    border-radius: 30px;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    border: 1.5px dashed color-mix(in srgb, var(--mc-champagne) 70%, transparent);
+    background: linear-gradient(160deg, #fff, #f6ece7);
+    box-shadow: 0 30px 80px rgb(201 168 130 / 0.22);
+    color: color-mix(in srgb, var(--mc-gold) 55%, transparent);
+  }
+
+  .xalgo-museve-control__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .xalgo-museve-control__placeholder {
+    width: 60%;
+    max-width: 380px;
+  }
+
+  .xalgo-museve-control__chip {
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.8rem 1.1rem;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgb(29 29 31 / 0.1);
+    color: var(--mc-ink);
+  }
+
+  .xalgo-museve-control__chip-tag {
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mc-terracotta);
+    white-space: nowrap;
+  }
+
+  .xalgo-museve-control__chip-tag::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--mc-rose);
+    margin-right: 0.45rem;
+    vertical-align: 1px;
+  }
+
+  .xalgo-museve-control__chip strong {
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  .xalgo-museve-control__wave {
+    margin-left: auto;
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    height: 18px;
+  }
+
+  .xalgo-museve-control__wave i {
+    display: block;
+    width: 3px;
+    border-radius: 2px;
+    background: var(--mc-rose);
+  }
+
+  @media (max-width: 479px) {
+    .xalgo-museve-control__chip { flex-wrap: wrap; gap: 0.4rem 0.8rem; border-radius: 18px; }
+    .xalgo-museve-control__wave { display: none; }
+  }
+
+  .xalgo-museve-control__scenes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: clamp(2rem, 4vw, 3.2rem);
+  }
+
+  @media (min-width: 990px) {
+    .xalgo-museve-control__scenes { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .xalgo-museve-control__scene {
+    padding: 1.5rem;
+    border-radius: 22px;
+    background: rgb(255 255 255 / 0.7);
+    border: 1px solid rgb(29 29 31 / 0.05);
+  }
+
+  .xalgo-museve-control__scene-label {
+    margin: 0 0 0.6rem;
+    color: var(--mc-terracotta);
+    font-weight: 700;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  .xalgo-museve-control__scene h3 {
+    margin: 0 0 0.45rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-style: normal;
+    text-transform: none;
+    color: var(--mc-ink);
+  }
+
+  .xalgo-museve-control__scene p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--mc-muted);
+    line-height: 1.6;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "MUSEVE Silent control",
+  "tag": "section",
+  "class": "section-wrapper xalgo-museve-control-wrapper",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Never lose a thought" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Every day is full of things\nyou wish you'd kept" },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Ideas, decisions, little moments — gone before you find a pen. Now a blink keeps them."
+    },
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media type",
+      "options": [
+        { "value": "image", "label": "Image" },
+        { "value": "video", "label": "Video" }
+      ],
+      "default": "image"
+    },
+    { "type": "image_picker", "id": "scene_image", "label": "Scene image", "visible_if": "{{ section.settings.media_type == 'image' }}" },
+    { "type": "video", "id": "scene_video", "label": "Scene video", "info": "Autoplays muted on loop.", "visible_if": "{{ section.settings.media_type == 'video' }}" },
+    { "type": "text", "id": "chip_tag", "label": "Chip label", "default": "Capturing" },
+    { "type": "text", "id": "chip_text", "label": "Chip text", "default": "Meeting — 09:42" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 104 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 104 }
+  ],
+  "blocks": [
+    {
+      "type": "scene",
+      "name": "Scene",
+      "limit": 3,
+      "settings": [
+        { "type": "text", "id": "label", "label": "Time label", "default": "09:42 · Meeting" },
+        { "type": "text", "id": "heading", "label": "Heading" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MUSEVE Silent control",
+      "category": "Content",
+      "blocks": [
+        { "type": "scene", "settings": { "label": "09:42 · Meeting", "heading": "The decision everyone forgot.", "text": "Key points and action items, captured while you listen." } },
+        { "type": "scene", "settings": { "label": "11:17 · A new idea", "heading": "The thought you had on the way.", "text": "Say it once. It's in your timeline." } },
+        { "type": "scene", "settings": { "label": "15:36 · Class", "heading": "The lecture that went too fast.", "text": "Full notes, ready to review by dinner." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

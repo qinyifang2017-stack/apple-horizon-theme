@@ -24,7 +24,7 @@
           "settings": {
             "category": "product",
             "question": "How long does the battery last?",
-            "answer": "<p>Battery life varies by usage. xRing lasts 5-8 days on a single charge. For the latest battery specifications of each product, please check its product page.</p>"
+            "answer": "<p>Battery life varies by usage. Ring lasts 5-8 days on a single charge. For the latest battery specifications of each product, please check its product page.</p>"
           }
         },
         "faq_product_3": {
@@ -32,7 +32,7 @@
           "settings": {
             "category": "product",
             "question": "Is it waterproof or water resistant?",
-            "answer": "<p>Yes. xRing is water resistant up to 100 meters, so you can wear it while swimming, showering, or washing your hands. Check each product page for its specific rating.</p>"
+            "answer": "<p>Yes. Ring is water resistant up to 100 meters, so you can wear it while swimming, showering, or washing your hands. Check each product page for its specific rating.</p>"
           }
         },
         "faq_product_4": {
@@ -48,7 +48,7 @@
           "settings": {
             "category": "product",
             "question": "How do I choose the right ring size?",
-            "answer": "<p>Each xRing order includes free sizing sleeves so you can find your perfect fit at home. If you need help, our support team can guide you through measuring your finger.</p>"
+            "answer": "<p>Each Ring order includes free sizing sleeves so you can find your perfect fit at home. If you need help, our support team can guide you through measuring your finger.</p>"
           }
         },
         "faq_product_6": {

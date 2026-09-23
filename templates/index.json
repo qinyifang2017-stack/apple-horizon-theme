@@ -53,7 +53,7 @@
         "promo_subheading": {
           "type": "text",
           "settings": {
-            "text": "<p>xGlass — Put On Possibility. Back the campaign and be among the first to wear it.</p>",
+            "text": "<p>Glasses — Put On Possibility. Back the campaign and be among the first to wear it.</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "center",
@@ -156,8 +156,8 @@
               "type": "button",
               "settings": {
                 "show_button": true,
-                "label": "Explore xGlass",
-                "link": "/pages/xglass",
+                "label": "Explore Glasses",
+                "link": "/pages/glasses",
                 "open_in_new_tab": false,
                 "style_class": "button-secondary",
                 "width": "fit-content",
@@ -188,7 +188,7 @@
         "layout_style": "dark",
         "media_type": "image",
         "use_default_asset_images": true,
-        "background_alt": "xGlass Kickstarter campaign hero",
+        "background_alt": "Glasses Kickstarter campaign hero",
         "backdrop_opacity": 30,
         "overlay_card_background": "transparent",
         "overlay_position": "left",
@@ -206,7 +206,7 @@
         "color_scheme": "scheme-1",
         "link": "",
         "open_in_new_tab": false,
-        "link_accessibility_text": "Back xGlass on Kickstarter",
+        "link_accessibility_text": "Back Glasses on Kickstarter",
         "padding-block-start": 56,
         "padding-block-end": 56
       }
@@ -217,7 +217,7 @@
         "ring_heading": {
           "type": "text",
           "settings": {
-            "text": "<h1>xRing</h1>",
+            "text": "<h1>Ring</h1>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "center",
@@ -348,7 +348,7 @@
         "glasses_heading": {
           "type": "text",
           "settings": {
-            "text": "<h2>xGlass</h2>",
+            "text": "<h2>Glasses</h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "center",
@@ -478,7 +478,7 @@
         "frame_heading": {
           "type": "text",
           "settings": {
-            "text": "<h2>xFrame</h2>",
+            "text": "<h2>Frame</h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "center",

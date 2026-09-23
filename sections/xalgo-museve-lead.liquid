@@ -1,0 +1,148 @@
+{% comment %}
+  MUSEVE Lead — "Everything hides in the temples" centered lead-in between hero and story modules.
+{% endcomment %}
+
+<section
+  id="xalgo-museve-lead-{{ section.id }}"
+  class="xalgo-museve-lead color-{{ section.settings.color_scheme }}"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="page-width xalgo-museve-lead__shell">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="xalgo-museve-lead__eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="xalgo-museve-lead__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}
+      <p class="xalgo-museve-lead__lede">{{ section.settings.text }}</p>
+    {%- endif -%}
+    {%- if section.settings.button_label != blank -%}
+      <a class="xalgo-museve-lead__btn" href="{{ section.settings.button_url | default: '#xalgo-museve-specs' }}">
+        {{- section.settings.button_label -}}
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .xalgo-museve-lead {
+    --ml-cream: var(--xalgo-cream, #fdfaf7);
+    --ml-ink: var(--xalgo-text-primary, #1d1d1f);
+    --ml-muted: var(--xalgo-text-secondary, #6e6e73);
+    --ml-rose: var(--xalgo-rose, #e8a598);
+
+    background: var(--ml-cream);
+    text-align: center;
+  }
+
+  .xalgo-museve-lead__shell {
+    padding-block: clamp(3.5rem, 7vw, 6rem);
+  }
+
+  .xalgo-museve-lead__eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--xalgo-terracotta, #b06557);
+    font-weight: 700;
+    font-size: 0.76rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  .xalgo-museve-lead__heading {
+    margin: 0 auto;
+    font-size: clamp(2rem, 3.8vw, 3.2rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    font-style: normal;
+    text-transform: none;
+    color: var(--ml-ink);
+    max-width: 20ch;
+    text-wrap: balance;
+  }
+
+  .xalgo-museve-lead__lede {
+    margin: 1.25rem auto 0;
+    max-width: 600px;
+    color: var(--ml-muted);
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    line-height: 1.7;
+  }
+
+  .xalgo-museve-lead__btn {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    margin-top: 1.6rem;
+    padding: 0.8rem 1.6rem;
+    border-radius: 999px;
+    border: 1.5px solid #5c5c5e;
+    background: transparent;
+    color: #2c2c2e;
+    font-weight: 600;
+    font-size: 0.98rem;
+    text-decoration: none;
+    transition: color 0.25s ease, transform 0.25s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .xalgo-museve-lead__btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: #2c2c2e;
+    transform: translateY(101%);
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .xalgo-museve-lead__btn:hover::before {
+    transform: translateY(0);
+  }
+
+  .xalgo-museve-lead__btn:hover {
+    color: #fff;
+    border-color: #2c2c2e;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgb(44 44 46 / 0.18);
+  }
+
+  .xalgo-museve-lead__btn:focus-visible {
+    outline: 3px solid var(--ml-rose);
+    outline-offset: 2px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "MUSEVE Lead",
+  "tag": "section",
+  "class": "section-wrapper xalgo-museve-lead-wrapper",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Inside the frame" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Everything hides in the temples" },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "No camera on the front. No screen in the lens. The sensors, microphones and battery all live inside the temples, so what people see is a pair of glasses."
+    },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "View tech specs" },
+    { "type": "text", "id": "button_url", "label": "Button link (URL or #anchor)", "default": "#xalgo-museve-specs" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 0 }
+  ],
+  "presets": [
+    { "name": "MUSEVE Lead", "category": "Content" }
+  ]
+}
+{% endschema %}

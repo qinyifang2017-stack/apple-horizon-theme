@@ -933,13 +933,13 @@
         "spec_materials",
         "spec_connectivity"
       ],
-      "name": "xRing Tech Specs",
+      "name": "Ring Tech Specs",
       "settings": {
-        "eyebrow": "xRing details",
+        "eyebrow": "Ring details",
         "heading": "Tech specs",
         "subheading": "Key sensors, battery life, materials, and compatibility details in one clear overview.",
         "box_heading": "In the box",
-        "box_items": "<p>xRing</p><p>Dedicated charging dock</p><p>USB-C cable</p>",
+        "box_items": "<p>Ring</p><p>Dedicated charging dock</p><p>USB-C cable</p>",
         "color_scheme": "scheme-1",
         "padding_top": 64,
         "padding_bottom": 64

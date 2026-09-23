@@ -14,7 +14,7 @@
         "hero_eyebrow": {
           "type": "text",
           "settings": {
-            "text": "<p>Meet xRing</p>",
+            "text": "<p>Meet Ring</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -89,7 +89,7 @@
         "hero_shop": {
           "type": "button",
           "settings": {
-            "label": "Choose your xRing",
+            "label": "Choose your Ring",
             "link": "/products/xring",
             "open_in_new_tab": false,
             "style_class": "button",
@@ -122,7 +122,7 @@
         "hero_shop",
         "hero_faq"
       ],
-      "name": "xRing Hero",
+      "name": "Ring Hero",
       "settings": {
         "media_type_1": "image",
         "media_type_2": "image",
@@ -215,7 +215,7 @@
         "intro_body": {
           "type": "text",
           "settings": {
-            "text": "<p>xRing turns overnight recovery, daytime strain and long-term trends into simple signals you can actually act on.</p>",
+            "text": "<p>Ring turns overnight recovery, daytime strain and long-term trends into simple signals you can actually act on.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "center",
@@ -258,7 +258,7 @@
         "intro_body",
         "intro_specs_link"
       ],
-      "name": "xRing Introduction",
+      "name": "Ring Introduction",
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -557,7 +557,7 @@
         "metric_water",
         "metric_titanium"
       ],
-      "name": "xRing Metrics",
+      "name": "Ring Metrics",
       "settings": {
         "content_direction": "row",
         "vertical_on_mobile": true,
@@ -595,7 +595,7 @@
           "type": "point",
           "settings": {
             "heading": "All-day continuous sensing",
-            "text": "<p>No manual start or stop. xRing quietly records meaningful changes as your day unfolds.</p>"
+            "text": "<p>No manual start or stop. Ring quietly records meaningful changes as your day unfolds.</p>"
           }
         },
         "sensing_point_3": {
@@ -611,11 +611,11 @@
         "sensing_point_2",
         "sensing_point_3"
       ],
-      "name": "xRing Smart Sensing",
+      "name": "Ring Smart Sensing",
       "settings": {
         "eyebrow": "Smart sensing",
         "heading": "A smarter way to sense.",
-        "body": "<p>xRing is not about collecting more numbers. It brings sleep, heart rate, temperature and movement together into health signals you can understand and act on every day.</p>",
+        "body": "<p>Ring is not about collecting more numbers. It brings sleep, heart rate, temperature and movement together into health signals you can understand and act on every day.</p>",
         "callout": "<p>Continuous sensing, without interrupting life.</p>",
         "media_position": "left",
         "tone": "blush",
@@ -654,11 +654,11 @@
         "comfort_point_2",
         "comfort_point_3"
       ],
-      "name": "xRing Comfort",
+      "name": "Ring Comfort",
       "settings": {
         "eyebrow": "All-day comfort",
         "heading": "Wear it as naturally as jewelry.",
-        "body": "<p>The hard part is making a smart ring you actually want to wear every day. xRing gives weight, material and skin feel the same importance as the sensors inside.</p>",
+        "body": "<p>The hard part is making a smart ring you actually want to wear every day. Ring gives weight, material and skin feel the same importance as the sensors inside.</p>",
         "callout": "<p>Health tech should feel less like a task and more like a ring you would wear anyway.</p>",
         "media_position": "right",
         "tone": "champagne",
@@ -697,7 +697,7 @@
         "app_point_2",
         "app_point_3"
       ],
-      "name": "xRing App Insights",
+      "name": "Ring App Insights",
       "settings": {
         "eyebrow": "App insights",
         "heading": "Data should become guidance.",
@@ -776,12 +776,12 @@
         "finish_black",
         "finish_gold"
       ],
-      "name": "xRing Finishes",
+      "name": "Ring Finishes",
       "settings": {
         "eyebrow": "Finishes",
         "heading": "Choose the one that feels like you.",
         "subheading": "A health device should still feel like jewelry - something you want to wear every day.",
-        "button_label": "Choose your xRing",
+        "button_label": "Choose your Ring",
         "button_link": "shopify://products/xring",
         "color_scheme": "scheme-1",
         "padding_top": 88,
@@ -848,13 +848,13 @@
         "spec_materials",
         "spec_connectivity"
       ],
-      "name": "xRing Tech Specs",
+      "name": "Ring Tech Specs",
       "settings": {
-        "eyebrow": "xRing details",
+        "eyebrow": "Ring details",
         "heading": "Tech specs",
         "subheading": "Key sensors, battery life, materials, and compatibility details in one clear overview.",
         "box_heading": "In the box",
-        "box_items": "<p>xRing</p><p>Dedicated charging dock</p><p>USB-C cable</p>",
+        "box_items": "<p>Ring</p><p>Dedicated charging dock</p><p>USB-C cable</p>",
         "color_scheme": "scheme-1",
         "padding_top": 96,
         "padding_bottom": 96
@@ -866,7 +866,7 @@
         "cta_heading": {
           "type": "text",
           "settings": {
-            "text": "<h2>Ready to choose your xRing?</h2>",
+            "text": "<h2>Ready to choose your Ring?</h2>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -916,7 +916,7 @@
         "cta_button": {
           "type": "button",
           "settings": {
-            "label": "Shop xRing",
+            "label": "Shop Ring",
             "link": "/products/xring",
             "open_in_new_tab": false,
             "style_class": "button",
@@ -933,7 +933,7 @@
         "cta_text",
         "cta_button"
       ],
-      "name": "xRing Bottom CTA",
+      "name": "Ring Bottom CTA",
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,

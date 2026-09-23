@@ -1,0 +1,377 @@
+{% comment %}
+  MUSEVE Final CTA — closing conversion block on the Glasses landing page.
+  Two variants (select in settings):
+    signup — gradient band with inline email form (customer form, tagged) + perks + fine print.
+    link   — headline + single link button (use once the product is purchasable).
+  The signup variant also carries the id that hero signup buttons fall back to when
+  no MUSEVE Signup dialog exists on the page.
+{% endcomment %}
+
+{% liquid
+  assign form_id = 'museve-cta'
+%}
+
+{%- if section.settings.enabled -%}
+<section
+  id="museve-signup"
+  class="xalgo-museve-final-cta xalgo-museve-final-cta--{{ section.settings.variant }} color-{{ section.settings.color_scheme }}"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="page-width xalgo-museve-final-cta__shell">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="xalgo-museve-final-cta__eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="xalgo-museve-final-cta__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}
+      <p class="xalgo-museve-final-cta__lede">{{ section.settings.text }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.variant == 'signup' -%}
+      {%- form 'customer', id: form_id, class: 'xalgo-museve-final-cta__form', novalidate: 'novalidate' -%}
+        <input type="hidden" name="contact[id]" value="{{ form_id }}">
+        <input type="hidden" name="contact[tags]" value="{{ section.settings.tag | escape }}">
+
+        {%- if form.posted_successfully? and form.id == form_id -%}
+          <p class="xalgo-museve-final-cta__success" role="status">{{ section.settings.success_label }}</p>
+        {%- else -%}
+          <div class="xalgo-museve-final-cta__row">
+            <label class="visually-hidden" for="MuseveCtaEmail-{{ section.id }}">Email</label>
+            <input
+              type="email"
+              id="MuseveCtaEmail-{{ section.id }}"
+              name="contact[email]"
+              autocomplete="email"
+              autocapitalize="off"
+              spellcheck="false"
+              placeholder="{{ section.settings.input_placeholder | escape }}"
+              required
+            >
+            <button class="xalgo-museve-final-cta__submit" type="submit">{{ section.settings.button_label }}</button>
+          </div>
+          {%- if form.errors and form.id == form_id -%}
+            <p class="xalgo-museve-final-cta__error" role="alert">
+              {{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}
+            </p>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endform -%}
+
+      {%- assign perks = section.blocks | where: 'type', 'perk' -%}
+      {%- if perks.size > 0 -%}
+        <ul class="xalgo-museve-final-cta__perks">
+          {%- for block in perks -%}
+            <li {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if section.settings.fine_print != blank -%}
+        <div class="xalgo-museve-final-cta__fine">{{ section.settings.fine_print }}</div>
+      {%- endif -%}
+    {%- else -%}
+      {%- if section.settings.button_label != blank -%}
+        <div class="xalgo-museve-final-cta__cta">
+          <a
+            class="xalgo-museve-final-cta__link-btn"
+            href="{{ section.settings.button_url | default: '/products/glasses' }}"
+            {% if section.settings.button_new_window %}target="_blank" rel="noopener"{% endif %}
+          >{{ section.settings.button_label }} →</a>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if section.settings.trust_text != blank -%}
+      <p class="xalgo-museve-final-cta__trust">{{ section.settings.trust_text }}</p>
+    {%- endif -%}
+  </div>
+</section>
+{%- endif -%}
+
+{% stylesheet %}
+  .xalgo-museve-final-cta {
+    --mfc-terracotta: var(--xalgo-terracotta, #b06557);
+    --mfc-rose: var(--xalgo-rose, #e8a598);
+    --mfc-rose-light: var(--xalgo-rose-light, #f2ddd8);
+    --mfc-cream: var(--xalgo-cream, #fdfaf7);
+    --mfc-ink: var(--xalgo-text-primary, #1d1d1f);
+    --mfc-muted: var(--xalgo-text-secondary, #6e6e73);
+
+    background: linear-gradient(100deg, var(--mfc-terracotta), #c9806f 55%, var(--mfc-rose));
+    color: #fff;
+    text-align: center;
+  }
+
+  .xalgo-museve-final-cta--link {
+    background: var(--mfc-cream);
+    color: var(--mfc-ink);
+  }
+
+  .xalgo-museve-final-cta__shell {
+    padding-block: clamp(4rem, 8vw, 7rem);
+  }
+
+  .xalgo-museve-final-cta__eyebrow {
+    margin: 0 0 0.75rem;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.76rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  .xalgo-museve-final-cta--link .xalgo-museve-final-cta__eyebrow {
+    color: var(--mfc-terracotta);
+  }
+
+  .xalgo-museve-final-cta__heading {
+    margin: 0 auto;
+    font-size: clamp(2.2rem, 4.6vw, 3.8rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    font-style: normal;
+    text-transform: none;
+    color: #fff;
+    text-wrap: balance;
+  }
+
+  .xalgo-museve-final-cta--link .xalgo-museve-final-cta__heading {
+    color: var(--mfc-ink);
+  }
+
+  .xalgo-museve-final-cta__lede {
+    margin: 1.25rem auto 0;
+    max-width: 560px;
+    color: rgb(255 255 255 / 0.88);
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    line-height: 1.7;
+  }
+
+  .xalgo-museve-final-cta--link .xalgo-museve-final-cta__lede {
+    color: var(--mfc-muted);
+  }
+
+  .xalgo-museve-final-cta__form {
+    display: block;
+    margin: 1.9rem auto 0;
+    max-width: 520px;
+  }
+
+  .xalgo-museve-final-cta__row {
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  .xalgo-museve-final-cta__row input {
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 0;
+    min-height: 50px;
+    padding: 0 1.15rem;
+    border-radius: 999px;
+    border: 1.5px solid transparent;
+    background: #fff;
+    font: inherit;
+    font-size: 1rem;
+    color: var(--mfc-ink);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .xalgo-museve-final-cta__row input:focus,
+  .xalgo-museve-final-cta__row input:focus-visible {
+    outline: none;
+    border-color: var(--mfc-rose-dark, #d4918a);
+    box-shadow: 0 0 0 3px rgb(212 145 138 / 0.5);
+  }
+
+  .xalgo-museve-final-cta__row input::placeholder {
+    color: #9a9a9f;
+  }
+
+  .xalgo-museve-final-cta__submit {
+    white-space: nowrap;
+    min-height: 50px;
+    padding: 0.8rem 1.6rem;
+    border-radius: 999px;
+    border: 1.5px solid #fff;
+    background: #fff;
+    color: var(--mfc-terracotta);
+    font: inherit;
+    font-weight: 600;
+    font-size: 0.98rem;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .xalgo-museve-final-cta__submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgb(29 29 31 / 0.18);
+  }
+
+  .xalgo-museve-final-cta__error {
+    margin: 0.7rem 0 0;
+    font-size: 0.85rem;
+    color: #fff;
+    background: rgb(29 29 31 / 0.18);
+    border-radius: 999px;
+    padding: 0.4rem 1rem;
+    display: inline-block;
+  }
+
+  .xalgo-museve-final-cta__success {
+    margin: 1.9rem 0 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  .xalgo-museve-final-cta__perks {
+    list-style: none;
+    margin: 1.6rem 0 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.8rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .xalgo-museve-final-cta__perks li::before {
+    content: '✓';
+    margin-right: 0.45rem;
+    font-weight: 700;
+  }
+
+  .xalgo-museve-final-cta__fine {
+    margin-top: 0.9rem;
+    color: rgb(255 255 255 / 0.8);
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+  .xalgo-museve-final-cta__fine p { margin: 0; }
+  .xalgo-museve-final-cta__fine a { text-decoration: underline; text-underline-offset: 2px; }
+
+  .xalgo-museve-final-cta__cta { margin-top: 1.9rem; }
+
+  .xalgo-museve-final-cta__link-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0.8rem 1.6rem;
+    border-radius: 999px;
+    border: 1.5px solid var(--mfc-terracotta);
+    background: var(--mfc-terracotta);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.98rem;
+    text-decoration: none;
+    transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .xalgo-museve-final-cta__link-btn:hover {
+    transform: translateY(-1px);
+    background: #9f584b;
+    box-shadow: 0 6px 18px rgb(176 101 87 / 0.32);
+  }
+
+  .xalgo-museve-final-cta__trust {
+    margin-top: 1.6rem;
+    font-size: 0.82rem;
+    color: rgb(255 255 255 / 0.75);
+  }
+
+  .xalgo-museve-final-cta--link .xalgo-museve-final-cta__trust {
+    color: var(--mfc-muted);
+  }
+
+  .xalgo-museve-final-cta input:focus-visible,
+  .xalgo-museve-final-cta button:focus-visible,
+  .xalgo-museve-final-cta a:focus-visible {
+    outline: 3px solid var(--mfc-rose-light);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 540px) {
+    .xalgo-museve-final-cta__row { flex-direction: column; }
+    .xalgo-museve-final-cta__submit { width: 100%; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "MUSEVE Final CTA",
+  "tag": "section",
+  "class": "section-wrapper xalgo-museve-final-cta-wrapper",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Show this section",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "variant",
+      "label": "Variant",
+      "options": [
+        { "value": "signup", "label": "Email signup (prelaunch)" },
+        { "value": "link", "label": "Link button (on sale)" }
+      ],
+      "default": "signup"
+    },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Coming soon to Kickstarter" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Be first. Pay least" },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "The Super Early Bird price goes to subscribers first — and you'll know the moment we go live."
+    },
+    { "type": "text", "id": "input_placeholder", "label": "Email placeholder", "default": "Enter your email", "visible_if": "{{ section.settings.variant == 'signup' }}" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Sign up for launch" },
+    { "type": "text", "id": "success_label", "label": "Success message", "default": "You're on the list ✓", "visible_if": "{{ section.settings.variant == 'signup' }}" },
+    { "type": "text", "id": "tag", "label": "Customer tag", "default": "MUSEVE early-bird", "visible_if": "{{ section.settings.variant == 'signup' }}" },
+    { "type": "url", "id": "button_url", "label": "Button URL (link variant)" },
+    { "type": "checkbox", "id": "button_new_window", "label": "Open link in new window", "default": false, "visible_if": "{{ section.settings.variant == 'link' }}" },
+    { "type": "richtext", "id": "fine_print", "label": "Fine print", "default": "<p>One email when we go live, one before. Unsubscribe anytime.</p>", "visible_if": "{{ section.settings.variant == 'signup' }}" },
+    {
+      "type": "text",
+      "id": "trust_text",
+      "label": "Trust line",
+      "default": "Built by MUSEVE. Backed by XGD's 25 years of electronics manufacturing."
+    },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 0 }
+  ],
+  "blocks": [
+    {
+      "type": "perk",
+      "name": "Perk",
+      "limit": 5,
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "No spam" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MUSEVE Final CTA",
+      "category": "Content",
+      "blocks": [
+        { "type": "perk", "settings": { "text": "Lowest price ever" } },
+        { "type": "perk", "settings": { "text": "24-hour early access" } },
+        { "type": "perk", "settings": { "text": "No spam" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

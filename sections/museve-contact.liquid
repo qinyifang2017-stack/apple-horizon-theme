@@ -138,6 +138,21 @@
             </div>
           </div>
 
+          <div class="museve-contact__field museve-contact__field--full museve-contact__conditional" data-show-for="Orders &amp; shipping,Returns &amp; refunds,Technical support &amp; warranty" hidden>
+            <label for="MUSEVEContact-order-{{ section.id }}">
+              Order number
+            </label>
+            <input
+              type="text"
+              id="MUSEVEContact-order-{{ section.id }}"
+              name="contact[Order number]"
+              disabled
+            >
+            <p class="museve-contact__field-help">
+              You can find this in your order confirmation email.
+            </p>
+          </div>
+
           <div class="museve-contact__field museve-contact__field--full">
             <label for="MUSEVEContact-body-{{ section.id }}">Message <span aria-hidden="true">*</span></label>
             <textarea
@@ -227,6 +242,26 @@
         if (field.el.classList.contains('is-invalid')) setError(field, validate(field));
       });
     });
+
+    /* Order number shows only for order-related topics; hidden inputs are disabled so they are not submitted */
+    var topicEl = form.querySelector('[name="contact[topic]"]');
+    var conditionalFields = Array.prototype.slice.call(form.querySelectorAll('.museve-contact__conditional'));
+
+    function syncConditionalFields() {
+      var topic = topicEl ? topicEl.value : '';
+      conditionalFields.forEach(function (wrap) {
+        var showFor = (wrap.getAttribute('data-show-for') || '').split(',');
+        var show = showFor.indexOf(topic) > -1;
+        wrap.hidden = !show;
+        var input = wrap.querySelector('input, select, textarea');
+        if (input) input.disabled = !show;
+      });
+    }
+
+    if (topicEl && conditionalFields.length) {
+      topicEl.addEventListener('change', syncConditionalFields);
+      syncConditionalFields();
+    }
   })();
 </script>
 
@@ -316,6 +351,11 @@
     grid-area: routes;
     display: grid;
     gap: 22px;
+  }
+
+  /* 隐藏的条件字段必须彻底移除，不占网格空间 */
+  .museve-contact [hidden] {
+    display: none !important;
   }
 
   .museve-contact__card {
@@ -440,6 +480,21 @@
     color: var(--mc-ink);
     font-size: 12px;
     font-weight: 600;
+    line-height: 1.5;
+  }
+
+  /* 必填星号：更大更醒目，一眼识别 */
+  .museve-contact__field label > span[aria-hidden='true'] {
+    color: var(--mc-rose);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .museve-contact__field-help {
+    margin-top: 7px;
+    color: var(--mc-muted);
+    font-size: 12px;
     line-height: 1.5;
   }
 

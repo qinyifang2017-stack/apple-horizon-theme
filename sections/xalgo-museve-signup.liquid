@@ -1,0 +1,450 @@
+{% comment %}
+  MUSEVE Signup dialog — shared early-bird email popup.
+  Place ONCE per template. Renders a closed <dialog> (zero layout footprint).
+  Any [data-open="signup"] trigger elsewhere (hero, final CTA, announcement bar…) opens it;
+  triggers keep a real href="#museve-signup" fallback so the page degrades without this section.
+  Form uses {% form 'customer' %}; subscribers get the tag set in "Tag" (default: MUSEVE early-bird).
+{% endcomment %}
+
+<dialog
+  id="museve-signup-dialog-{{ section.id }}"
+  class="xalgo-museve-signup"
+  data-signup-dialog
+  aria-labelledby="museve-signup-title-{{ section.id }}"
+>
+  <div class="xalgo-museve-signup__box">
+    <button class="xalgo-museve-signup__close" type="button" data-close aria-label="Close">×</button>
+
+    <div class="xalgo-museve-signup__form-wrap">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="xalgo-museve-signup__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h3 class="xalgo-museve-signup__heading" id="museve-signup-title-{{ section.id }}">{{ section.settings.heading }}</h3>
+      {%- if section.settings.text != blank -%}
+        <p class="xalgo-museve-signup__lede">{{ section.settings.text }}</p>
+      {%- endif -%}
+
+      {%- form 'customer', id: 'museve-signup-dialog', class: 'xalgo-museve-signup__form', novalidate: 'novalidate' -%}
+        <input type="hidden" name="contact[id]" value="museve-signup-dialog">
+        <input type="hidden" name="contact[tags]" value="{{ section.settings.tag | escape }}">
+
+        {%- if form.posted_successfully? and form.id == 'museve-signup-dialog' -%}
+          {%- comment -%} Marker read by CSS :has() and JS to switch the dialog to its done state {%- endcomment -%}
+          <span class="xalgo-museve-signup__success-flag" hidden></span>
+        {%- endif -%}
+
+        {%- if form.errors and form.id == 'museve-signup-dialog' -%}
+          <p class="xalgo-museve-signup__error" role="alert" tabindex="-1" autofocus>
+            {{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}
+          </p>
+        {%- endif -%}
+
+        <div class="xalgo-museve-signup__row">
+          <label class="visually-hidden" for="MuseveSignupEmail-{{ section.id }}">Email</label>
+          <input
+            type="email"
+            id="MuseveSignupEmail-{{ section.id }}"
+            name="contact[email]"
+            autocomplete="email"
+            autocapitalize="off"
+            spellcheck="false"
+            placeholder="{{ section.settings.input_placeholder | escape }}"
+            required
+            {% if form.errors %}aria-invalid="true"{% endif %}
+          >
+          <button class="xalgo-museve-signup__submit" type="submit">{{ section.settings.button_label }}</button>
+        </div>
+      {%- endform -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="xalgo-museve-signup__perks">
+          {%- for block in section.blocks -%}
+            <li {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if section.settings.fine_print != blank -%}
+        <div class="xalgo-museve-signup__fine">{{ section.settings.fine_print }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="xalgo-museve-signup__done" role="status">
+      <strong>{{ section.settings.success_heading }}</strong>
+      {%- if section.settings.success_text != blank -%}
+        <p>{{ section.settings.success_text }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</dialog>
+
+<script>
+  (function () {
+    var dialogs = document.querySelectorAll('[data-signup-dialog]');
+    if (!dialogs.length) return;
+    var dialog = dialogs[0];
+    if (typeof dialog.showModal !== 'function') return;
+
+    /* After a successful submit the page reloads with the marker inside the dialog: open it in done state. */
+    if (dialog.querySelector('.xalgo-museve-signup__success-flag')) {
+      dialog.classList.add('is-done');
+      dialog.showModal();
+    }
+
+    /* Single guard for all forms on the page: prevent double submits while the page navigates. */
+    if (!window.__museveSignupGuarded) {
+      window.__museveSignupGuarded = true;
+      document.addEventListener('submit', function (e) {
+        var f = e.target;
+        if (!f || !f.classList || !f.classList.contains('xalgo-museve-signup__form')) return;
+        var email = f.querySelector('input[type="email"]');
+        if (email && !email.checkValidity()) {
+          e.preventDefault();
+          email.setAttribute('aria-invalid', 'true');
+          email.focus();
+          return;
+        }
+        if (f.getAttribute('data-pending') === '1') { e.preventDefault(); return; }
+        f.setAttribute('data-pending', '1');
+        setTimeout(function () { f.removeAttribute('data-pending'); }, 2500);
+      });
+      document.addEventListener('input', function (e) {
+        if (e.target && e.target.matches && e.target.matches('.xalgo-museve-signup__form input[type="email"]')) {
+          e.target.removeAttribute('aria-invalid');
+        }
+      });
+    }
+
+    /* Delegated triggers: [data-open="signup"] anywhere opens this dialog. */
+    document.addEventListener('click', function (e) {
+      var trigger = e.target.closest('[data-open="signup"]');
+      if (trigger) {
+        e.preventDefault();
+        dialog.classList.remove('is-done');
+        /* After a successful submit the flag hides the form via :has(); drop it when the user opens the dialog again. */
+        var flag = dialog.querySelector('.xalgo-museve-signup__success-flag');
+        if (flag) flag.remove();
+        dialog.showModal();
+        var input = dialog.querySelector('input[type="email"]');
+        if (input) setTimeout(function () { input.focus(); }, 50);
+        return;
+      }
+      if (e.target.closest('[data-close]') || e.target === dialog) dialog.close();
+    });
+  })();
+</script>
+
+{% stylesheet %}
+  .xalgo-museve-signup {
+    --ms-cream: #fdfaf7;
+    --ms-ink: #1d1d1f;
+    --ms-muted: #6e6e73;
+    --ms-rose: #e8a598;
+    --ms-terracotta: var(--xalgo-terracotta, #b06557);
+    --ms-line: rgb(29 29 31 / 0.18);
+
+    border: 0;
+    padding: 0;
+    margin: auto;
+    width: min(92vw, 520px);
+    max-width: none;
+    background: transparent;
+    color: var(--ms-ink);
+    font-family: Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+
+  .xalgo-museve-signup::backdrop {
+    background: rgb(29 29 31 / 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .xalgo-museve-signup[open] {
+    display: block;
+  }
+
+  .xalgo-museve-signup__box {
+    position: relative;
+    padding: 2.2rem 2rem 1.8rem;
+    border-radius: 28px;
+    background: var(--ms-cream);
+    text-align: center;
+    box-shadow: 0 30px 80px rgb(0 0 0 / 0.25);
+  }
+
+  .xalgo-museve-signup__eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--ms-terracotta);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .xalgo-museve-signup__heading {
+    margin: 0;
+    font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+    font-style: normal;
+    color: var(--ms-ink);
+  }
+
+  .xalgo-museve-signup__lede {
+    margin: 0.6rem auto 0;
+    max-width: 36ch;
+    color: var(--ms-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .xalgo-museve-signup__form {
+    display: block;
+    margin-top: 1.4rem;
+  }
+
+  .xalgo-museve-signup__row {
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  .xalgo-museve-signup__row input {
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 0;
+    min-height: 50px;
+    padding: 0 1.15rem;
+    border-radius: 999px;
+    border: 1.5px solid var(--ms-line);
+    background: #fff;
+    font: inherit;
+    font-size: 1rem;
+    color: var(--ms-ink);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .xalgo-museve-signup__row input:focus,
+  .xalgo-museve-signup__row input:focus-visible {
+    outline: none;
+    border-color: var(--ms-rose);
+    box-shadow: 0 0 0 3px rgb(232 165 152 / 0.45);
+  }
+
+  .xalgo-museve-signup__row input::placeholder {
+    color: #9a9a9f;
+  }
+
+  .xalgo-museve-signup__row input[aria-invalid='true'] {
+    border-color: var(--ms-terracotta);
+    box-shadow: 0 0 0 3px rgb(176 101 87 / 0.18);
+  }
+
+  .xalgo-museve-signup__submit {
+    white-space: nowrap;
+    min-height: 50px;
+    padding: 0.8rem 1.6rem;
+    border-radius: 999px;
+    border: 1.5px solid var(--ms-terracotta);
+    background: var(--ms-terracotta);
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    font-size: 0.98rem;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .xalgo-museve-signup__submit:hover {
+    transform: translateY(-1px);
+    background: #9f584b;
+    box-shadow: 0 6px 18px rgb(176 101 87 / 0.32);
+  }
+
+  .xalgo-museve-signup__error {
+    margin: 0 0 0.6rem;
+    color: #a02f27;
+    font-size: 0.85rem;
+  }
+
+  .xalgo-museve-signup__perks {
+    list-style: none;
+    margin: 1.2rem 0 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.4rem;
+    color: var(--ms-ink);
+    font-size: 0.86rem;
+  }
+
+  .xalgo-museve-signup__perks li::before {
+    content: '✓';
+    margin-right: 0.45rem;
+    font-weight: 700;
+    color: var(--ms-terracotta);
+  }
+
+  .xalgo-museve-signup__fine {
+    margin-top: 1rem;
+    color: var(--ms-muted);
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+
+  .xalgo-museve-signup__fine p { margin: 0; }
+  .xalgo-museve-signup__fine a { text-decoration: underline; text-underline-offset: 2px; }
+
+  .xalgo-museve-signup__close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 0;
+    background: rgb(29 29 31 / 0.06);
+    color: var(--ms-ink);
+    font: inherit;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .xalgo-museve-signup__close:hover {
+    background: rgb(29 29 31 / 0.12);
+  }
+
+  .xalgo-museve-signup__done {
+    display: none;
+    padding: 1rem 0 0.4rem;
+  }
+
+  .xalgo-museve-signup__done strong {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .xalgo-museve-signup__done p {
+    margin: 0;
+    color: var(--ms-muted);
+  }
+
+  .xalgo-museve-signup.is-done .xalgo-museve-signup__form-wrap,
+  .xalgo-museve-signup:has(.xalgo-museve-signup__success-flag) .xalgo-museve-signup__form-wrap { display: none; }
+
+  .xalgo-museve-signup.is-done .xalgo-museve-signup__done,
+  .xalgo-museve-signup:has(.xalgo-museve-signup__success-flag) .xalgo-museve-signup__done { display: block; }
+
+  @media (max-width: 540px) {
+    .xalgo-museve-signup {
+      margin: auto 0 0;
+      width: 100vw;
+    }
+    .xalgo-museve-signup__box {
+      border-radius: 28px 28px 0 0;
+      padding: 2rem 1.25rem calc(1.5rem + env(safe-area-inset-bottom, 0px));
+    }
+    .xalgo-museve-signup__row { flex-direction: column; }
+    .xalgo-museve-signup__submit { width: 100%; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "MUSEVE Signup (once)",
+  "tag": "section",
+  "class": "section-wrapper xalgo-museve-signup-wrapper",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Renders a closed dialog with zero layout footprint. Buttons elsewhere with \"opens signup dialog\" pop it up. Place this section once per template."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Coming to Kickstarter"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Get early-bird access"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "Leave your email and we’ll open the Super Early Bird price to you first."
+    },
+    {
+      "type": "text",
+      "id": "input_placeholder",
+      "label": "Email placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Sign up"
+    },
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Customer tag",
+      "default": "MUSEVE early-bird",
+      "info": "Applied to the customer profile in Shopify admin."
+    },
+    {
+      "type": "text",
+      "id": "success_heading",
+      "label": "Success heading",
+      "default": "You’re on the list ✓"
+    },
+    {
+      "type": "textarea",
+      "id": "success_text",
+      "label": "Success text",
+      "default": "We’ll email you 24 hours before the campaign opens."
+    },
+    {
+      "type": "richtext",
+      "id": "fine_print",
+      "label": "Fine print",
+      "default": "<p>One email when we go live, one before. Unsubscribe anytime.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "perk",
+      "name": "Perk",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "No spam"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MUSEVE Signup (once)",
+      "category": "Forms",
+      "blocks": [
+        { "type": "perk", "settings": { "text": "Super Early Bird price" } },
+        { "type": "perk", "settings": { "text": "24-hour early access" } },
+        { "type": "perk", "settings": { "text": "No spam" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

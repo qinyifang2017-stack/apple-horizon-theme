@@ -10,6 +10,7 @@
   --xalgo-rose-dark: #d4918a;
   --xalgo-rose-light: #f2ddd8;
   --xalgo-champagne: #c9a882;
+  --xalgo-terracotta: #b06557;
   --xalgo-gold-deep: #a87c4f;
   --xalgo-warm-gray: #f5f0eb;
   --xalgo-dark: #1a1f2e;
@@ -132,6 +133,8 @@ html {
 /* —— 7. 链接着重色 —— */
 a:not(.button):not(.button-secondary):not(.menu-list__link):not(.menu__item a):not(
     .utilities a
+  ):not([class*="xalgo-museve-"]):not(
+    .xalgo-faq__more a
   ):hover {
   color: var(--xalgo-rose);
 }
@@ -159,7 +162,7 @@ aside.announcement-bar {
 
 /* —— 9. Hero Section 品牌配色 —— */
 
-/* xRing Hero 按钮配色 */
+/* Ring Hero 按钮配色 */
 [id*="hero_ring"] .button:not(.button-secondary) {
   background-color: var(--xalgo-rose);
   color: white;
@@ -171,7 +174,7 @@ aside.announcement-bar {
   border-color: var(--xalgo-rose-dark);
 }
 
-/* xRing/xGlass/xFrame bottom CTA: keep only the footer divider line */
+/* Ring/Glasses/Frame bottom CTA: keep only the footer divider line */
 .section-wrapper:has([data-testid="section-content"] a[href="/products/xring"]):has(h2)
   .custom-section-content,
 .section-wrapper:has([data-testid="section-content"] a[href="/products/xglass"]):has(h2)
@@ -618,4 +621,11 @@ aside.announcement-bar {
     overflow-y: auto;
     scrollbar-width: none;
   }
+}
+
+/* —— MUSEVE Glasses 落地页：内容宽度与页头页脚对齐（复用主题 body 上的 page-width 变量） —— */
+[class*="xalgo-museve-"] .page-width {
+  max-width: var(--page-width, 1520px);
+  margin-inline: auto;
+  padding-inline: var(--page-margin, 16px);
 }

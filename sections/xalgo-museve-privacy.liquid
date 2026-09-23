@@ -1,0 +1,264 @@
+{% comment %}
+  MUSEVE Privacy — dark "No camera Nothing to hide" block.
+  Left copy + guarantee checklist, right 2×2 privacy cards, small note below.
+  The section paints itself (hard dark palette); color_scheme setting kept for skeleton parity.
+{% endcomment %}
+
+{% liquid
+  assign checks = section.blocks | where: 'type', 'check'
+  assign pcards = section.blocks | where: 'type', 'pcard'
+%}
+
+<section
+  id="xalgo-museve-privacy-{{ section.id }}"
+  class="xalgo-museve-privacy color-{{ section.settings.color_scheme }}"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="page-width xalgo-museve-privacy__shell">
+    <div class="xalgo-museve-privacy__split">
+      <div class="xalgo-museve-privacy__copy">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="xalgo-museve-privacy__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="xalgo-museve-privacy__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <p class="xalgo-museve-privacy__lede">{{ section.settings.text }}</p>
+        {%- endif -%}
+
+        {%- if checks.size > 0 -%}
+          <div class="xalgo-museve-privacy__guarantee">
+            <p class="xalgo-museve-privacy__eyebrow">{{ section.settings.guarantee_label }}</p>
+            <ul class="xalgo-museve-privacy__checks">
+              {%- for block in checks -%}
+                <li {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if pcards.size > 0 -%}
+        <div class="xalgo-museve-privacy__grid">
+          {%- for block in pcards -%}
+            <div class="xalgo-museve-privacy__card" {{ block.shopify_attributes }}>
+              {%- if block.settings.eyebrow != blank -%}
+                <p class="xalgo-museve-privacy__card-eyebrow">{{ block.settings.eyebrow }}</p>
+              {%- endif -%}
+              <h3>{{ block.settings.heading }}</h3>
+              <p>{{ block.settings.text }}</p>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.note_text != blank -%}
+      <p class="xalgo-museve-privacy__note">{{ section.settings.note_text }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .xalgo-museve-privacy {
+    --mp-dark: #1c1c1b;
+    --mp-card: #2a2a2c;
+    --mp-line: rgb(255 255 255 / 0.12);
+    --mp-muted: rgb(255 255 255 / 0.72);
+    --mp-rose: var(--xalgo-rose, #e8a598);
+
+    background: var(--mp-dark);
+    color: #fff;
+  }
+
+  .xalgo-museve-privacy__split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2.5rem, 6vw, 5.5rem);
+    align-items: center;
+  }
+
+  @media (min-width: 990px) {
+    .xalgo-museve-privacy__split { grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr); }
+  }
+
+  .xalgo-museve-privacy__eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--mp-rose);
+    font-weight: 700;
+    font-size: 0.76rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  .xalgo-museve-privacy__heading {
+    margin: 0;
+    font-size: clamp(2.2rem, 4.2vw, 3.9rem);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+    font-style: normal;
+    text-transform: none;
+    color: #fff;
+    max-width: 20ch;
+    text-wrap: balance;
+    white-space: pre-line;
+  }
+
+  .xalgo-museve-privacy__lede {
+    margin-top: 1.25rem;
+    max-width: 560px;
+    color: var(--mp-muted);
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    line-height: 1.7;
+  }
+
+  .xalgo-museve-privacy__guarantee { margin-top: 2.2rem; }
+
+  .xalgo-museve-privacy__checks {
+    list-style: none;
+    margin: 0.2rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .xalgo-museve-privacy__checks li {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: #fff;
+    text-wrap: pretty;
+  }
+
+  .xalgo-museve-privacy__checks li::before {
+    content: '';
+    flex: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid var(--mp-rose);
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8a598' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12l4 4 8-8'/%3E%3C/svg%3E") center / 14px no-repeat;
+  }
+
+  .xalgo-museve-privacy__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 750px) {
+    .xalgo-museve-privacy__grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .xalgo-museve-privacy__card {
+    padding: 1.6rem;
+    border-radius: 22px;
+    background: var(--mp-card);
+    border: 1px solid var(--mp-line);
+  }
+
+  .xalgo-museve-privacy__card-eyebrow {
+    margin: 0 0 0.7rem;
+    color: var(--mp-rose);
+    font-weight: 700;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  .xalgo-museve-privacy__card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-style: normal;
+    text-transform: none;
+    color: #fff;
+  }
+
+  .xalgo-museve-privacy__card p {
+    margin: 0;
+    color: var(--mp-muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .xalgo-museve-privacy__note {
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: rgb(255 255 255 / 0.5);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "MUSEVE Privacy",
+  "tag": "section",
+  "class": "section-wrapper xalgo-museve-privacy-wrapper",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Camera-free. Privacy-first." },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "No camera\nNothing to hide" },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Welcome in the rooms camera glasses aren't — boardrooms, gyms, locker rooms. What it hears is transcribed, never kept, and locked with financial-grade encryption."
+    },
+    { "type": "text", "id": "guarantee_label", "label": "Guarantee label", "default": "Our guarantee" },
+    {
+      "type": "text",
+      "id": "note_text",
+      "label": "Disclaimer note",
+      "default": "Microphones can pick up nearby voices — let people know when it's listening."
+    },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 104 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 104 }
+  ],
+  "blocks": [
+    {
+      "type": "check",
+      "name": "Guarantee check",
+      "limit": 5,
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "No camera on board" }
+      ]
+    },
+    {
+      "type": "pcard",
+      "name": "Privacy card",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+        { "type": "text", "id": "heading", "label": "Heading" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MUSEVE Privacy",
+      "category": "Content",
+      "blocks": [
+        { "type": "check", "settings": { "text": "No camera on board" } },
+        { "type": "check", "settings": { "text": "Audio is never recorded or stored" } },
+        { "type": "check", "settings": { "text": "Audio cannot be accessed — by anyone" } },
+        { "type": "pcard", "settings": { "eyebrow": "Financial-grade encryption", "heading": "Locked like your bank.", "text": "Your notes and transcripts are encrypted on the glasses, in transit and in the cloud." } },
+        { "type": "pcard", "settings": { "eyebrow": "Visible listening", "heading": "Everyone can see when it's on.", "text": "An LED and a tone mark every start and stop." } },
+        { "type": "pcard", "settings": { "eyebrow": "On-device wake", "heading": "Nothing leaves before you say so.", "text": "Wake-word runs on the glasses. Nothing uploads before activation." } },
+        { "type": "pcard", "settings": { "eyebrow": "Your data, your call", "heading": "Edit, export or delete.", "text": "Every transcript is yours to keep — or erase." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

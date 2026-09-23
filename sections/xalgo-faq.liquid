@@ -33,14 +33,27 @@
   <div class="page-width">
     {%- if section.settings.heading != blank -%}
       <div class="xalgo-faq__header">
-        <h1 class="xalgo-faq__heading">{{ section.settings.heading }}</h1>
+        {%- liquid
+          assign h_tag = section.settings.heading_tag | default: 'h1'
+        -%}
+        <{{ h_tag }} class="xalgo-faq__heading">{{ section.settings.heading }}</{{ h_tag }}>
         {%- if section.settings.subheading != blank -%}
           <p class="xalgo-faq__subheading">{{ section.settings.subheading }}</p>
         {%- endif -%}
       </div>
     {%- endif -%}
 
-    {%- if active_categories.size > 1 -%}
+    {%- liquid
+      assign show_tabs = true
+      if section.settings.show_tabs == false
+        assign show_tabs = false
+      endif
+      if active_categories.size <= 1
+        assign show_tabs = false
+      endif
+    -%}
+
+    {%- if show_tabs -%}
       <div class="xalgo-faq__tabs" role="tablist">
         {%- assign first_tab_set = false -%}
         {%- for cat in categories_order -%}
@@ -71,7 +84,7 @@
       </div>
     {%- endif -%}
 
-    <div class="xalgo-faq__panels">
+    <div class="xalgo-faq__panels{% unless show_tabs %} xalgo-faq__panels--all{% endunless %}">
       {%- for cat in categories_order -%}
         {%- if active_categories contains cat -%}
           <div
@@ -106,6 +119,12 @@
         {%- endif -%}
       {%- endfor -%}
     </div>
+
+    {%- if section.settings.more_link_label != blank -%}
+      <p class="xalgo-faq__more">
+        <a href="{{ section.settings.more_link_url | default: '/pages/faq' }}">{{ section.settings.more_link_label }}</a>
+      </p>
+    {%- endif -%}
   </div>
 </section>
 
@@ -155,6 +174,23 @@
     margin: 0;
   }
 
+  .xalgo-faq__more {
+    margin: 1.4rem 0 0;
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .xalgo-faq__more a {
+    color: var(--xalgo-terracotta, #b06557);
+    text-decoration: none;
+  }
+
+  .xalgo-faq__more a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
   /* Tabs */
   .xalgo-faq__tabs {
     display: flex;
@@ -197,6 +233,11 @@
   }
 
   .xalgo-faq__panel:first-child {
+    display: block;
+  }
+
+  /* Tabs hidden (show_tabs off or single category): render every panel, one flat list */
+  .xalgo-faq__panels--all .xalgo-faq__panel {
     display: block;
   }
 
@@ -330,6 +371,36 @@
       "default": "Find answers to common questions"
     },
     {
+      "type": "checkbox",
+      "id": "show_tabs",
+      "label": "Show category tabs",
+      "default": true,
+      "info": "Turn off to show all questions in one flat list (ignores categories)."
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" }
+      ],
+      "default": "h1",
+      "info": "Use H2 when the page already has an H1 (e.g. landing pages)."
+    },
+    {
+      "type": "text",
+      "id": "more_link_label",
+      "label": "More link label",
+      "info": "Optional link rendered below the questions, e.g. \"Search & explore the full FAQ →\"."
+    },
+    {
+      "type": "url",
+      "id": "more_link_url",
+      "label": "More link URL"
+    },
+    {
       "type": "range",
       "id": "padding_top",
       "label": "Top padding",
@@ -392,8 +463,8 @@
           "type": "faq_item",
           "settings": {
             "category": "product",
-            "question": "What is xRing made of?",
-            "answer": "<p>xRing is crafted from aerospace-grade titanium, making it lightweight, durable, and hypoallergenic.</p>"
+            "question": "What is Ring made of?",
+            "answer": "<p>Ring is crafted from aerospace-grade titanium, making it lightweight, durable, and hypoallergenic.</p>"
           }
         },
         {
@@ -401,7 +472,7 @@
           "settings": {
             "category": "product",
             "question": "How long does the battery last?",
-            "answer": "<p>xRing lasts 5-8 days on a single charge depending on usage patterns.</p>"
+            "answer": "<p>Ring lasts 5-8 days on a single charge depending on usage patterns.</p>"
           }
         },
         {

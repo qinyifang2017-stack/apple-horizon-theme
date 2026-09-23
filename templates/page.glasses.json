@@ -1,0 +1,419 @@
+/*
+ * ------------------------------------------------------------
+ * MUSEVE Glasses landing page — composed from the 0921 v3 static mockup.
+ * Section copy follows MUSEVE_落地页_静态设计稿_0921_v3.html; upload real images in the editor.
+ * "MUSEVE Signup" renders a hidden dialog (zero footprint); keep it in the order.
+ * Page handle in Shopify admin: glasses  →  /pages/glasses
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "museve_hero": {
+      "type": "xalgo-museve-hero",
+      "blocks": {
+        "proof_custom": {
+          "type": "proof_item",
+          "settings": { "stat": "Fully customizable", "text": "4 shapes · 5 temple finishes\nRx-ready" }
+        },
+        "proof_weight": {
+          "type": "proof_item",
+          "settings": { "stat": "24 g", "text": "Pure titanium\nDesigned for everyday wear" }
+        },
+        "proof_brain": {
+          "type": "proof_item",
+          "settings": { "stat": "Your second brain", "text": "Every note captured\n— and searchable" }
+        },
+        "proof_nocam": {
+          "type": "proof_item",
+          "settings": { "stat": "No camera", "text": "Microphones only\n0 awkward moments" }
+        }
+      },
+      "block_order": ["proof_custom", "proof_weight", "proof_brain", "proof_nocam"],
+      "name": "MUSEVE Hero",
+      "settings": {
+        "eyebrow": "MUSEVE Glasses · Coming to Kickstarter",
+        "heading": "World's First Pure Titanium Eye-Control AI Glasses",
+        "footnote_text": "",
+        "subheading": "Blink to capture meetings and ideas.\nAI turns them into searchable notes, to-dos and mind maps.",
+        "button_label": "Get early-bird access",
+        "button_opens_signup": true,
+        "cta_anchor": "museve-signup",
+        "button_url": "/products/glasses",
+        "button_new_window": false,
+        "color_scheme": "scheme-1",
+        "padding_top": 56,
+        "padding_bottom": 0
+      }
+    },
+    "museve_lead": {
+      "type": "xalgo-museve-lead",
+      "name": "Inside the frame",
+      "settings": {
+        "eyebrow": "Inside the frame",
+        "heading": "Everything hides in the temples",
+        "text": "No camera on the front. No screen in the lens. The sensors, microphones and battery all live inside the temples, so what people see is a pair of glasses.",
+        "button_label": "View tech specs",
+        "button_url": "#xalgo-museve-specs",
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "museve_control": {
+      "type": "xalgo-museve-control",
+      "blocks": {
+        "scene_meeting": {
+          "type": "scene",
+          "settings": { "label": "09:42 · Meeting", "heading": "The decision everyone forgot.", "text": "Key points and action items, captured while you listen." }
+        },
+        "scene_idea": {
+          "type": "scene",
+          "settings": { "label": "11:17 · A new idea", "heading": "The thought you had on the way.", "text": "Say it once. It's in your timeline." }
+        },
+        "scene_class": {
+          "type": "scene",
+          "settings": { "label": "15:36 · Class", "heading": "The lecture that went too fast.", "text": "Full notes, ready to review by dinner." }
+        }
+      },
+      "block_order": ["scene_meeting", "scene_idea", "scene_class"],
+      "name": "Never lose a thought",
+      "settings": {
+        "eyebrow": "Never lose a thought",
+        "heading": "Every day is full of things\nyou wish you'd kept",
+        "text": "Ideas, decisions, little moments — gone before you find a pen. Now a blink keeps them.",
+        "chip_tag": "Capturing",
+        "chip_text": "Meeting — 09:42",
+        "color_scheme": "scheme-1",
+        "padding_top": 104,
+        "padding_bottom": 104
+      }
+    },
+    "museve_how": {
+      "type": "xalgo-museve-how",
+      "blocks": {
+        "step_control": {
+          "type": "step",
+          "settings": { "icon": "eye", "number": "01", "heading": "Control", "text": "A blink, a clench, a nod — or just say it." }
+        },
+        "step_capture": {
+          "type": "step",
+          "settings": { "icon": "mic", "number": "02", "heading": "Capture", "text": "Meetings, ideas, lectures — without touching your phone." }
+        },
+        "step_organize": {
+          "type": "step",
+          "settings": { "icon": "sparkle", "number": "03", "heading": "Organize", "text": "AI turns the audio into notes, to-dos and mind maps." }
+        },
+        "step_review": {
+          "type": "step",
+          "settings": { "icon": "phone", "number": "04", "heading": "Review", "text": "Every moment becomes a Memory Card on your timeline — searchable." }
+        },
+        "tab_blink": { "type": "gesture_tab", "settings": { "icon": "eye", "label": "Blink" } },
+        "tab_clench": { "type": "gesture_tab", "settings": { "icon": "nod", "label": "Clench" } },
+        "tab_nod": { "type": "gesture_tab", "settings": { "icon": "nod", "label": "Nod" } },
+        "tab_shake": { "type": "gesture_tab", "settings": { "icon": "shake", "label": "Shake" } },
+        "tab_voice": { "type": "gesture_tab", "settings": { "icon": "mic", "label": "Voice" } }
+      },
+      "block_order": ["tab_blink", "tab_clench", "tab_nod", "tab_shake", "tab_voice", "step_control", "step_capture", "step_organize", "step_review"],
+      "name": "How it works",
+      "settings": {
+        "eyebrow": "How it works",
+        "heading": "Silent when you need\nVoice when you want",
+        "text": "Blink, clench, nod, shake — or just speak. Then decide what each one does, once, in the MUSEVE app.",
+        "color_scheme": "scheme-1",
+        "padding_top": 104,
+        "padding_bottom": 104
+      }
+    },
+    "museve_frames": {
+      "type": "xalgo-museve-frames",
+      "blocks": {
+        "point_shape": {
+          "type": "point",
+          "settings": { "number": "01", "heading": "Your shape", "text": "Start with the one that already suits you.", "show_shapes": true, "show_colors": false }
+        },
+        "point_colors": {
+          "type": "point",
+          "settings": { "number": "02", "heading": "Your colors", "text": "Frame and temples are chosen separately.", "show_shapes": false, "show_colors": true }
+        },
+        "point_lenses": {
+          "type": "point",
+          "settings": { "number": "03", "heading": "Your lenses", "text": "Photochromic as standard. Prescription 1.56–1.74.", "show_shapes": false, "show_colors": false }
+        },
+        "point_weight": {
+          "type": "point",
+          "settings": { "number": "04", "heading": "24 g, all day", "text": "Pure titanium temples and bridge, German-made OBE hinges. Light enough to forget.", "show_shapes": false, "show_colors": false }
+        },
+        "shape_wellington": { "type": "shape", "settings": { "name": "Wellington" } },
+        "shape_boston": { "type": "shape", "settings": { "name": "Boston" } },
+        "shape_panto": { "type": "shape", "settings": { "name": "Panto" } },
+        "shape_browline": { "type": "shape", "settings": { "name": "Browline" } },
+        "color_frame_tbd": { "type": "colorway", "settings": { "group": "frame", "name": "To be announced", "to_be_announced": true } },
+        "color_temple_brown": { "type": "colorway", "settings": { "group": "temple", "name": "Dark Brown", "swatch": "#3B241A" } },
+        "color_temple_silver": { "type": "colorway", "settings": { "group": "temple", "name": "Silver", "swatch": "#C0C0C0" } },
+        "color_temple_gunmetal": { "type": "colorway", "settings": { "group": "temple", "name": "Gunmetal", "swatch": "#4A4F54" } },
+        "color_temple_gold": { "type": "colorway", "settings": { "group": "temple", "name": "Light Gold", "swatch": "#D6B56D" } },
+        "color_temple_black": { "type": "colorway", "settings": { "group": "temple", "name": "Matte Black", "swatch": "#1A1A1A" } }
+      },
+      "block_order": [
+        "point_shape", "point_colors", "point_lenses", "point_weight",
+        "shape_wellington", "shape_boston", "shape_panto", "shape_browline",
+        "color_frame_tbd",
+        "color_temple_brown", "color_temple_silver", "color_temple_gunmetal", "color_temple_gold", "color_temple_black"
+      ],
+      "name": "Real glasses first",
+      "settings": {
+        "eyebrow": "Designed for every style",
+        "heading": "Real glasses first",
+        "text": "Four shapes, your colors, your prescription — in 24 g of pure titanium and acetate. The electronics hide in the temples.",
+        "callout_text": "Photochromic lenses come standard — clear indoors, tinted outdoors.",
+        "frame_colors_label": "Frame colors",
+        "temple_finishes_label": "Temple finishes",
+        "color_scheme": "scheme-1",
+        "padding_top": 104,
+        "padding_bottom": 104
+      }
+    },
+    "museve_privacy": {
+      "type": "xalgo-museve-privacy",
+      "blocks": {
+        "check_nocam": { "type": "check", "settings": { "text": "No camera on board" } },
+        "check_never": { "type": "check", "settings": { "text": "Audio is never recorded or stored" } },
+        "check_locked": { "type": "check", "settings": { "text": "Audio cannot be accessed — by anyone" } },
+        "pcard_encrypt": {
+          "type": "pcard",
+          "settings": { "eyebrow": "Financial-grade encryption", "heading": "Locked like your bank.", "text": "Your notes and transcripts are encrypted on the glasses, in transit and in the cloud." }
+        },
+        "pcard_visible": {
+          "type": "pcard",
+          "settings": { "eyebrow": "Visible listening", "heading": "Everyone can see when it's on.", "text": "An LED and a tone mark every start and stop." }
+        },
+        "pcard_wake": {
+          "type": "pcard",
+          "settings": { "eyebrow": "On-device wake", "heading": "Nothing leaves before you say so.", "text": "Wake-word runs on the glasses. Nothing uploads before activation." }
+        },
+        "pcard_data": {
+          "type": "pcard",
+          "settings": { "eyebrow": "Your data, your call", "heading": "Edit, export or delete.", "text": "Every transcript is yours to keep — or erase." }
+        }
+      },
+      "block_order": ["check_nocam", "check_never", "check_locked", "pcard_encrypt", "pcard_visible", "pcard_wake", "pcard_data"],
+      "name": "Privacy",
+      "settings": {
+        "eyebrow": "Camera-free. Privacy-first.",
+        "heading": "No camera\nNothing to hide",
+        "text": "Welcome in the rooms camera glasses aren't — boardrooms, gyms, locker rooms. What it hears is transcribed, never kept, and locked with financial-grade encryption.",
+        "guarantee_label": "Our guarantee",
+        "note_text": "Microphones can pick up nearby voices — let people know when it's listening.",
+        "color_scheme": "scheme-1",
+        "padding_top": 104,
+        "padding_bottom": 104
+      }
+    },
+    "museve_specs": {
+      "type": "xalgo-tech-specs",
+      "blocks": {
+        "spec_design": {
+          "type": "spec_group",
+          "settings": {
+            "icon": "size",
+            "heading": "Design",
+            "details": "<p><strong>Weight</strong> 24 g — with standard lenses; varies by frame shape and prescription</p><p><strong>Frame shapes</strong> Wellington, Boston, Panto, Browline</p><p><strong>Frame colors</strong> To be announced</p><p><strong>Temple finishes</strong> Dark Brown, Silver, Gunmetal, Light Gold, Matte Black</p><p><strong>Materials</strong> Pure titanium (TA1, Grade 1 class) temples and bridge; cellulose acetate front</p><p><strong>Hinges</strong> German-made OBE hinges</p><p><strong>Fit</strong> 51□20–145 mm — varies slightly by shape</p>"
+          }
+        },
+        "spec_lenses": {
+          "type": "spec_group",
+          "settings": {
+            "icon": "materials",
+            "heading": "Lenses",
+            "details": "<p><strong>Standard lenses</strong> Photochromic — clear indoors, darkens outdoors</p><p><strong>Prescription</strong> Supported, 1.56–1.74 index</p><p><strong>Optional coatings</strong> UV protection, anti-reflective, anti-fingerprint, blue-light filtering</p>"
+          }
+        },
+        "spec_controls": {
+          "type": "spec_group",
+          "settings": {
+            "icon": "sensor",
+            "heading": "Controls",
+            "details": "<p><strong>Eye movement</strong> EOG sensing</p><p><strong>Facial muscles</strong> fEMG sensing</p><p><strong>Brain activity</strong> EEG sensing</p><p><strong>Electrodes</strong> 8, hidden in the frame</p><p><strong>Motion</strong> 6-axis IMU</p>"
+          }
+        },
+        "spec_audio": {
+          "type": "spec_group",
+          "settings": {
+            "icon": "sensor",
+            "heading": "Audio",
+            "details": "<p><strong>Microphones</strong> 4 × digital array + 1 × analog</p><p><strong>Speakers</strong> 2 × built-in</p><p><strong>Camera</strong> None</p>"
+          }
+        },
+        "spec_connectivity": {
+          "type": "spec_group",
+          "settings": {
+            "icon": "connectivity",
+            "heading": "Connectivity & app",
+            "details": "<p><strong>Wireless</strong> Bluetooth Low Energy 5.4</p><p><strong>App</strong> MUSEVE app — iOS, Android, Windows & macOS</p>"
+          }
+        },
+        "spec_battery": {
+          "type": "spec_group",
+          "settings": {
+            "icon": "battery",
+            "heading": "Battery & charging",
+            "details": "<p><strong>Battery life</strong> Up to 12 h with all features on; over 24 h in typical use</p><p><strong>Charging case</strong> 6–8 full recharges, USB-C</p><p><strong>Water & dust</strong> IPX4</p>"
+          }
+        }
+      },
+      "block_order": ["spec_design", "spec_lenses", "spec_controls", "spec_audio", "spec_connectivity", "spec_battery"],
+      "name": "Tech specs",
+      "settings": {
+        "anchor_id": "xalgo-museve-specs",
+        "eyebrow": "Inside the frame",
+        "heading": "Tech specs",
+        "subheading": "Eight electrodes, five microphones and a full day of battery, inside frames that weigh 24 g. Here is every number.",
+        "media_type": "image",
+        "box_heading": "In the box",
+        "box_items": "<p>MUSEVE Glasses</p><p>Charging case</p><p>Lens cleaning cloth</p><p>Quick start guide & digital warranty card</p>",
+        "color_scheme": "scheme-1",
+        "padding_top": 104,
+        "padding_bottom": 104
+      }
+    },
+    "museve_faq": {
+      "type": "xalgo-faq",
+      "blocks": {
+        "faq_launch": {
+          "type": "faq_item",
+          "settings": {
+            "category": "product",
+            "question": "When does it launch on Kickstarter?",
+            "answer": "<p>Subscribers hear first — and get 24 hours at the Super Early Bird price before anyone else.</p>"
+          }
+        },
+        "faq_cost": {
+          "type": "faq_item",
+          "settings": {
+            "category": "product",
+            "question": "How much will it cost?",
+            "answer": "<p>Backers get the lowest price we'll ever offer. Sign up and it lands in your inbox before launch.</p>"
+          }
+        },
+        "faq_rx": {
+          "type": "faq_item",
+          "settings": {
+            "category": "product",
+            "question": "Can I use my prescription?",
+            "answer": "<p>Yes — 1.56 to 1.74 index, with a valid prescription. Photochromic lenses come standard.</p>"
+          }
+        },
+        "faq_camera": {
+          "type": "faq_item",
+          "settings": {
+            "category": "product",
+            "question": "Is there really no camera?",
+            "answer": "<p>Really. Microphones and speakers only. An LED and a tone show whenever it's listening.</p>"
+          }
+        },
+        "faq_who": {
+          "type": "faq_item",
+          "settings": {
+            "category": "support",
+            "question": "Who makes MUSEVE?",
+            "answer": "<p>MUSEVE is built by Xalgo, part of XGD — 25 years of electronics manufacturing, from concept to mass production.</p>"
+          }
+        },
+        "faq_commit": {
+          "type": "faq_item",
+          "settings": {
+            "category": "support",
+            "question": "Does signing up commit me to anything?",
+            "answer": "<p>No. Just an email. Unsubscribe anytime.</p>"
+          }
+        }
+      },
+      "block_order": ["faq_launch", "faq_cost", "faq_rx", "faq_camera", "faq_who", "faq_commit"],
+      "name": "Landing FAQ",
+      "settings": {
+        "heading": "Before you sign up",
+        "subheading": "",
+        "show_tabs": false,
+        "heading_tag": "h2",
+        "more_link_label": "Search & explore the full FAQ →",
+        "more_link_url": "/pages/faq",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "museve_cta": {
+      "type": "xalgo-museve-final-cta",
+      "blocks": {
+        "cta_perk_price": { "type": "perk", "settings": { "text": "Lowest price ever" } },
+        "cta_perk_access": { "type": "perk", "settings": { "text": "24-hour early access" } },
+        "cta_perk_spam": { "type": "perk", "settings": { "text": "No spam" } }
+      },
+      "block_order": ["cta_perk_price", "cta_perk_access", "cta_perk_spam"],
+      "name": "Closing CTA",
+      "settings": {
+        "variant": "signup",
+        "eyebrow": "Coming soon to Kickstarter",
+        "heading": "Be first. Pay least",
+        "text": "The Super Early Bird price goes to subscribers first — and you'll know the moment we go live.",
+        "input_placeholder": "Enter your email",
+        "button_label": "Sign up for launch",
+        "success_label": "You're on the list ✓",
+        "tag": "MUSEVE early-bird",
+        "fine_print": "<p>One email when we go live, one before. Unsubscribe anytime.</p>",
+        "trust_text": "Built by MUSEVE. Backed by XGD's 25 years of electronics manufacturing.",
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "museve_choose": {
+      "type": "xalgo-museve-choose",
+      "name": "Choose your Glasses",
+      "settings": {
+        "enabled": true,
+        "heading": "Ready to choose your MUSEVE Glasses?",
+        "text": "Pick the frame shape and colorway that fit your daily style — prescription and photochromic lens options are available too.",
+        "button_label": "Choose your MUSEVE Glasses",
+        "button_url": "/products/glasses",
+        "button_new_window": false,
+        "color_scheme": "scheme-1",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "museve_signup": {
+      "type": "xalgo-museve-signup",
+      "blocks": {
+        "perk_seb": { "type": "perk", "settings": { "text": "Super Early Bird price" } },
+        "perk_24h": { "type": "perk", "settings": { "text": "24-hour early access" } },
+        "perk_nospam": { "type": "perk", "settings": { "text": "No spam" } }
+      },
+      "block_order": ["perk_seb", "perk_24h", "perk_nospam"],
+      "name": "Signup dialog (hidden)",
+      "settings": {
+        "eyebrow": "Coming to Kickstarter",
+        "heading": "Get early-bird access",
+        "text": "Leave your email and we’ll open the Super Early Bird price to you first.",
+        "input_placeholder": "Enter your email",
+        "button_label": "Sign up",
+        "tag": "MUSEVE early-bird",
+        "success_heading": "You’re on the list ✓",
+        "success_text": "We’ll email you 24 hours before the campaign opens.",
+        "fine_print": "<p>One email when we go live, one before. Unsubscribe anytime.</p>"
+      }
+    }
+  },
+  "order": [
+    "museve_hero",
+    "museve_lead",
+    "museve_control",
+    "museve_how",
+    "museve_frames",
+    "museve_privacy",
+    "museve_specs",
+    "museve_faq",
+    "museve_cta",
+    "museve_choose",
+    "museve_signup"
+  ]
+}
