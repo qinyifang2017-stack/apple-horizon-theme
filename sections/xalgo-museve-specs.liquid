@@ -1,0 +1,404 @@
+{% comment %}
+  MUSEVE Tech specs — 1:1 port of the mockup .specs module.
+  Two equal columns: left = product media + Design + Lenses; right = In the box + Controls + Audio + Connectivity + Battery.
+  spec_group blocks define the headings and which column they sit in;
+  spec_row blocks are the term/value rows, matched to a group by its exact heading text;
+  box_item blocks fill the "In the box" card.
+{% endcomment %}
+
+{% liquid
+  assign cols = 'left,right' | split: ','
+  assign groups = section.blocks | where: 'type', 'spec_group'
+  assign rows = section.blocks | where: 'type', 'spec_row'
+  assign box_items = section.blocks | where: 'type', 'box_item'
+%}
+
+<section
+  id="{{ section.settings.anchor_id | default: 'xalgo-museve-specs' }}"
+  class="xalgo-museve-specs color-{{ section.settings.color_scheme }}"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="page-width xalgo-museve-specs__shell">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="xalgo-museve-specs__eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="xalgo-museve-specs__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subheading != blank -%}
+      <p class="xalgo-museve-specs__lede">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+
+    <div class="xalgo-museve-specs__cols">
+      {%- for col in cols -%}
+        <div class="xalgo-museve-specs__col">
+          {%- if col == 'left' -%}
+            <div class="xalgo-museve-specs__product">
+              {%- liquid
+                assign has_media = false
+                if section.settings.media_type == 'video' and section.settings.video != blank
+                  assign has_media = true
+                elsif section.settings.media_type == 'image' and section.settings.image != blank
+                  assign has_media = true
+                endif
+              -%}
+              {%- if has_media -%}
+                {%- if section.settings.media_type == 'video' and section.settings.video != blank -%}
+                  {{
+                    section.settings.video
+                    | video_tag:
+                      poster: section.settings.video.preview_image,
+                      autoplay: true,
+                      loop: true,
+                      controls: false,
+                      muted: true,
+                      class: 'xalgo-museve-specs__media'
+                  }}
+                {%- else -%}
+                  {{
+                    section.settings.image
+                    | image_url: width: 1200
+                    | image_tag:
+                      class: 'xalgo-museve-specs__media',
+                      widths: '600, 900, 1200',
+                      sizes: '(min-width: 990px) 44vw, 100vw',
+                      alt: section.settings.image.alt
+                  }}
+                {%- endif -%}
+              {%- else -%}
+                <svg class="xalgo-museve-specs__placeholder" viewBox="0 0 240 200" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+                  <path d="M18 62h84M138 62h84"/>
+                  <path d="M22 62v18a24 24 0 0 0 24 24h30a24 24 0 0 0 24-24V62M142 62v18a24 24 0 0 0 24 24h30a24 24 0 0 0 24-24V62"/>
+                  <path d="M102 70c6-6 12-6 18 0M4 54l14 8M236 54l-14 8"/>
+                  <rect x="60" y="136" width="120" height="44" rx="14"/>
+                  <path d="M60 150h120"/>
+                </svg>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+          {%- if col == 'right' and box_items.size > 0 -%}
+            <div class="xalgo-museve-specs__box">
+              <h3>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/>
+                </svg>
+                {{ section.settings.box_heading }}
+              </h3>
+              {%- for block in box_items -%}
+                <p {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+
+          {%- for group in groups -%}
+            {%- if group.settings.column == col -%}
+              <div class="xalgo-museve-specs__group" {{ group.shopify_attributes }}>
+                <h4>{{ group.settings.heading }}</h4>
+                <dl>
+                  {%- for row in rows -%}
+                    {%- if row.settings.group == group.settings.heading -%}
+                      <div class="xalgo-museve-specs__row" {{ row.shopify_attributes }}>
+                        <dt>{{ row.settings.term }}</dt>
+                        <dd>
+                          {{ row.settings.definition }}
+                          {%- if row.settings.note != blank -%}
+                            <small>{{ row.settings.note }}</small>
+                          {%- endif -%}
+                        </dd>
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </dl>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .xalgo-museve-specs {
+    --msp-cream: var(--xalgo-cream, #fdfaf7);
+    --msp-blush: var(--xalgo-rose-light, #f2ddd8);
+    --msp-ink: var(--xalgo-text-primary, #1d1d1f);
+    --msp-muted: var(--xalgo-text-secondary, #6e6e73);
+    --msp-terracotta: var(--xalgo-terracotta, #b06557);
+    --msp-rose: var(--xalgo-rose, #e8a598);
+    --msp-champagne: var(--xalgo-champagne, #c9a882);
+    --msp-gold: var(--xalgo-gold-deep, #a87c4f);
+    --msp-line: rgb(29 29 31 / 0.08);
+
+    background:
+      radial-gradient(circle at 8% 10%, rgb(242 221 216 / 0.76) 0 20rem, transparent 34rem),
+      linear-gradient(135deg, var(--msp-cream) 0%, #fbf1eb 46%, var(--msp-blush) 100%);
+    color: var(--msp-ink);
+  }
+
+  .xalgo-museve-specs__eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--msp-terracotta);
+    font-weight: 700;
+    font-size: 0.76rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  .xalgo-museve-specs__heading {
+    margin: 0;
+    font-size: clamp(2.3rem, 5vw, 4.25rem);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+    font-style: normal;
+    text-transform: none;
+    color: var(--msp-ink);
+  }
+
+  .xalgo-museve-specs__lede {
+    margin-top: 1.25rem;
+    max-width: 640px;
+    color: var(--msp-muted);
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    line-height: 1.7;
+  }
+
+  .xalgo-museve-specs__cols {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+    margin-top: clamp(2rem, 4vw, 3rem);
+  }
+
+  @media (min-width: 990px) {
+    .xalgo-museve-specs__cols { grid-template-columns: 1fr 1fr; }
+  }
+
+  .xalgo-museve-specs__col {
+    display: grid;
+    gap: 2rem;
+    min-width: 0;
+  }
+
+  .xalgo-museve-specs__product {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    border-radius: 28px;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    border: 1.5px dashed color-mix(in srgb, var(--msp-champagne) 70%, transparent);
+    background: color-mix(in srgb, var(--msp-blush) 40%, var(--msp-cream));
+    color: color-mix(in srgb, var(--msp-gold) 70%, transparent);
+  }
+
+  .xalgo-museve-specs__media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 0;
+  }
+
+  .xalgo-museve-specs__placeholder {
+    width: 52%;
+    max-width: 320px;
+  }
+
+  .xalgo-museve-specs__box {
+    padding: 1.2rem 1.4rem;
+    border: 1px solid rgb(232 165 152 / 0.3);
+    border-radius: 18px;
+    background: rgb(253 250 247 / 0.8);
+    box-shadow: 0 20px 60px rgb(201 168 130 / 0.16);
+  }
+
+  .xalgo-museve-specs__box h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0 0 0.6rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    font-style: normal;
+    text-transform: none;
+    color: var(--msp-ink);
+  }
+
+  .xalgo-museve-specs__box h3 svg {
+    width: 20px;
+    height: 20px;
+    color: var(--msp-terracotta);
+    flex: none;
+  }
+
+  .xalgo-museve-specs__box p {
+    margin: 0.35rem 0 0;
+    font-size: 0.92rem;
+    color: var(--msp-muted);
+  }
+
+  .xalgo-museve-specs__group h4 {
+    margin: 0 0 0.35rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1.5px solid rgb(29 29 31 / 0.12);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    font-style: normal;
+    text-transform: none;
+    color: var(--msp-ink);
+  }
+
+  .xalgo-museve-specs__group dl {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .xalgo-museve-specs__row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 480px) {
+    .xalgo-museve-specs__row {
+      grid-template-columns: minmax(130px, 0.36fr) 1fr;
+    }
+  }
+
+  .xalgo-museve-specs__row dt,
+  .xalgo-museve-specs__row dd {
+    margin: 0;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--msp-line);
+    font-size: 0.93rem;
+    line-height: 1.5;
+  }
+
+  .xalgo-museve-specs__row dt {
+    color: var(--msp-muted);
+    padding-right: 1rem;
+  }
+
+  @media (max-width: 479px) {
+    .xalgo-museve-specs__row dt {
+      padding-bottom: 0;
+      border-bottom: 0;
+      font-size: 0.8rem;
+    }
+    .xalgo-museve-specs__row dd {
+      padding-top: 0.2rem;
+    }
+  }
+
+  .xalgo-museve-specs__row dd {
+    color: var(--msp-ink);
+  }
+
+  .xalgo-museve-specs__row dd small {
+    display: block;
+    margin-top: 0.15rem;
+    color: var(--msp-muted);
+    font-size: 0.8rem;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "MUSEVE Tech specs",
+  "tag": "section",
+  "class": "section-wrapper xalgo-museve-specs-wrapper",
+  "settings": [
+    { "type": "text", "id": "anchor_id", "label": "Anchor ID", "default": "xalgo-museve-specs" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Inside the frame" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Tech specs" },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Eight electrodes, five microphones and a full day of battery, inside frames that weigh 24 g. Here is every number."
+    },
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media type",
+      "options": [
+        { "value": "image", "label": "Image" },
+        { "value": "video", "label": "Video" }
+      ],
+      "default": "image"
+    },
+    { "type": "image_picker", "id": "image", "label": "Product image", "visible_if": "{{ section.settings.media_type == 'image' }}" },
+    { "type": "video", "id": "video", "label": "Product video", "visible_if": "{{ section.settings.media_type == 'video' }}" },
+    { "type": "text", "id": "box_heading", "label": "In the box heading", "default": "In the box" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 104 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 104 }
+  ],
+  "blocks": [
+    {
+      "type": "spec_group",
+      "name": "Spec group",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Group heading" },
+        {
+          "type": "select",
+          "id": "column",
+          "label": "Column",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "right"
+        }
+      ]
+    },
+    {
+      "type": "spec_row",
+      "name": "Spec row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "group",
+          "label": "Group heading",
+          "info": "Must exactly match a Spec group heading to appear under it."
+        },
+        { "type": "text", "id": "term", "label": "Term" },
+        { "type": "text", "id": "definition", "label": "Value" },
+        { "type": "text", "id": "note", "label": "Small note (optional)" }
+      ]
+    },
+    {
+      "type": "box_item",
+      "name": "Box item",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Item" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MUSEVE Tech specs",
+      "category": "Content",
+      "blocks": [
+        { "type": "spec_group", "settings": { "heading": "Design", "column": "left" } },
+        { "type": "spec_group", "settings": { "heading": "Lenses", "column": "left" } },
+        { "type": "spec_group", "settings": { "heading": "Controls", "column": "right" } },
+        { "type": "spec_group", "settings": { "heading": "Audio", "column": "right" } },
+        { "type": "spec_group", "settings": { "heading": "Connectivity & app", "column": "right" } },
+        { "type": "spec_group", "settings": { "heading": "Battery & charging", "column": "right" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

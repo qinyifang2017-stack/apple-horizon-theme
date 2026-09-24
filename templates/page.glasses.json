@@ -13,22 +13,39 @@
       "blocks": {
         "proof_custom": {
           "type": "proof_item",
-          "settings": { "stat": "Fully customizable", "text": "4 shapes · 5 temple finishes\nRx-ready" }
+          "settings": {
+            "stat": "Fully customizable",
+            "text": "4 shapes · 5 temple finishes\nRx-ready"
+          }
         },
         "proof_weight": {
           "type": "proof_item",
-          "settings": { "stat": "24 g", "text": "Pure titanium\nDesigned for everyday wear" }
+          "settings": {
+            "stat": "24 g",
+            "text": "Pure titanium\nDesigned for everyday wear"
+          }
         },
         "proof_brain": {
           "type": "proof_item",
-          "settings": { "stat": "Your second brain", "text": "Every note captured\n— and searchable" }
+          "settings": {
+            "stat": "Your second brain",
+            "text": "Every note captured\n— and searchable"
+          }
         },
         "proof_nocam": {
           "type": "proof_item",
-          "settings": { "stat": "No camera", "text": "Microphones only\n0 awkward moments" }
+          "settings": {
+            "stat": "No camera",
+            "text": "Microphones only\n0 awkward moments"
+          }
         }
       },
-      "block_order": ["proof_custom", "proof_weight", "proof_brain", "proof_nocam"],
+      "block_order": [
+        "proof_custom",
+        "proof_weight",
+        "proof_brain",
+        "proof_nocam"
+      ],
       "name": "MUSEVE Hero",
       "settings": {
         "eyebrow": "MUSEVE Glasses · Coming to Kickstarter",
@@ -64,18 +81,34 @@
       "blocks": {
         "scene_meeting": {
           "type": "scene",
-          "settings": { "label": "09:42 · Meeting", "heading": "The decision everyone forgot.", "text": "Key points and action items, captured while you listen." }
+          "settings": {
+            "label": "09:42 · Meeting",
+            "heading": "The decision everyone forgot.",
+            "text": "Key points and action items, captured while you listen."
+          }
         },
         "scene_idea": {
           "type": "scene",
-          "settings": { "label": "11:17 · A new idea", "heading": "The thought you had on the way.", "text": "Say it once. It's in your timeline." }
+          "settings": {
+            "label": "11:17 · A new idea",
+            "heading": "The thought you had on the way.",
+            "text": "Say it once. It's in your timeline."
+          }
         },
         "scene_class": {
           "type": "scene",
-          "settings": { "label": "15:36 · Class", "heading": "The lecture that went too fast.", "text": "Full notes, ready to review by dinner." }
+          "settings": {
+            "label": "15:36 · Class",
+            "heading": "The lecture that went too fast.",
+            "text": "Full notes, ready to review by dinner."
+          }
         }
       },
-      "block_order": ["scene_meeting", "scene_idea", "scene_class"],
+      "block_order": [
+        "scene_meeting",
+        "scene_idea",
+        "scene_class"
+      ],
       "name": "Never lose a thought",
       "settings": {
         "eyebrow": "Never lose a thought",
@@ -93,27 +126,47 @@
       "blocks": {
         "step_control": {
           "type": "step",
-          "settings": { "icon": "eye", "number": "01", "heading": "Control", "text": "A blink, a clench, a nod — or just say it." }
+          "settings": {
+            "icon": "eye",
+            "number": "01",
+            "heading": "Control",
+            "text": "A blink, a clench, a nod — or just say it."
+          }
         },
         "step_capture": {
           "type": "step",
-          "settings": { "icon": "mic", "number": "02", "heading": "Capture", "text": "Meetings, ideas, lectures — without touching your phone." }
+          "settings": {
+            "icon": "mic",
+            "number": "02",
+            "heading": "Capture",
+            "text": "Meetings, ideas, lectures — without touching your phone."
+          }
         },
         "step_organize": {
           "type": "step",
-          "settings": { "icon": "sparkle", "number": "03", "heading": "Organize", "text": "AI turns the audio into notes, to-dos and mind maps." }
+          "settings": {
+            "icon": "sparkle",
+            "number": "03",
+            "heading": "Organize",
+            "text": "AI turns the audio into notes, to-dos and mind maps."
+          }
         },
         "step_review": {
           "type": "step",
-          "settings": { "icon": "phone", "number": "04", "heading": "Review", "text": "Every moment becomes a Memory Card on your timeline — searchable." }
-        },
-        "tab_blink": { "type": "gesture_tab", "settings": { "icon": "eye", "label": "Blink" } },
-        "tab_clench": { "type": "gesture_tab", "settings": { "icon": "nod", "label": "Clench" } },
-        "tab_nod": { "type": "gesture_tab", "settings": { "icon": "nod", "label": "Nod" } },
-        "tab_shake": { "type": "gesture_tab", "settings": { "icon": "shake", "label": "Shake" } },
-        "tab_voice": { "type": "gesture_tab", "settings": { "icon": "mic", "label": "Voice" } }
+          "settings": {
+            "icon": "phone",
+            "number": "04",
+            "heading": "Review",
+            "text": "Every moment becomes a Memory Card on your timeline — searchable."
+          }
+        }
       },
-      "block_order": ["tab_blink", "tab_clench", "tab_nod", "tab_shake", "tab_voice", "step_control", "step_capture", "step_organize", "step_review"],
+      "block_order": [
+        "step_control",
+        "step_capture",
+        "step_organize",
+        "step_review"
+      ],
       "name": "How it works",
       "settings": {
         "eyebrow": "How it works",
@@ -129,36 +182,132 @@
       "blocks": {
         "point_shape": {
           "type": "point",
-          "settings": { "number": "01", "heading": "Your shape", "text": "Start with the one that already suits you.", "show_shapes": true, "show_colors": false }
+          "settings": {
+            "number": "01",
+            "heading": "Your shape",
+            "text": "Start with the one that already suits you.",
+            "show_shapes": true,
+            "show_colors": false
+          }
         },
         "point_colors": {
           "type": "point",
-          "settings": { "number": "02", "heading": "Your colors", "text": "Frame and temples are chosen separately.", "show_shapes": false, "show_colors": true }
+          "settings": {
+            "number": "02",
+            "heading": "Your colors",
+            "text": "Frame and temples are chosen separately.",
+            "show_shapes": false,
+            "show_colors": true
+          }
         },
         "point_lenses": {
           "type": "point",
-          "settings": { "number": "03", "heading": "Your lenses", "text": "Photochromic as standard. Prescription 1.56–1.74.", "show_shapes": false, "show_colors": false }
+          "settings": {
+            "number": "03",
+            "heading": "Your lenses",
+            "text": "Photochromic as standard. Prescription 1.56–1.74.",
+            "show_shapes": false,
+            "show_colors": false
+          }
         },
         "point_weight": {
           "type": "point",
-          "settings": { "number": "04", "heading": "24 g, all day", "text": "Pure titanium temples and bridge, German-made OBE hinges. Light enough to forget.", "show_shapes": false, "show_colors": false }
+          "settings": {
+            "number": "04",
+            "heading": "24 g, all day",
+            "text": "Pure titanium temples and bridge, German-made OBE hinges. Light enough to forget.",
+            "show_shapes": false,
+            "show_colors": false
+          }
         },
-        "shape_wellington": { "type": "shape", "settings": { "name": "Wellington" } },
-        "shape_boston": { "type": "shape", "settings": { "name": "Boston" } },
-        "shape_panto": { "type": "shape", "settings": { "name": "Panto" } },
-        "shape_browline": { "type": "shape", "settings": { "name": "Browline" } },
-        "color_frame_tbd": { "type": "colorway", "settings": { "group": "frame", "name": "To be announced", "to_be_announced": true } },
-        "color_temple_brown": { "type": "colorway", "settings": { "group": "temple", "name": "Dark Brown", "swatch": "#3B241A" } },
-        "color_temple_silver": { "type": "colorway", "settings": { "group": "temple", "name": "Silver", "swatch": "#C0C0C0" } },
-        "color_temple_gunmetal": { "type": "colorway", "settings": { "group": "temple", "name": "Gunmetal", "swatch": "#4A4F54" } },
-        "color_temple_gold": { "type": "colorway", "settings": { "group": "temple", "name": "Light Gold", "swatch": "#D6B56D" } },
-        "color_temple_black": { "type": "colorway", "settings": { "group": "temple", "name": "Matte Black", "swatch": "#1A1A1A" } }
+        "shape_wellington": {
+          "type": "shape",
+          "settings": {
+            "name": "Wellington"
+          }
+        },
+        "shape_boston": {
+          "type": "shape",
+          "settings": {
+            "name": "Boston"
+          }
+        },
+        "shape_panto": {
+          "type": "shape",
+          "settings": {
+            "name": "Panto"
+          }
+        },
+        "shape_browline": {
+          "type": "shape",
+          "settings": {
+            "name": "Browline"
+          }
+        },
+        "color_frame_tbd": {
+          "type": "colorway",
+          "settings": {
+            "group": "frame",
+            "name": "To be announced",
+            "to_be_announced": true
+          }
+        },
+        "color_temple_brown": {
+          "type": "colorway",
+          "settings": {
+            "group": "temple",
+            "name": "Dark Brown",
+            "swatch": "#3B241A"
+          }
+        },
+        "color_temple_silver": {
+          "type": "colorway",
+          "settings": {
+            "group": "temple",
+            "name": "Silver",
+            "swatch": "#C0C0C0"
+          }
+        },
+        "color_temple_gunmetal": {
+          "type": "colorway",
+          "settings": {
+            "group": "temple",
+            "name": "Gunmetal",
+            "swatch": "#4A4F54"
+          }
+        },
+        "color_temple_gold": {
+          "type": "colorway",
+          "settings": {
+            "group": "temple",
+            "name": "Light Gold",
+            "swatch": "#D6B56D"
+          }
+        },
+        "color_temple_black": {
+          "type": "colorway",
+          "settings": {
+            "group": "temple",
+            "name": "Matte Black",
+            "swatch": "#1A1A1A"
+          }
+        }
       },
       "block_order": [
-        "point_shape", "point_colors", "point_lenses", "point_weight",
-        "shape_wellington", "shape_boston", "shape_panto", "shape_browline",
+        "point_shape",
+        "point_colors",
+        "point_lenses",
+        "point_weight",
+        "shape_wellington",
+        "shape_boston",
+        "shape_panto",
+        "shape_browline",
         "color_frame_tbd",
-        "color_temple_brown", "color_temple_silver", "color_temple_gunmetal", "color_temple_gold", "color_temple_black"
+        "color_temple_brown",
+        "color_temple_silver",
+        "color_temple_gunmetal",
+        "color_temple_gold",
+        "color_temple_black"
       ],
       "name": "Real glasses first",
       "settings": {
@@ -176,27 +325,66 @@
     "museve_privacy": {
       "type": "xalgo-museve-privacy",
       "blocks": {
-        "check_nocam": { "type": "check", "settings": { "text": "No camera on board" } },
-        "check_never": { "type": "check", "settings": { "text": "Audio is never recorded or stored" } },
-        "check_locked": { "type": "check", "settings": { "text": "Audio cannot be accessed — by anyone" } },
+        "check_nocam": {
+          "type": "check",
+          "settings": {
+            "text": "No camera on board"
+          }
+        },
+        "check_never": {
+          "type": "check",
+          "settings": {
+            "text": "Audio is never recorded or stored"
+          }
+        },
+        "check_locked": {
+          "type": "check",
+          "settings": {
+            "text": "Audio cannot be accessed — by anyone"
+          }
+        },
         "pcard_encrypt": {
           "type": "pcard",
-          "settings": { "eyebrow": "Financial-grade encryption", "heading": "Locked like your bank.", "text": "Your notes and transcripts are encrypted on the glasses, in transit and in the cloud." }
+          "settings": {
+            "eyebrow": "Financial-grade encryption",
+            "heading": "Locked like your bank.",
+            "text": "Your notes and transcripts are encrypted on the glasses, in transit and in the cloud."
+          }
         },
         "pcard_visible": {
           "type": "pcard",
-          "settings": { "eyebrow": "Visible listening", "heading": "Everyone can see when it's on.", "text": "An LED and a tone mark every start and stop." }
+          "settings": {
+            "eyebrow": "Visible listening",
+            "heading": "Everyone can see when it's on.",
+            "text": "An LED and a tone mark every start and stop."
+          }
         },
         "pcard_wake": {
           "type": "pcard",
-          "settings": { "eyebrow": "On-device wake", "heading": "Nothing leaves before you say so.", "text": "Wake-word runs on the glasses. Nothing uploads before activation." }
+          "settings": {
+            "eyebrow": "On-device wake",
+            "heading": "Nothing leaves before you say so.",
+            "text": "Wake-word runs on the glasses. Nothing uploads before activation."
+          }
         },
         "pcard_data": {
           "type": "pcard",
-          "settings": { "eyebrow": "Your data, your call", "heading": "Edit, export or delete.", "text": "Every transcript is yours to keep — or erase." }
+          "settings": {
+            "eyebrow": "Your data, your call",
+            "heading": "Edit, export or delete.",
+            "text": "Every transcript is yours to keep — or erase."
+          }
         }
       },
-      "block_order": ["check_nocam", "check_never", "check_locked", "pcard_encrypt", "pcard_visible", "pcard_wake", "pcard_data"],
+      "block_order": [
+        "check_nocam",
+        "check_never",
+        "check_locked",
+        "pcard_encrypt",
+        "pcard_visible",
+        "pcard_wake",
+        "pcard_data"
+      ],
       "name": "Privacy",
       "settings": {
         "eyebrow": "Camera-free. Privacy-first.",
@@ -210,58 +398,296 @@
       }
     },
     "museve_specs": {
-      "type": "xalgo-tech-specs",
+      "type": "xalgo-museve-specs",
       "blocks": {
-        "spec_design": {
+        "grp_design": {
           "type": "spec_group",
           "settings": {
-            "icon": "size",
             "heading": "Design",
-            "details": "<p><strong>Weight</strong> 24 g — with standard lenses; varies by frame shape and prescription</p><p><strong>Frame shapes</strong> Wellington, Boston, Panto, Browline</p><p><strong>Frame colors</strong> To be announced</p><p><strong>Temple finishes</strong> Dark Brown, Silver, Gunmetal, Light Gold, Matte Black</p><p><strong>Materials</strong> Pure titanium (TA1, Grade 1 class) temples and bridge; cellulose acetate front</p><p><strong>Hinges</strong> German-made OBE hinges</p><p><strong>Fit</strong> 51□20–145 mm — varies slightly by shape</p>"
+            "column": "left"
           }
         },
-        "spec_lenses": {
+        "grp_lenses": {
           "type": "spec_group",
           "settings": {
-            "icon": "materials",
             "heading": "Lenses",
-            "details": "<p><strong>Standard lenses</strong> Photochromic — clear indoors, darkens outdoors</p><p><strong>Prescription</strong> Supported, 1.56–1.74 index</p><p><strong>Optional coatings</strong> UV protection, anti-reflective, anti-fingerprint, blue-light filtering</p>"
+            "column": "left"
           }
         },
-        "spec_controls": {
+        "grp_controls": {
           "type": "spec_group",
           "settings": {
-            "icon": "sensor",
             "heading": "Controls",
-            "details": "<p><strong>Eye movement</strong> EOG sensing</p><p><strong>Facial muscles</strong> fEMG sensing</p><p><strong>Brain activity</strong> EEG sensing</p><p><strong>Electrodes</strong> 8, hidden in the frame</p><p><strong>Motion</strong> 6-axis IMU</p>"
+            "column": "right"
           }
         },
-        "spec_audio": {
+        "grp_audio": {
           "type": "spec_group",
           "settings": {
-            "icon": "sensor",
             "heading": "Audio",
-            "details": "<p><strong>Microphones</strong> 4 × digital array + 1 × analog</p><p><strong>Speakers</strong> 2 × built-in</p><p><strong>Camera</strong> None</p>"
+            "column": "right"
           }
         },
-        "spec_connectivity": {
+        "grp_connectivity": {
           "type": "spec_group",
           "settings": {
-            "icon": "connectivity",
             "heading": "Connectivity & app",
-            "details": "<p><strong>Wireless</strong> Bluetooth Low Energy 5.4</p><p><strong>App</strong> MUSEVE app — iOS, Android, Windows & macOS</p>"
+            "column": "right"
           }
         },
-        "spec_battery": {
+        "grp_battery": {
           "type": "spec_group",
           "settings": {
-            "icon": "battery",
             "heading": "Battery & charging",
-            "details": "<p><strong>Battery life</strong> Up to 12 h with all features on; over 24 h in typical use</p><p><strong>Charging case</strong> 6–8 full recharges, USB-C</p><p><strong>Water & dust</strong> IPX4</p>"
+            "column": "right"
+          }
+        },
+        "row_01": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Design",
+            "term": "Weight",
+            "definition": "24 g",
+            "note": "With standard lenses; varies by frame shape and prescription"
+          }
+        },
+        "row_02": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Design",
+            "term": "Frame shapes",
+            "definition": "Wellington, Boston, Panto, Browline"
+          }
+        },
+        "row_03": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Design",
+            "term": "Frame colors",
+            "definition": "To be announced"
+          }
+        },
+        "row_04": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Design",
+            "term": "Temple finishes",
+            "definition": "Dark Brown, Silver, Gunmetal, Light Gold, Matte Black"
+          }
+        },
+        "row_05": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Design",
+            "term": "Materials",
+            "definition": "Pure titanium (TA1, Grade 1 class) temples and bridge; cellulose acetate front"
+          }
+        },
+        "row_06": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Design",
+            "term": "Hinges",
+            "definition": "German-made OBE hinges"
+          }
+        },
+        "row_07": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Design",
+            "term": "Fit",
+            "definition": "51□20–145 mm",
+            "note": "Varies slightly by shape"
+          }
+        },
+        "row_08": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Lenses",
+            "term": "Standard lenses",
+            "definition": "Photochromic — clear indoors, darkens outdoors"
+          }
+        },
+        "row_09": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Lenses",
+            "term": "Prescription",
+            "definition": "Supported, 1.56–1.74 index"
+          }
+        },
+        "row_10": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Lenses",
+            "term": "Optional coatings",
+            "definition": "UV protection, anti-reflective, anti-fingerprint, blue-light filtering"
+          }
+        },
+        "row_11": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Controls",
+            "term": "Eye movement",
+            "definition": "EOG sensing"
+          }
+        },
+        "row_12": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Controls",
+            "term": "Facial muscles",
+            "definition": "fEMG sensing"
+          }
+        },
+        "row_13": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Controls",
+            "term": "Brain activity",
+            "definition": "EEG sensing"
+          }
+        },
+        "row_14": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Controls",
+            "term": "Electrodes",
+            "definition": "8, hidden in the frame"
+          }
+        },
+        "row_15": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Controls",
+            "term": "Motion",
+            "definition": "6-axis IMU"
+          }
+        },
+        "row_16": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Audio",
+            "term": "Microphones",
+            "definition": "4 × digital array + 1 × analog"
+          }
+        },
+        "row_17": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Audio",
+            "term": "Speakers",
+            "definition": "2 × built-in"
+          }
+        },
+        "row_18": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Audio",
+            "term": "Camera",
+            "definition": "None"
+          }
+        },
+        "row_19": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Connectivity & app",
+            "term": "Wireless",
+            "definition": "Bluetooth Low Energy 5.4"
+          }
+        },
+        "row_20": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Connectivity & app",
+            "term": "App",
+            "definition": "MUSEVE app — iOS, Android, Windows & macOS"
+          }
+        },
+        "row_21": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Battery & charging",
+            "term": "Battery life",
+            "definition": "Up to 12 h with all features on; over 24 h in typical use"
+          }
+        },
+        "row_22": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Battery & charging",
+            "term": "Charging case",
+            "definition": "6–8 full recharges, USB-C"
+          }
+        },
+        "row_23": {
+          "type": "spec_row",
+          "settings": {
+            "group": "Battery & charging",
+            "term": "Water & dust",
+            "definition": "IPX4"
+          }
+        },
+        "box_1": {
+          "type": "box_item",
+          "settings": {
+            "text": "MUSEVE Glasses"
+          }
+        },
+        "box_2": {
+          "type": "box_item",
+          "settings": {
+            "text": "Charging case"
+          }
+        },
+        "box_3": {
+          "type": "box_item",
+          "settings": {
+            "text": "Lens cleaning cloth"
+          }
+        },
+        "box_4": {
+          "type": "box_item",
+          "settings": {
+            "text": "Quick start guide & digital warranty card"
           }
         }
       },
-      "block_order": ["spec_design", "spec_lenses", "spec_controls", "spec_audio", "spec_connectivity", "spec_battery"],
+      "block_order": [
+        "grp_design",
+        "grp_lenses",
+        "grp_controls",
+        "grp_audio",
+        "grp_connectivity",
+        "grp_battery",
+        "row_01",
+        "row_02",
+        "row_03",
+        "row_04",
+        "row_05",
+        "row_06",
+        "row_07",
+        "row_08",
+        "row_09",
+        "row_10",
+        "row_11",
+        "row_12",
+        "row_13",
+        "row_14",
+        "row_15",
+        "row_16",
+        "row_17",
+        "row_18",
+        "row_19",
+        "row_20",
+        "row_21",
+        "row_22",
+        "row_23",
+        "box_1",
+        "box_2",
+        "box_3",
+        "box_4"
+      ],
       "name": "Tech specs",
       "settings": {
         "anchor_id": "xalgo-museve-specs",
@@ -270,7 +696,6 @@
         "subheading": "Eight electrodes, five microphones and a full day of battery, inside frames that weigh 24 g. Here is every number.",
         "media_type": "image",
         "box_heading": "In the box",
-        "box_items": "<p>MUSEVE Glasses</p><p>Charging case</p><p>Lens cleaning cloth</p><p>Quick start guide & digital warranty card</p>",
         "color_scheme": "scheme-1",
         "padding_top": 104,
         "padding_bottom": 104
@@ -328,7 +753,14 @@
           }
         }
       },
-      "block_order": ["faq_launch", "faq_cost", "faq_rx", "faq_camera", "faq_who", "faq_commit"],
+      "block_order": [
+        "faq_launch",
+        "faq_cost",
+        "faq_rx",
+        "faq_camera",
+        "faq_who",
+        "faq_commit"
+      ],
       "name": "Landing FAQ",
       "settings": {
         "heading": "Before you sign up",
@@ -344,11 +776,30 @@
     "museve_cta": {
       "type": "xalgo-museve-final-cta",
       "blocks": {
-        "cta_perk_price": { "type": "perk", "settings": { "text": "Lowest price ever" } },
-        "cta_perk_access": { "type": "perk", "settings": { "text": "24-hour early access" } },
-        "cta_perk_spam": { "type": "perk", "settings": { "text": "No spam" } }
+        "cta_perk_price": {
+          "type": "perk",
+          "settings": {
+            "text": "Lowest price ever"
+          }
+        },
+        "cta_perk_access": {
+          "type": "perk",
+          "settings": {
+            "text": "24-hour early access"
+          }
+        },
+        "cta_perk_spam": {
+          "type": "perk",
+          "settings": {
+            "text": "No spam"
+          }
+        }
       },
-      "block_order": ["cta_perk_price", "cta_perk_access", "cta_perk_spam"],
+      "block_order": [
+        "cta_perk_price",
+        "cta_perk_access",
+        "cta_perk_spam"
+      ],
       "name": "Closing CTA",
       "settings": {
         "variant": "signup",
@@ -359,7 +810,7 @@
         "button_label": "Sign up for launch",
         "success_label": "You're on the list ✓",
         "tag": "MUSEVE early-bird",
-        "fine_print": "<p>One email when we go live, one before. Unsubscribe anytime.</p>",
+        "fine_print": "<p>One email when we go live, one before. Unsubscribe anytime. <a href=\"/policies/privacy-policy\">Privacy policy</a></p>",
         "trust_text": "Built by MUSEVE. Backed by XGD's 25 years of electronics manufacturing.",
         "color_scheme": "scheme-1",
         "padding_top": 0,
@@ -384,11 +835,30 @@
     "museve_signup": {
       "type": "xalgo-museve-signup",
       "blocks": {
-        "perk_seb": { "type": "perk", "settings": { "text": "Super Early Bird price" } },
-        "perk_24h": { "type": "perk", "settings": { "text": "24-hour early access" } },
-        "perk_nospam": { "type": "perk", "settings": { "text": "No spam" } }
+        "perk_seb": {
+          "type": "perk",
+          "settings": {
+            "text": "Super Early Bird price"
+          }
+        },
+        "perk_24h": {
+          "type": "perk",
+          "settings": {
+            "text": "24-hour early access"
+          }
+        },
+        "perk_nospam": {
+          "type": "perk",
+          "settings": {
+            "text": "No spam"
+          }
+        }
       },
-      "block_order": ["perk_seb", "perk_24h", "perk_nospam"],
+      "block_order": [
+        "perk_seb",
+        "perk_24h",
+        "perk_nospam"
+      ],
       "name": "Signup dialog (hidden)",
       "settings": {
         "eyebrow": "Coming to Kickstarter",
@@ -399,7 +869,7 @@
         "tag": "MUSEVE early-bird",
         "success_heading": "You’re on the list ✓",
         "success_text": "We’ll email you 24 hours before the campaign opens.",
-        "fine_print": "<p>One email when we go live, one before. Unsubscribe anytime.</p>"
+        "fine_print": "<p>One email when we go live, one before. Unsubscribe anytime.</p><p><a href=\"/policies/privacy-policy\">Privacy policy</a></p>"
       }
     }
   },

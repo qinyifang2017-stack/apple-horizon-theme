@@ -296,7 +296,18 @@
   }
 
   .xalgo-museve-signup__fine p { margin: 0; }
-  .xalgo-museve-signup__fine a { text-decoration: underline; text-underline-offset: 2px; }
+
+  /* 隐私协议链接：颜色跟随上方文字，hover 去下划线（!important 压过全局粉色 hover 规则） */
+  .xalgo-museve-signup__fine a {
+    color: inherit !important;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .xalgo-museve-signup__fine a:hover {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
 
   .xalgo-museve-signup__close {
     position: absolute;

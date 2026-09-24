@@ -256,7 +256,18 @@
     line-height: 1.6;
   }
   .xalgo-museve-final-cta__fine p { margin: 0; }
-  .xalgo-museve-final-cta__fine a { text-decoration: underline; text-underline-offset: 2px; }
+
+  /* 隐私协议链接：默认白色带下划线，hover 去下划线（!important 压过全局粉色 hover 规则） */
+  .xalgo-museve-final-cta__fine a {
+    color: inherit !important;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .xalgo-museve-final-cta__fine a:hover {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
 
   .xalgo-museve-final-cta__cta { margin-top: 1.9rem; }
 

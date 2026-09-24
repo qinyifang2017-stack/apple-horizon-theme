@@ -166,7 +166,8 @@
     border: 1px solid var(--mp-line);
   }
 
-  .xalgo-museve-privacy__card-eyebrow {
+  /* 提高选择器权重：否则会被 .xalgo-museve-privacy__card p 的 muted 色盖掉 */
+  .xalgo-museve-privacy__card .xalgo-museve-privacy__card-eyebrow {
     margin: 0 0 0.7rem;
     color: var(--mp-rose);
     font-weight: 700;
